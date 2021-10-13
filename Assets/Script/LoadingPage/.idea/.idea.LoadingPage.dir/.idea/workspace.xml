@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cc550b01-f6db-43cb-ba17-bc9ece92607e" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../../Scenes/LoadingScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/../../Scenes/LoadingScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.LoadingPage.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.LoadingPage.dir/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProgressBar.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ProgressBar.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -11,9 +12,6 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
-  </component>
-  <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/ProgressBar.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="ProjectId" id="1zH2VvxavolwDEbPdvQrPz5XfnA" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -35,7 +33,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1633790727475</updated>
-      <workItem from="1633790792278" duration="2988000" />
+      <workItem from="1633790792278" duration="3584000" />
+      <workItem from="1633956775588" duration="4457000" />
     </task>
     <servers />
   </component>
@@ -43,7 +42,7 @@
     <option name="version" value="3" />
   </component>
   <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
-  <component name="UnityProjectConfiguration" hasMinimizedUI="null" />
+  <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="UnityUnitTestConfiguration" currentTestLauncher="NUnit" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
