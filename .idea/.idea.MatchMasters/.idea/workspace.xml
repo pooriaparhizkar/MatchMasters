@@ -2,7 +2,77 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fb1d7a1a-897d-4185-893f-c092f25b45cc" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/.idea.MatchMasters/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Nakama.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Nakama/CHANGELOG.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Nakama/CHANGELOG.md.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Nakama/Documentation.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Nakama/Documentation/Nakama 2 + Unity Engine.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Nakama/Documentation/Nakama 2 + Unity Engine.md.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Nakama/Documentation/Nakama 2 + Unity Engine.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Nakama/Documentation/Nakama 2 + Unity Engine.pdf.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Nakama/Documentation/README.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Nakama/Documentation/README.pdf.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Nakama/Editor.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Nakama/Editor/NakamaEditor.asmdef" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Nakama/Editor/NakamaEditor.asmdef.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Nakama/Editor/SampleScene.unity" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Nakama/Editor/SampleScene.unity.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Nakama/Editor/Snippets.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Nakama/Editor/Snippets/AccountAndUsers.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Nakama/Editor/Snippets/AccountAndUsers.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Nakama/Editor/Snippets/DeviceAuthentication.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Nakama/Editor/Snippets/DeviceAuthentication.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Nakama/Editor/Snippets/MatchmakerWithRelayedMultiplayer.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Nakama/Editor/Snippets/MatchmakerWithRelayedMultiplayer.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Nakama/Editor/Snippets/NakamaManager.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Nakama/Editor/Snippets/NakamaManager.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Nakama/Editor/Snippets/NakamaManagerUsage.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Nakama/Editor/Snippets/NakamaManagerUsage.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Nakama/Editor/Snippets/RealtimeChatRoom.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Nakama/Editor/Snippets/RealtimeChatRoom.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Nakama/Editor/Snippets/RejoinChatAfterDisconnect.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Nakama/Editor/Snippets/RejoinChatAfterDisconnect.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Nakama/Editor/Snippets/SocketConnect.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Nakama/Editor/Snippets/SocketConnect.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Nakama/Editor/Snippets/WebGLConnect.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Nakama/Editor/Snippets/WebGLConnect.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Nakama/Editor/WebGL.unity" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Nakama/Editor/WebGL.unity.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Nakama/Editor/link.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Nakama/Editor/link.xml.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Nakama/LICENSE.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Nakama/LICENSE.md.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Nakama/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Nakama/README.md.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Nakama/Runtime.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Nakama/Runtime/ClientExtensions.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Nakama/Runtime/ClientExtensions.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Nakama/Runtime/JsWebSocketAdapter.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Nakama/Runtime/JsWebSocketAdapter.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Nakama/Runtime/NakamaRuntime.asmdef" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Nakama/Runtime/NakamaRuntime.asmdef.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Nakama/Runtime/Plugins.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Nakama/Runtime/Plugins/Nakama.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Nakama/Runtime/Plugins/Nakama.dll.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Nakama/Runtime/Plugins/UnityWebGLSocketBridge.jslib" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Nakama/Runtime/Plugins/UnityWebGLSocketBridge.jslib.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Nakama/Runtime/UnityLogger.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Nakama/Runtime/UnityLogger.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Nakama/Runtime/UnitySocket.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Nakama/Runtime/UnitySocket.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Nakama/Runtime/UnityWebRequestAdapter.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Nakama/Runtime/UnityWebRequestAdapter.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Nakama/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Nakama/package.json.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.MatchMasters/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.MatchMasters/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/LoadingScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/LoadingScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/e.x main.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/MainApp.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/e.x main.unity.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/MainApp.unity.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Script.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Script/HeaderMenu/headerMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/HeaderMenu/headerMenu.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Script/LoadingPage/ProgressBar.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/LoadingPage/ProgressBar.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,7 +144,8 @@
       <updated>1634567887668</updated>
       <workItem from="1634567905482" duration="3184000" />
       <workItem from="1634574292556" duration="34000" />
-      <workItem from="1634731064096" duration="9627000" />
+      <workItem from="1634731064096" duration="10141000" />
+      <workItem from="1635157999987" duration="5460000" />
     </task>
     <servers />
   </component>
