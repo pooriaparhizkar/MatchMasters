@@ -20,6 +20,8 @@ public class ProgressBar : MonoBehaviour
         value = 0.01f;
         // var deviceId = System.Guid.NewGuid().ToString();
         session = null;
+
+        client.WriteStorageObjectsAsync(session, new[] {new WriteStorageObject()});
     }
 
     private void ContinueProgess()
