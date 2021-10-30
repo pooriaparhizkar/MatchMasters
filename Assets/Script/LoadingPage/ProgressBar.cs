@@ -3,33 +3,53 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
+using Nakama;
+using UnityEngine.SceneManagement;
 public class ProgressBar : MonoBehaviour
 {
     // Start is called before the first frame update
-    [SerializeField] Text loginText;
-    [SerializeField] GameObject loading;
-    [SerializeField] Text Percant;
+    [SerializeField] Slider progressBar;
+    [SerializeField] Text percantText;
+    private float value;
+    private readonly IClient client = new Client("http", "157.119.191.169", 7350, "defaultkey");
+    private ISocket socket;
+    private ISession session;
 
     void Start()
     {
-        loginText.enabled = false;
-        loading.SetActive(true);
+        value = 0.01f;
+        // var deviceId = System.Guid.NewGuid().ToString();
+        session = null;
+
+        client.WriteStorageObjectsAsync(session, new[] {new WriteStorageObject()});
+    }
+
+    private void ContinueProgess()
+    {
+        progressBar.value = value;
+        percantText.text = (Math.Round(value * 100, 0)).ToString() + '%';
+        value += 0.001f;
     }
 
     // Update is called once per frame
-    void Update()
+    async void Update()
     {
-        if(((RectTransform) transform).offsetMax.x < 1*120)
+        if ((int) value * 100 < 100)
         {
-            ((RectTransform) transform).offsetMax = new Vector2(((RectTransform) transform).offsetMax.x + 0.1f,
-                ((RectTransform) transform).offsetMax.y);
-            Percant.text = Math.Round((((((RectTransform) transform).offsetMax.x + 31 )*100/151)),2).ToString()+'%';
-            //Percant.text = ((RectTransform) transform).offsetMax.x.ToString()+'%';
+            Debug.Log(session);
+            if (session == null)
+                ContinueProgess();
+            if (value > 0.5f)
+            {
+                if (session == null)
+                    session = await client.AuthenticateDeviceAsync("pooria-pooria-pooria-pooria-pooria-pooria");
+                else
+                    ContinueProgess();
+            }
         }
         else
         {
-            loginText.enabled = true;
-            loading.SetActive(false);
+            SceneManager.LoadScene (sceneName:"MainApp");
         }
     }
 }
