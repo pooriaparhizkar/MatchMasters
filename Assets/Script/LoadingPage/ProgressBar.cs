@@ -21,7 +21,7 @@ public class ProgressBar : MonoBehaviour
         // var deviceId = System.Guid.NewGuid().ToString();
         session = null;
 
-        client.WriteStorageObjectsAsync(session, new[] {new WriteStorageObject()});
+        // client.WriteStorageObjectsAsync(session, new[] {new WriteStorageObject()});
     }
 
     private void ContinueProgess()
@@ -37,14 +37,16 @@ public class ProgressBar : MonoBehaviour
         if ((int) value * 100 < 100)
         {
             Debug.Log(session);
-            if (session == null)
-                ContinueProgess();
             if (value > 0.5f)
             {
                 if (session == null)
                     session = await client.AuthenticateDeviceAsync("pooria-pooria-pooria-pooria-pooria-pooria");
                 else
                     ContinueProgess();
+            }
+            else if (session == null)
+            {
+                ContinueProgess();
             }
         }
         else
