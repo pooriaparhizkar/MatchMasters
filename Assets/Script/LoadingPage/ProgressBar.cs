@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using System;
 using Nakama;
 using UnityEngine.SceneManagement;
+
 public class ProgressBar : MonoBehaviour
 {
     // Start is called before the first frame update
@@ -28,7 +29,7 @@ public class ProgressBar : MonoBehaviour
     {
         progressBar.value = value;
         percantText.text = (Math.Round(value * 100, 0)).ToString() + '%';
-        value += 0.001f;
+        value += 0.1f * Time.deltaTime;
     }
 
     // Update is called once per frame
@@ -40,7 +41,16 @@ public class ProgressBar : MonoBehaviour
             if (value > 0.5f)
             {
                 if (session == null)
-                    session = await client.AuthenticateDeviceAsync("pooria-pooria-pooria-pooria-pooria-pooria");
+                {
+                    var deviceId = PlayerPrefs.GetString("nakama.deviceid");
+                    if (string.IsNullOrEmpty(deviceId))
+                    {
+                        deviceId = SystemInfo.deviceUniqueIdentifier;
+                        PlayerPrefs.SetString("nakama.deviceid", deviceId); // cache device id.
+                    }
+
+                    session = await client.AuthenticateDeviceAsync(deviceId);
+                }
                 else
                     ContinueProgess();
             }
@@ -51,7 +61,7 @@ public class ProgressBar : MonoBehaviour
         }
         else
         {
-            SceneManager.LoadScene (sceneName:"MainApp");
+            SceneManager.LoadScene(sceneName: "MainApp");
         }
     }
 }
