@@ -3,8 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="fb1d7a1a-897d-4185-893f-c092f25b45cc" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.MatchMasters/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.MatchMasters/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/LoadingScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/LoadingScene.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Script.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Script/LoadingPage/ProgressBar.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/LoadingPage/ProgressBar.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Script/MainPage/playBtn.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/MainPage/playBtn.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -14,6 +18,14 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.test-framework@1.1.16/UnityEditor.TestRunner/TestLaunchers/PlayerLauncher.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/a8a500db7f1d47f5816051b6806505a974000/b1/e0b702c9/ISocket.cs" root0="SKIP_HIGHLIGHTING" />
@@ -21,12 +33,14 @@
     <setting file="file://$PROJECT_DIR$/Assets/Script/LoadingPage/ProgressBar.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.timeline@1.2.16/Editor/Utilities/Clipboard.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/trophy button.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/ee47be73f7ef409ca5e5ce4b121745b7116000/1e/f9844249/SceneManager.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.timeline@1.2.16/Editor/TimelineHelpers.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.test-framework@1.1.16/UnityEditor.TestRunner/TestRunner/Utils/EditorLoadedTestAssemblyProvider.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.timeline@1.2.16/Editor/DirectorStyles.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.test-framework@1.1.16/UnityEditor.TestRunner/TestRunner/Utils/EditorAssemblyWrapper.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.test-framework@1.1.16/UnityEditor.TestRunner/TestLaunchers/AttributeFinderBase.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/play button.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/ee47be73f7ef409ca5e5ce4b121745b7116000/af/1a8c3f09/MonoBehaviour.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../Program Files/Unity/Editor/Data/Resources/PackageManager/BuiltInPackages/com.unity.2d.sprite/Editor/Interface/ISpriteEditorDataProvider.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/scr.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/scrolbar.cs" root0="FORCE_HIGHLIGHTING" />
@@ -82,6 +96,8 @@
       <workItem from="1635157999987" duration="6285000" />
       <workItem from="1635353466679" duration="92000" />
       <workItem from="1635595569701" duration="832000" />
+      <workItem from="1635960659950" duration="221000" />
+      <workItem from="1636197703399" duration="7401000" />
     </task>
     <servers />
   </component>
