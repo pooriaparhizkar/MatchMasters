@@ -3,8 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="fb1d7a1a-897d-4185-893f-c092f25b45cc" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.MatchMasters/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.MatchMasters/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/CoreGame.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/CoreGame.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Script.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Script/MatchMaking/MatchMakingLogic.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/MatchMaking/MatchMakingLogic.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -94,7 +94,7 @@
       <workItem from="1635595569701" duration="832000" />
       <workItem from="1635960659950" duration="221000" />
       <workItem from="1636197703399" duration="7401000" />
-      <workItem from="1636625297793" duration="1066000" />
+      <workItem from="1636625297793" duration="2448000" />
     </task>
     <servers />
   </component>
