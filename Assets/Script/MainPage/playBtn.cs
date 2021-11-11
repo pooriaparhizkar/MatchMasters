@@ -19,6 +19,6 @@ public class playBtn : MonoBehaviour
 
     public void onPlayBtnClick()
     {
-        SceneManager.LoadScene (sceneName:"CoreGame");
+        SceneManager.LoadScene (sceneName:"MatchMaking");
     }
 }
