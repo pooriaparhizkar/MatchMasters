@@ -157,6 +157,11 @@ public class MatchMakingLogic : MonoBehaviour
         Debug.Log( match.Presences.ToString());
         foreach (var user in match.Presences)
         {
+            if (user.Username != myUsername)
+            {
+                Debug.Log("Peidaaaaa shod");
+                foundedName = user.Username;
+            }
             Debug.LogFormat("Connected user: " + user.Username);
         }
         currentMatch = match;
