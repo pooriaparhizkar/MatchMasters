@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - boxSlot
   layers:
   - Default
   - TransparentFX
@@ -13,9 +14,9 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
+  - CompleteProgress
+  - mainPage icon
+  - icon
   - 
   - 
   - 
@@ -38,6 +39,21 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: icon
+    uniqueID: 2045684267
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: spotlight
+    uniqueID: 1867727707
+    locked: 0
+  - name: 'scrollbar '
+    uniqueID: 851489037
+    locked: 0
+  - name: CompleteProgress
+    uniqueID: 617506119
+    locked: 0
+  - name: trophy
+    uniqueID: 3838777301
     locked: 0
