@@ -3,9 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="fb1d7a1a-897d-4185-893f-c092f25b45cc" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.MatchMasters/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.MatchMasters/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/CoreGame.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/CoreGame.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Script.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Script/LoadingPage/ProgressBar.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/LoadingPage/ProgressBar.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Script/MatchMaking/MatchMakingLogic.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/MatchMaking/MatchMakingLogic.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,6 +33,7 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/ee47be73f7ef409ca5e5ce4b121745b7116000/1e/f9844249/SceneManager.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.timeline@1.2.16/Editor/TimelineHelpers.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.test-framework@1.1.16/UnityEditor.TestRunner/TestRunner/Utils/EditorLoadedTestAssemblyProvider.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/a8a500db7f1d47f5816051b6806505a974000/72/7d2b8691/ISession.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/CoreGame/spawnGems.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/CoreGame/onDragGems.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.timeline@1.2.16/Editor/DirectorStyles.cs" root0="SKIP_HIGHLIGHTING" />
@@ -98,7 +99,8 @@
       <workItem from="1635960659950" duration="221000" />
       <workItem from="1636197703399" duration="7401000" />
       <workItem from="1636625297793" duration="3126000" />
-      <workItem from="1636797509796" duration="8990000" />
+      <workItem from="1636797509796" duration="9804000" />
+      <workItem from="1637147630842" duration="996000" />
     </task>
     <servers />
   </component>
