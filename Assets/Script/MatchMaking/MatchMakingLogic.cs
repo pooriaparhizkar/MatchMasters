@@ -31,13 +31,14 @@ public class MatchMakingLogic : MonoBehaviour
     {
         StartCoroutine(ChangeFindingText());
 
-        var deviceId = PlayerPrefs.GetString("nakama.deviceid");
-        if (string.IsNullOrEmpty(deviceId)) {
-            deviceId = SystemInfo.deviceUniqueIdentifier;
-            PlayerPrefs.SetString("nakama.deviceid", deviceId); // cache device id.
-        }
-        Debug.Log(deviceId);
-        session = await client.AuthenticateDeviceAsync(deviceId);
+        // var deviceId = PlayerPrefs.GetString("nakama.deviceid");
+        // if (string.IsNullOrEmpty(deviceId)) {
+        //     deviceId = SystemInfo.deviceUniqueIdentifier;
+        //     PlayerPrefs.SetString("nakama.deviceid", deviceId); // cache device id.
+        // }
+        // Debug.Log(deviceId);
+        //session = await client.AuthenticateDeviceAsync(deviceId);
+        var session = Nakama.Session.Restore(PlayerPrefs.GetString("token"));
         //session = await client.AuthenticateDeviceAsync("pooria-pooria-pooria-pooria-pooria-pooria-pooria-pooria-pooria");
         Debug.Log(session);
         socket = client.NewSocket();

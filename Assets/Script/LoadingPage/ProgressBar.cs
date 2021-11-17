@@ -50,6 +50,8 @@ public class ProgressBar : MonoBehaviour
                     }
 
                     session = await client.AuthenticateDeviceAsync(deviceId);
+                    PlayerPrefs.SetString("token",session.AuthToken);
+                    PlayerPrefs.SetString("username",session.Username);
                 }
                 else
                     ContinueProgess();
