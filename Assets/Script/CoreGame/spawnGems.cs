@@ -22,12 +22,19 @@ public class spawnGems : MonoBehaviour
 
     }
 
-
-
-    public void changeGems(PointerEventData data)
+    void checkMatch()
     {
-        Debug.Log(data);
+        boxSlots = GameObject.FindGameObjectsWithTag("boxSlot");
+        foreach (var VARIABLE in boxSlots)
+        {
+            GameObject newObject = Instantiate(gems[UnityEngine.Random.Range(0, 5)], VARIABLE.transform.position, Quaternion.identity) as GameObject;
+            newObject.transform.SetParent(VARIABLE.transform);
+            newObject.transform.localScale = new Vector3(1, 1, 1);
+        }
     }
+
+
+
 
     // Update is called once per frame
     void Update()

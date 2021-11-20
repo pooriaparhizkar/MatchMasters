@@ -8,6 +8,7 @@ using UnityEngine.SceneManagement;
 
 public class ProgressBar : MonoBehaviour
 {
+    public static string APIAddress { get; set; }
     // Start is called before the first frame update
     [SerializeField] Slider progressBar;
     [SerializeField] Text percantText;
@@ -18,6 +19,7 @@ public class ProgressBar : MonoBehaviour
 
     void Start()
     {
+        PlayerPrefs.SetString("API","http://157.119.191.169:7351/v2/console/api/endpoints");
         value = 0.01f;
         // var deviceId = System.Guid.NewGuid().ToString();
         session = null;
