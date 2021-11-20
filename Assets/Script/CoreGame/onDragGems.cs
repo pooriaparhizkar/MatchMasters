@@ -22,11 +22,11 @@ public class onDragGems : MonoBehaviour, IDragHandler, IEndDragHandler
     {
     }
 
-
-    public void OnDrag(PointerEventData eventData)
+    IEnumerator OnDragHandler(PointerEventData eventData)
     {
         if (!isDraging)
         {
+            isDraging = true;
             int sourceObject = int.Parse(eventData.pointerDrag.name.Split('_')[1]);
             int targetObject = 0;
             //Up :
@@ -80,25 +80,56 @@ public class onDragGems : MonoBehaviour, IDragHandler, IEndDragHandler
                     sourceGem.transform.SetParent(targetElement.transform);
                     sourceGem.transform.position = targetElement.transform.position;
 
-                    checkThree(sourceObject);
-                    checkThree(targetObject);
+                    if (!checkThree(sourceObject,targetObject))
+                    {
+                        yield return new WaitForSecondsRealtime(0.5f);
+                        GameObject sourceElement2 = GameObject.Find("p_" + sourceObject);
+                        if (sourceElement2.transform.GetChild(0))
+                        {
+                            GameObject sourceGem2 = sourceElement.transform.GetChild(0).gameObject;
+                            GameObject targetElement2 = GameObject.Find("p_" + targetObject);
+                            GameObject targetGem2 = targetElement.transform.GetChild(0).gameObject;
+                            targetGem2.transform.SetParent(sourceElement2.transform);
+                            targetGem2.transform.position = sourceElement2.transform.position;
+                            sourceGem2.transform.SetParent(targetElement2.transform);
+                            sourceGem2.transform.position = targetElement2.transform.position;
+                        }
+
+                    }
+
+
                 }
                 //  Destroy(targetGem);
             }
-            isDraging = true;
+
+
         }
     }
+    public void OnDrag(PointerEventData eventData)
+    {
+        StartCoroutine(OnDragHandler(eventData));
+
+    }
+
     public void OnEndDrag(PointerEventData eventData)
     {
         isDraging = false;
     }
-    public void checkThree(int index)
+
+    public bool checkThree(int sourceIndex,int targetIndex)
     {
-        checkThreeRow(index);
-        checkThreeCol(index);
+        bool sourceRow = checkThreeRow(sourceIndex);
+        bool sourceCol = checkThreeCol(sourceIndex);
+        bool targetRow = checkThreeRow(targetIndex);
+        bool targetCol = checkThreeCol(targetIndex);
+        if (!sourceRow && !sourceCol && !targetRow && !targetCol)
+        {
+            return false;
+        }
+        else return true;
     }
 
-    public void checkThreeRow(int index)
+    public bool checkThreeRow(int index)
     {
         string sourceName = getNameGemWithIndex(index);
         //+1 , -1
@@ -110,6 +141,7 @@ public class onDragGems : MonoBehaviour, IDragHandler, IEndDragHandler
                 destroyGemWithIndex(index);
                 isLeftDestroy(index);
                 isRightDestroy(index);
+                return true;
             }
         }
         //-1 , -2
@@ -120,6 +152,7 @@ public class onDragGems : MonoBehaviour, IDragHandler, IEndDragHandler
             {
                 destroyGemWithIndex(index);
                 isLeftDestroy(index);
+                return true;
             }
         }
         //+1 , +2
@@ -130,47 +163,44 @@ public class onDragGems : MonoBehaviour, IDragHandler, IEndDragHandler
             {
                 destroyGemWithIndex(index);
                 isRightDestroy(index);
+                return true;
             }
         }
+        return false;
     }
 
-    public void checkThreeCol(int index)
+    public bool checkThreeCol(int index)
     {
         string sourceName = getNameGemWithIndex(index);
         //+7 , -7
-        if (((index - 7) > 0) && ((index + 7) < 49))
+
+        if (sourceName == getNameGemWithIndex(index - 7) &&
+            sourceName == getNameGemWithIndex(index + 7) && index - 7 > 0 && index + 7 < 49)
         {
-            if (sourceName == getNameGemWithIndex(index - 7) &&
-                sourceName == getNameGemWithIndex(index + 7))
-            {
-                destroyGemWithIndex(index);
-                isUpDestroy(index);
-                isDownDestroy(index);
-            }
+            destroyGemWithIndex(index);
+            isUpDestroy(index);
+            isDownDestroy(index);
+            return true;
         }
-        //-7 , -14
-        if (index -14 >0)
+        else if(sourceName == getNameGemWithIndex(index - 7) &&
+                 sourceName == getNameGemWithIndex(index - 14) && index - 14 > 0)
         {
-            if (sourceName == getNameGemWithIndex(index - 7) &&
-                sourceName == getNameGemWithIndex(index - 14))
-            {
-                destroyGemWithIndex(index);
-                isUpDestroy(index);
-                isDownDestroy(index);
-            }
-        }
-        //+7 , +14
-        if (index +14 <49)
-        {
-            if (sourceName == getNameGemWithIndex(index + 7) &&
-                sourceName == getNameGemWithIndex(index + 14))
-            {
-                destroyGemWithIndex(index);
-                isUpDestroy(index);
-                isDownDestroy(index);
-            }
+            destroyGemWithIndex(index);
+            isUpDestroy(index);
+            isDownDestroy(index);
+            return true;
         }
 
+        //+7 , +14
+        else if (sourceName == getNameGemWithIndex(index + 7) &&
+                 sourceName == getNameGemWithIndex(index + 14) && index + 14 < 49)
+        {
+            destroyGemWithIndex(index);
+            isUpDestroy(index);
+            isDownDestroy(index);
+            return true;
+        }
+        return false;
     }
 
     public void isLeftDestroy(int index)
@@ -196,7 +226,7 @@ public class onDragGems : MonoBehaviour, IDragHandler, IEndDragHandler
     public void isUpDestroy(int index)
     {
         string source = getNameGemWithIndex(index);
-        if (index-7 >0)
+        if (index - 7 > 0)
         {
             if (getNameGemWithIndex(index - 7) == source)
             {
@@ -205,10 +235,11 @@ public class onDragGems : MonoBehaviour, IDragHandler, IEndDragHandler
             }
         }
     }
+
     public void isDownDestroy(int index)
     {
         string source = getNameGemWithIndex(index);
-        if (index+7 <49)
+        if (index + 7 < 49)
         {
             if (getNameGemWithIndex(index + 7) == source)
             {
@@ -220,9 +251,14 @@ public class onDragGems : MonoBehaviour, IDragHandler, IEndDragHandler
 
     public string getNameGemWithIndex(int index)
     {
-        GameObject element = GameObject.Find("p_" + index);
-        GameObject gem = element.transform.GetChild(0).gameObject;
-        return gem.name.Split('_')[0];
+        if (index > 0 && index < 49)
+        {
+            GameObject element = GameObject.Find("p_" + index);
+            GameObject gem = element.transform.GetChild(0).gameObject;
+            return gem.name.Split('_')[0];
+        }
+
+        return "";
     }
 
     public void destroyGemWithIndex(int index)
@@ -231,6 +267,4 @@ public class onDragGems : MonoBehaviour, IDragHandler, IEndDragHandler
         GameObject gem = element.transform.GetChild(0).gameObject;
         Destroy(gem);
     }
-
-
 }
