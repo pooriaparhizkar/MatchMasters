@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fb1d7a1a-897d-4185-893f-c092f25b45cc" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.MatchMasters/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.MatchMasters/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Script.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Script/CoreGame/onDragGems.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/CoreGame/onDragGems.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -101,7 +99,7 @@
       <workItem from="1636625297793" duration="3126000" />
       <workItem from="1636797509796" duration="9804000" />
       <workItem from="1637147630842" duration="11419000" />
-      <workItem from="1637398359226" duration="15078000" />
+      <workItem from="1637398359226" duration="15913000" />
     </task>
     <servers />
   </component>
