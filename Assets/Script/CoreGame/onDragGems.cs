@@ -13,13 +13,14 @@ public class onDragGems : MonoBehaviour, IDragHandler, IEndDragHandler
     // Start is called before the first frame update
     private bool isDraging = false;
 
-    void Start()
+    public void OnDrag(PointerEventData eventData)
     {
+        StartCoroutine(OnDragHandler(eventData));
     }
 
-    // Update is called once per frame
-    void Update()
+    public void OnEndDrag(PointerEventData eventData)
     {
+        isDraging = false;
     }
 
     IEnumerator OnDragHandler(PointerEventData eventData)
@@ -68,55 +69,50 @@ public class onDragGems : MonoBehaviour, IDragHandler, IEndDragHandler
 
             if (targetObject != 0)
             {
-                GameObject sourceElement = GameObject.Find("p_" + sourceObject);
-                Debug.Log(sourceElement.transform.GetChild(0));
-                if (sourceElement.transform.GetChild(0))
+                swapGems(sourceObject, targetObject);
+                yield return new WaitForSecondsRealtime(0.5f);
+                if (!checkThree(sourceObject, targetObject))
                 {
-                    GameObject sourceGem = sourceElement.transform.GetChild(0).gameObject;
-                    GameObject targetElement = GameObject.Find("p_" + targetObject);
-                    GameObject targetGem = targetElement.transform.GetChild(0).gameObject;
-                    targetGem.transform.SetParent(sourceElement.transform);
-                    targetGem.transform.position = sourceElement.transform.position;
-                    sourceGem.transform.SetParent(targetElement.transform);
-                    sourceGem.transform.position = targetElement.transform.position;
-
-                    if (!checkThree(sourceObject,targetObject))
-                    {
-                        yield return new WaitForSecondsRealtime(0.5f);
-                        GameObject sourceElement2 = GameObject.Find("p_" + sourceObject);
-                        if (sourceElement2.transform.GetChild(0))
-                        {
-                            GameObject sourceGem2 = sourceElement.transform.GetChild(0).gameObject;
-                            GameObject targetElement2 = GameObject.Find("p_" + targetObject);
-                            GameObject targetGem2 = targetElement.transform.GetChild(0).gameObject;
-                            targetGem2.transform.SetParent(sourceElement2.transform);
-                            targetGem2.transform.position = sourceElement2.transform.position;
-                            sourceGem2.transform.SetParent(targetElement2.transform);
-                            sourceGem2.transform.position = targetElement2.transform.position;
-                        }
-
-                    }
-
-
+                    yield return new WaitForSecondsRealtime(0.5f);
+                    swapGems(targetObject, sourceObject);
                 }
-                //  Destroy(targetGem);
             }
-
-
         }
     }
-    public void OnDrag(PointerEventData eventData)
-    {
-        StartCoroutine(OnDragHandler(eventData));
 
+
+    public void swapGems(int sourceIndex, int targetIndex)
+    {
+        GameObject sourceElement2 = GameObject.Find("p_" + sourceIndex);
+        if (sourceElement2.transform.GetChild(0))
+        {
+            GameObject sourceGem2 = sourceElement2.transform.GetChild(0).gameObject;
+            GameObject targetElement2 = GameObject.Find("p_" + targetIndex);
+            GameObject targetGem2 = targetElement2.transform.GetChild(0).gameObject;
+            targetGem2.transform.SetParent(sourceElement2.transform);
+            targetGem2.transform.position = sourceElement2.transform.position;
+            sourceGem2.transform.SetParent(targetElement2.transform);
+            sourceGem2.transform.position = targetElement2.transform.position;
+        }
+    }
+    public void moveGems(int sourceIndex, int targetIndex)
+    {
+        GameObject sourceElement2 = GameObject.Find("p_" + sourceIndex);
+        Debug.Log(sourceIndex);
+        if (sourceElement2.transform.childCount!= 0 &&sourceElement2.transform.GetChild(0))
+        {
+            GameObject sourceGem2 = sourceElement2.transform.GetChild(0).gameObject;
+            GameObject targetElement2 = GameObject.Find("p_" + targetIndex);
+            //GameObject targetGem2 = targetElement2.transform.GetChild(0).gameObject;
+            //targetGem2.transform.SetParent(sourceElement2.transform);
+            //targetGem2.transform.position = sourceElement2.transform.position;
+            sourceGem2.transform.SetParent(targetElement2.transform);
+            sourceGem2.transform.position = targetElement2.transform.position;
+        }
     }
 
-    public void OnEndDrag(PointerEventData eventData)
-    {
-        isDraging = false;
-    }
 
-    public bool checkThree(int sourceIndex,int targetIndex)
+    public bool checkThree(int sourceIndex, int targetIndex)
     {
         bool sourceRow = checkThreeRow(sourceIndex);
         bool sourceCol = checkThreeCol(sourceIndex);
@@ -126,7 +122,8 @@ public class onDragGems : MonoBehaviour, IDragHandler, IEndDragHandler
         {
             return false;
         }
-        else return true;
+
+        return true;
     }
 
     public bool checkThreeRow(int index)
@@ -166,6 +163,7 @@ public class onDragGems : MonoBehaviour, IDragHandler, IEndDragHandler
                 return true;
             }
         }
+
         return false;
     }
 
@@ -182,7 +180,7 @@ public class onDragGems : MonoBehaviour, IDragHandler, IEndDragHandler
             isDownDestroy(index);
             return true;
         }
-        else if(sourceName == getNameGemWithIndex(index - 7) &&
+        else if (sourceName == getNameGemWithIndex(index - 7) &&
                  sourceName == getNameGemWithIndex(index - 14) && index - 14 > 0)
         {
             destroyGemWithIndex(index);
@@ -200,6 +198,7 @@ public class onDragGems : MonoBehaviour, IDragHandler, IEndDragHandler
             isDownDestroy(index);
             return true;
         }
+
         return false;
     }
 
@@ -263,8 +262,20 @@ public class onDragGems : MonoBehaviour, IDragHandler, IEndDragHandler
 
     public void destroyGemWithIndex(int index)
     {
+
         GameObject element = GameObject.Find("p_" + index);
         GameObject gem = element.transform.GetChild(0).gameObject;
         Destroy(gem);
+        //fillAfterDestroy(index);
+
+    }
+
+    public void fillAfterDestroy(int index)
+    {
+        if (index>7)
+        {
+            moveGems(index - 7, index);
+            fillAfterDestroy(index - 7);
+        }
     }
 }
