@@ -1,0 +1,15 @@
+{
+    "name": "Medrick.Match3CoreSystem",
+    "references": [
+        "GUID:c7b0062b5b79f6b41b51d29df7be76ce"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
