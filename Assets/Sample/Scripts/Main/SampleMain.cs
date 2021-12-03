@@ -51,7 +51,7 @@ namespace Sample
                     var tileStack = tileStackFactory.Create();
                     cellStack.SetCurrnetTileStack(tileStack);
                     tileStack.SetPosition(cellStack.Position());
-                    cellStackBoard[i, j] = cellStackFactory.Create(i, j);
+                    cellStackBoard[i, j] = cellStack;
 
                     SetupCells(cellStack);
                     SetupTiles(tileStack);
@@ -64,11 +64,40 @@ namespace Sample
         {
             // You can use cellStack.Push() to push your cells;
             // You can use cellStack.Attach() to attach your attachments.
+
+            cellStack.Push(new emptyCell());
         }
 
         private void SetupTiles(TileStack tileStack)
         {
+            tileStack.Push(new gemTile((gemColors)Random.Range(0,4)));
             // You can use tileStack.Push() to push your tiles;
         }
+    }
+
+    public class emptyCell : Cell
+    {
+
+    }
+
+    public enum gemColors
+    {
+        blue,
+        orange,
+        purple,
+        red,
+        yellow,
+        green
+
+    }
+    public class gemTile : Tile
+    {
+        public gemColors _color;
+
+        public gemTile(gemColors color)
+        {
+            _color = color;
+        }
+
     }
 }

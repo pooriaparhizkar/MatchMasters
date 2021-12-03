@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5221653895334367418}
   - component: {fileID: 4921927167605258405}
   m_Layer: 0
-  m_Name: orange_gem
+  m_Name: green_gem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 074a49d77ef6d0b4eb9582e42abba7f9, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 52a84b860fa9c7543b0f9589d92632b3, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
