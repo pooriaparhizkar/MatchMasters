@@ -3,16 +3,28 @@ using NUnit.Framework;
 
 namespace Medrick.Tests.ComponentSystem.Core
 {
-    class ComponentA : Component { };
-    class ComponentB : Component { };
-    class ComponentC : Component { };
-
-    class ComponentParent : Component { };
-    class ComponentChild : ComponentParent { };
-
-    public class BasicEntityTest 
+    internal class ComponentA : Component
     {
+    }
 
+    internal class ComponentB : Component
+    {
+    }
+
+    internal class ComponentC : Component
+    {
+    }
+
+    internal class ComponentParent : Component
+    {
+    }
+
+    internal class ComponentChild : ComponentParent
+    {
+    }
+
+    public class BasicEntityTest
+    {
         [Test]
         public void HasTheAddedComponents()
         {

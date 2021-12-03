@@ -4,21 +4,25 @@ using System.Linq;
 namespace Medrick.Match3CoreSystem.Game
 {
     // TODO: Male gameplaysystem tags more generic.
-    public enum GameplaySystemTag { General, EndOnly, StartOnly }
+    public enum GameplaySystemTag
+    {
+        General,
+        EndOnly,
+        StartOnly
+    }
 
     public class GameplaySystemsController
     {
+        private readonly List<GameplaySystem> activeSystems = new List<GameplaySystem>();
 
-        Dictionary<GameplaySystemTag, HashSet<GameplaySystem>> systemTags;
-        Dictionary<GameplaySystem, int> systemOrderings = new Dictionary<GameplaySystem, int>();
-
-        List<GameplaySystem> gameplaySystems = new List<GameplaySystem>();
-
-        List<GameplaySystem> activeSystems = new List<GameplaySystem>();
+        private readonly List<GameplaySystem> gameplaySystems = new List<GameplaySystem>();
+        private readonly List<GameplaySystem> gameplaySystemsToActivate = new List<GameplaySystem>();
 
 
-        List<GameplaySystem> gameplaySystemsToDeactivate = new List<GameplaySystem>();
-        List<GameplaySystem> gameplaySystemsToActivate = new List<GameplaySystem>();
+        private readonly List<GameplaySystem> gameplaySystemsToDeactivate = new List<GameplaySystem>();
+        private readonly Dictionary<GameplaySystem, int> systemOrderings = new Dictionary<GameplaySystem, int>();
+
+        private readonly Dictionary<GameplaySystemTag, HashSet<GameplaySystem>> systemTags;
 
         public GameplaySystemsController()
         {
@@ -37,7 +41,7 @@ namespace Medrick.Match3CoreSystem.Game
 
         public void StoreSystemsOrderings()
         {
-            for (int i = 0; i < gameplaySystems.Count; ++i)
+            for (var i = 0; i < gameplaySystems.Count; ++i)
                 systemOrderings[gameplaySystems[i]] = i;
         }
 
@@ -94,13 +98,11 @@ namespace Medrick.Match3CoreSystem.Game
                 return;
 
             foreach (var system in gameplaySystemsToActivate)
-            {
                 if (activeSystems.Contains(system) == false)
                 {
                     activeSystems.Add(system);
                     system.OnActivated();
                 }
-            }
 
             activeSystems.Sort((a, b) => systemOrderings[a].CompareTo(systemOrderings[b]));
 
@@ -117,7 +119,7 @@ namespace Medrick.Match3CoreSystem.Game
 
         public T GetSystem<T>() where T : GameplaySystem
         {
-            return (T)gameplaySystems.FirstOrDefault(s => s is T);
+            return (T) gameplaySystems.FirstOrDefault(s => s is T);
         }
 
         public void RequestActivation<T>() where T : GameplaySystem
@@ -154,6 +156,5 @@ namespace Medrick.Match3CoreSystem.Game
         {
             return activeSystems;
         }
-
     }
 }

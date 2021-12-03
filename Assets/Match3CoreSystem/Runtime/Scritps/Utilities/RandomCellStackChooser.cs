@@ -1,33 +1,34 @@
-﻿
-using Medrick.Match3CoreSystem.Game.Core;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using Medrick.Match3CoreSystem.Game.Core;
+using Random = UnityEngine.Random;
 
 namespace Medrick.Match3CoreSystem.Game
 {
     public class RandomCellStackChooser
     {
-        CellStackBoard cellStackBoard;
+        private readonly CellStackBoard cellStackBoard;
+        private readonly HashSet<CellStack> chosenCellStacks = new HashSet<CellStack>();
 
-        Predicate<CellStack> originalMultiValidator;
-        HashSet<CellStack> chosenCellStacks = new HashSet<CellStack>();
+        private readonly int lastLinearIndex;
 
-        int lastLinearIndex;
+        private Predicate<CellStack> originalMultiValidator;
 
 
         public RandomCellStackChooser(CellStackBoard cellStackBoard)
         {
             this.cellStackBoard = cellStackBoard;
-            this.lastLinearIndex = cellStackBoard.PositionToLinearIndex(cellStackBoard.Width() - 1, cellStackBoard.Height() - 1);
+            lastLinearIndex =
+                cellStackBoard.PositionToLinearIndex(cellStackBoard.Width() - 1, cellStackBoard.Height() - 1);
         }
 
         public List<CellStack> Choose(int count, Predicate<CellStack> validator)
         {
-            List<CellStack> cellStacks = new List<CellStack>();
+            var cellStacks = new List<CellStack>();
 
-            this.originalMultiValidator = validator;
+            originalMultiValidator = validator;
 
-            for (int i = 0; i < count; ++i)
+            for (var i = 0; i < count; ++i)
             {
                 var stack = ChooseOne(MultiValidator);
                 if (stack != null)
@@ -42,18 +43,18 @@ namespace Medrick.Match3CoreSystem.Game
             return cellStacks;
         }
 
-        bool MultiValidator(CellStack cellStack)
+        private bool MultiValidator(CellStack cellStack)
         {
             return chosenCellStacks.Contains(cellStack) == false && originalMultiValidator(cellStack);
         }
 
         public CellStack ChooseOne(Predicate<CellStack> validator)
         {
-            var startPosition = UnityEngine.Random.Range(0, lastLinearIndex + 1);
+            var startPosition = Random.Range(0, lastLinearIndex + 1);
 
             var currentPosition = startPosition;
             CellStack current = null;
-            bool isValid = false;
+            var isValid = false;
 
             do
             {
@@ -64,9 +65,7 @@ namespace Medrick.Match3CoreSystem.Game
 
             if (isValid)
                 return current;
-            else
-                return null;
+            return null;
         }
     }
-
 }

@@ -1,20 +1,11 @@
-﻿using Medrick.Match3CoreSystem.Game.Core;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using Medrick.Match3CoreSystem.Game.Core;
 
 namespace Medrick.Match3CoreSystem.Game
 {
     public abstract class BasicGameplayMainController : GameplayMainController
     {
-        public LevelBoard LevelBoard { get; }
-        public CreationController CreationController { get; }
-
-        public GameplaySystemsController SystemsController { get; }
-
-        public SystemBlackBoard FrameBasedBlackBoard { get; } = new SystemBlackBoard();
-        public SystemBlackBoard SessionBasedBlackBoard { get; } = new SystemBlackBoard();
-
-
-        List<PresentationPort> presentationHandlers = new List<PresentationPort>();
+        private readonly List<PresentationPort> presentationHandlers = new List<PresentationPort>();
 
         public BasicGameplayMainController(LevelBoard levelBoard, TileStackFactory tileFactory)
         {
@@ -32,22 +23,17 @@ namespace Medrick.Match3CoreSystem.Game
             SystemsController.ActivateSystemOfTag(GameplaySystemTag.StartOnly);
         }
 
-        protected abstract void AddSystems(GameplaySystemsController systemsController);
+        public CreationController CreationController { get; }
+        public LevelBoard LevelBoard { get; }
 
-        protected abstract void AddSessionBasedBlackBoardData(SystemBlackBoard sessionBasedBlackBoard);
+        public GameplaySystemsController SystemsController { get; }
 
-        protected abstract void AddFrameBasedBlackBoardData(SystemBlackBoard frameBasedBlackBoard);
+        public SystemBlackBoard FrameBasedBlackBoard { get; } = new SystemBlackBoard();
+        public SystemBlackBoard SessionBasedBlackBoard { get; } = new SystemBlackBoard();
 
         public void Start()
         {
             SystemsController.Start();
-        }
-
-        public void ResetGame()
-        {
-            SessionBasedBlackBoard.Clear();
-            SystemsController.ActivateSystemOfTag(GameplaySystemTag.General);
-            SystemsController.ResetSystems();
         }
 
         public void Update(float dt)
@@ -65,9 +51,21 @@ namespace Medrick.Match3CoreSystem.Game
         {
             foreach (var hanlder in presentationHandlers)
                 if (hanlder is T)
-                    return (T)hanlder;
-            return default(T);
+                    return (T) hanlder;
+            return default;
         }
 
+        protected abstract void AddSystems(GameplaySystemsController systemsController);
+
+        protected abstract void AddSessionBasedBlackBoardData(SystemBlackBoard sessionBasedBlackBoard);
+
+        protected abstract void AddFrameBasedBlackBoardData(SystemBlackBoard frameBasedBlackBoard);
+
+        public void ResetGame()
+        {
+            SessionBasedBlackBoard.Clear();
+            SystemsController.ActivateSystemOfTag(GameplaySystemTag.General);
+            SystemsController.ResetSystems();
+        }
     }
 }

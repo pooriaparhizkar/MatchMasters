@@ -1,13 +1,12 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 
 namespace Medrick.ComponentSystem.Core
 {
-    public class BasicSpecializedEntity<T> : SpecializedEntity<T> where T :Component
+    public class BasicSpecializedEntity<T> : SpecializedEntity<T> where T : Component
     {
-        BasicEntity basicEntity = new BasicEntity();
+        private readonly BasicEntity basicEntity = new BasicEntity();
 
-        List<T> compList = new List<T>();
+        private readonly List<T> compList = new List<T>();
 
         public void AddComponent(T component)
         {
@@ -25,5 +24,4 @@ namespace Medrick.ComponentSystem.Core
             return basicEntity.GetComponent<U>();
         }
     }
-
 }

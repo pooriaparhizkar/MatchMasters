@@ -1,11 +1,10 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using Medrick.Match3CoreSystem.Game.Core;
 
 namespace Medrick.Match3CoreSystem.Game
 {
-    public static class QueryUtilities 
+    public static class QueryUtilities
     {
         public static bool IsFullyFree(CellStack cellStack)
         {
@@ -39,9 +38,9 @@ namespace Medrick.Match3CoreSystem.Game
 
         public static List<T> ExtractTilesOnTop<T>(CellStack[] cellStacks) where T : Tile
         {
-            List<T> tiles = new List<T>();
+            var tiles = new List<T>();
 
-            for (int i = 0; i < cellStacks.Length; ++i)
+            for (var i = 0; i < cellStacks.Length; ++i)
             {
                 var cellStack = cellStacks[i];
 
@@ -54,9 +53,9 @@ namespace Medrick.Match3CoreSystem.Game
 
         public static List<T> ExtractCellsOnTop<T>(CellStack[] cellStacks, Predicate<T> predicate) where T : Cell
         {
-            List<T> cells = new List<T>();
+            var cells = new List<T>();
 
-            for (int i = 0; i < cellStacks.Length; ++i)
+            for (var i = 0; i < cellStacks.Length; ++i)
             {
                 var cellStack = cellStacks[i];
 
@@ -66,8 +65,6 @@ namespace Medrick.Match3CoreSystem.Game
 
             return cells;
         }
-
-
 
 
         public static bool HasTileOnTop<T>(TileStack tileStack) where T : Tile
@@ -116,33 +113,31 @@ namespace Medrick.Match3CoreSystem.Game
         {
             foreach (var tile in tileStack.Stack())
                 if (tile is T)
-                    return (T)tile;
+                    return (T) tile;
 
-            return default(T);
+            return default;
         }
 
         public static T FindCell<T>(CellStack cellStack) where T : Cell
         {
             foreach (var cell in cellStack.Stack())
                 if (cell is T)
-                    return (T)cell;
+                    return (T) cell;
 
-            return default(T);
+            return default;
         }
 
 
         public static Tile TileBelowOf(Tile tile)
         {
-            bool passedTargetTile = false;
+            var passedTargetTile = false;
 
-            foreach(var t in tile.Parent().Stack())
-            {
+            foreach (var t in tile.Parent().Stack())
                 if (t == tile)
                     passedTargetTile = true;
 
                 else if (passedTargetTile)
                     return t;
-            }
 
             return null;
         }
@@ -167,7 +162,7 @@ namespace Medrick.Match3CoreSystem.Game
 
         public static T FindFirstTileInBoard<T>(LevelBoard gameBoard) where T : Tile
         {
-            foreach(var cellStack in gameBoard.ArrbitrayCellStackArray())
+            foreach (var cellStack in gameBoard.ArrbitrayCellStackArray())
             {
                 if (cellStack.HasTileStack() == false)
                     continue;
@@ -180,5 +175,4 @@ namespace Medrick.Match3CoreSystem.Game
             return null;
         }
     }
-
 }

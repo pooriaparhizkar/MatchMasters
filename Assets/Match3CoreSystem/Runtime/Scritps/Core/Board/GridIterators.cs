@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
 
 // TODO : Refactor/Reorganize this.
 namespace Medrick.Match3CoreSystem.Game.Core
 {
     public interface GridEnumratorIndexMover
     {
-        void MoveNext(ref int x, ref int y, int width , int height);
+        void MoveNext(ref int x, ref int y, int width, int height);
 
         void Reset(ref int x, ref int y, int width, int height);
     }
@@ -15,13 +14,13 @@ namespace Medrick.Match3CoreSystem.Game.Core
 
     public struct GridEnumrator<T> : IEnumerator
     {
-        Grid<T> grid;
-        GridElement<T> gridElement;
-        GridEnumratorIndexMover indexMover;
-        int x;
-        int y;
-        int width;
-        int height;
+        private Grid<T> grid;
+        private GridElement<T> gridElement;
+        private readonly GridEnumratorIndexMover indexMover;
+        private int x;
+        private int y;
+        private readonly int width;
+        private readonly int height;
 
         public GridEnumrator(Grid<T> grid, GridEnumratorIndexMover indexMover)
         {
@@ -56,13 +55,7 @@ namespace Medrick.Match3CoreSystem.Game.Core
             }
         }
 
-        object IEnumerator.Current
-        {
-            get
-            {
-                return Current;
-            }
-        }
+        object IEnumerator.Current => Current;
 
         public void Dispose()
         {
@@ -71,7 +64,6 @@ namespace Medrick.Match3CoreSystem.Game.Core
 
         public bool MoveNext()
         {
-
             indexMover.MoveNext(ref x, ref y, width, height);
 
 
@@ -103,14 +95,14 @@ namespace Medrick.Match3CoreSystem.Game.Core
             this.grid = grid;
         }
 
-        public abstract GridEnumrator<T> GetEnumerator();
-
         IEnumerator IEnumerable.GetEnumerator()
         {
-            return (IEnumerator) GetEnumerator();
+            return GetEnumerator();
         }
 
-        public  void Iterate(Action<GridElement<T>> action)
+        public abstract GridEnumrator<T> GetEnumerator();
+
+        public void Iterate(Action<GridElement<T>> action)
         {
             foreach (var element in this)
                 action(element);
@@ -120,7 +112,18 @@ namespace Medrick.Match3CoreSystem.Game.Core
 
     public class LeftToRightBottomUpGridIterator<T> : GridIterator<T>
     {
-        class LeftToRightButtomUpIndexMover : GridEnumratorIndexMover
+        private readonly GridEnumratorIndexMover indexMover = new LeftToRightButtomUpIndexMover();
+
+        public LeftToRightBottomUpGridIterator(Grid<T> grid) : base(grid)
+        {
+        }
+
+        public override GridEnumrator<T> GetEnumerator()
+        {
+            return new GridEnumrator<T>(grid, indexMover);
+        }
+
+        private class LeftToRightButtomUpIndexMover : GridEnumratorIndexMover
         {
             public void MoveNext(ref int x, ref int y, int width, int height)
             {
@@ -135,13 +138,16 @@ namespace Medrick.Match3CoreSystem.Game.Core
             public void Reset(ref int x, ref int y, int width, int height)
             {
                 x = -1;
-                y = height-1;
+                y = height - 1;
             }
         }
+    }
 
-        GridEnumratorIndexMover indexMover = new LeftToRightButtomUpIndexMover();
+    public class LeftToRightTopDownGridIterator<T> : GridIterator<T>
+    {
+        private readonly GridEnumratorIndexMover indexMover = new LeftToRightButtomUpIndexMover();
 
-        public LeftToRightBottomUpGridIterator(Grid<T> grid) : base(grid)
+        public LeftToRightTopDownGridIterator(Grid<T> grid) : base(grid)
         {
         }
 
@@ -150,11 +156,7 @@ namespace Medrick.Match3CoreSystem.Game.Core
             return new GridEnumrator<T>(grid, indexMover);
         }
 
-    }
-
-    public class LeftToRightTopDownGridIterator<T> : GridIterator<T>
-    {
-        class LeftToRightButtomUpIndexMover : GridEnumratorIndexMover
+        private class LeftToRightButtomUpIndexMover : GridEnumratorIndexMover
         {
             public void MoveNext(ref int x, ref int y, int width, int height)
             {
@@ -172,17 +174,5 @@ namespace Medrick.Match3CoreSystem.Game.Core
                 y = 0;
             }
         }
-
-        GridEnumratorIndexMover indexMover = new LeftToRightButtomUpIndexMover();
-
-        public LeftToRightTopDownGridIterator(Grid<T> grid) : base(grid)
-        {
-        }
-
-        public override GridEnumrator<T> GetEnumerator()
-        {
-            return new GridEnumrator<T>(grid, indexMover);
-        }
     }
-
 }

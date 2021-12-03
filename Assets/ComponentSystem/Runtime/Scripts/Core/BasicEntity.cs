@@ -1,12 +1,11 @@
-﻿
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace Medrick.ComponentSystem.Core
 {
     public class BasicEntity : Entity
     {
-        Component[] compArray = new Component[0];
-        List<Component> compList = new List<Component>(32);
+        private Component[] compArray = new Component[0];
+        private readonly List<Component> compList = new List<Component>(32);
 
         public void AddComponent(Component component)
         {
@@ -14,20 +13,6 @@ namespace Medrick.ComponentSystem.Core
             compArray = compList.ToArray();
             OnComponentAdded(component);
         }
-
-        public void AddComponents(params Component[] components)
-        {
-            var length = components.Length;
-            for (int i = 0; i < length; ++i)
-            {
-                var component = components[i];
-                compList.Add(component);
-                OnComponentAdded(component);
-            }
-            compArray = compList.ToArray();
-        }
-
-        protected virtual void OnComponentAdded(Component component) { }
 
         public IEnumerable<Component> AllComponents()
         {
@@ -37,26 +22,43 @@ namespace Medrick.ComponentSystem.Core
         public T GetComponent<T>() where T : Component
         {
             var count = compArray.Length;
-            for (int i = 0; i < count; ++i)
+            for (var i = 0; i < count; ++i)
                 if (compArray[i] is T)
-                    return (T)compArray[i];
+                    return (T) compArray[i];
 
-            return default(T);
+            return default;
+        }
+
+        public void AddComponents(params Component[] components)
+        {
+            var length = components.Length;
+            for (var i = 0; i < length; ++i)
+            {
+                var component = components[i];
+                compList.Add(component);
+                OnComponentAdded(component);
+            }
+
+            compArray = compList.ToArray();
+        }
+
+        protected virtual void OnComponentAdded(Component component)
+        {
         }
 
         public T GetComponentFromEnd<T>() where T : Component
         {
             var count = compArray.Length;
-            for (int i = count-1; i >= 0; --i)
+            for (var i = count - 1; i >= 0; --i)
                 if (compArray[i] is T)
-                    return (T)compArray[i];
+                    return (T) compArray[i];
 
-            return default(T);
+            return default;
         }
 
         public T GetComponent<T>(int index) where T : Component
         {
-            return (T)compArray[index];
+            return (T) compArray[index];
         }
     }
 }

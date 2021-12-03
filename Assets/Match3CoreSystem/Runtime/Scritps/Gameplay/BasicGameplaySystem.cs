@@ -1,24 +1,21 @@
-﻿
-using System;
+﻿using System;
 
 namespace Medrick.Match3CoreSystem.Game
 {
     // NOTE: This is currently use for documentation only.
-    [System.AttributeUsage(System.AttributeTargets.Class, AllowMultiple = true)]
-    public class AfterAttribute : System.Attribute
+    [AttributeUsage(AttributeTargets.Class, AllowMultiple = true)]
+    public class AfterAttribute : Attribute
     {
         public AfterAttribute(Type type)
         {
-
         }
     }
 
-    [System.AttributeUsage(System.AttributeTargets.Class, AllowMultiple = true)]
-    public class BeforeAttribute : System.Attribute
+    [AttributeUsage(AttributeTargets.Class, AllowMultiple = true)]
+    public class BeforeAttribute : Attribute
     {
         public BeforeAttribute(Type type)
         {
-
         }
     }
 
@@ -31,13 +28,21 @@ namespace Medrick.Match3CoreSystem.Game
             this.gameplayController = gameplayController;
         }
 
-        public virtual void Start() { }
+        public virtual void Start()
+        {
+        }
 
-        public virtual void OnActivated(){ }
+        public virtual void OnActivated()
+        {
+        }
 
-        public virtual void OnDeactivated() { }
+        public virtual void OnDeactivated()
+        {
+        }
 
-        public virtual void Reset() { }
+        public virtual void Reset()
+        {
+        }
 
 
         public abstract void Update(float dt);
@@ -52,6 +57,5 @@ namespace Medrick.Match3CoreSystem.Game
         {
             return gameplayController.SessionBasedBlackBoard.GetComponent<T>();
         }
-
     }
 }

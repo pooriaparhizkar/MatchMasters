@@ -19,12 +19,12 @@ using UnityEngine;
 namespace Nakama
 {
     /// <summary>
-    /// A set of client extensions to help with conditional Unity engine code.
+    ///     A set of client extensions to help with conditional Unity engine code.
     /// </summary>
     public static class ClientExtensions
     {
         /// <summary>
-        /// Build a new socket with conditional compilation on the adapter.
+        ///     Build a new socket with conditional compilation on the adapter.
         /// </summary>
         /// <param name="client">The client object.</param>
         /// <param name="useMainThread">Whether or not socket events should be dispatched on Unity's main thread.</param>
@@ -38,7 +38,7 @@ namespace Nakama
             threadedAdapter = new WebSocketAdapter();
 #endif
 
-            ISocketAdapter adapter = useMainThread ? UnitySocket.Create(threadedAdapter) : threadedAdapter;
+            var adapter = useMainThread ? UnitySocket.Create(threadedAdapter) : threadedAdapter;
             var socket = Socket.From(client, adapter);
 #if UNITY_EDITOR
             socket.ReceivedError += Debug.LogError;

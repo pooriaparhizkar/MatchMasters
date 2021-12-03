@@ -16,6 +16,5 @@
 
 
         T GetSessionData<T>() where T : BlackBoardData;
-
     }
 }

@@ -2,7 +2,6 @@
 
 namespace Medrick.Match3CoreSystem.Game.Core
 {
-
     public class CellComponentCache : ComponentCache
     {
         public void TryCache(Component component)
@@ -13,7 +12,7 @@ namespace Medrick.Match3CoreSystem.Game.Core
 
     public abstract class Cell : CacheableBasicEntity<CellComponentCache>
     {
-        CellStack parent;
+        private CellStack parent;
 
         public Cell() : base(new CellComponentCache())
         {
@@ -26,7 +25,7 @@ namespace Medrick.Match3CoreSystem.Game.Core
 
         public CellStack Parent()
         {
-            return this.parent;
+            return parent;
         }
     }
 }

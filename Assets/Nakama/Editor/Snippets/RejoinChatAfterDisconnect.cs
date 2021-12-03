@@ -45,10 +45,7 @@ namespace Nakama.Snippets
             };
             _socket.ReceivedChannelPresence += presenceEvent =>
             {
-                foreach (var presence in presenceEvent.Leaves)
-                {
-                    roomUsers.Remove(presence);
-                }
+                foreach (var presence in presenceEvent.Leaves) roomUsers.Remove(presence);
 
                 roomUsers.AddRange(presenceEvent.Joins);
                 Debug.LogFormat("Room users: [{0}]", string.Join(",\n  ", roomUsers));

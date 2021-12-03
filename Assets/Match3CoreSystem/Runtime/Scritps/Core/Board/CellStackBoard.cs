@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-namespace Medrick.Match3CoreSystem.Game.Core
+﻿namespace Medrick.Match3CoreSystem.Game.Core
 {
     public class CellStackBoard : Grid<CellStack>
     {
@@ -8,6 +6,4 @@ namespace Medrick.Match3CoreSystem.Game.Core
         {
         }
     }
-
-
 }

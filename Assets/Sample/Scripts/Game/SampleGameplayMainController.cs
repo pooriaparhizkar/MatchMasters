@@ -1,12 +1,12 @@
 ﻿using Medrick.Match3CoreSystem.Game;
 using Medrick.Match3CoreSystem.Game.Core;
-using System;
 
 namespace Sample
 {
     public class SampleGameplayMainController : BasicGameplayMainController
     {
-        public SampleGameplayMainController(LevelBoard levelBoard, TileStackFactory tileFactory) : base(levelBoard, tileFactory)
+        public SampleGameplayMainController(LevelBoard levelBoard, TileStackFactory tileFactory) : base(levelBoard,
+            tileFactory)
         {
         }
 
@@ -17,6 +17,7 @@ namespace Sample
             // systemsController.AddSystem(new SystemOne(this), GameplaySystemTag.General);
             // systemsController.AddSystem(new SystemTwo(this), GameplaySystemTag.General);
         }
+
         protected override void AddFrameBasedBlackBoardData(SystemBlackBoard frameBasedBlackBoard)
         {
             // frameBasedBlackBoard.AddComponent(new BlackBoardDataOne());
@@ -25,7 +26,6 @@ namespace Sample
 
         protected override void AddSessionBasedBlackBoardData(SystemBlackBoard sessionBasedBlackBoard)
         {
-            
         }
     }
 }

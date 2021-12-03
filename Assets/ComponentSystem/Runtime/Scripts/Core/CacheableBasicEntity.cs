@@ -7,7 +7,7 @@
 
     public class CacheableBasicEntity<T> : BasicEntity where T : ComponentCache
     {
-        readonly T cache;
+        private readonly T cache;
 
         public CacheableBasicEntity(T cache)
         {
@@ -24,5 +24,4 @@
             return cache;
         }
     }
-
 }

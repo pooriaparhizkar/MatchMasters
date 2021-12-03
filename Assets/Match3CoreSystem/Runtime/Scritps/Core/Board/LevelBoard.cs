@@ -2,15 +2,13 @@
 
 namespace Medrick.Match3CoreSystem.Game.Core
 {
-
     public class LevelBoard
     {
-        CellStackBoard cellStackBoard;
-
         public readonly CellStack[] leftToRightButtomUpCellStackArray;
         public readonly CellStack[] leftToRightTopDownCellStackArray;
 
         public readonly int size;
+        private readonly CellStackBoard cellStackBoard;
 
         public LevelBoard(CellStackBoard cellStackBoard)
         {
@@ -27,7 +25,7 @@ namespace Medrick.Match3CoreSystem.Game.Core
 
         public void RefillArrays()
         {
-            int i = 0;
+            var i = 0;
             foreach (var element in new LeftToRightBottomUpGridIterator<CellStack>(cellStackBoard))
             {
                 leftToRightButtomUpCellStackArray[i] = element.value;
@@ -53,7 +51,6 @@ namespace Medrick.Match3CoreSystem.Game.Core
         }
 
 
-
         // TODO: Find a better name.
         public TileStack DirectionalTileStackOf(int x, int y, Direction dir)
         {
@@ -66,7 +63,7 @@ namespace Medrick.Match3CoreSystem.Game.Core
         }
 
         // TODO: Find a better name.
-        public TileStack DirectionalTileStackOf(Vector2Int pos , Direction dir)
+        public TileStack DirectionalTileStackOf(Vector2Int pos, Direction dir)
         {
             return DirectionalTileStackOf(pos.x, pos.y, dir);
         }
@@ -102,6 +99,4 @@ namespace Medrick.Match3CoreSystem.Game.Core
             return new LeftToRightTopDownGridIterator<CellStack>(cellStackBoard);
         }
     }
-
-
 }

@@ -1,7 +1,6 @@
-﻿using Medrick.ComponentSystem.Core;
-using System;
+﻿using System;
 using System.Collections.Generic;
-
+using Medrick.ComponentSystem.Core;
 using Position = UnityEngine.Vector2;
 
 namespace Medrick.Match3CoreSystem.Game.Core
@@ -23,15 +22,16 @@ namespace Medrick.Match3CoreSystem.Game.Core
 
     public class TileStack : CacheableBasicEntity<TileStackComponentCache>
     {
-        public event Action OnDesturction = delegate { };
-        Position position;
+        private CellStack parent;
+        private Position position;
 
-        Stack<Tile> stack = new Stack<Tile>();
-        CellStack parent;
+        private readonly Stack<Tile> stack = new Stack<Tile>();
 
-        public TileStack() : base (new TileStackComponentCache())
+        public TileStack() : base(new TileStackComponentCache())
         {
         }
+
+        public event Action OnDesturction = delegate { };
 
         public void SetParent(CellStack parent)
         {
@@ -78,13 +78,12 @@ namespace Medrick.Match3CoreSystem.Game.Core
 
         public void SetPosition(Position pos)
         {
-            this.position = pos;
+            position = pos;
         }
 
         public Position Position()
         {
             return position;
         }
-
     }
 }

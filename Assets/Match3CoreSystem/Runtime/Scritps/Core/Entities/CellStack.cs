@@ -1,6 +1,5 @@
-﻿using Medrick.ComponentSystem.Core;
-using System.Collections.Generic;
-
+﻿using System.Collections.Generic;
+using Medrick.ComponentSystem.Core;
 using Position = UnityEngine.Vector2Int;
 
 namespace Medrick.Match3CoreSystem.Game.Core
@@ -11,7 +10,7 @@ namespace Medrick.Match3CoreSystem.Game.Core
 
         public void TryCache(Component component)
         {
-            switch(component)
+            switch (component)
             {
                 case LockState lockState:
                     this.lockState = lockState;
@@ -23,11 +22,11 @@ namespace Medrick.Match3CoreSystem.Game.Core
     // TODO: Define a container for attachments.
     public class CellStack : CacheableBasicEntity<CellStackComponentCache>
     {
-        Position position;
-        Stack<Cell> stack = new Stack<Cell>();
-        List<CellAttachment> attachments = new List<CellAttachment>();
+        private readonly List<CellAttachment> attachments = new List<CellAttachment>();
 
-        TileStack currentTileStack;
+        private TileStack currentTileStack;
+        private readonly Position position;
+        private readonly Stack<Cell> stack = new Stack<Cell>();
 
         public CellStack(int xPos, int yPos) : base(new CellStackComponentCache())
         {
@@ -67,13 +66,13 @@ namespace Medrick.Match3CoreSystem.Game.Core
 
         public void SetCurrnetTileStack(TileStack stack)
         {
-            this.currentTileStack = stack;
+            currentTileStack = stack;
             stack.SetParent(this);
         }
 
         public void DetachTileStack()
         {
-            this.currentTileStack = null;
+            currentTileStack = null;
         }
 
         public Stack<Cell> Stack()
@@ -94,7 +93,7 @@ namespace Medrick.Match3CoreSystem.Game.Core
 
         public bool HasAttachment<T>() where T : CellAttachment
         {
-            for (int i = 0; i < attachments.Count; ++i)
+            for (var i = 0; i < attachments.Count; ++i)
                 if (attachments[i] is T)
                     return true;
             return false;
@@ -102,21 +101,21 @@ namespace Medrick.Match3CoreSystem.Game.Core
 
         public T GetAttachment<T>() where T : CellAttachment
         {
-            for (int i = 0; i < attachments.Count; ++i)
+            for (var i = 0; i < attachments.Count; ++i)
                 if (attachments[i] is T)
-                    return (T)attachments[i];
-            return default(T);
+                    return (T) attachments[i];
+            return default;
         }
 
         public void GetAttachments<T>(ref List<T> container) where T : CellAttachment
         {
             var count = attachments.Count;
-            for (int i = 0; i < count; ++i)
+            for (var i = 0; i < count; ++i)
                 if (attachments[i] is T)
-                    container.Add((T)attachments[i]);
+                    container.Add((T) attachments[i]);
         }
 
-        public void RemoveAttachment(CellAttachment attachment) 
+        public void RemoveAttachment(CellAttachment attachment)
         {
             if (attachment.Owner() == this)
                 attachment.SetOwner(null);

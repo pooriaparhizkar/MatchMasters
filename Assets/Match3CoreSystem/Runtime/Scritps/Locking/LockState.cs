@@ -1,15 +1,16 @@
-﻿using Medrick.ComponentSystem.Core;
-using System;
-
+﻿using System;
+using Medrick.ComponentSystem.Core;
 
 namespace Medrick.Match3CoreSystem.Game
 {
-    public interface KeyType { };
-
-    public class LockState : Component 
+    public interface KeyType
     {
-        Type keyType = null;
-        long lastReleasedTick; 
+    }
+
+    public class LockState : Component
+    {
+        private Type keyType;
+        private long lastReleasedTick;
 
         public LockState()
         {
@@ -26,15 +27,15 @@ namespace Medrick.Match3CoreSystem.Game
             return !(keyType == null);
         }
 
-        public void LockBy<T>() where  T : KeyType
+        public void LockBy<T>() where T : KeyType
         {
-            this.keyType = typeof(T);
+            keyType = typeof(T);
         }
 
         public void Release()
         {
             lastReleasedTick = DateTime.UtcNow.Ticks;
-            this.keyType = null;
+            keyType = null;
         }
 
         public bool IsFreeOrLockedBy<T>() where T : KeyType

@@ -1,9 +1,6 @@
-﻿
-
-namespace Medrick.ComponentSystem.Core
+﻿namespace Medrick.ComponentSystem.Core
 {
-    public interface Component 
+    public interface Component
     {
-
     }
 }

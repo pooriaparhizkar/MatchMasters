@@ -4,7 +4,7 @@ namespace Medrick.Match3CoreSystem.Game.Core
 {
     public abstract class CellAttachment : BasicEntity
     {
-        CellStack owner;
+        private CellStack owner;
 
         public CellStack Owner()
         {

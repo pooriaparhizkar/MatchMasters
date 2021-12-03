@@ -1,5 +1,4 @@
 using System;
-using System.Threading.Tasks;
 using UnityEngine;
 
 namespace Nakama.Snippets
@@ -10,19 +9,19 @@ namespace Nakama.Snippets
         private const string SessionTokenKey = "nksession";
         private const string UdidKey = "udid";
 
-        private IClient _client;
-        private ISocket _socket;
-
         public string serverText;
         public string serverPortText;
+
+        private IClient _client;
+        private ISocket _socket;
 
         public async void Awake()
         {
             try
             {
                 const string scheme = "http";
-                string host = serverText;
-                int port = Int32.Parse(serverPortText);
+                var host = serverText;
+                var port = int.Parse(serverPortText);
                 const string serverKey = "defaultkey";
 
                 _client = new Client(scheme, host, port, serverKey, UnityWebRequestAdapter.Instance);

@@ -1,9 +1,8 @@
-﻿
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace Medrick.ComponentSystem.Core
 {
-    public interface Entity 
+    public interface Entity
     {
         void AddComponent(Component component);
         T GetComponent<T>() where T : Component;

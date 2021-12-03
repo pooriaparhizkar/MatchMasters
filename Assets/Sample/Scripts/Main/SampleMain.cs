@@ -3,14 +3,13 @@ using UnityEngine;
 
 namespace Sample
 {
-
     public class SampleMain : MonoBehaviour
     {
         public SystemTwoPresentationAdapter systemTwoPresentationAdapter;
 
-        SampleGameplayMainController gameplayController;
+        private SampleGameplayMainController gameplayController;
 
-        void Awake()
+        private void Awake()
         {
             var cellStackFactory = new MainCellStackFactory();
             var tileStackFactory = new MainTileStackFactory();
@@ -34,28 +33,28 @@ namespace Sample
         }
 
 
-
         // You should define your own system for Creating the LevelBoard base on your level config.
-        private LevelBoard CreateLevelBoard(MainCellStackFactory cellStackFactory, MainTileStackFactory tileStackFactory)
+        private LevelBoard CreateLevelBoard(MainCellStackFactory cellStackFactory,
+            MainTileStackFactory tileStackFactory)
         {
-            int width = 10;
-            int height = 5;
+            var width = 10;
+            var height = 5;
 
             var cellStackBoard = new CellStackBoard(width, height);
 
 
-            for(int i = 0; i < width; ++i)
-                for(int j = 0; j < height; ++j)
-                {
-                    var cellStack = cellStackFactory.Create(i, j);
-                    var tileStack = tileStackFactory.Create();
-                    cellStack.SetCurrnetTileStack(tileStack);
-                    tileStack.SetPosition(cellStack.Position());
-                    cellStackBoard[i, j] = cellStack;
+            for (var i = 0; i < width; ++i)
+            for (var j = 0; j < height; ++j)
+            {
+                var cellStack = cellStackFactory.Create(i, j);
+                var tileStack = tileStackFactory.Create();
+                cellStack.SetCurrnetTileStack(tileStack);
+                tileStack.SetPosition(cellStack.Position());
+                cellStackBoard[i, j] = cellStack;
 
-                    SetupCells(cellStack);
-                    SetupTiles(tileStack);
-                }
+                SetupCells(cellStack);
+                SetupTiles(tileStack);
+            }
 
             return new LevelBoard(cellStackBoard);
         }
@@ -70,14 +69,13 @@ namespace Sample
 
         private void SetupTiles(TileStack tileStack)
         {
-            tileStack.Push(new gemTile((gemColors)Random.Range(0,4)));
+            tileStack.Push(new gemTile((gemColors) Random.Range(0, 4)));
             // You can use tileStack.Push() to push your tiles;
         }
     }
 
     public class emptyCell : Cell
     {
-
     }
 
     public enum gemColors
@@ -88,8 +86,8 @@ namespace Sample
         red,
         yellow,
         green
-
     }
+
     public class gemTile : Tile
     {
         public gemColors _color;
@@ -98,6 +96,5 @@ namespace Sample
         {
             _color = color;
         }
-
     }
 }

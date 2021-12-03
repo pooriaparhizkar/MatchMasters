@@ -1,5 +1,5 @@
-﻿using Medrick.Match3CoreSystem.Game;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using Medrick.Match3CoreSystem.Game;
 
 namespace Sample
 {

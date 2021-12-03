@@ -2,16 +2,14 @@
 using Medrick.Mocks.Match3CoreSystem.Game;
 using NUnit.Framework;
 
-
 namespace Medrick.Tests.Match3CoreSystem.Game
 {
     public class GameplaySystemsContollerTest
     {
+        private GameplaySystemsController executer;
 
-        GameplaySystemsController executer;
-
-        GameplaySystemMock mockSystem1;
-        GameplaySystemMock mockSystem2;
+        private GameplaySystemMock mockSystem1;
+        private GameplaySystemMock mockSystem2;
 
         [SetUp]
         public void Setup()
@@ -20,7 +18,6 @@ namespace Medrick.Tests.Match3CoreSystem.Game
 
             mockSystem1 = new GameplaySystemMock();
             mockSystem2 = new GameplaySystemMock();
-
         }
 
         [Test]
@@ -109,6 +106,5 @@ namespace Medrick.Tests.Match3CoreSystem.Game
 
             Assert.That(mockSystem1.isUpdated, Is.True);
         }
-
     }
 }

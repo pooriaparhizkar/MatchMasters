@@ -1,10 +1,9 @@
-﻿using Medrick.Match3CoreSystem.Game;
-using System;
+﻿using System;
+using Medrick.Match3CoreSystem.Game;
 using Medrick.Match3CoreSystem.Game.Core;
 
 namespace Sample
 {
-
     public interface SystemTwoPresentationPort : PresentationPort
     {
         void PlaySwap(CellStack cellStack1, CellStack cellStack2, Action onCompleted);
@@ -16,9 +15,8 @@ namespace Sample
 
     public class SystemTwo : BasicGameplaySystem
     {
-
-        BlackBoardDataOne blackBoardDataOne;
-        SystemTwoPresentationPort presentationPort;
+        private BlackBoardDataOne blackBoardDataOne;
+        private SystemTwoPresentationPort presentationPort;
 
         public SystemTwo(BasicGameplayMainController gameplayController) : base(gameplayController)
         {
@@ -33,7 +31,7 @@ namespace Sample
 
         public override void Update(float dt)
         {
-            foreach(var swapData in blackBoardDataOne.requestedSwaps)
+            foreach (var swapData in blackBoardDataOne.requestedSwaps)
                 StartSwap(swapData);
         }
 
@@ -46,14 +44,13 @@ namespace Sample
             if (cellStack1 == cellStack2)
                 return;
 
-            if(QueryUtilities.IsFullyFree(cellStack1) && QueryUtilities.IsFullyFree(cellStack2))
+            if (QueryUtilities.IsFullyFree(cellStack1) && QueryUtilities.IsFullyFree(cellStack2))
             {
                 ActionUtilites.FullyLock<SystemTwoKeyType>(cellStack1);
                 ActionUtilites.FullyLock<SystemTwoKeyType>(cellStack2);
 
                 presentationPort.PlaySwap(cellStack1, cellStack2, () => ApplySwap(cellStack1, cellStack2));
             }
-
         }
 
         private void ApplySwap(CellStack cellStack1, CellStack cellStack2)
@@ -64,7 +61,6 @@ namespace Sample
 
             ActionUtilites.FullyUnlock(cellStack1);
             ActionUtilites.FullyUnlock(cellStack2);
-
         }
     }
 }

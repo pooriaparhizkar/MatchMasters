@@ -1,21 +1,11 @@
-﻿using Medrick.ComponentSystem.Core;
+﻿using System.Collections.Generic;
+using Medrick.ComponentSystem.Core;
 using NUnit.Framework;
-using System.Collections.Generic;
 
 namespace Medrick.Tests.ComponentSystem.Core
 {
     public class CacheableBasicEntityTest
     {
-        class CacheMock : ComponentCache
-        {
-            public List<Component> components = new List<Component>();
-
-            public void TryCache(Component component)
-            {
-                components.Add(component);
-            }
-        }
-
         [Test]
         public void AddingComponentShouldCallTryCache()
         {
@@ -29,6 +19,16 @@ namespace Medrick.Tests.ComponentSystem.Core
             Assert.That(entity.Cache().components[0], Is.TypeOf<ComponentA>());
             Assert.That(entity.Cache().components[1], Is.TypeOf<ComponentB>());
             Assert.That(entity.Cache().components[2], Is.TypeOf<ComponentC>());
+        }
+
+        private class CacheMock : ComponentCache
+        {
+            public readonly List<Component> components = new List<Component>();
+
+            public void TryCache(Component component)
+            {
+                components.Add(component);
+            }
         }
     }
 }

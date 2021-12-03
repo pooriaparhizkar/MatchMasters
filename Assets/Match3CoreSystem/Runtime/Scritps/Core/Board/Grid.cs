@@ -4,8 +4,23 @@ using UnityEngine;
 
 namespace Medrick.Match3CoreSystem.Game.Core
 {
-    public enum Direction { None, Up, Down, Left, Right }
-    public enum GridPlacement { None, Up, Down, Left, Right }
+    public enum Direction
+    {
+        None,
+        Up,
+        Down,
+        Left,
+        Right
+    }
+
+    public enum GridPlacement
+    {
+        None,
+        Up,
+        Down,
+        Left,
+        Right
+    }
 
     public struct DirectionComparer : IEqualityComparer<Direction>
     {
@@ -17,16 +32,16 @@ namespace Medrick.Match3CoreSystem.Game.Core
         public int GetHashCode(Direction obj)
         {
             // you need to do some thinking here,
-            return (int)obj;
+            return (int) obj;
         }
     }
 
     public class Grid<T>
     {
+        private readonly int height;
         public T[][] internalGrid;
 
-        int width;
-        int height;
+        private readonly int width;
 
         public Grid(int width, int height)
         {
@@ -34,8 +49,8 @@ namespace Medrick.Match3CoreSystem.Game.Core
             this.height = height;
 
             internalGrid = new T[height][];
-            for (int j = 0; j < height; ++j)
-                internalGrid[j] = new T[width]; 
+            for (var j = 0; j < height; ++j)
+                internalGrid[j] = new T[width];
         }
 
 
@@ -44,25 +59,16 @@ namespace Medrick.Match3CoreSystem.Game.Core
             get
             {
                 if (IsInRange(x, y) == false)
-                    return default(T);
+                    return default;
                 return internalGrid[y][x];
             }
-            set
-            {
-                internalGrid[y][x] = value;
-            }
+            set => internalGrid[y][x] = value;
         }
 
         public T this[Vector2Int pos]
         {
-            get
-            {
-                return this[pos.x, pos.y];
-            }
-            set
-            {
-                this[pos.x, pos.y] = value;
-            }
+            get => this[pos.x, pos.y];
+            set => this[pos.x, pos.y] = value;
         }
 
         public bool IsInRange(int x, int y)
@@ -73,9 +79,9 @@ namespace Medrick.Match3CoreSystem.Game.Core
         [Obsolete("Use Gird Iterators")]
         public void ForEach(Action<int, int, T> action)
         {
-            for (int j = 0; j < height; ++j)
-                for (int i = 0; i < width; ++i)
-                    action(i, j, this[i, j]);
+            for (var j = 0; j < height; ++j)
+            for (var i = 0; i < width; ++i)
+                action(i, j, this[i, j]);
         }
 
         public int PositionToLinearIndex(int x, int y)
@@ -123,7 +129,7 @@ namespace Medrick.Match3CoreSystem.Game.Core
                     return this[x + 1, y];
             }
 
-            return default(T);
+            return default;
         }
 
 
@@ -147,15 +153,14 @@ namespace Medrick.Match3CoreSystem.Game.Core
 
                 if (xDist >= 1)
                     return Direction.Right;
-                else if (xDist <= -1)
+                if (xDist <= -1)
                     return Direction.Left;
-                else if (yDist >= 1)
+                if (yDist >= 1)
                     return Direction.Down;
-                else if (yDist <= -1)
+                if (yDist <= -1)
                     return Direction.Up;
-
             }
-            
+
             throw new Exception();
         }
 
@@ -173,6 +178,5 @@ namespace Medrick.Match3CoreSystem.Game.Core
         {
             return new Vector2Int(width, height);
         }
-
     }
 }

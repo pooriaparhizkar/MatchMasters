@@ -1,16 +1,15 @@
-﻿using Medrick.Match3CoreSystem.Game;
-using System;
-
+﻿using System;
+using Medrick.Match3CoreSystem.Game;
 
 namespace Medrick.Mocks.Match3CoreSystem.Game
 {
     public class GameplaySystemMock : GameplaySystem
     {
-        public bool isUpdated;
+        public bool isActivated;
+        public bool isReset;
         public bool isStarted;
         public bool isStopped;
-        public bool isReset;
-        public bool isActivated;
+        public bool isUpdated;
 
         public Action onActivationAction = delegate { };
         public Action onStartAction = delegate { };

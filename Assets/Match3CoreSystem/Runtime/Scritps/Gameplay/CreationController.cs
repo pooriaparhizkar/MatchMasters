@@ -1,6 +1,6 @@
-﻿using Medrick.Match3CoreSystem.Game.Core;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using Medrick.Match3CoreSystem.Game.Core;
 
 namespace Medrick.Match3CoreSystem.Game
 {
@@ -16,14 +16,10 @@ namespace Medrick.Match3CoreSystem.Game
 
     public class CreationController
     {
-        public event Action<TileStack> OnTileStackPlacedOnBoard = delegate { };
-        public event Action<Tile> OnTilePlacedOnBoard = delegate { };
-        public event Action<Cell> OnCellPlacedOnBoard = delegate { };
-        public event Action<Cell> OnCellReordered = delegate { };
+        private CellStackBoard cellStackBoard;
 
 
-        private TileStackFactory tileStackFactory;
-        CellStackBoard cellStackBoard;
+        private readonly TileStackFactory tileStackFactory;
 
         public CreationController(TileStackFactory tileStackFactory, CellStackBoard cellStackBoard)
         {
@@ -31,12 +27,14 @@ namespace Medrick.Match3CoreSystem.Game
             this.cellStackBoard = cellStackBoard;
         }
 
+        public event Action<TileStack> OnTileStackPlacedOnBoard = delegate { };
+        public event Action<Tile> OnTilePlacedOnBoard = delegate { };
+        public event Action<Cell> OnCellPlacedOnBoard = delegate { };
+        public event Action<Cell> OnCellReordered = delegate { };
+
         public void ReplaceTileInBoard(Tile tile, CellStack cellStack)
         {
-            if (cellStack.HasTileStack())
-            {
-                cellStack.CurrentTileStack().Destroy();
-            }
+            if (cellStack.HasTileStack()) cellStack.CurrentTileStack().Destroy();
 
             var tileStack = tileStackFactory.Create();
             tileStack.Push(tile);
@@ -49,7 +47,6 @@ namespace Medrick.Match3CoreSystem.Game
 
         public void PlaceTileInBoard(Tile tile, CellStack cellStack)
         {
-
             if (cellStack.HasTileStack() == false)
             {
                 cellStack.SetCurrnetTileStack(tileStackFactory.Create());
@@ -76,13 +73,12 @@ namespace Medrick.Match3CoreSystem.Game
             var stack = new Stack<Cell>();
             var cellStack = targetCell.Parent();
 
-            while(true)
+            while (true)
             {
                 var cell = cellStack.Stack().Pop();
                 if (cell == targetCell)
                     break;
-                else
-                    stack.Push(cell);
+                stack.Push(cell);
             }
 
             foreach (var cell in stack)

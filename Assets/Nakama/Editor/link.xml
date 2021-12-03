@@ -14,7 +14,7 @@
  limitations under the License.
  -->
 <linker>
-    <assembly fullname="Nakama" ignoreIfMissing="0" preserve="all" />
+    <assembly fullname="Nakama" ignoreIfMissing="0" preserve="all"/>
 
     <!-- NOTE: Do not code strip cryptographic utilities. -->
     <!--

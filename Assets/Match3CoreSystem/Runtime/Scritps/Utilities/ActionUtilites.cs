@@ -5,10 +5,10 @@ namespace Medrick.Match3CoreSystem.Game
 {
     public static class ActionUtilites
     {
-        public static void LockTileStacksBy<T>(List<CellStack> cellStacks) where T :KeyType
+        public static void LockTileStacksBy<T>(List<CellStack> cellStacks) where T : KeyType
         {
             foreach (var cellStack in cellStacks)
-                if(cellStack.HasTileStack())
+                if (cellStack.HasTileStack())
                     cellStack.CurrentTileStack().Cache().lockState.LockBy<T>();
         }
 
@@ -109,8 +109,6 @@ namespace Medrick.Match3CoreSystem.Game
                 cellStack1.CurrentTileStack().SetPosition(cellStack1.Position());
             if (cellStack2.HasTileStack())
                 cellStack2.CurrentTileStack().SetPosition(cellStack2.Position());
-
         }
     }
-
 }

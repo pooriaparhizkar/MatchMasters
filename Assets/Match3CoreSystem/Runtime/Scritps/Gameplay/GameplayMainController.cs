@@ -2,9 +2,9 @@
 
 namespace Medrick.Match3CoreSystem.Game
 {
-
     public interface PresentationPort
-    { }
+    {
+    }
 
 
     public interface GameplayMainController

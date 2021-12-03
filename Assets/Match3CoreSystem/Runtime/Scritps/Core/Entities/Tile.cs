@@ -14,16 +14,15 @@ namespace Medrick.Match3CoreSystem.Game.Core
     // TODO: Maybe extract the Hit handling of tile to a separate component?
     public abstract class Tile : CacheableBasicEntity<TileComponentCache>
     {
-        TileStack parent;
-
-        int level;
+        private int level;
+        private TileStack parent;
 
         public Tile(int initialLevel) : base(new TileComponentCache())
         {
-            this.level = initialLevel;
+            level = initialLevel;
         }
 
-        public Tile() : this(initialLevel : 1)
+        public Tile() : this(1)
         {
         }
 

@@ -1,9 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
+using Nakama;
 using UnityEngine;
 using UnityEngine.UI;
-using Nakama;
-using Nakama.TinyJson;
 
 public class ChangeName : MonoBehaviour
 {
@@ -15,9 +12,23 @@ public class ChangeName : MonoBehaviour
 
     public GameObject darkbar;
 
+    public GameObject BoxTaghirNam;
+    private readonly IClient client = new Client("http", "157.119.191.169", 7350, "defaultkey");
+
     public Text newUsername;
 
-    public GameObject BoxTaghirNam;
+
+    private void Update()
+    {
+        if (darkbar && newUsername)
+        {
+            if (newUsername.text.Length > 3)
+
+                darkbar.SetActive(false);
+            else
+                darkbar.SetActive(true);
+        }
+    }
 
     public void changename()
     {
@@ -32,31 +43,17 @@ public class ChangeName : MonoBehaviour
         changenamegmodal.SetActive(false);
         useOnBlur.SetActive(false);
         canvasprofile.SetActive(false);
-    }  
-    private readonly IClient client = new Client("http", "157.119.191.169", 7350, "defaultkey");
-    public async void BoxTaghirNamClickHandler()
-        {
-             Debug.Log("Changed");
-        var session = Nakama.Session.Restore(PlayerPrefs.GetString("token"));
-         await client.UpdateAccountAsync(session,newUsername.text, "", "", null, "");
-         changenamegmodal.SetActive(false);
-         useOnBlur.SetActive(false);
-         canvasprofile.SetActive(false);
-         PlayerPrefs.SetString("username",newUsername.text);
-         Debug.Log("Changed");
-        }
-    
-
-    void Update ()
-    {
-        if(darkbar && newUsername){
-if(newUsername.text.Length > 3) 
-
-            darkbar.SetActive(false);
-        else 
-            darkbar.SetActive(true);
-        }
-        
     }
 
+    public async void BoxTaghirNamClickHandler()
+    {
+        Debug.Log("Changed");
+        var session = Session.Restore(PlayerPrefs.GetString("token"));
+        await client.UpdateAccountAsync(session, newUsername.text, "", "", null, "");
+        changenamegmodal.SetActive(false);
+        useOnBlur.SetActive(false);
+        canvasprofile.SetActive(false);
+        PlayerPrefs.SetString("username", newUsername.text);
+        Debug.Log("Changed");
+    }
 }

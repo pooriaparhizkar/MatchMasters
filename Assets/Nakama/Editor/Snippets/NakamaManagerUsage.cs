@@ -18,7 +18,7 @@ using UnityEngine;
 
 namespace Nakama.Snippets
 {
-    /// <seealso cref="NakamaManager"/>
+    /// <seealso cref="NakamaManager" />
     public class NakamaManagerUsage : MonoBehaviour
     {
         private async void Start()
