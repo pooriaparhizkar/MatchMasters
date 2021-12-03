@@ -1,10 +1,10 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using Medrick.Match3CoreSystem.Game;
 using UnityEngine;
 
 namespace Sample
 {
-    public class BlackBoardDataOne : BlackBoardData
+    public class SwapBlackBoard : BlackBoardData
     {
         public readonly List<SwapData> requestedSwaps = new List<SwapData>();
 

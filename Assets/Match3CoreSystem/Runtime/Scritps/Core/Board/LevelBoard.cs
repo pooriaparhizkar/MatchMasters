@@ -4,11 +4,11 @@ namespace Medrick.Match3CoreSystem.Game.Core
 {
     public class LevelBoard
     {
+        private readonly CellStackBoard cellStackBoard;
         public readonly CellStack[] leftToRightButtomUpCellStackArray;
         public readonly CellStack[] leftToRightTopDownCellStackArray;
 
         public readonly int size;
-        private readonly CellStackBoard cellStackBoard;
 
         public LevelBoard(CellStackBoard cellStackBoard)
         {

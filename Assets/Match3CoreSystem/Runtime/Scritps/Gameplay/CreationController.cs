@@ -16,10 +16,8 @@ namespace Medrick.Match3CoreSystem.Game
 
     public class CreationController
     {
-        private CellStackBoard cellStackBoard;
-
-
         private readonly TileStackFactory tileStackFactory;
+        private CellStackBoard cellStackBoard;
 
         public CreationController(TileStackFactory tileStackFactory, CellStackBoard cellStackBoard)
         {

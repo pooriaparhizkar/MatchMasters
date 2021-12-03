@@ -23,10 +23,10 @@ namespace Medrick.Match3CoreSystem.Game.Core
     public class CellStack : CacheableBasicEntity<CellStackComponentCache>
     {
         private readonly List<CellAttachment> attachments = new List<CellAttachment>();
-
-        private TileStack currentTileStack;
         private readonly Position position;
         private readonly Stack<Cell> stack = new Stack<Cell>();
+
+        private TileStack currentTileStack;
 
         public CellStack(int xPos, int yPos) : base(new CellStackComponentCache())
         {

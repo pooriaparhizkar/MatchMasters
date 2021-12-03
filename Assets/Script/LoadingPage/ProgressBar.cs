@@ -3,6 +3,7 @@ using Nakama;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+
 public class ProgressBar : MonoBehaviour
 {
     private readonly IClient client = new Client("http", "157.119.191.169", 7350, "defaultkey");

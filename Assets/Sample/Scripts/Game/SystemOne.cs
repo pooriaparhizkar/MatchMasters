@@ -6,8 +6,8 @@ namespace Sample
     // This system preiodically requests a random swap.
     public class SystemOne : BasicGameplaySystem
     {
+        private readonly float maxWaitTime = 1;
         private float currentWaitTime;
-        private readonly float maxWaitTime = 3;
 
         public SystemOne(BasicGameplayMainController gameplayController) : base(gameplayController)
         {
@@ -30,7 +30,7 @@ namespace Sample
             var firstPos = new Vector2Int(Random.Range(0, size.x), Random.Range(0, size.y));
             var secondPos = new Vector2Int(Random.Range(0, size.x), Random.Range(0, size.y));
 
-            GetFrameData<BlackBoardDataOne>().requestedSwaps.Add(new BlackBoardDataOne.SwapData(firstPos, secondPos));
+            GetFrameData<SwapBlackBoard>().requestedSwaps.Add(new SwapBlackBoard.SwapData(firstPos, secondPos));
         }
     }
 }

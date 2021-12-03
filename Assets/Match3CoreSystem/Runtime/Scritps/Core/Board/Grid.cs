@@ -39,9 +39,9 @@ namespace Medrick.Match3CoreSystem.Game.Core
     public class Grid<T>
     {
         private readonly int height;
-        public T[][] internalGrid;
 
         private readonly int width;
+        public T[][] internalGrid;
 
         public Grid(int width, int height)
         {

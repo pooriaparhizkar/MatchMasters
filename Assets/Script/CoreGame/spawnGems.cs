@@ -7,9 +7,7 @@ public class spawnGems : MonoBehaviour
     // Start is called before the first frame update
     public GameObject[] gems;
     public GameObject boardGame;
-    public SystemTwoPresentationAdapter systemTwoPresentationAdapter;
-    private GameObject[] boxSlots;
-    private SampleGameplayMainController gameplayController;
+    public SystemSwapPresentationAdapter systemSwapPresentationAdapter;
 
     private readonly gemColors[,] template1 = new gemColors[7, 7]
     {
@@ -43,6 +41,8 @@ public class spawnGems : MonoBehaviour
         }
     };
 
+    private SampleGameplayMainController gameplayController;
+
     private void Start()
     {
         var cellStackFactory = new MainCellStackFactory();
@@ -54,8 +54,7 @@ public class spawnGems : MonoBehaviour
             tileStackFactory);
 
         // It is a good practive to add PresentationPorts before the Start.
-        gameplayController.AddPresentationPort(systemTwoPresentationAdapter);
-        boxSlots = GameObject.FindGameObjectsWithTag("boxSlot");
+        gameplayController.AddPresentationPort(systemSwapPresentationAdapter);
         foreach (var cellStack in gameplayController.LevelBoard.leftToRightTopDownCellStackArray)
             if (cellStack.HasTileStack())
             {
@@ -87,16 +86,6 @@ public class spawnGems : MonoBehaviour
             }
 
         gameplayController.Start();
-
-
-        // boxSlots = GameObject.FindGameObjectsWithTag("boxSlot");
-        // foreach (var VARIABLE in boxSlots)
-        // {
-        //     GameObject newObject = Instantiate(gems[UnityEngine.Random.Range(0, 5)], VARIABLE.transform.position,
-        //         Quaternion.identity) as GameObject;
-        //     newObject.transform.SetParent(VARIABLE.transform);
-        //     newObject.transform.localScale = new Vector3(1, 1, 1);
-        // }
     }
 
 
@@ -157,7 +146,7 @@ public class spawnGems : MonoBehaviour
             transform.position.z);
     }
 
-    private GameObject myInctanciate(GameObject gemPrefabs, TileStack tileStack)
+    private void myInctanciate(GameObject gemPrefabs, TileStack tileStack)
     {
         GameObject newObject = null;
         newObject = Instantiate(gemPrefabs,
@@ -165,18 +154,5 @@ public class spawnGems : MonoBehaviour
         newObject.transform.SetParent(boardGame.transform, false);
         newObject.transform.localScale = new Vector3(1, 1, 1);
         newObject.GetComponent<gemTilePresenter>().setup(tileStack);
-        return newObject;
-    }
-
-    private void checkMatch()
-    {
-        boxSlots = GameObject.FindGameObjectsWithTag("boxSlot");
-        foreach (var VARIABLE in boxSlots)
-        {
-            var newObject = Instantiate(gems[Random.Range(0, 5)], VARIABLE.transform.position,
-                Quaternion.identity);
-            newObject.transform.SetParent(VARIABLE.transform);
-            newObject.transform.localScale = new Vector3(1, 1, 1);
-        }
     }
 }

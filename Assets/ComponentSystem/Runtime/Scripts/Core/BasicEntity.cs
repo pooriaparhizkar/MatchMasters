@@ -4,8 +4,8 @@ namespace Medrick.ComponentSystem.Core
 {
     public class BasicEntity : Entity
     {
-        private Component[] compArray = new Component[0];
         private readonly List<Component> compList = new List<Component>(32);
+        private Component[] compArray = new Component[0];
 
         public void AddComponent(Component component)
         {

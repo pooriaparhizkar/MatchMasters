@@ -5,7 +5,7 @@ namespace Sample
 {
     public class SampleMain : MonoBehaviour
     {
-        public SystemTwoPresentationAdapter systemTwoPresentationAdapter;
+        public SystemSwapPresentationAdapter systemTwoPresentationAdapter;
 
         private SampleGameplayMainController gameplayController;
 

@@ -3,80 +3,37 @@
   <component name="ChangeListManager">
     <list default="true" id="fb1d7a1a-897d-4185-893f-c092f25b45cc" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.MatchMasters/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.MatchMasters/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ComponentSystem/Runtime/Medrick.ComponentSystem.asmdef" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ComponentSystem/Runtime/Medrick.ComponentSystem.asmdef" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/ComponentSystem/Runtime/Scripts/Core/BasicEntity.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ComponentSystem/Runtime/Scripts/Core/BasicEntity.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ComponentSystem/Runtime/Scripts/Core/BasicSpecializedEntity.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ComponentSystem/Runtime/Scripts/Core/BasicSpecializedEntity.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ComponentSystem/Runtime/Scripts/Core/CacheableBasicEntity.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ComponentSystem/Runtime/Scripts/Core/CacheableBasicEntity.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ComponentSystem/Runtime/Scripts/Core/Component.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ComponentSystem/Runtime/Scripts/Core/Component.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ComponentSystem/Runtime/Scripts/Core/Entity.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ComponentSystem/Runtime/Scripts/Core/Entity.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ComponentSystem/Tests/Editor/Medrick.ComponentSystem.Tests.asmdef" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ComponentSystem/Tests/Editor/Medrick.ComponentSystem.Tests.asmdef" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ComponentSystem/Tests/Editor/UnitTests/ComponentSystem/BasicEntityTest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ComponentSystem/Tests/Editor/UnitTests/ComponentSystem/BasicEntityTest.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ComponentSystem/Tests/Editor/UnitTests/ComponentSystem/CacheableBasicEntityTest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ComponentSystem/Tests/Editor/UnitTests/ComponentSystem/CacheableBasicEntityTest.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Match3CoreSystem/Runtime/Medrick.Match3CoreSystem.asmdef" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Match3CoreSystem/Runtime/Medrick.Match3CoreSystem.asmdef" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Match3CoreSystem/Runtime/Scritps/BlackBoard/BlackBoardData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Match3CoreSystem/Runtime/Scritps/BlackBoard/BlackBoardData.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Match3CoreSystem/Runtime/Scritps/BlackBoard/SystemBlackBoard.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Match3CoreSystem/Runtime/Scritps/BlackBoard/SystemBlackBoard.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Match3CoreSystem/Runtime/Scritps/Core/Board/CellStackBoard.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Match3CoreSystem/Runtime/Scritps/Core/Board/CellStackBoard.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Match3CoreSystem/Runtime/Scritps/Core/Board/Grid.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Match3CoreSystem/Runtime/Scritps/Core/Board/Grid.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Match3CoreSystem/Runtime/Scritps/Core/Board/GridIterators.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Match3CoreSystem/Runtime/Scritps/Core/Board/GridIterators.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Match3CoreSystem/Runtime/Scritps/Core/Board/LevelBoard.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Match3CoreSystem/Runtime/Scritps/Core/Board/LevelBoard.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Match3CoreSystem/Runtime/Scritps/Core/Entities/Cell.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Match3CoreSystem/Runtime/Scritps/Core/Entities/Cell.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Match3CoreSystem/Runtime/Scritps/Core/Entities/CellAttachment.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Match3CoreSystem/Runtime/Scritps/Core/Entities/CellAttachment.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Match3CoreSystem/Runtime/Scritps/Core/Entities/CellStack.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Match3CoreSystem/Runtime/Scritps/Core/Entities/CellStack.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Match3CoreSystem/Runtime/Scritps/Core/Entities/Tile.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Match3CoreSystem/Runtime/Scritps/Core/Entities/Tile.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Match3CoreSystem/Runtime/Scritps/Core/Entities/TileStack.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Match3CoreSystem/Runtime/Scritps/Core/Entities/TileStack.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Match3CoreSystem/Runtime/Scritps/Gameplay/BasicGameplayMainController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Match3CoreSystem/Runtime/Scritps/Gameplay/BasicGameplayMainController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Match3CoreSystem/Runtime/Scritps/Gameplay/BasicGameplaySystem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Match3CoreSystem/Runtime/Scritps/Gameplay/BasicGameplaySystem.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Match3CoreSystem/Runtime/Scritps/Gameplay/CreationController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Match3CoreSystem/Runtime/Scritps/Gameplay/CreationController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Match3CoreSystem/Runtime/Scritps/Gameplay/GameplayMainController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Match3CoreSystem/Runtime/Scritps/Gameplay/GameplayMainController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Match3CoreSystem/Runtime/Scritps/Gameplay/GameplaySystem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Match3CoreSystem/Runtime/Scritps/Gameplay/GameplaySystem.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Match3CoreSystem/Runtime/Scritps/Gameplay/GameplaySystemsController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Match3CoreSystem/Runtime/Scritps/Gameplay/GameplaySystemsController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Match3CoreSystem/Runtime/Scritps/Locking/LockState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Match3CoreSystem/Runtime/Scritps/Locking/LockState.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Match3CoreSystem/Runtime/Scritps/Utilities/ActionUtilites.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Match3CoreSystem/Runtime/Scritps/Utilities/ActionUtilites.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Match3CoreSystem/Runtime/Scritps/Utilities/QueryUtilities.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Match3CoreSystem/Runtime/Scritps/Utilities/QueryUtilities.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Match3CoreSystem/Runtime/Scritps/Utilities/RandomCellStackChooser.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Match3CoreSystem/Runtime/Scritps/Utilities/RandomCellStackChooser.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Match3CoreSystem/Tests/Editor/Medrick.Match3CoreSystem.Editor.Tests.asmdef" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Match3CoreSystem/Tests/Editor/Medrick.Match3CoreSystem.Editor.Tests.asmdef" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Match3CoreSystem/Tests/Editor/UnitTests/GameplaySystemMock.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Match3CoreSystem/Tests/Editor/UnitTests/GameplaySystemMock.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Match3CoreSystem/Tests/Editor/UnitTests/GameplaySystemsContollerTest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Match3CoreSystem/Tests/Editor/UnitTests/GameplaySystemsContollerTest.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Nakama/Editor/NakamaEditor.asmdef" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Nakama/Editor/NakamaEditor.asmdef" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Nakama/Editor/Snippets/AccountAndUsers.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Nakama/Editor/Snippets/AccountAndUsers.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Nakama/Editor/Snippets/DeviceAuthentication.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Nakama/Editor/Snippets/DeviceAuthentication.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Nakama/Editor/Snippets/MatchmakerWithRelayedMultiplayer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Nakama/Editor/Snippets/MatchmakerWithRelayedMultiplayer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Nakama/Editor/Snippets/NakamaManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Nakama/Editor/Snippets/NakamaManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Nakama/Editor/Snippets/NakamaManagerUsage.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Nakama/Editor/Snippets/NakamaManagerUsage.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Nakama/Editor/Snippets/RealtimeChatRoom.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Nakama/Editor/Snippets/RealtimeChatRoom.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Nakama/Editor/Snippets/RejoinChatAfterDisconnect.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Nakama/Editor/Snippets/RejoinChatAfterDisconnect.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Nakama/Editor/Snippets/SocketConnect.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Nakama/Editor/Snippets/SocketConnect.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Nakama/Editor/Snippets/WebGLConnect.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Nakama/Editor/Snippets/WebGLConnect.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Nakama/Editor/link.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Nakama/Editor/link.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Nakama/Runtime/ClientExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Nakama/Runtime/ClientExtensions.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Nakama/Runtime/JsWebSocketAdapter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Nakama/Runtime/JsWebSocketAdapter.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Nakama/Runtime/NakamaRuntime.asmdef" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Nakama/Runtime/NakamaRuntime.asmdef" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Nakama/Runtime/UnityLogger.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Nakama/Runtime/UnityLogger.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Nakama/Runtime/UnitySocket.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Nakama/Runtime/UnitySocket.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Nakama/Runtime/UnityWebRequestAdapter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Nakama/Runtime/UnityWebRequestAdapter.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sample/Scripts/Game/BlackBoardDataOne.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sample/Scripts/Game/BlackBoardDataOne.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sample/Scripts/Game/BlackBoardDataTwo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sample/Scripts/Game/BlackBoardDataTwo.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Plugins/Demigiant/DOTween/Modules/DOTweenModuleAudio.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Plugins/Demigiant/DOTween/Modules/DOTweenModuleAudio.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Plugins/Demigiant/DOTween/Modules/DOTweenModuleEPOOutline.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Plugins/Demigiant/DOTween/Modules/DOTweenModuleEPOOutline.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Plugins/Demigiant/DOTween/Modules/DOTweenModulePhysics.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Plugins/Demigiant/DOTween/Modules/DOTweenModulePhysics.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Plugins/Demigiant/DOTween/Modules/DOTweenModulePhysics2D.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Plugins/Demigiant/DOTween/Modules/DOTweenModulePhysics2D.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Plugins/Demigiant/DOTween/Modules/DOTweenModuleSprite.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Plugins/Demigiant/DOTween/Modules/DOTweenModuleSprite.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Plugins/Demigiant/DOTween/Modules/DOTweenModuleUI.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Plugins/Demigiant/DOTween/Modules/DOTweenModuleUI.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Plugins/Demigiant/DOTween/Modules/DOTweenModuleUnityVersion.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Plugins/Demigiant/DOTween/Modules/DOTweenModuleUnityVersion.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Plugins/Demigiant/DOTween/Modules/DOTweenModuleUtils.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Plugins/Demigiant/DOTween/Modules/DOTweenModuleUtils.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sample/Scripts/Game/BlackBoardDataOne.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sample/Scripts/Game/BlackBoardDataOne.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sample/Scripts/Game/BlackBoardDataTwo.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sample/Scripts/Game/BlackBoardDataTwo.cs.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Sample/Scripts/Game/SampleGameplayMainController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sample/Scripts/Game/SampleGameplayMainController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Sample/Scripts/Game/SystemOne.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sample/Scripts/Game/SystemOne.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sample/Scripts/Game/SystemTwo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sample/Scripts/Game/SystemTwo.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sample/Scripts/Game/SystemTwo.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sample/Scripts/Game/SystemTwo.cs.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Sample/Scripts/Main/SampleMain.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sample/Scripts/Main/SampleMain.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sample/Scripts/Main/SystemTwoPresentationAdapter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sample/Scripts/Main/SystemTwoPresentationAdapter.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sample/Scripts/Main/SystemTwoPresentationAdapter.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sample/Scripts/Main/SystemTwoPresentationAdapter.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/CoreGame.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/CoreGame.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Script.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Script/BackBTN.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/BackBTN.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Script/CoreGame/gemTilePresenter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/CoreGame/gemTilePresenter.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Script/CoreGame/onDragGems.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/CoreGame/onDragGems.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Script/CoreGame/spawnGems.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/CoreGame/spawnGems.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Script/HeaderMenu/headerMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/HeaderMenu/headerMenu.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Script/CoreGame/testDoTween.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Script/CoreGame/testDoTween.cs.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Script/LoadingPage/ProgressBar.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/LoadingPage/ProgressBar.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Script/MainPage/NavigationMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/MainPage/NavigationMenu.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Script/MainPage/playBtn.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/MainPage/playBtn.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Script/MatchMaking/MatchMakingLogic.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/MatchMaking/MatchMakingLogic.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Script/OnOff.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/OnOff.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Script/Profile/ChangeName.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/Profile/ChangeName.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Script/Profile/Profile.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/Profile/Profile.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Script/ProfilePopUp.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/ProfilePopUp.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Script/SettingPopup.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/SettingPopup.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Script/audio.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/audio.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -111,6 +68,7 @@
     <setting file="file://$PROJECT_DIR$/../../../Program Files/Unity/Editor/Data/Resources/PackageManager/BuiltInPackages/com.unity.2d.sprite/Editor/Interface/ISpriteEditorDataProvider.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../Program Files/Unity/Editor/Data/Resources/PackageManager/BuiltInPackages/com.unity.ugui/Editor/UI/SelectableEditor.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.test-framework@1.1.16/UnityEditor.TestRunner/TestLaunchers/PlayerLauncher.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/ee47be73f7ef409ca5e5ce4b121745b7116000/0d/baf39e51/Vector2.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/a8a500db7f1d47f5816051b6806505a974000/b1/e0b702c9/ISocket.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.textmeshpro@2.1.1/Scripts/Runtime/TMP_TextInfo.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../Program Files/Unity/Editor/Data/Resources/PackageManager/BuiltInPackages/com.unity.ugui/Runtime/UI/Core/RectMask2D.cs" root0="SKIP_HIGHLIGHTING" />
@@ -192,7 +150,7 @@
       <workItem from="1637398359226" duration="16211000" />
       <workItem from="1638354519608" duration="9482000" />
       <workItem from="1638566864408" duration="3884000" />
-      <workItem from="1638570804643" duration="534000" />
+      <workItem from="1638570804643" duration="4154000" />
     </task>
     <servers />
   </component>

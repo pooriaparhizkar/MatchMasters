@@ -22,10 +22,9 @@ namespace Medrick.Match3CoreSystem.Game.Core
 
     public class TileStack : CacheableBasicEntity<TileStackComponentCache>
     {
+        private readonly Stack<Tile> stack = new Stack<Tile>();
         private CellStack parent;
         private Position position;
-
-        private readonly Stack<Tile> stack = new Stack<Tile>();
 
         public TileStack() : base(new TileStackComponentCache())
         {
