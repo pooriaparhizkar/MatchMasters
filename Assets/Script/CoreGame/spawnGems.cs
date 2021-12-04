@@ -153,6 +153,6 @@ public class spawnGems : MonoBehaviour
             logicalPositionToPresentation(tileStack.Position()), Quaternion.identity);
         newObject.transform.SetParent(boardGame.transform, false);
         newObject.transform.localScale = new Vector3(1, 1, 1);
-        newObject.GetComponent<gemTilePresenter>().setup(tileStack);
+        newObject.GetComponent<gemTilePresenter>().setup(tileStack,gameplayController);
     }
 }

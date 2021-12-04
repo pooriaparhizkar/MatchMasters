@@ -17,13 +17,13 @@ namespace Sample
                 var presenter1 = tileStack1.GetComponent<gemTilePresenter>();
                 var tileStack2 = cellStack2.CurrentTileStack();
                 var presenter2 = tileStack2.GetComponent<gemTilePresenter>();
-                presenter1.transform.DOMove(presenter2.transform.position, 1);
-                presenter2.transform.DOMove(presenter1.transform.position, 1);
+                presenter1.transform.DOMove(presenter2.transform.position, 0.5f);
+                presenter2.transform.DOMove(presenter1.transform.position, 0.5f);
             }
 
             Debug.Log($"Start Swaping {cellStack1.Position()} and {cellStack2.Position()} ");
 
-            await Task.Delay(1000);
+            await Task.Delay(500);
 
             Debug.Log($"Finished Swaping {cellStack1.Position()} and {cellStack2.Position()} ");
 

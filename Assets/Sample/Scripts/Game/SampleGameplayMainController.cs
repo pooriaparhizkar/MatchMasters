@@ -14,7 +14,7 @@ namespace Sample
         {
             // NOTE: The order of the additions defines their order of execution
 
-            systemsController.AddSystem(new SystemOne(this), GameplaySystemTag.General);
+            // systemsController.AddSystem(new SystemOne(this), GameplaySystemTag.General);
             systemsController.AddSystem(new SwapSystem(this), GameplaySystemTag.General);
         }
 

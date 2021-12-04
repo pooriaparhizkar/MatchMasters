@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Sample
 {
-    public class SwapBlackBoard : BlackBoardData
+    public class SwapBlackBoard : MonoBehaviour,BlackBoardData
     {
         public readonly List<SwapData> requestedSwaps = new List<SwapData>();
 

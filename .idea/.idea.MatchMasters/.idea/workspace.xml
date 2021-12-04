@@ -3,37 +3,13 @@
   <component name="ChangeListManager">
     <list default="true" id="fb1d7a1a-897d-4185-893f-c092f25b45cc" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.MatchMasters/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.MatchMasters/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ComponentSystem/Runtime/Scripts/Core/BasicEntity.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ComponentSystem/Runtime/Scripts/Core/BasicEntity.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Match3CoreSystem/Runtime/Scritps/Core/Board/Grid.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Match3CoreSystem/Runtime/Scritps/Core/Board/Grid.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Match3CoreSystem/Runtime/Scritps/Core/Board/LevelBoard.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Match3CoreSystem/Runtime/Scritps/Core/Board/LevelBoard.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Match3CoreSystem/Runtime/Scritps/Core/Entities/CellStack.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Match3CoreSystem/Runtime/Scritps/Core/Entities/CellStack.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Match3CoreSystem/Runtime/Scritps/Core/Entities/TileStack.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Match3CoreSystem/Runtime/Scritps/Core/Entities/TileStack.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Match3CoreSystem/Runtime/Scritps/Gameplay/CreationController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Match3CoreSystem/Runtime/Scritps/Gameplay/CreationController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Plugins/Demigiant/DOTween/Modules/DOTweenModuleAudio.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Plugins/Demigiant/DOTween/Modules/DOTweenModuleAudio.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Plugins/Demigiant/DOTween/Modules/DOTweenModuleEPOOutline.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Plugins/Demigiant/DOTween/Modules/DOTweenModuleEPOOutline.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Plugins/Demigiant/DOTween/Modules/DOTweenModulePhysics.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Plugins/Demigiant/DOTween/Modules/DOTweenModulePhysics.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Plugins/Demigiant/DOTween/Modules/DOTweenModulePhysics2D.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Plugins/Demigiant/DOTween/Modules/DOTweenModulePhysics2D.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Plugins/Demigiant/DOTween/Modules/DOTweenModuleSprite.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Plugins/Demigiant/DOTween/Modules/DOTweenModuleSprite.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Plugins/Demigiant/DOTween/Modules/DOTweenModuleUI.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Plugins/Demigiant/DOTween/Modules/DOTweenModuleUI.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Plugins/Demigiant/DOTween/Modules/DOTweenModuleUnityVersion.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Plugins/Demigiant/DOTween/Modules/DOTweenModuleUnityVersion.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Plugins/Demigiant/DOTween/Modules/DOTweenModuleUtils.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Plugins/Demigiant/DOTween/Modules/DOTweenModuleUtils.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sample/Scripts/Game/BlackBoardDataOne.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sample/Scripts/Game/BlackBoardDataOne.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sample/Scripts/Game/BlackBoardDataTwo.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sample/Scripts/Game/BlackBoardDataTwo.cs.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Sample/Scripts/Game/SampleGameplayMainController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sample/Scripts/Game/SampleGameplayMainController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sample/Scripts/Game/SystemOne.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sample/Scripts/Game/SystemOne.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sample/Scripts/Game/SystemTwo.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sample/Scripts/Game/SystemTwo.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sample/Scripts/Main/SampleMain.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sample/Scripts/Main/SampleMain.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sample/Scripts/Main/SystemTwoPresentationAdapter.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sample/Scripts/Main/SystemTwoPresentationAdapter.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/CoreGame.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/CoreGame.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sample/Scripts/Game/SwapBlackBoard.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sample/Scripts/Game/SwapBlackBoard.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sample/Scripts/Game/SwapSystem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sample/Scripts/Game/SwapSystem.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sample/Scripts/Main/SystemSwapPresentationAdapter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sample/Scripts/Main/SystemSwapPresentationAdapter.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Script.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Script/CoreGame/gemTilePresenter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/CoreGame/gemTilePresenter.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Script/CoreGame/spawnGems.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/CoreGame/spawnGems.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Script/CoreGame/testDoTween.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Script/CoreGame/testDoTween.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Script/LoadingPage/ProgressBar.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/LoadingPage/ProgressBar.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -150,7 +126,7 @@
       <workItem from="1637398359226" duration="16211000" />
       <workItem from="1638354519608" duration="9482000" />
       <workItem from="1638566864408" duration="3884000" />
-      <workItem from="1638570804643" duration="4154000" />
+      <workItem from="1638570804643" duration="9984000" />
     </task>
     <servers />
   </component>
