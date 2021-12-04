@@ -26,6 +26,12 @@ public class gemTilePresenter :  SwapBlackBoard,Component, IDragHandler, IEndDra
         _gameplayMainController = sampleGameplayMainController;
     }
 
+    public void delete(TileStack tileStack)
+    {
+        tileStack.Destroy();
+        Destroy(this);
+    }
+
     public void OnDrag(PointerEventData eventData)
     {
         // presentationPort = _gameplayMainController.GetPresentationPort<OrderSwapSystemPresentationPort>();

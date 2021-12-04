@@ -19,8 +19,10 @@ namespace Sample
     {
         private CheckSystemPresentationPort presentationPort;
         private CheckBlackBoard CheckBlackBoard;
-        private int counter;
+        private int gemIndex;
+        private int columnCounter;
         public List<gemTile> rowArray = new List<gemTile>();
+        public List<gemTile> columnArray = new List<gemTile>();
 
         public CheckSystem(BasicGameplayMainController gameplayController) : base(gameplayController)
         {
@@ -31,28 +33,78 @@ namespace Sample
             base.Start();
             CheckBlackBoard = GetFrameData<CheckBlackBoard>();
             presentationPort = gameplayController.GetPresentationPort<CheckSystemPresentationPort>();
-            counter = 0;
+            gemIndex = 0;
+            columnCounter = 0;
+        }
+
+        private void checkColumn(int index)
+        {
+            var cellStackBoard = gameplayController.LevelBoard.CellStackBoard();
+            for (int i = 0; i < 7; i++)
+            {
+                if (cellStackBoard[new Vector2Int(index, i)].HasTileStack())
+                    columnArray.Add(cellStackBoard[new Vector2Int(index, i)].CurrentTileStack().Top() as gemTile);
+            }
+
+            checkRow(columnArray);
+            columnArray.Clear();
+        }
+
+        private void checkRow(int index)
+        {
+            var cellStackBoard = gameplayController.LevelBoard.CellStackBoard();
+            for (int i = 0; i < 7; i++)
+            {
+                if (cellStackBoard[new Vector2Int(i, index)].HasTileStack())
+                    rowArray.Add(cellStackBoard[new Vector2Int(i, index)].CurrentTileStack().Top() as gemTile);
+            }
+            checkRow(rowArray);
+            rowArray.Clear();
         }
 
         public override void Update(float dt)
         {
-            counter = 0;
-            foreach (var cellStack in gameplayController.LevelBoard.leftToRightTopDownCellStackArray)
-                {
-                    if (cellStack.HasTileStack())
-                    {
-                        counter++;
-                        var tileStack = cellStack.CurrentTileStack();
-                        var gem = tileStack.Top() as gemTile;
-                        rowArray.Add(gem);
-                        if (counter % 7 == 0 && counter!=0)
-                        {
-                            checkRow(rowArray);
-                            rowArray.Clear();
-                        }
-                    }
-                }
+            // gemIndex = 0;
+            // columnArray.Add(gameplayController[]);
+            for (int i = 0; i < 7; i++)
+            {
+                checkColumn(i);
+                checkRow(i);
+            }
 
+
+            // columnCounter = 0;
+            // foreach (var cellStack in gameplayController.LevelBoard.leftToRightTopDownCellStackArray)
+            // {
+            //     if (cellStack.HasTileStack())
+            //     {
+            //         gemIndex++;
+            //         var tileStack = cellStack.CurrentTileStack();
+            //         var gem = tileStack.Top() as gemTile;
+            //         rowArray.Add(gem);
+            //         if (gemIndex % 7 == 0 && gemIndex != 0)
+            //         {
+            //             checkRow(rowArray);
+            //             rowArray.Clear();
+            //         }
+            //         columnArray.Add(gem);
+            //         if (gemIndex%7==columnCounter)
+            //         {
+            //
+            //             Debug.Log(columnArray.Count);
+            //             if (columnArray.Count==7)
+            //             {
+            //                 checkRow(columnArray);
+            //                 columnArray.Clear();
+            //
+            //                 if (columnCounter >=6)
+            //                     columnCounter = 0;
+            //                 else  columnCounter++;
+            //             }
+            //         }
+            //
+            //     }
+            // }
         }
 
         private void checkRow(List<gemTile> rowArray)
@@ -88,18 +140,19 @@ namespace Sample
             {
                 foreach (var VARIABLE in matched)
                 {
-                    Debug.Log(VARIABLE.Parent().Position());
-                    VARIABLE.Parent();
-                    VARIABLE.Parent().Push(new emptyTile());
-                    VARIABLE.Parent().Top();
-                    return;
+                    // Debug.Log(VARIABLE.Parent().Position());
                     // VARIABLE.Parent().Destroy();
+                    // VARIABLE.Parent().Push(new emptyTile());
+
+                    // return;
+                    // VARIABLE.Parent().Destroy();
+                    GetFrameData<DestroyBlackBoard>().requestedDestroys.Add(
+                        new DestroyBlackBoard.DestroyData(new Vector2Int((int) VARIABLE.Parent().Position().x,
+                            (int) VARIABLE.Parent().Position().y)));
                 }
+
+                matched.Clear();
             }
         }
     }
-    public class emptyTile : Tile
-    {
-    }
-
 }

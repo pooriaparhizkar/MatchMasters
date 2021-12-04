@@ -8,6 +8,7 @@ public class spawnGems : MonoBehaviour
     public GameObject[] gems;
     public GameObject boardGame;
     public SystemSwapPresentationAdapter systemSwapPresentationAdapter;
+    public SystemDestroyPresentationAdapter systemDestroyPresentationAdapter;
 
     private readonly gemColors[,] template1 = new gemColors[7, 7]
     {
@@ -55,6 +56,7 @@ public class spawnGems : MonoBehaviour
 
         // It is a good practive to add PresentationPorts before the Start.
         gameplayController.AddPresentationPort(systemSwapPresentationAdapter);
+        gameplayController.AddPresentationPort(systemDestroyPresentationAdapter);
         foreach (var cellStack in gameplayController.LevelBoard.leftToRightTopDownCellStackArray)
             if (cellStack.HasTileStack())
             {
