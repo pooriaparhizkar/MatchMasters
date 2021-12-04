@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Sample
 {
-    public class PhysicBlackBoard : MonoBehaviour,BlackBoardData
+    public class PhysicBlackBoard : MonoBehaviour, BlackBoardData
     {
         public readonly List<PhysicData> requestedPhysics = new List<PhysicData>();
 

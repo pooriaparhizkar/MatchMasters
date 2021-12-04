@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Sample
 {
-    public class DestroyBlackBoard : MonoBehaviour,BlackBoardData
+    public class DestroyBlackBoard : MonoBehaviour, BlackBoardData
     {
         public readonly List<DestroyData> requestedDestroys = new List<DestroyData>();
 

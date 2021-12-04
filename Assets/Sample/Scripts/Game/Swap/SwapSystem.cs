@@ -1,7 +1,6 @@
 using System;
 using Medrick.Match3CoreSystem.Game;
 using Medrick.Match3CoreSystem.Game.Core;
-using UnityEngine;
 
 namespace Sample
 {

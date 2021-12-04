@@ -9,6 +9,7 @@ namespace Sample
     public class emptyTile : Tile
     {
     }
+
     public class SystemDestroyPresentationAdapter : MonoBehaviour, DestroySystemPresentationPort
     {
         public async void PlayDestroy(CellStack cellStack1, Action onCompleted)
@@ -31,7 +32,5 @@ namespace Sample
 
             onCompleted.Invoke();
         }
-
     }
-
 }

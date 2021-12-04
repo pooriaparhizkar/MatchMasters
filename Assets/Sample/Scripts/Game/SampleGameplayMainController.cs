@@ -19,7 +19,6 @@ namespace Sample
             systemsController.AddSystem(new CheckSystem(this), GameplaySystemTag.General);
             systemsController.AddSystem(new PhysicSystem(this), GameplaySystemTag.General);
             systemsController.AddSystem(new DestroySystem(this), GameplaySystemTag.General);
-
         }
 
         protected override void AddFrameBasedBlackBoardData(SystemBlackBoard frameBasedBlackBoard)

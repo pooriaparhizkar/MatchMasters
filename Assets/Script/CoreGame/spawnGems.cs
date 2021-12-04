@@ -9,6 +9,7 @@ public class spawnGems : MonoBehaviour
     public GameObject boardGame;
     public SystemSwapPresentationAdapter systemSwapPresentationAdapter;
     public SystemDestroyPresentationAdapter systemDestroyPresentationAdapter;
+    public SystemPhysicPresentationAdaptor systemPhysicPresentationAdapter;
 
     private readonly gemColors[,] template1 = new gemColors[7, 7]
     {
@@ -57,6 +58,7 @@ public class spawnGems : MonoBehaviour
         // It is a good practive to add PresentationPorts before the Start.
         gameplayController.AddPresentationPort(systemSwapPresentationAdapter);
         gameplayController.AddPresentationPort(systemDestroyPresentationAdapter);
+        gameplayController.AddPresentationPort(systemPhysicPresentationAdapter);
         foreach (var cellStack in gameplayController.LevelBoard.leftToRightTopDownCellStackArray)
             if (cellStack.HasTileStack())
             {
@@ -155,6 +157,6 @@ public class spawnGems : MonoBehaviour
             logicalPositionToPresentation(tileStack.Position()), Quaternion.identity);
         newObject.transform.SetParent(boardGame.transform, false);
         newObject.transform.localScale = new Vector3(1, 1, 1);
-        newObject.GetComponent<gemTilePresenter>().setup(tileStack,gameplayController);
+        newObject.GetComponent<gemTilePresenter>().setup(tileStack, gameplayController);
     }
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Sample
 {
-    public class CheckBlackBoard : MonoBehaviour,BlackBoardData
+    public class CheckBlackBoard : MonoBehaviour, BlackBoardData
     {
         public readonly List<CheckData> requestedChecks = new List<CheckData>();
 

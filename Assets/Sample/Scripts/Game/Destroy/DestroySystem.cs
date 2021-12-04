@@ -1,7 +1,6 @@
 using System;
 using Medrick.Match3CoreSystem.Game;
 using Medrick.Match3CoreSystem.Game.Core;
-using UnityEngine;
 
 namespace Sample
 {
@@ -16,8 +15,8 @@ namespace Sample
 
     public class DestroySystem : BasicGameplaySystem
     {
-        private DestroySystemPresentationPort presentationPort;
         private DestroyBlackBoard DestroyBlackBoard;
+        private DestroySystemPresentationPort presentationPort;
 
         public DestroySystem(BasicGameplayMainController gameplayController) : base(gameplayController)
         {
@@ -46,7 +45,7 @@ namespace Sample
             {
                 ActionUtilites.FullyLock<DestroySystemKeyType>(cellStack1);
 
-                presentationPort.PlayDestroy(cellStack1,  () => ApplyDestroy(cellStack1));
+                presentationPort.PlayDestroy(cellStack1, () => ApplyDestroy(cellStack1));
             }
         }
 
