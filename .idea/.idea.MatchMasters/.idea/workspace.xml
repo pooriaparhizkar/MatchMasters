@@ -3,9 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="fb1d7a1a-897d-4185-893f-c092f25b45cc" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.MatchMasters/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.MatchMasters/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sample/Scripts/Main/SystemSwapPresentationAdapter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sample/Scripts/Main/SystemSwapPresentationAdapter.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sample/Scripts/Game/SampleGameplayMainController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sample/Scripts/Game/SampleGameplayMainController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sample/Scripts/Game/SwapBlackBoard.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sample/Scripts/Game/Swap/SwapBlackBoard.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sample/Scripts/Game/SwapBlackBoard.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sample/Scripts/Game/Swap/SwapBlackBoard.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sample/Scripts/Game/SwapSystem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sample/Scripts/Game/Swap/SwapSystem.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sample/Scripts/Game/SwapSystem.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sample/Scripts/Game/Swap/SwapSystem.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Script.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Script/CoreGame/gemTilePresenter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/CoreGame/gemTilePresenter.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,6 +41,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Script/CoreGame/onDragGems.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../Program Files/Unity/Editor/Data/Resources/PackageManager/BuiltInPackages/com.unity.ugui/Runtime/UI/Core/Layout/LayoutElement.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../Program Files/Unity/Editor/Data/Resources/PackageManager/BuiltInPackages/com.unity.2d.sprite/Editor/Interface/ISpriteEditorDataProvider.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.2d.animation@3.2.4/Editor/SkinningModule/SkinningModule.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../Program Files/Unity/Editor/Data/Resources/PackageManager/BuiltInPackages/com.unity.ugui/Editor/UI/SelectableEditor.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.test-framework@1.1.16/UnityEditor.TestRunner/TestLaunchers/PlayerLauncher.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/ee47be73f7ef409ca5e5ce4b121745b7116000/0d/baf39e51/Vector2.cs" root0="SKIP_HIGHLIGHTING" />
@@ -46,6 +50,7 @@
     <setting file="file://$PROJECT_DIR$/../../../Program Files/Unity/Editor/Data/Resources/PackageManager/BuiltInPackages/com.unity.ugui/Runtime/UI/Core/RectMask2D.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/ee47be73f7ef409ca5e5ce4b121745b7116000/35/8282afd5/Object.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.timeline@1.2.16/Editor/Utilities/Clipboard.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../../Program Files/Unity/Editor/Data/Resources/PackageManager/BuiltInPackages/com.unity.ugui/Runtime/EventSystem/RaycastResult.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.timeline@1.2.16/Editor/TimelineHelpers.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.test-framework@1.1.16/UnityEditor.TestRunner/TestRunner/Utils/EditorLoadedTestAssemblyProvider.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/ee47be73f7ef409ca5e5ce4b121745b7116000/2d/68c6a132/Transform.cs" root0="SKIP_HIGHLIGHTING" />
@@ -122,7 +127,7 @@
       <workItem from="1637398359226" duration="16211000" />
       <workItem from="1638354519608" duration="9482000" />
       <workItem from="1638566864408" duration="3884000" />
-      <workItem from="1638570804643" duration="10262000" />
+      <workItem from="1638570804643" duration="13505000" />
     </task>
     <servers />
   </component>

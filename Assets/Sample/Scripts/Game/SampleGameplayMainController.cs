@@ -16,11 +16,13 @@ namespace Sample
 
             // systemsController.AddSystem(new SystemOne(this), GameplaySystemTag.General);
             systemsController.AddSystem(new SwapSystem(this), GameplaySystemTag.General);
+            systemsController.AddSystem(new CheckSystem(this), GameplaySystemTag.General);
         }
 
         protected override void AddFrameBasedBlackBoardData(SystemBlackBoard frameBasedBlackBoard)
         {
             frameBasedBlackBoard.AddComponent(new SwapBlackBoard());
+            frameBasedBlackBoard.AddComponent(new CheckBlackBoard());
         }
 
         protected override void AddSessionBasedBlackBoardData(SystemBlackBoard sessionBasedBlackBoard)
