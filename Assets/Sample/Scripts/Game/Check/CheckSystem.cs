@@ -37,7 +37,7 @@ namespace Sample
             columnCounter = 0;
         }
 
-        private void checkColumn(int index)
+        private void iterateColumn(int index)
         {
             var cellStackBoard = gameplayController.LevelBoard.CellStackBoard();
             for (int i = 0; i < 7; i++)
@@ -50,7 +50,7 @@ namespace Sample
             columnArray.Clear();
         }
 
-        private void checkRow(int index)
+        private void iterateRow(int index)
         {
             var cellStackBoard = gameplayController.LevelBoard.CellStackBoard();
             for (int i = 0; i < 7; i++)
@@ -64,47 +64,12 @@ namespace Sample
 
         public override void Update(float dt)
         {
-            // gemIndex = 0;
-            // columnArray.Add(gameplayController[]);
             for (int i = 0; i < 7; i++)
             {
-                checkColumn(i);
-                checkRow(i);
+                iterateColumn(i);
+                iterateRow(i);
             }
 
-
-            // columnCounter = 0;
-            // foreach (var cellStack in gameplayController.LevelBoard.leftToRightTopDownCellStackArray)
-            // {
-            //     if (cellStack.HasTileStack())
-            //     {
-            //         gemIndex++;
-            //         var tileStack = cellStack.CurrentTileStack();
-            //         var gem = tileStack.Top() as gemTile;
-            //         rowArray.Add(gem);
-            //         if (gemIndex % 7 == 0 && gemIndex != 0)
-            //         {
-            //             checkRow(rowArray);
-            //             rowArray.Clear();
-            //         }
-            //         columnArray.Add(gem);
-            //         if (gemIndex%7==columnCounter)
-            //         {
-            //
-            //             Debug.Log(columnArray.Count);
-            //             if (columnArray.Count==7)
-            //             {
-            //                 checkRow(columnArray);
-            //                 columnArray.Clear();
-            //
-            //                 if (columnCounter >=6)
-            //                     columnCounter = 0;
-            //                 else  columnCounter++;
-            //             }
-            //         }
-            //
-            //     }
-            // }
         }
 
         private void checkRow(List<gemTile> rowArray)

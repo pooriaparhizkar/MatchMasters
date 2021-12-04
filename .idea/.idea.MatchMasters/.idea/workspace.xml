@@ -2,12 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fb1d7a1a-897d-4185-893f-c092f25b45cc" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.MatchMasters/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.MatchMasters/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Sample/Scripts/Game/Check/CheckSystem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sample/Scripts/Game/Check/CheckSystem.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sample/Scripts/Game/SampleGameplayMainController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sample/Scripts/Game/SampleGameplayMainController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Script.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Script/CoreGame/gemTilePresenter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/CoreGame/gemTilePresenter.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Script/CoreGame/spawnGems.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/CoreGame/spawnGems.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -150,7 +146,7 @@
       <workItem from="1638354519608" duration="9482000" />
       <workItem from="1638566864408" duration="3884000" />
       <workItem from="1638570804643" duration="13565000" />
-      <workItem from="1638609427339" duration="8016000" />
+      <workItem from="1638609427339" duration="8188000" />
     </task>
     <servers />
   </component>
