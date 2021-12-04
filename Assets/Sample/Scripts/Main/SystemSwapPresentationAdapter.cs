@@ -21,11 +21,11 @@ namespace Sample
                 presenter2.transform.DOMove(presenter1.transform.position, 0.5f);
             }
 
-            Debug.Log($"Start Swaping {cellStack1.Position()} and {cellStack2.Position()} ");
+            // Debug.Log($"Start Swaping {cellStack1.Position()} and {cellStack2.Position()} ");
 
             await Task.Delay(500);
 
-            Debug.Log($"Finished Swaping {cellStack1.Position()} and {cellStack2.Position()} ");
+            // Debug.Log($"Finished Swaping {cellStack1.Position()} and {cellStack2.Position()} ");
 
             onCompleted.Invoke();
         }

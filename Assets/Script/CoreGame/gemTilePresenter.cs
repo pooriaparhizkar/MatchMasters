@@ -29,26 +29,26 @@ public class gemTilePresenter :  SwapBlackBoard,Component, IDragHandler, IEndDra
     public void OnDrag(PointerEventData eventData)
     {
         // presentationPort = _gameplayMainController.GetPresentationPort<OrderSwapSystemPresentationPort>();
-        var firstPos=new Vector2Int(0,0);
+        var firstPos=new Vector2Int((int)_tileStack.Position().x,(int)_tileStack.Position().y);
         var secondPos=new Vector2Int(2,2);
 
         if (!isDraging)
         {
             isDraging = true;
-            if (eventData.delta.y > 0)
-            {
-                if ((int)_tileStack.Position().y > 0)
-                {
-                    firstPos= new Vector2Int((int)_tileStack.Position().x,(int)_tileStack.Position().y);
-                    secondPos= new Vector2Int((int)_tileStack.Position().x,(int)_tileStack.Position().y-1);
-                    Debug.Log("Up");
-                    var localSwapData = new SwapData(firstPos, secondPos);
-                    requestedSwaps.Add(localSwapData);
-                }
+            //Up
+            if (eventData.delta.y > 0 && (int)_tileStack.Position().y > 0)
+                secondPos= new Vector2Int((int)_tileStack.Position().x,(int)_tileStack.Position().y-1);
+            //Down
+            else if (eventData.delta.y < 0 && (int)_tileStack.Position().y < 6)
+                secondPos= new Vector2Int((int)_tileStack.Position().x,(int)_tileStack.Position().y+1);
+            //Left
+            else if (eventData.delta.x < 0 && (int)_tileStack.Position().x > 0)
+                secondPos= new Vector2Int((int)_tileStack.Position().x-1,(int)_tileStack.Position().y);
+            //Right
+            else if (eventData.delta.x > 0 && (int)_tileStack.Position().x < 6)
+                secondPos= new Vector2Int((int)_tileStack.Position().x+1,(int)_tileStack.Position().y);
 
-            }
-
-            // presentationPort.OrderSwap(firstPos, secondPos, () => Debug.Log("finished"));
+                // presentationPort.OrderSwap(firstPos, secondPos, () => Debug.Log("finished"));
 
             _gameplayMainController.FrameBasedBlackBoard.GetComponent<SwapBlackBoard>().requestedSwaps.Add(new SwapBlackBoard.SwapData(firstPos, secondPos));
         }
