@@ -57,8 +57,10 @@ namespace Sample
             // ActionUtilites.DestroyTileStacksOf(cellStack1, cellStack2);
             // Debug.Log(cellStack1);
             // cellStack1.GetComponent<gemTilePresenter>().delete(cellStack1.CurrentTileStack());
-            cellStack1.CurrentTileStack().Destroy();
-            cellStack1.Pop();
+            // cellStack1.CurrentTileStack().Destroy();
+            // cellStack1.Pop();
+            cellStack1.DetachTileStack();
+            // ActionUtilites.FullyDestroy(cellStack1.CurrentTileStack().Top());
             ActionUtilites.FullyUnlock(cellStack1);
         }
     }
