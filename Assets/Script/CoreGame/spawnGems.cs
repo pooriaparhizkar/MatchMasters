@@ -10,6 +10,7 @@ public class spawnGems : MonoBehaviour
     public SystemSwapPresentationAdapter systemSwapPresentationAdapter;
     public SystemDestroyPresentationAdapter systemDestroyPresentationAdapter;
     public SystemPhysicPresentationAdaptor systemPhysicPresentationAdapter;
+    public SystemTopIntancePresentationAdaptor systemTopInstancePresentationAdaptor;
 
     private readonly gemColors[,] template1 = new gemColors[7, 7]
     {
@@ -59,6 +60,7 @@ public class spawnGems : MonoBehaviour
         gameplayController.AddPresentationPort(systemSwapPresentationAdapter);
         gameplayController.AddPresentationPort(systemDestroyPresentationAdapter);
         gameplayController.AddPresentationPort(systemPhysicPresentationAdapter);
+        gameplayController.AddPresentationPort(systemTopInstancePresentationAdaptor);
         foreach (var cellStack in gameplayController.LevelBoard.leftToRightTopDownCellStackArray)
             if (cellStack.HasTileStack())
             {
@@ -102,7 +104,7 @@ public class spawnGems : MonoBehaviour
             {
                 var tileStack = cellStack.CurrentTileStack();
                 var presenter = tileStack.GetComponent<gemTilePresenter>();
-                presenter.transform.localPosition = logicalPositionToPresentation(tileStack.Position());
+                presenter.transform.localPosition = logicalPositionToPresentation(tileStack.Position(),true);
             }
     }
 
@@ -144,17 +146,26 @@ public class spawnGems : MonoBehaviour
         // You can use tileStack.Push() to push your tiles;
     }
 
-    private Vector3 logicalPositionToPresentation(Vector2 pos)
+    private Vector3 logicalPositionToPresentation(Vector2 pos,bool isStart)
     {
-        return new Vector3((pos.x - 3) * 112, (pos.y - 3.2f) * -98,
-            transform.position.z);
+        if (isStart)
+        {
+            return new Vector3((pos.x - 3) * 112, (pos.y - 3.2f) * -98,
+                transform.position.z);
+        }
+        else
+        {
+            return new Vector3((pos.x - 3) * 112, (pos.y) * -98,
+                transform.position.z);
+        }
+
     }
 
     private void myInctanciate(GameObject gemPrefabs, TileStack tileStack)
     {
         GameObject newObject = null;
         newObject = Instantiate(gemPrefabs,
-            logicalPositionToPresentation(tileStack.Position()), Quaternion.identity);
+            logicalPositionToPresentation(tileStack.Position(),true), Quaternion.identity);
         newObject.transform.SetParent(boardGame.transform, false);
         newObject.transform.localScale = new Vector3(1, 1, 1);
         newObject.GetComponent<gemTilePresenter>().setup(tileStack, gameplayController);

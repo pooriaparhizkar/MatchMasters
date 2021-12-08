@@ -21,16 +21,18 @@ namespace Sample
                 var presenter1 = tileStack1.GetComponent<gemTilePresenter>();
                 // presenter1.transform.DOMove(new Vector3(.7f,1.2f,1), 1);
                 presenter1.transform.DOScaleY(0, 0.5f);
+                await Task.Delay(500);
+
+                // Debug.Log($"Finished Destroying {cellStack1.Position()} and {cellStack2.Position()} ");
+                //Destroy(presenter1);
+                //presenter1.delete(tileStack1);
+                onCompleted.Invoke();
                 // cellStack1.SetCurrnetTileStack(new TileStack());
             }
 
             // Debug.Log($"Start Destroying {cellStack1.Position()} and {cellStack2.Position()} ");
 
-            await Task.Delay(500);
 
-            // Debug.Log($"Finished Destroying {cellStack1.Position()} and {cellStack2.Position()} ");
-
-            onCompleted.Invoke();
         }
     }
 }

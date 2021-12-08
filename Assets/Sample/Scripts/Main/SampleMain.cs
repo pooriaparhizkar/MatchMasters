@@ -80,10 +80,11 @@ namespace Sample
 
     public enum gemColors
     {
-        blue,
+
         orange,
         purple,
         red,
+        blue,
         yellow,
         green
     }

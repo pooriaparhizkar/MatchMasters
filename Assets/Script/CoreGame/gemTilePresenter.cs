@@ -1,4 +1,5 @@
-﻿using Medrick.Match3CoreSystem.Game.Core;
+﻿using Medrick.Match3CoreSystem.Game;
+using Medrick.Match3CoreSystem.Game.Core;
 using Sample;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -6,7 +7,7 @@ using Component = Medrick.ComponentSystem.Core.Component;
 
 public class gemTilePresenter : SwapBlackBoard, Component, IDragHandler, IEndDragHandler
 {
-    private SampleGameplayMainController _gameplayMainController;
+    private BasicGameplayMainController _gameplayMainController;
 
     // private OrderSwapSystemPresentationPort presentationPort;
     // Start is called before the first frame update
@@ -18,7 +19,7 @@ public class gemTilePresenter : SwapBlackBoard, Component, IDragHandler, IEndDra
     //     presentationPort = gameplayController.GetPresentationPort<SwapSystemPresentationPort>();
     // }
 
-    public void setup(TileStack tileStack, SampleGameplayMainController sampleGameplayMainController)
+    public void setup(TileStack tileStack, BasicGameplayMainController sampleGameplayMainController)
     {
         tileStack.AddComponent(this);
         _tileStack = tileStack;
@@ -27,7 +28,7 @@ public class gemTilePresenter : SwapBlackBoard, Component, IDragHandler, IEndDra
 
     public void delete(TileStack tileStack)
     {
-        tileStack.Destroy();
+       // tileStack.Destroy();
         Destroy(this);
     }
 
