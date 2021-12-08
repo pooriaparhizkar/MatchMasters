@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Medrick.Match3CoreSystem.Game;
+using Medrick.Match3CoreSystem.Game.Core;
 using UnityEngine;
 
 namespace Sample
@@ -15,13 +16,13 @@ namespace Sample
 
         public struct CheckData
         {
-            public readonly Vector2Int pos1;
-            public readonly Vector2Int pos2;
+            public readonly CellStack cell1;
+            public readonly CellStack cell2;
 
-            public CheckData(Vector2Int pos1, Vector2Int pos2) : this()
+            public CheckData(CellStack cell1, CellStack cell2) : this()
             {
-                this.pos1 = pos1;
-                this.pos2 = pos2;
+                this.cell1 = cell1;
+                this.cell2 = cell2;
             }
         }
     }

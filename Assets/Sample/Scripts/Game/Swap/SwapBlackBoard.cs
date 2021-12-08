@@ -17,11 +17,13 @@ namespace Sample
         {
             public readonly Vector2Int pos1;
             public readonly Vector2Int pos2;
+            public readonly bool isDrag;
 
-            public SwapData(Vector2Int pos1, Vector2Int pos2) : this()
+            public SwapData(Vector2Int pos1, Vector2Int pos2,bool isDrag=false) : this()
             {
                 this.pos1 = pos1;
                 this.pos2 = pos2;
+                this.isDrag = isDrag;
             }
         }
     }

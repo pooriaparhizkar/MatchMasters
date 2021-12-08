@@ -40,24 +40,26 @@ public class gemTilePresenter : SwapBlackBoard, Component, IDragHandler, IEndDra
 
         if (!isDraging)
         {
+            Debug.Log(eventData.delta.y);
+            Debug.Log(eventData.delta.x);
             isDraging = true;
             //Up
-            if (eventData.delta.y > 0 && (int) _tileStack.Position().y > 0)
+            if (eventData.delta.y > 5 && (int) _tileStack.Position().y > 0)
                 secondPos = new Vector2Int((int) _tileStack.Position().x, (int) _tileStack.Position().y - 1);
             //Down
-            else if (eventData.delta.y < 0 && (int) _tileStack.Position().y < 6)
+            else if (eventData.delta.y < -5 && (int) _tileStack.Position().y < 6)
                 secondPos = new Vector2Int((int) _tileStack.Position().x, (int) _tileStack.Position().y + 1);
             //Left
-            else if (eventData.delta.x < 0 && (int) _tileStack.Position().x > 0)
+            else if (eventData.delta.x < 5 && (int) _tileStack.Position().x > 0)
                 secondPos = new Vector2Int((int) _tileStack.Position().x - 1, (int) _tileStack.Position().y);
             //Right
-            else if (eventData.delta.x > 0 && (int) _tileStack.Position().x < 6)
+            else if (eventData.delta.x > -5 && (int) _tileStack.Position().x < 6)
                 secondPos = new Vector2Int((int) _tileStack.Position().x + 1, (int) _tileStack.Position().y);
 
             // presentationPort.OrderSwap(firstPos, secondPos, () => Debug.Log("finished"));
 
             _gameplayMainController.FrameBasedBlackBoard.GetComponent<SwapBlackBoard>().requestedSwaps
-                .Add(new SwapData(firstPos, secondPos));
+                .Add(new SwapData(firstPos, secondPos,true));
         }
     }
 

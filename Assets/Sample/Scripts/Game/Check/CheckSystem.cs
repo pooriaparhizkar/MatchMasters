@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Medrick.Match3CoreSystem.Game;
 using Medrick.Match3CoreSystem.Game.Core;
 using UnityEngine;
@@ -21,8 +22,10 @@ namespace Sample
         public List<gemTile> columnArray = new List<gemTile>();
         private int columnCounter;
         private int gemIndex;
-        private CheckSystemPresentationPort presentationPort;
+        private CheckSystemPresentationPort checkSystemPresentationPort;
+        private SwapSystemPresentationPort swapSystemPresentationPort;
         public List<gemTile> rowArray = new List<gemTile>();
+        private bool isMatched;
 
         public CheckSystem(BasicGameplayMainController gameplayController) : base(gameplayController)
         {
@@ -31,31 +34,37 @@ namespace Sample
         public override void Start()
         {
             base.Start();
+            isMatched = false;
             CheckBlackBoard = GetFrameData<CheckBlackBoard>();
-            presentationPort = gameplayController.GetPresentationPort<CheckSystemPresentationPort>();
+            checkSystemPresentationPort = gameplayController.GetPresentationPort<CheckSystemPresentationPort>();
+            swapSystemPresentationPort = gameplayController.GetPresentationPort<SwapSystemPresentationPort>();
             gemIndex = 0;
             columnCounter = 0;
         }
 
-        private void iterateColumn(int index)
+        private bool iterateColumn(int index)
         {
+            bool result;
             var cellStackBoard = gameplayController.LevelBoard.CellStackBoard();
             for (var i = 0; i < 7; i++)
                 if (cellStackBoard[new Vector2Int(index, i)].HasTileStack())
                     columnArray.Add(cellStackBoard[new Vector2Int(index, i)].CurrentTileStack().Top() as gemTile);
 
-            checkRow(columnArray);
+            result = checkRow(columnArray);
             columnArray.Clear();
+            return result;
         }
 
-        private void iterateRow(int index)
+        private bool iterateRow(int index)
         {
+            bool result;
             var cellStackBoard = gameplayController.LevelBoard.CellStackBoard();
             for (var i = 0; i < 7; i++)
                 if (cellStackBoard[new Vector2Int(i, index)].HasTileStack())
                     rowArray.Add(cellStackBoard[new Vector2Int(i, index)].CurrentTileStack().Top() as gemTile);
-            checkRow(rowArray);
+            result = checkRow(rowArray);
             rowArray.Clear();
+            return result;
         }
 
         public override void Update(float dt)
@@ -65,9 +74,37 @@ namespace Sample
                 iterateColumn(i);
                 iterateRow(i);
             }
+
+            foreach (var swapData in CheckBlackBoard.requestedChecks)
+                checkAfterSwap(swapData);
+            }
+
+        public async void checkAfterSwap(CheckBlackBoard.CheckData swapData)
+        {
+            // Debug.Log(swapData);
+            bool isMatched1=false;
+            bool isMatched2=false;
+            for (var i = 0; i < 7; i++)
+            {
+                if (iterateColumn(i))
+                    isMatched1 = true;
+                if (iterateRow(i))
+                    isMatched2 = true;
+            }
+            if (!isMatched1 && !isMatched2)
+            {
+                Debug.Log(swapData.cell1);
+                Debug.Log(swapData.cell2);
+                await Task.Delay(100);
+                GetFrameData<SwapBlackBoard>().requestedSwaps.Add(
+                    new SwapBlackBoard.SwapData(swapData.cell1.Position(),swapData.cell2.Position()));
+            }
+            //GetFrameData<CheckBlackBoard>().Clear();
+
         }
 
-        private void checkRow(List<gemTile> rowArray)
+
+        private bool checkRow(List<gemTile> rowArray)
         {
             var matched = new List<gemTile>();
             for (var i = 0; i < rowArray.Count - 2; i++)
@@ -106,7 +143,10 @@ namespace Sample
                             (int) VARIABLE.Parent().Position().y)));
 
                 matched.Clear();
+                return true;
             }
+
+            return false;
         }
     }
 }
