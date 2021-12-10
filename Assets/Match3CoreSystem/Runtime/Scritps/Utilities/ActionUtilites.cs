@@ -78,6 +78,7 @@ namespace Medrick.Match3CoreSystem.Game
             TryUnlock(cellStack.CurrentTileStack());
         }
 
+
         public static void FullyDestroy(Tile tile)
         {
             var tileStack = tile.Parent();

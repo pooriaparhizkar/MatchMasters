@@ -62,12 +62,9 @@ namespace Sample
             // Note that we only swap the TileStacks of these CellStacks. CellStacks are usually considered 
             // fixed in the board.
             ActionUtilites.SwapTileStacksOf(cellStack1, cellStack2);
-            Debug.Log(cellStack1.Position());
-            Debug.Log(cellStack2.Position());
 
             if (isDrag)
             {
-                Debug.Log("dadam");
                 GetFrameData<CheckBlackBoard>().requestedChecks.Add(
                     new CheckBlackBoard.CheckData(cellStack1,cellStack2));
             }

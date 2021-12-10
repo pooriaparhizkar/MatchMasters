@@ -42,7 +42,7 @@ namespace Sample
 
             // Debug.Log($"Start TopInstanceing {cellStack1.Position()} and {cellStack2.Position()} ");
 
-            await Task.Delay(500);
+            // await Task.Delay(500);
 
             // Debug.Log($"Finished TopInstanceing {cellStack1.Position()} and {cellStack2.Position()} ");
 
