@@ -3,14 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="fb1d7a1a-897d-4185-893f-c092f25b45cc" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.MatchMasters/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.MatchMasters/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Match3CoreSystem/Runtime/Scritps/Core/Board/CellStackBoard.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Match3CoreSystem/Runtime/Scritps/Core/Board/CellStackBoard.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Match3CoreSystem/Runtime/Scritps/Utilities/ActionUtilites.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Match3CoreSystem/Runtime/Scritps/Utilities/ActionUtilites.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sample/Scripts/Game/Check/CheckSystem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sample/Scripts/Game/Check/CheckSystem.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sample/Scripts/Game/Destroy/DestroySystem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sample/Scripts/Game/Destroy/DestroySystem.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Sample/Scripts/Game/Physic/PhysicSystem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sample/Scripts/Game/Physic/PhysicSystem.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sample/Scripts/Game/Physic/SystemPhysicPresentationAdaptor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sample/Scripts/Game/Physic/SystemPhysicPresentationAdaptor.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sample/Scripts/Game/Swap/SwapSystem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sample/Scripts/Game/Swap/SwapSystem.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sample/Scripts/Game/topInstance/SystemTopIntancePresentationAdaptor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sample/Scripts/Game/topInstance/SystemTopIntancePresentationAdaptor.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sample/Scripts/Main/SystemSwapPresentationAdapter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sample/Scripts/Game/Swap/SystemSwapPresentationAdapter.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sample/Scripts/Main/SystemSwapPresentationAdapter.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sample/Scripts/Game/Swap/SystemSwapPresentationAdapter.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Script.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Script/CoreGame/gemTilePresenter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/CoreGame/gemTilePresenter.cs" afterDir="false" />
     </list>

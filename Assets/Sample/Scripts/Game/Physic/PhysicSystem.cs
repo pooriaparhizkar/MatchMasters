@@ -65,6 +65,8 @@ namespace Sample
 
                             ActionUtilites.FullyLock<SwapSystemKeyType>(cellStack);
                             ActionUtilites.FullyLock<SwapSystemKeyType>(nextCell);
+                            gameplayController.LevelBoard.CellStackBoard().setBoardLock();
+
                             // Debug.Log(cellStack.Position().y);
                             // Debug.Log(nextCell.Position().y);
 
@@ -99,6 +101,7 @@ namespace Sample
             ActionUtilites.SwapTileStacksOf(cellStack1, cellStack2);
             ActionUtilites.FullyUnlock(cellStack1);
             ActionUtilites.FullyUnlock(cellStack2);
+            gameplayController.LevelBoard.CellStackBoard().setBoardUnlock();
         }
     }
 }

@@ -49,6 +49,7 @@ namespace Sample
             for (var i = 0; i < 7; i++)
                 if (cellStackBoard[new Vector2Int(index, i)].HasTileStack())
                     columnArray.Add(cellStackBoard[new Vector2Int(index, i)].CurrentTileStack().Top() as gemTile);
+                else break;
 
             result = checkRow(columnArray);
             columnArray.Clear();
@@ -62,6 +63,7 @@ namespace Sample
             for (var i = 0; i < 7; i++)
                 if (cellStackBoard[new Vector2Int(i, index)].HasTileStack())
                     rowArray.Add(cellStackBoard[new Vector2Int(i, index)].CurrentTileStack().Top() as gemTile);
+                else break;
             result = checkRow(rowArray);
             rowArray.Clear();
             return result;
@@ -69,21 +71,25 @@ namespace Sample
 
         public override void Update(float dt)
         {
-            for (var i = 0; i < 7; i++)
+            if (!gameplayController.LevelBoard.CellStackBoard().isBoardLock()) //in destroy system and physic system lock and unlock
             {
-                iterateColumn(i);
-                iterateRow(i);
+                for (var i = 0; i < 7; i++)
+                {
+                    iterateColumn(i);
+                    iterateRow(i);
+                }
             }
 
             foreach (var swapData in CheckBlackBoard.requestedChecks)
                 checkAfterSwap(swapData);
-            }
+        }
+
 
         public async void checkAfterSwap(CheckBlackBoard.CheckData swapData)
         {
             // Debug.Log(swapData);
-            bool isMatched1=false;
-            bool isMatched2=false;
+            bool isMatched1 = false;
+            bool isMatched2 = false;
             for (var i = 0; i < 7; i++)
             {
                 if (iterateColumn(i))
@@ -91,16 +97,16 @@ namespace Sample
                 if (iterateRow(i))
                     isMatched2 = true;
             }
+
             if (!isMatched1 && !isMatched2)
             {
                 Debug.Log(swapData.cell1);
                 Debug.Log(swapData.cell2);
                 await Task.Delay(100);
                 GetFrameData<SwapBlackBoard>().requestedSwaps.Add(
-                    new SwapBlackBoard.SwapData(swapData.cell1.Position(),swapData.cell2.Position()));
+                    new SwapBlackBoard.SwapData(swapData.cell1.Position(), swapData.cell2.Position()));
             }
             //GetFrameData<CheckBlackBoard>().Clear();
-
         }
 
 

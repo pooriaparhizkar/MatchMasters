@@ -43,6 +43,7 @@ namespace Sample
 
             if (QueryUtilities.IsFullyFree(cellStack1))
             {
+                gameplayController.LevelBoard.CellStackBoard().setBoardLock();
                 ActionUtilites.FullyLock<DestroySystemKeyType>(cellStack1);
 
                 presentationPort.PlayDestroy(cellStack1, () => ApplyDestroy(cellStack1));
@@ -61,6 +62,7 @@ namespace Sample
             cellStack1.DetachTileStack();
             // ActionUtilites.FullyDestroy(cellStack1.CurrentTileStack().Top());
             ActionUtilites.FullyUnlock(cellStack1);
+            gameplayController.LevelBoard.CellStackBoard().setBoardUnlock();
         }
     }
 }
