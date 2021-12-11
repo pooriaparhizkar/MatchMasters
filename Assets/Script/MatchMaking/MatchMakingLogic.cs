@@ -94,6 +94,7 @@ public class MatchMakingLogic : MonoBehaviour
 
     private void OnReceivedMatchPresence(IMatchPresenceEvent matchPresenceEvent)
     {
+        Debug.Log(matchPresenceEvent);
         foreach (var user in matchPresenceEvent.Joins)
         {
             Debug.LogFormat("Connected user: " + user.Username);

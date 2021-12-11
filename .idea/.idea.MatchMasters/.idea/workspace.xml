@@ -3,9 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="fb1d7a1a-897d-4185-893f-c092f25b45cc" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.MatchMasters/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.MatchMasters/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sample/Scripts/Game/Physic/SystemPhysicPresentationAdaptor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sample/Scripts/Game/Physic/SystemPhysicPresentationAdaptor.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Script.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Script/CoreGame/gemTilePresenter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/CoreGame/gemTilePresenter.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Script/LoadingPage/ProgressBar.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/LoadingPage/ProgressBar.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Script/MatchMaking/MatchMakingLogic.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/MatchMaking/MatchMakingLogic.cs" afterDir="false" />
     </list>
@@ -33,6 +31,7 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/a8a500db7f1d47f5816051b6806505a974000/72/7d2b8691/ISession.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/CoreGame/spawnGems.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/CoreGame/onDragGems.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/fd824cfb55004855b9e6d51b008c90e4568778/0a/9f5efaa3/OpCodes.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../Program Files/Unity/Editor/Data/Resources/PackageManager/BuiltInPackages/com.unity.2d.sprite/Editor/Interface/ISpriteEditorDataProvider.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/a8a500db7f1d47f5816051b6806505a974000/b1/e0b702c9/ISocket.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../Program Files/Unity/Editor/Data/Resources/PackageManager/BuiltInPackages/com.unity.ugui/Runtime/UI/Core/RectMask2D.cs" root0="SKIP_HIGHLIGHTING" />
@@ -156,7 +155,7 @@
       <workItem from="1638949035338" duration="17491000" />
       <workItem from="1639128784789" duration="11583000" />
       <workItem from="1639146510507" duration="230000" />
-      <workItem from="1639222771974" duration="3335000" />
+      <workItem from="1639222771974" duration="6571000" />
     </task>
     <servers />
   </component>
