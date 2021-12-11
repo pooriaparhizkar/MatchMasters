@@ -11,8 +11,9 @@ GameObject:
   - component: {fileID: 9071099432568536154}
   - component: {fileID: 8785613065486039354}
   - component: {fileID: 825106319547739275}
+  - component: {fileID: 1905657169380157683}
   m_Layer: 0
-  m_Name: gem_circle
+  m_Name: purple_gem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -74,3 +75,15 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &1905657169380157683
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6698456658726105621}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c0a00ff17b5a344e9361228307eb8d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

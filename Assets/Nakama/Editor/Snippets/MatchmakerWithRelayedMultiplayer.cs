@@ -50,10 +50,7 @@ namespace Nakama.Snippets
             };
             _socket.ReceivedMatchPresence += presenceEvent =>
             {
-                foreach (var presence in presenceEvent.Leaves)
-                {
-                    connectedOpponents.Remove(presence);
-                }
+                foreach (var presence in presenceEvent.Leaves) connectedOpponents.Remove(presence);
                 connectedOpponents.AddRange(presenceEvent.Joins);
                 // Remove yourself from connected opponents.
                 connectedOpponents.Remove(self);
