@@ -1,4 +1,5 @@
-﻿using Medrick.Match3CoreSystem.Game;
+﻿using System;
+using Medrick.Match3CoreSystem.Game;
 using Medrick.Match3CoreSystem.Game.Core;
 using Sample;
 using UnityEngine;
@@ -44,16 +45,16 @@ public class gemTilePresenter : SwapBlackBoard, Component, IDragHandler, IEndDra
             Debug.Log(eventData.delta.x);
             isDraging = true;
             //Up
-            if (eventData.delta.y > 2 && (int) _tileStack.Position().y > 0)
+            if (eventData.delta.y > 5 && Math.Abs(eventData.delta.y)  > Math.Abs(eventData.delta.x) &&   (int) _tileStack.Position().y > 0)
                 secondPos = new Vector2Int((int) _tileStack.Position().x, (int) _tileStack.Position().y - 1);
             //Down
-            else if (eventData.delta.y < -2 && (int) _tileStack.Position().y < 6)
+            else if (eventData.delta.y < -5 && Math.Abs(eventData.delta.y)  > Math.Abs(eventData.delta.x) &&  (int) _tileStack.Position().y < 6)
                 secondPos = new Vector2Int((int) _tileStack.Position().x, (int) _tileStack.Position().y + 1);
             //Left
-            else if (eventData.delta.x < -2 && (int) _tileStack.Position().x > 0)
+            else if (eventData.delta.x < -2 && Math.Abs(eventData.delta.y)  < Math.Abs(eventData.delta.x) &&  (int) _tileStack.Position().x > 0)
                 secondPos = new Vector2Int((int) _tileStack.Position().x - 1, (int) _tileStack.Position().y);
             //Right
-            else if (eventData.delta.x > 2 && (int) _tileStack.Position().x < 6)
+            else if (eventData.delta.x > 2 && Math.Abs(eventData.delta.y)  < Math.Abs(eventData.delta.x) && (int) _tileStack.Position().x < 6)
                 secondPos = new Vector2Int((int) _tileStack.Position().x + 1, (int) _tileStack.Position().y);
 
             // presentationPort.OrderSwap(firstPos, secondPos, () => Debug.Log("finished"));

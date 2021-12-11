@@ -171,4 +171,9 @@ public class MatchMakingLogic : MonoBehaviour
 
         currentMatch = match;
     }
+
+    public void goCore()
+    {
+        SceneManager.LoadScene("CoreGame");
+    }
 }
