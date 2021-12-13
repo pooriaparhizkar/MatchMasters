@@ -1,4 +1,5 @@
 using System;
+using System.Runtime.CompilerServices;
 using Medrick.Match3CoreSystem.Game;
 using Medrick.Match3CoreSystem.Game.Core;
 using UnityEngine;
@@ -60,12 +61,10 @@ namespace Sample
 
                     {
                         CellStack nextCell = findLowestTile(cellStack, cellStackBoard);
-                        if (QueryUtilities.IsFullyFree(cellStack) && QueryUtilities.IsFullyFree(nextCell))
-                        {
+                        // if (QueryUtilities.IsFullyFree(cellStack))
+                        // {
 
-                            ActionUtilites.FullyLock<SwapSystemKeyType>(cellStack);
-                            ActionUtilites.FullyLock<SwapSystemKeyType>(nextCell);
-                            gameplayController.LevelBoard.CellStackBoard().setBoardLock();
+
 
                             // Debug.Log(cellStack.Position().y);
                             // Debug.Log(nextCell.Position().y);
@@ -81,13 +80,32 @@ namespace Sample
                             // ActionUtilites.SwapTileStacksOf(cellStack, nextCell);
                             //
 
-                            presentationPort.PlayPhysic(cellStack,nextCell,
-                                gameplayController, () => ApplyPhysic(cellStack,nextCell));
+                            for (int i = 1;i<6; i++)
+                            {
+                                CellStack belowCell =
+                                    cellStackBoard[new Vector2Int(cellStack.Position().x, cellStack.Position().y + i)];
+                                if (!belowCell.HasTileStack())
+                                {
+                                    // ActionUtilites.FullyLock<SwapSystemKeyType>(cellStack);
+                                    // ActionUtilites.FullyLock<SwapSystemKeyType>(belowCell);
+                                    // gameplayController.LevelBoard.CellStackBoard().setBoardLock();
+
+                                    presentationPort.PlayPhysic(cellStack,belowCell,
+                                        gameplayController, () => ApplyPhysic(cellStack,belowCell));
+                                    ActionUtilites.SwapTileStacksOf(cellStack, belowCell);
+
+
+                                    // ActionUtilites.FullyUnlock(cellStack);
+                                    // ActionUtilites.FullyUnlock(belowCell);
+                                    // gameplayController.LevelBoard.CellStackBoard().setBoardUnlock();
+                                }
+
+                            }
 
 
 
 
-                        }
+                        // }
                     }
 
 
@@ -98,10 +116,10 @@ namespace Sample
 
         private void ApplyPhysic(CellStack cellStack1,CellStack cellStack2)
         {
-            ActionUtilites.SwapTileStacksOf(cellStack1, cellStack2);
-            ActionUtilites.FullyUnlock(cellStack1);
-            ActionUtilites.FullyUnlock(cellStack2);
-            gameplayController.LevelBoard.CellStackBoard().setBoardUnlock();
+            // ActionUtilites.SwapTileStacksOf(cellStack1, cellStack2);
+            // ActionUtilites.FullyUnlock(cellStack1);
+            // ActionUtilites.FullyUnlock(cellStack2);
+            // gameplayController.LevelBoard.CellStackBoard().setBoardUnlock();
         }
     }
 }
