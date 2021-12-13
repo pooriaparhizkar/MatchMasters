@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fb1d7a1a-897d-4185-893f-c092f25b45cc" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.MatchMasters/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.MatchMasters/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/MainApp.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/MainApp.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Script.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script.meta" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -130,7 +128,7 @@
       <workItem from="1639128784789" duration="11583000" />
       <workItem from="1639146510507" duration="230000" />
       <workItem from="1639222771974" duration="6571000" />
-      <workItem from="1639407147316" duration="1838000" />
+      <workItem from="1639407147316" duration="2674000" />
     </task>
     <servers />
   </component>
