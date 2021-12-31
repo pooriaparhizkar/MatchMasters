@@ -5,8 +5,10 @@
       <change beforePath="$PROJECT_DIR$/.idea/.idea.MatchMasters/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.MatchMasters/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Sample/Scripts/Game/Physic/PhysicSystem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sample/Scripts/Game/Physic/PhysicSystem.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Sample/Scripts/Game/Physic/SystemPhysicPresentationAdaptor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sample/Scripts/Game/Physic/SystemPhysicPresentationAdaptor.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sample/Scripts/Game/Swap/SwapSystem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sample/Scripts/Game/Swap/SwapSystem.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sample/Scripts/Game/Swap/SystemSwapPresentationAdapter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sample/Scripts/Game/Swap/SystemSwapPresentationAdapter.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Script.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Script/CoreGame/socket.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/CoreGame/socket.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Script/CoreGame/gemTilePresenter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/CoreGame/gemTilePresenter.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -159,6 +161,9 @@
       <workItem from="1639222771974" duration="7892000" />
       <workItem from="1639240987469" duration="505000" />
       <workItem from="1639409909316" duration="4156000" />
+      <workItem from="1640694709688" duration="646000" />
+      <workItem from="1640961713670" duration="63000" />
+      <workItem from="1640961808470" duration="4563000" />
     </task>
     <servers />
   </component>

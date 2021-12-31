@@ -1,4 +1,5 @@
 using System;
+using System.Threading.Tasks;
 using Medrick.Match3CoreSystem.Game;
 using Medrick.Match3CoreSystem.Game.Core;
 using UnityEngine;
@@ -38,7 +39,6 @@ namespace Sample
 
         private void StartSwap(SwapBlackBoard.SwapData swapData)
         {
-
             var cellStackBoard = gameplayController.LevelBoard.CellStackBoard();
             var cellStack1 = cellStackBoard[swapData.pos1];
             var cellStack2 = cellStackBoard[swapData.pos2];
@@ -47,17 +47,15 @@ namespace Sample
             if (cellStack1 == cellStack2)
                 return;
 
-            if (QueryUtilities.IsFullyFree(cellStack1) && QueryUtilities.IsFullyFree(cellStack2))
-            {
 
-                ActionUtilites.FullyLock<SwapSystemKeyType>(cellStack1);
-                ActionUtilites.FullyLock<SwapSystemKeyType>(cellStack2);
+            gameplayController.LevelBoard.CellStackBoard().setBoardLock();
+            // ActionUtilites.FullyLock<SwapSystemKeyType>(cellStack1);
+            // ActionUtilites.FullyLock<SwapSystemKeyType>(cellStack2);
 
-                presentationPort.PlaySwap(cellStack1, cellStack2, () => ApplySwap(cellStack1, cellStack2,swapData.isDrag));
-            }
+            presentationPort.PlaySwap(cellStack1, cellStack2, () => ApplySwap(cellStack1, cellStack2, swapData.isDrag));
         }
 
-        private void ApplySwap(CellStack cellStack1, CellStack cellStack2,bool isDrag)
+        private async void ApplySwap(CellStack cellStack1, CellStack cellStack2, bool isDrag)
         {
             // Note that we only swap the TileStacks of these CellStacks. CellStacks are usually considered 
             // fixed in the board.
@@ -66,12 +64,18 @@ namespace Sample
             if (isDrag)
             {
                 GetFrameData<CheckBlackBoard>().requestedChecks.Add(
-                    new CheckBlackBoard.CheckData(cellStack1,cellStack2));
+                    new CheckBlackBoard.CheckData(cellStack1, cellStack2));
+                await Task.Delay(300);
+                gameplayController.LevelBoard.CellStackBoard().setBoardUnlock();
+            }
+            else
+            {
+                gameplayController.LevelBoard.CellStackBoard().setBoardUnlock();
             }
 
 
-            ActionUtilites.FullyUnlock(cellStack1);
-            ActionUtilites.FullyUnlock(cellStack2);
+            // ActionUtilites.FullyUnlock(cellStack1);
+            // ActionUtilites.FullyUnlock(cellStack2);
         }
     }
 }
