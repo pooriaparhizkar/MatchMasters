@@ -43,8 +43,6 @@ public class gemTilePresenter : SwapBlackBoard, Component, IDragHandler, IEndDra
 
             if (!isDraging)
             {
-                Debug.Log(eventData.delta.y);
-                Debug.Log(eventData.delta.x);
                 isDraging = true;
                 //Up
                 if (eventData.delta.y > 5 && Math.Abs(eventData.delta.y)  > Math.Abs(eventData.delta.x) &&   (int) _tileStack.Position().y > 0)
@@ -62,6 +60,7 @@ public class gemTilePresenter : SwapBlackBoard, Component, IDragHandler, IEndDra
                 // presentationPort.OrderSwap(firstPos, secondPos, () => Debug.Log("finished"));
                 if (secondPos.x != -100)
                 {
+                    _gameplayMainController.setLastTileMoves(firstPos,secondPos);
                     _gameplayMainController.FrameBasedBlackBoard.GetComponent<SwapBlackBoard>().requestedSwaps
                         .Add(new SwapData(firstPos, secondPos,true));
                 }

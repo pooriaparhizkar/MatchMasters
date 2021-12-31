@@ -126,7 +126,7 @@ public class spawnGems : MonoBehaviour
             cellStackBoard[i, j] = cellStack;
 
             SetupCells(cellStack);
-            SetupTiles(tileStack, template1[j, i]);
+            SetupTiles(tileStack, template1[j, i],gemTypes.normal);
         }
 
         return new LevelBoard(cellStackBoard);
@@ -140,9 +140,9 @@ public class spawnGems : MonoBehaviour
         cellStack.Push(new emptyCell());
     }
 
-    private void SetupTiles(TileStack tileStack, gemColors color)
+    private void SetupTiles(TileStack tileStack, gemColors color, gemTypes gemTypes)
     {
-        tileStack.Push(new gemTile(color));
+        tileStack.Push(new gemTile(color,gemTypes));
         // You can use tileStack.Push() to push your tiles;
     }
 

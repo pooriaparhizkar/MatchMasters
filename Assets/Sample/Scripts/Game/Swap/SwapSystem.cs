@@ -55,24 +55,26 @@ namespace Sample
             presentationPort.PlaySwap(cellStack1, cellStack2, () => ApplySwap(cellStack1, cellStack2, swapData.isDrag));
         }
 
-        private async void ApplySwap(CellStack cellStack1, CellStack cellStack2, bool isDrag)
+        private void ApplySwap(CellStack cellStack1, CellStack cellStack2, bool isDrag)
         {
             // Note that we only swap the TileStacks of these CellStacks. CellStacks are usually considered 
             // fixed in the board.
             ActionUtilites.SwapTileStacksOf(cellStack1, cellStack2);
 
-            if (isDrag)
-            {
-                GetFrameData<CheckBlackBoard>().requestedChecks.Add(
-                    new CheckBlackBoard.CheckData(cellStack1, cellStack2));
-                await Task.Delay(300);
-                gameplayController.LevelBoard.CellStackBoard().setBoardUnlock();
-            }
-            else
-            {
-                gameplayController.LevelBoard.CellStackBoard().setBoardUnlock();
-            }
+            // if (isDrag)
+            // {
+            //     GetFrameData<CheckBlackBoard>().requestedChecks.Add(
+            //         new CheckBlackBoard.CheckData(cellStack1, cellStack2));
+            //     await Task.Delay(300);
+            //     gameplayController.LevelBoard.CellStackBoard().setBoardUnlock();
+            // }
+            // else
+            // {
+            //     gameplayController.LevelBoard.CellStackBoard().setBoardUnlock();
+            // }
 
+
+            gameplayController.LevelBoard.CellStackBoard().setBoardUnlock();
 
             // ActionUtilites.FullyUnlock(cellStack1);
             // ActionUtilites.FullyUnlock(cellStack2);

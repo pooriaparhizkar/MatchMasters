@@ -8,7 +8,7 @@ using Random = UnityEngine.Random;
 
 namespace Sample
 {
-    public class SystemTopIntancePresentationAdaptor : MonoBehaviour, TopInstanceSystemPresentationPort
+    public class SystemInGameBoosterInstancePresentationAdaptor : MonoBehaviour, InGameBoosterInstanceSystemPresentationPort
     {
         public GameObject[] gems;
         public GameObject boardGame;
@@ -19,10 +19,10 @@ namespace Sample
                 transform.position.z);
         }
 
-        public async void PlayTopInstance(CellStack cellStack, BasicGameplayMainController gameplayController,
+        public async void PlayInGameBoosterInstance(CellStack cellStack, BasicGameplayMainController gameplayController,
             Action onCompleted)
         {
-            // Here you can play an animation for TopInstanceing the presenters for these CellStacks.
+            // Here you can play an animation for InGameBoosterInstanceing the presenters for these CellStacks.
             var tileStackFactory = new MainTileStackFactory();
             var tileStack = tileStackFactory.Create();
             cellStack.SetCurrnetTileStack(tileStack);
@@ -40,11 +40,11 @@ namespace Sample
             newObject.GetComponent<gemTilePresenter>().setup(tileStack, gameplayController);
 
 
-            // Debug.Log($"Start TopInstanceing {cellStack1.Position()} and {cellStack2.Position()} ");
+            // Debug.Log($"Start InGameBoosterInstanceing {cellStack1.Position()} and {cellStack2.Position()} ");
 
             // await Task.Delay(500);
 
-            // Debug.Log($"Finished TopInstanceing {cellStack1.Position()} and {cellStack2.Position()} ");
+            // Debug.Log($"Finished InGameBoosterInstanceing {cellStack1.Position()} and {cellStack2.Position()} ");
 
             onCompleted.Invoke();
         }
