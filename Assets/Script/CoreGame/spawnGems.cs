@@ -152,7 +152,7 @@ public class spawnGems : MonoBehaviour
     {
         if (isStart)
         {
-            return new Vector3((pos.x - 3) * 112, (pos.y - 3.2f) * -98,
+            return new Vector3((pos.x - 3) * 112, (pos.y - 3.7f) * -98,
                 transform.position.z);
         }
         else

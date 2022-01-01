@@ -17,8 +17,8 @@ TagManager:
   - CompleteProgress
   - mainPage icon
   - icon
-  - 
-  - 
+  - icon
+  - spine
   - 
   - 
   - 
@@ -56,4 +56,7 @@ TagManager:
     locked: 0
   - name: trophy
     uniqueID: 3838777301
+    locked: 0
+  - name: spine
+    uniqueID: 321376617
     locked: 0
