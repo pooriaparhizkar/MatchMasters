@@ -29,7 +29,7 @@ namespace Nakama.Snippets
 
         private async void Start()
         {
-            _client =  new Client("defaultkey", UnityWebRequestAdapter.Instance);
+            _client = new Client("defaultkey", UnityWebRequestAdapter.Instance);
 
             var deviceId = SystemInfo.deviceUniqueIdentifier;
             var session = await _client.AuthenticateDeviceAsync(deviceId);
@@ -43,10 +43,7 @@ namespace Nakama.Snippets
             var roomUsers = new List<IUserPresence>(10);
             _socket.ReceivedChannelPresence += presenceEvent =>
             {
-                foreach (var presence in presenceEvent.Leaves)
-                {
-                    roomUsers.Remove(presence);
-                }
+                foreach (var presence in presenceEvent.Leaves) roomUsers.Remove(presence);
 
                 roomUsers.AddRange(presenceEvent.Joins);
                 Debug.LogFormat("Room users: [{0}]", string.Join(",\n  ", roomUsers));

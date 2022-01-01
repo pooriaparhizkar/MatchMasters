@@ -1,23 +1,25 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
-using System;
+﻿using System;
 using Nakama;
+using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class ProgressBar : MonoBehaviour
 {
-    // Start is called before the first frame update
-    [SerializeField] Slider progressBar;
-    [SerializeField] Text percantText;
-    private float value;
     private readonly IClient client = new Client("http", "157.119.191.169", 7350, "defaultkey");
-    private ISocket socket;
-    private ISession session;
 
-    void Start()
+    [SerializeField] private Text percantText;
+
+    // Start is called before the first frame update
+    [SerializeField] private Slider progressBar;
+    private ISession session;
+    private ISocket socket;
+    private float value;
+    public static string APIAddress { get; set; }
+
+    private void Start()
     {
+        PlayerPrefs.SetString("API", "http://157.119.191.169:7351/v2/console/api/endpoints");
         value = 0.01f;
         // var deviceId = System.Guid.NewGuid().ToString();
         session = null;
@@ -25,15 +27,8 @@ public class ProgressBar : MonoBehaviour
         // client.WriteStorageObjectsAsync(session, new[] {new WriteStorageObject()});
     }
 
-    private void ContinueProgess()
-    {
-        progressBar.value = value;
-        percantText.text = (Math.Round(value * 100, 0)).ToString() + '%';
-        value += 0.1f * Time.deltaTime;
-    }
-
     // Update is called once per frame
-    async void Update()
+    private async void Update()
     {
         if ((int) value * 100 < 100)
         {
@@ -49,10 +44,16 @@ public class ProgressBar : MonoBehaviour
                         PlayerPrefs.SetString("nakama.deviceid", deviceId); // cache device id.
                     }
 
-                    session = await client.AuthenticateDeviceAsync(deviceId);
+                   session = await client.AuthenticateDeviceAsync(deviceId);
+                   // session = await client.AuthenticateDeviceAsync("pooria-pooria-pooria-pooria-pooria-pooria-pooria-pooria-pooria-pooria2");
+                    PlayerPrefs.SetString("token", session.AuthToken);
+                    PlayerPrefs.SetString("refresh_token", session.RefreshToken);
+                    PlayerPrefs.SetString("username", session.Username);
                 }
                 else
+                {
                     ContinueProgess();
+                }
             }
             else if (session == null)
             {
@@ -61,7 +62,14 @@ public class ProgressBar : MonoBehaviour
         }
         else
         {
-            SceneManager.LoadScene(sceneName: "MainApp");
+            SceneManager.LoadScene("MainApp");
         }
+    }
+
+    private void ContinueProgess()
+    {
+        progressBar.value = value;
+        percantText.text = Math.Round(value * 100, 0).ToString() + '%';
+        value += 0.1f * Time.deltaTime;
     }
 }

@@ -26,18 +26,19 @@ using UnityEngine.Networking;
 namespace Nakama
 {
     /// <summary>
-    /// Unity web request adapter which uses the UnityWebRequest to send requests.
+    ///     Unity web request adapter which uses the UnityWebRequest to send requests.
     /// </summary>
     /// <remarks>
-    /// Note Content-Type header is always set as 'application/json'.
+    ///     Note Content-Type header is always set as 'application/json'.
     /// </remarks>
     public class UnityWebRequestAdapter : MonoBehaviour, IHttpAdapter
     {
-        /// <inheritdoc cref="IHttpAdapter.Logger"/>
-        public ILogger Logger { get; set; }
-
         private static readonly object Lock = new object();
         private static UnityWebRequestAdapter _instance;
+
+        private UnityWebRequestAdapter()
+        {
+        }
 
         public static UnityWebRequestAdapter Instance
         {
@@ -48,15 +49,9 @@ namespace Nakama
                     if (_instance != null) return _instance;
 
                     var go = GameObject.Find("/[Nakama]");
-                    if (go == null)
-                    {
-                        go = new GameObject("[Nakama]");
-                    }
+                    if (go == null) go = new GameObject("[Nakama]");
 
-                    if (go.GetComponent<UnityWebRequestAdapter>() == null)
-                    {
-                        go.AddComponent<UnityWebRequestAdapter>();
-                    }
+                    if (go.GetComponent<UnityWebRequestAdapter>() == null) go.AddComponent<UnityWebRequestAdapter>();
 
                     DontDestroyOnLoad(go);
                     _instance = go.GetComponent<UnityWebRequestAdapter>();
@@ -65,11 +60,10 @@ namespace Nakama
             }
         }
 
-        private UnityWebRequestAdapter()
-        {
-        }
+        /// <inheritdoc cref="IHttpAdapter.Logger" />
+        public ILogger Logger { get; set; }
 
-        /// <inheritdoc cref="IHttpAdapter"/>
+        /// <inheritdoc cref="IHttpAdapter" />
         public Task<string> SendAsync(string method, Uri uri, IDictionary<string, string> headers, byte[] body,
             int timeout, CancellationToken? cancellationToken)
         {
@@ -86,27 +80,18 @@ namespace Nakama
             UnityWebRequest www;
             if (string.Equals(method, "POST", StringComparison.OrdinalIgnoreCase) ||
                 string.Equals(method, "PUT", StringComparison.OrdinalIgnoreCase))
-            {
                 www = new UnityWebRequest(uri, method)
                 {
                     uploadHandler = new UploadHandlerRaw(body),
                     downloadHandler = new DownloadHandlerBuffer()
                 };
-            }
             else if (string.Equals(method, "DELETE", StringComparison.OrdinalIgnoreCase))
-            {
                 www = UnityWebRequest.Delete(uri);
-            }
             else
-            {
                 www = UnityWebRequest.Get(uri);
-            }
 
             www.SetRequestHeader("Content-Type", "application/json");
-            foreach (var kv in headers)
-            {
-                www.SetRequestHeader(kv.Key, kv.Value);
-            }
+            foreach (var kv in headers) www.SetRequestHeader(kv.Key, kv.Value);
 
             www.timeout = timeout;
             return www;
@@ -124,19 +109,16 @@ namespace Nakama
             {
                 var decoded = www.downloadHandler.text.FromJson<Dictionary<string, object>>();
 
-                ApiResponseException e = new ApiResponseException(www.downloadHandler.text);
+                var e = new ApiResponseException(www.downloadHandler.text);
 
                 if (decoded != null)
                 {
-                    string msg = decoded.ContainsKey("message") ? decoded["message"].ToString() : string.Empty;
-                    int grpcCode = decoded.ContainsKey("code") ? (int) decoded["code"] : -1;
+                    var msg = decoded.ContainsKey("message") ? decoded["message"].ToString() : string.Empty;
+                    var grpcCode = decoded.ContainsKey("code") ? (int) decoded["code"] : -1;
 
                     e = new ApiResponseException(www.responseCode, msg, grpcCode);
 
-                    if (decoded.ContainsKey("error"))
-                    {
-                        IHttpAdapterUtil.CopyResponseError(Instance, decoded["error"], e);
-                    }
+                    if (decoded.ContainsKey("error")) IHttpAdapterUtil.CopyResponseError(Instance, decoded["error"], e);
                 }
 
                 errback(e);
