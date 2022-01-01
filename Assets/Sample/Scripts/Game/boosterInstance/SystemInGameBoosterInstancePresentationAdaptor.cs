@@ -10,7 +10,10 @@ namespace Sample
 {
     public class SystemInGameBoosterInstancePresentationAdaptor : MonoBehaviour, InGameBoosterInstanceSystemPresentationPort
     {
-        public GameObject[] gems;
+        public GameObject[] leftRightArrows;
+        public GameObject[] upDownArrows;
+        public GameObject[] bomb;
+        public GameObject[] lightning;
         public GameObject boardGame;
 
         private Vector3 logicalPositionToPresentation(Vector2 pos)
@@ -19,32 +22,86 @@ namespace Sample
                 transform.position.z);
         }
 
-        public async void PlayInGameBoosterInstance(CellStack cellStack, BasicGameplayMainController gameplayController,
+        public void PlayInGameBoosterInstance(InGameBoosterInstanceBlackBoard.InGameBoosterInstanceData inGameBoosterInstanceData, BasicGameplayMainController gameplayController,
             Action onCompleted)
         {
-            // Here you can play an animation for InGameBoosterInstanceing the presenters for these CellStacks.
+            // Here you can play an animation for TopInstanceing the presenters for these CellStacks.
             var tileStackFactory = new MainTileStackFactory();
             var tileStack = tileStackFactory.Create();
+            CellStack cellStack = (gameplayController.LevelBoard.CellStackBoard())[
+                (int) inGameBoosterInstanceData.position.x, (int) inGameBoosterInstanceData.position.y];
+            Destroy(cellStack.CurrentTileStack().GetComponent<gemTilePresenter>().gameObject);
             cellStack.SetCurrnetTileStack(tileStack);
-            // tileStack.SetPosition(cellStack.Position());
             tileStack.SetPosition(new Vector2(cellStack.Position().x,cellStack.Position().y));
-            int random = Random.Range(0, 6);
-            tileStack.Push(new gemTile((gemColors) random,gemTypes.normal));
+            tileStack.Push(new gemTile(inGameBoosterInstanceData.color,gemTypes.booster));
+
 
             GameObject newObject = null;
-            // newObject = Instantiate(gems[Random.Range(0, 6)],
-            //     logicalPositionToPresentation(tileStack.Position()), Quaternion.identity);
-            newObject = Instantiate(gems[random]);
+            if (inGameBoosterInstanceData.type == InGameBoosterInstanceBlackBoard.InGameBoosterType.leftRightArrow)
+            {
+                switch (inGameBoosterInstanceData.color)
+                {
+                    case gemColors.blue:
+                        newObject = Instantiate(leftRightArrows[0]);
+                        break;
+                    case gemColors.green:
+                        newObject = Instantiate(leftRightArrows[1]);
+                        break;
+                    case gemColors.orange:
+                        newObject = Instantiate(leftRightArrows[2]);
+                        break;
+                    case gemColors.purple:
+                        newObject = Instantiate(leftRightArrows[3]);
+                        break;
+                    case gemColors.red:
+                        newObject = Instantiate(leftRightArrows[4]);
+                        break;
+                    case gemColors.yellow:
+                        newObject = Instantiate(leftRightArrows[5]);
+                        break;
+                }
+            }
+            else if (inGameBoosterInstanceData.type == InGameBoosterInstanceBlackBoard.InGameBoosterType.upDownarrow)
+            {
+                switch (inGameBoosterInstanceData.color)
+                {
+                    case gemColors.blue:
+                        newObject = Instantiate(upDownArrows[0]);
+                        break;
+                    case gemColors.green:
+                        newObject = Instantiate(upDownArrows[1]);
+                        break;
+                    case gemColors.orange:
+                        newObject = Instantiate(upDownArrows[2]);
+                        break;
+                    case gemColors.purple:
+                        newObject = Instantiate(upDownArrows[3]);
+                        break;
+                    case gemColors.red:
+                        newObject = Instantiate(upDownArrows[4]);
+                        break;
+                    case gemColors.yellow:
+                        newObject = Instantiate(upDownArrows[5]);
+                        break;
+                }
+            }
+
+
+            // else if(inGameBoosterInstanceData.type==InGameBoosterInstanceBlackBoard.InGameBoosterType.bomb)
+            //     newObject = Instantiate(bomb[1]);
+            // else
+            //     newObject = Instantiate(lightning[2]);
+
             newObject.transform.SetParent(boardGame.transform, false);
             newObject.transform.localScale = new Vector3(1, 1, 1);
             newObject.GetComponent<gemTilePresenter>().setup(tileStack, gameplayController);
 
 
-            // Debug.Log($"Start InGameBoosterInstanceing {cellStack1.Position()} and {cellStack2.Position()} ");
+            // Debug.Log($"Start TopInstanceing {cellStack1.Position()} and {cellStack2.Position()} ");
 
             // await Task.Delay(500);
 
-            // Debug.Log($"Finished InGameBoosterInstanceing {cellStack1.Position()} and {cellStack2.Position()} ");
+            // Debug.Log($"Finished TopInstanceing {cellStack1.Position()} and {cellStack2.Position()} ");
 
             onCompleted.Invoke();
         }

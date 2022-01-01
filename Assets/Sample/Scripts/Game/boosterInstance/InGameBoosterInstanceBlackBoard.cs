@@ -14,7 +14,8 @@ namespace Sample
         }
 public enum InGameBoosterType
 {
-    arrow,
+    upDownarrow,
+    leftRightArrow,
     bomb,
     lightning
 }

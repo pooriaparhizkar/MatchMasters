@@ -11,6 +11,7 @@ public class spawnGems : MonoBehaviour
     public SystemDestroyPresentationAdapter systemDestroyPresentationAdapter;
     public SystemPhysicPresentationAdaptor systemPhysicPresentationAdapter;
     public SystemTopIntancePresentationAdaptor systemTopInstancePresentationAdaptor;
+    public SystemInGameBoosterInstancePresentationAdaptor systemInGameBoosterInstancePresentationAdaptor;
 
     private readonly gemColors[,] template1 = new gemColors[7, 7]
     {
@@ -61,6 +62,7 @@ public class spawnGems : MonoBehaviour
         gameplayController.AddPresentationPort(systemDestroyPresentationAdapter);
         gameplayController.AddPresentationPort(systemPhysicPresentationAdapter);
         gameplayController.AddPresentationPort(systemTopInstancePresentationAdaptor);
+        gameplayController.AddPresentationPort(systemInGameBoosterInstancePresentationAdaptor);
         foreach (var cellStack in gameplayController.LevelBoard.leftToRightTopDownCellStackArray)
             if (cellStack.HasTileStack())
             {

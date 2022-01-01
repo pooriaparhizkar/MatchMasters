@@ -148,18 +148,21 @@ namespace Sample
                     // VARIABLE.Parent().Destroy();
 
                 {
-                    if (!(matched.Count==4 && (gameplayController.getLastTileMove1()==VARIABLE.Parent().Position() || gameplayController.getLastTileMove2()==VARIABLE.Parent().Position())) )
+                    //Arrow :
+                    if (matched.Count==4 && (gameplayController.getLastTileMove1()==VARIABLE.Parent().Position() || gameplayController.getLastTileMove2()==VARIABLE.Parent().Position()))
                     {
+                        if (matched[0].Parent().Position().x == matched[1].Parent().Position().x)
+                            GetFrameData<InGameBoosterInstanceBlackBoard>().requestedInGameBoosterInstances.Add(
+                                new InGameBoosterInstanceBlackBoard.InGameBoosterInstanceData(VARIABLE.Parent().Position(),InGameBoosterInstanceBlackBoard.InGameBoosterType.upDownarrow,VARIABLE._color));
+                        else
+                            GetFrameData<InGameBoosterInstanceBlackBoard>().requestedInGameBoosterInstances.Add(
+                                new InGameBoosterInstanceBlackBoard.InGameBoosterInstanceData(VARIABLE.Parent().Position(),InGameBoosterInstanceBlackBoard.InGameBoosterType.leftRightArrow,VARIABLE._color));
+                    }
+                    //Normal :
+                    else
                         GetFrameData<DestroyBlackBoard>().requestedDestroys.Add(
                             new DestroyBlackBoard.DestroyData(new Vector2Int((int) VARIABLE.Parent().Position().x,
                                 (int) VARIABLE.Parent().Position().y)));
-                    }
-                    else
-                    {
-                        GetFrameData<InGameBoosterInstanceBlackBoard>().requestedInGameBoosterInstances.Add(
-                            new InGameBoosterInstanceBlackBoard.InGameBoosterInstanceData(VARIABLE.Parent().Position(),InGameBoosterInstanceBlackBoard.InGameBoosterType.arrow,VARIABLE._color));
-
-                    }
 
                 }
 

@@ -92,7 +92,7 @@ namespace Sample
     {
 
         normal,
-        arrow
+        booster
     }
 
     public class gemTile : Tile
