@@ -6567,6 +6567,7 @@ MonoBehaviour:
   systemDestroyPresentationAdapter: {fileID: 1988939707}
   systemPhysicPresentationAdapter: {fileID: 1988939708}
   systemTopInstancePresentationAdaptor: {fileID: 1988939709}
+  systemInGameBoosterInstancePresentationAdaptor: {fileID: 1988939710}
 --- !u!114 &1988939706
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6632,13 +6633,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 1988939701}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 506becb1112b4667be243e51668b8ec8, type: 3}
+  m_Script: {fileID: 11500000, guid: 429cf8abd89d4131a2831b00a623a686, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Scheme: http
-  Host: 157.119.191.169
-  Port: 7350
-  ServerKey: defaultkey
+  leftRightArrows:
+  - {fileID: 2160764166719438971, guid: 842da1a6045a2e94b974dc23f64729e5, type: 3}
+  - {fileID: 5591650144691577264, guid: 233ee0ccbbd79ab458413b02c3819d74, type: 3}
+  - {fileID: 4838191715759912430, guid: 79c037da5efd40741b7ce2f8a5a29412, type: 3}
+  - {fileID: 5471277307405170888, guid: 87933bfe8ee2d7a4ba53d8e76b93c9ea, type: 3}
+  - {fileID: 488011305987147689, guid: be4969fd209cd0e43a73de4942520666, type: 3}
+  - {fileID: 5028801808611627947, guid: 9d7fde3016d7c6c4f9bc103865976734, type: 3}
+  upDownArrows:
+  - {fileID: 3027081762027343827, guid: c80f99b1dbfb05e49ada979a7c20380b, type: 3}
+  - {fileID: 1349866697379976611, guid: da8087674e0345f4b83d395c1a1949b8, type: 3}
+  - {fileID: 1739094632790804297, guid: 063d24bf969d13648bc00c9002bfc0d9, type: 3}
+  - {fileID: 1055649593612469242, guid: cef1e7f1a5c15fa418e118db8e3157f1, type: 3}
+  - {fileID: 8003129091386575724, guid: ae5d6c1127828c546a071a8a9702bfb4, type: 3}
+  - {fileID: 9058598111878667583, guid: 6329b1af1e490d146a738a22fbd57b3c, type: 3}
+  bomb: []
+  lightning: []
+  boardGame: {fileID: 130272560}
 --- !u!1 &1998374571
 GameObject:
   m_ObjectHideFlags: 0

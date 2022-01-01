@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Medrick.Match3CoreSystem.Game;
 using Medrick.Match3CoreSystem.Game.Core;
@@ -137,6 +138,7 @@ namespace Sample
 
             if (matched.Count != 0)
             {
+                matched = matched.Distinct().ToList();
                 foreach (var VARIABLE in matched)
                     // Debug.Log(VARIABLE.Parent().Position());
                     // VARIABLE.Parent().Destroy();
@@ -144,9 +146,25 @@ namespace Sample
 
                     // return;
                     // VARIABLE.Parent().Destroy();
-                    GetFrameData<DestroyBlackBoard>().requestedDestroys.Add(
-                        new DestroyBlackBoard.DestroyData(new Vector2Int((int) VARIABLE.Parent().Position().x,
-                            (int) VARIABLE.Parent().Position().y)));
+
+                {
+                    //Arrow :
+                    if (matched.Count==4 && (gameplayController.getLastTileMove1()==VARIABLE.Parent().Position() || gameplayController.getLastTileMove2()==VARIABLE.Parent().Position()))
+                    {
+                        if (matched[0].Parent().Position().x == matched[1].Parent().Position().x)
+                            GetFrameData<InGameBoosterInstanceBlackBoard>().requestedInGameBoosterInstances.Add(
+                                new InGameBoosterInstanceBlackBoard.InGameBoosterInstanceData(VARIABLE.Parent().Position(),InGameBoosterInstanceBlackBoard.InGameBoosterType.upDownarrow,VARIABLE._color));
+                        else
+                            GetFrameData<InGameBoosterInstanceBlackBoard>().requestedInGameBoosterInstances.Add(
+                                new InGameBoosterInstanceBlackBoard.InGameBoosterInstanceData(VARIABLE.Parent().Position(),InGameBoosterInstanceBlackBoard.InGameBoosterType.leftRightArrow,VARIABLE._color));
+                    }
+                    //Normal :
+                    else
+                        GetFrameData<DestroyBlackBoard>().requestedDestroys.Add(
+                            new DestroyBlackBoard.DestroyData(new Vector2Int((int) VARIABLE.Parent().Position().x,
+                                (int) VARIABLE.Parent().Position().y)));
+
+                }
 
                 matched.Clear();
                 return true;

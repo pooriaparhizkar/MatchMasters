@@ -29,7 +29,6 @@ namespace Sample
 
                 for (float i = cellStack.Position().y; i < nextCell.Position().y; i+=0.2f)
                 {
-                    Debug.Log(i);
                     tileStack1.SetPosition(new Vector2(tileStack1.Position().x,i));
                     await Task.Delay(1);
 

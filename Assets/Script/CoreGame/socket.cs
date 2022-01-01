@@ -43,7 +43,7 @@ namespace Script.CoreGame
             // If we weren't able to restore an existing session, authenticate to create a new user session.
             if (Session == null)
             {
-                SceneManager.LoadScene("LoadingScene");
+                // SceneManager.LoadScene("LoadingScene");
             }
 
             // Open a new Socket for realtime communication.
