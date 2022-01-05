@@ -85,7 +85,30 @@ namespace Sample
                         break;
                 }
             }
-
+            else if (inGameBoosterInstanceData.type == InGameBoosterInstanceBlackBoard.InGameBoosterType.lightning)
+            {
+                switch (inGameBoosterInstanceData.color)
+                {
+                    case gemColors.blue:
+                        newObject = Instantiate(lightning[0]);
+                        break;
+                    case gemColors.green:
+                        newObject = Instantiate(lightning[1]);
+                        break;
+                    case gemColors.orange:
+                        newObject = Instantiate(lightning[2]);
+                        break;
+                    case gemColors.purple:
+                        newObject = Instantiate(lightning[3]);
+                        break;
+                    case gemColors.red:
+                        newObject = Instantiate(lightning[4]);
+                        break;
+                    case gemColors.yellow:
+                        newObject = Instantiate(lightning[5]);
+                        break;
+                }
+            }
 
             // else if(inGameBoosterInstanceData.type==InGameBoosterInstanceBlackBoard.InGameBoosterType.bomb)
             //     newObject = Instantiate(bomb[1]);

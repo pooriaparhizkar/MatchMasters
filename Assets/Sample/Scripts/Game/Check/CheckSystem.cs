@@ -72,7 +72,8 @@ namespace Sample
 
         public override void Update(float dt)
         {
-            if (!gameplayController.LevelBoard.CellStackBoard().isBoardLock()) //in destroy system and physic system lock and unlock
+            if (!gameplayController.LevelBoard.CellStackBoard()
+                .isBoardLock()) //in destroy system and physic system lock and unlock
             {
                 for (var i = 0; i < 7; i++)
                 {
@@ -149,21 +150,34 @@ namespace Sample
 
                 {
                     //Arrow :
-                    if (matched.Count==4 && (gameplayController.getLastTileMove1()==VARIABLE.Parent().Position() || gameplayController.getLastTileMove2()==VARIABLE.Parent().Position()))
+                    if (matched.Count == 4 && (gameplayController.getLastTileMove1() == VARIABLE.Parent().Position() ||
+                                               gameplayController.getLastTileMove2() == VARIABLE.Parent().Position()))
                     {
                         if (matched[0].Parent().Position().x == matched[1].Parent().Position().x)
                             GetFrameData<InGameBoosterInstanceBlackBoard>().requestedInGameBoosterInstances.Add(
-                                new InGameBoosterInstanceBlackBoard.InGameBoosterInstanceData(VARIABLE.Parent().Position(),InGameBoosterInstanceBlackBoard.InGameBoosterType.upDownarrow,VARIABLE._color));
+                                new InGameBoosterInstanceBlackBoard.InGameBoosterInstanceData(
+                                    VARIABLE.Parent().Position(),
+                                    InGameBoosterInstanceBlackBoard.InGameBoosterType.upDownarrow, VARIABLE._color));
                         else
                             GetFrameData<InGameBoosterInstanceBlackBoard>().requestedInGameBoosterInstances.Add(
-                                new InGameBoosterInstanceBlackBoard.InGameBoosterInstanceData(VARIABLE.Parent().Position(),InGameBoosterInstanceBlackBoard.InGameBoosterType.leftRightArrow,VARIABLE._color));
+                                new InGameBoosterInstanceBlackBoard.InGameBoosterInstanceData(
+                                    VARIABLE.Parent().Position(),
+                                    InGameBoosterInstanceBlackBoard.InGameBoosterType.leftRightArrow, VARIABLE._color));
                     }
+                    //lightning
+                    else if (matched.Count == 5 &&
+                             (gameplayController.getLastTileMove1() == VARIABLE.Parent().Position() ||
+                              gameplayController.getLastTileMove2() == VARIABLE.Parent().Position()))
+
+                        GetFrameData<InGameBoosterInstanceBlackBoard>().requestedInGameBoosterInstances.Add(
+                            new InGameBoosterInstanceBlackBoard.InGameBoosterInstanceData(VARIABLE.Parent().Position(),
+                                InGameBoosterInstanceBlackBoard.InGameBoosterType.lightning, VARIABLE._color));
+
                     //Normal :
                     else
                         GetFrameData<DestroyBlackBoard>().requestedDestroys.Add(
                             new DestroyBlackBoard.DestroyData(new Vector2Int((int) VARIABLE.Parent().Position().x,
                                 (int) VARIABLE.Parent().Position().y)));
-
                 }
 
                 matched.Clear();
