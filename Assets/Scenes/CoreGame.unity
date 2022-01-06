@@ -6650,8 +6650,20 @@ MonoBehaviour:
   - {fileID: 1055649593612469242, guid: cef1e7f1a5c15fa418e118db8e3157f1, type: 3}
   - {fileID: 8003129091386575724, guid: ae5d6c1127828c546a071a8a9702bfb4, type: 3}
   - {fileID: 9058598111878667583, guid: 6329b1af1e490d146a738a22fbd57b3c, type: 3}
-  bomb: []
-  lightning: []
+  bomb:
+  - {fileID: 1521575610075597423, guid: f151e388c904b644d8d73207cb11d0d6, type: 3}
+  - {fileID: 5041728741447694111, guid: edad76185d573de44b8117f414bd7179, type: 3}
+  - {fileID: 1097785549531462018, guid: e2fece7083791fd4f8697b71210f082a, type: 3}
+  - {fileID: 8360763804831121423, guid: 77781d5babeb5894092600ffdc9b29da, type: 3}
+  - {fileID: 206907704833296607, guid: c44e230f9c40e5a42aee277f0ce14478, type: 3}
+  - {fileID: 6610487902537131328, guid: 08ae6fa0a704bd94bb8e6e2c5c479334, type: 3}
+  lightning:
+  - {fileID: 4571100440580981335, guid: b4c79a0c50482ca4d94cf197c15948e2, type: 3}
+  - {fileID: 4012491432727756491, guid: 60b127d2064af824fb04832c20ace33c, type: 3}
+  - {fileID: 4751846430832168398, guid: ea55c0607a5b2854a88f97b9fd3d6c3d, type: 3}
+  - {fileID: 1138152619753535090, guid: 12478cea5beb03b4b86013ceeb8563bc, type: 3}
+  - {fileID: 498451057446576553, guid: 843981d0fd169004fae91e760bf63eef, type: 3}
+  - {fileID: 7803017824879709699, guid: 5a05b522c29c0f2469a4ccfd107f40e5, type: 3}
   boardGame: {fileID: 130272560}
 --- !u!1 &1998374571
 GameObject:
