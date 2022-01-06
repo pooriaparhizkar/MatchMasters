@@ -33,12 +33,13 @@ namespace Sample
             Destroy(cellStack.CurrentTileStack().GetComponent<gemTilePresenter>().gameObject);
             cellStack.SetCurrnetTileStack(tileStack);
             tileStack.SetPosition(new Vector2(cellStack.Position().x,cellStack.Position().y));
-            tileStack.Push(new gemTile(inGameBoosterInstanceData.color,gemTypes.booster));
+
 
 
             GameObject newObject = null;
             if (inGameBoosterInstanceData.type == InGameBoosterInstanceBlackBoard.InGameBoosterType.leftRightArrow)
             {
+                tileStack.Push(new gemTile(inGameBoosterInstanceData.color,gemTypes.leftRightArrow));
                 switch (inGameBoosterInstanceData.color)
                 {
                     case gemColors.blue:
@@ -63,6 +64,7 @@ namespace Sample
             }
             else if (inGameBoosterInstanceData.type == InGameBoosterInstanceBlackBoard.InGameBoosterType.upDownarrow)
             {
+                tileStack.Push(new gemTile(inGameBoosterInstanceData.color,gemTypes.upDownarrow));
                 switch (inGameBoosterInstanceData.color)
                 {
                     case gemColors.blue:
@@ -87,6 +89,7 @@ namespace Sample
             }
             else if (inGameBoosterInstanceData.type == InGameBoosterInstanceBlackBoard.InGameBoosterType.lightning)
             {
+                tileStack.Push(new gemTile(inGameBoosterInstanceData.color,gemTypes.lightning));
                 switch (inGameBoosterInstanceData.color)
                 {
                     case gemColors.blue:
@@ -111,6 +114,7 @@ namespace Sample
             }
             else if (inGameBoosterInstanceData.type == InGameBoosterInstanceBlackBoard.InGameBoosterType.bomb)
             {
+                tileStack.Push(new gemTile(inGameBoosterInstanceData.color,gemTypes.bomb));
                 switch (inGameBoosterInstanceData.color)
                 {
                     case gemColors.blue:

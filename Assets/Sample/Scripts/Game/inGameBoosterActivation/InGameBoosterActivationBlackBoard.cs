@@ -4,14 +4,14 @@ using UnityEngine;
 
 namespace Sample
 {
-    public class InGameBoosterInstanceBlackBoard : MonoBehaviour, BlackBoardData
+    public class InGameBoosterActivationBlackBoard : MonoBehaviour, BlackBoardData
     {
-        public readonly List<InGameBoosterInstanceData> requestedInGameBoosterInstances =
-            new List<InGameBoosterInstanceData>();
+        public readonly List<InGameBoosterActivationData> requestedInGameBoosterActivations =
+            new List<InGameBoosterActivationData>();
 
         public void Clear()
         {
-            requestedInGameBoosterInstances.Clear();
+            requestedInGameBoosterActivations.Clear();
         }
 
         public enum InGameBoosterType
@@ -22,17 +22,15 @@ namespace Sample
             lightning
         }
 
-        public struct InGameBoosterInstanceData
+        public struct InGameBoosterActivationData
         {
             public readonly Vector2 position;
             public readonly InGameBoosterType type;
-            public readonly gemColors color;
 
-            public InGameBoosterInstanceData(Vector2 position, InGameBoosterType type, gemColors color) : this()
+            public InGameBoosterActivationData(Vector2 position, InGameBoosterType type ) : this()
             {
                 this.position = position;
                 this.type = type;
-                this.color = color;
             }
         }
     }

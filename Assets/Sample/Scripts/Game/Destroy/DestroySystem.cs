@@ -1,6 +1,7 @@
 using System;
 using Medrick.Match3CoreSystem.Game;
 using Medrick.Match3CoreSystem.Game.Core;
+using UnityEngine;
 
 namespace Sample
 {
@@ -32,14 +33,15 @@ namespace Sample
         public override void Update(float dt)
         {
             foreach (var DestroyData in DestroyBlackBoard.requestedDestroys)
+            {
                 StartDestroy(DestroyData);
+            }
         }
 
         private void StartDestroy(DestroyBlackBoard.DestroyData DestroyData)
         {
             var cellStackBoard = gameplayController.LevelBoard.CellStackBoard();
             var cellStack1 = cellStackBoard[DestroyData.pos1];
-
 
             if (QueryUtilities.IsFullyFree(cellStack1))
             {

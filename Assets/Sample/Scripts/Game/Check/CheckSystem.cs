@@ -109,8 +109,8 @@ namespace Sample
                     }
 
                     else if (matched.Count == 5 &&
-                             gameplayController.getLastTileMove1() == VARIABLE.Parent().Position() ||
-                             gameplayController.getLastTileMove2() == VARIABLE.Parent().Position())
+                             (gameplayController.getLastTileMove1() == VARIABLE.Parent().Position() ||
+                              gameplayController.getLastTileMove2() == VARIABLE.Parent().Position()))
                     {
                         //lightning
                         if (((getPositionX(matched[0]) == getPositionX(matched[1]) &&
@@ -131,12 +131,35 @@ namespace Sample
                                     VARIABLE.Parent().Position(),
                                     InGameBoosterInstanceBlackBoard.InGameBoosterType.bomb, VARIABLE._color));
                     }
+                    else if (matched.Count > 5 &&
+                             (gameplayController.getLastTileMove1() == VARIABLE.Parent().Position() ||
+                              gameplayController.getLastTileMove2() == VARIABLE.Parent().Position()))
+                        GetFrameData<InGameBoosterInstanceBlackBoard>().requestedInGameBoosterInstances.Add(
+                            new InGameBoosterInstanceBlackBoard.InGameBoosterInstanceData(
+                                VARIABLE.Parent().Position(),
+                                InGameBoosterInstanceBlackBoard.InGameBoosterType.lightning, VARIABLE._color));
 
                     //Normal :
                     else
-                        GetFrameData<DestroyBlackBoard>().requestedDestroys.Add(
-                            new DestroyBlackBoard.DestroyData(new Vector2Int((int) VARIABLE.Parent().Position().x,
-                                (int) VARIABLE.Parent().Position().y)));
+                    {
+                        if (VARIABLE._gemTypes == gemTypes.normal)
+                            GetFrameData<DestroyBlackBoard>().requestedDestroys.Add(
+                                new DestroyBlackBoard.DestroyData(new Vector2Int((int) VARIABLE.Parent().Position().x,
+                                    (int) VARIABLE.Parent().Position().y)));
+                        else
+                            GetFrameData<InGameBoosterActivationBlackBoard>().requestedInGameBoosterActivations.Add(
+                                new InGameBoosterActivationBlackBoard.InGameBoosterActivationData(new Vector2Int(
+                                        (int) VARIABLE.Parent().Position().x,
+                                        (int) VARIABLE.Parent().Position().y),
+                                    VARIABLE._gemTypes == gemTypes.bomb
+                                        ?
+                                        InGameBoosterActivationBlackBoard.InGameBoosterType.bomb
+                                        : VARIABLE._gemTypes == gemTypes.lightning
+                                            ? InGameBoosterActivationBlackBoard.InGameBoosterType.lightning
+                                            : VARIABLE._gemTypes == gemTypes.upDownarrow
+                                                ? InGameBoosterActivationBlackBoard.InGameBoosterType.upDownarrow
+                                                : InGameBoosterActivationBlackBoard.InGameBoosterType.leftRightArrow));
+                    }
                 }
 
                 matched.Clear();
