@@ -19,18 +19,28 @@ namespace Sample
             upDownarrow,
             leftRightArrow,
             bomb,
-            lightning
+            lightning,
+            ArrowArrow,
+            ArrowBomb,
+            ArrowLightning,
+            BombBomb,
+            BombLightning,
+            LightningLightning
         }
 
         public struct InGameBoosterActivationData
         {
             public readonly Vector2 position;
             public readonly InGameBoosterType type;
+            public readonly gemColors gemColors;
 
-            public InGameBoosterActivationData(Vector2 position, InGameBoosterType type ) : this()
+
+            public InGameBoosterActivationData(Vector2 position, InGameBoosterType type,gemColors gemColors ) : this()
             {
                 this.position = position;
                 this.type = type;
+                this.gemColors = gemColors;
+
             }
         }
     }

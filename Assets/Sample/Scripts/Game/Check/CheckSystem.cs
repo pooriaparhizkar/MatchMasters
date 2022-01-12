@@ -158,7 +158,7 @@ namespace Sample
                                             ? InGameBoosterActivationBlackBoard.InGameBoosterType.lightning
                                             : VARIABLE._gemTypes == gemTypes.upDownarrow
                                                 ? InGameBoosterActivationBlackBoard.InGameBoosterType.upDownarrow
-                                                : InGameBoosterActivationBlackBoard.InGameBoosterType.leftRightArrow));
+                                                : InGameBoosterActivationBlackBoard.InGameBoosterType.leftRightArrow,VARIABLE._color));
                     }
                 }
 

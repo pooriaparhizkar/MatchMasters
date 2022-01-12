@@ -39,6 +39,7 @@ namespace Sample
         {
             foreach (var item in InGameBoosterActivationBlackBoard.requestedInGameBoosterActivations)
             {
+                //updown arrow
                 if (item.type == InGameBoosterActivationBlackBoard.InGameBoosterType.upDownarrow)
                 {
                     ActionUtilites.FullyUnlock(
@@ -51,6 +52,7 @@ namespace Sample
                                 i)));
                     }
                 }
+                //leftRight arrow
                 else if (item.type == InGameBoosterActivationBlackBoard.InGameBoosterType.leftRightArrow)
                 {
                     ActionUtilites.FullyUnlock(
@@ -63,8 +65,64 @@ namespace Sample
                                 (int) item.position.y)));
                     }
                 }
+                //lightning
+                else if (item.type == InGameBoosterActivationBlackBoard.InGameBoosterType.lightning)
+                {
+                    ActionUtilites.FullyUnlock(
+                        (gameplayController.LevelBoard.CellStackBoard())[
+                            (int) item.position.x, (int) item.position.y]);
+                    int counter = 0;
+                    var cellStackBoard = gameplayController.LevelBoard.CellStackBoard();
+                    for (var i = 0; i < 7; i++)
+                    for (var j = 0; j < 7; j++)
+                        if (cellStackBoard[new Vector2Int(i, j)].HasTileStack())
+                        {
+                            gemTile tileStack =
+                                cellStackBoard[new Vector2Int(i, j)].CurrentTileStack().Top() as gemTile;
+                            if (tileStack._color == item.gemColors)
+                            {
+                                counter++;
+                                GetFrameData<DestroyBlackBoard>().requestedDestroys.Add(
+                                    new DestroyBlackBoard.DestroyData(new Vector2Int(
+                                        (int) tileStack.Parent().Position().x,
+                                        (int) tileStack.Parent().Position().y)));
+                            }
+                        }
+
+                    if (counter <= 16)
+                    {
+                        for (var i = 0; i < 7; i++)
+                        for (var j = 0; j < 7; j++)
+                            if (cellStackBoard[new Vector2Int(i, j)].HasTileStack())
+                            {
+                                gemTile tileStack =
+                                    cellStackBoard[new Vector2Int(i, j)].CurrentTileStack().Top() as gemTile;
+                                if (tileStack._gemTypes != gemTypes.normal)
+                                {
+                                    counter++;
+                                    GetFrameData<DestroyBlackBoard>().requestedDestroys.Add(
+                                        new DestroyBlackBoard.DestroyData(new Vector2Int(
+                                            (int) tileStack.Parent().Position().x,
+                                            (int) tileStack.Parent().Position().y)));
+                                }
+                            }
+                    }
+
+                    while (counter <= 16)
+                    {
+                        int i = Random.Range(0, 7);
+                        int j = Random.Range(0, 7);
+                        if (cellStackBoard[new Vector2Int(i, j)].HasTileStack())
+                        {
+                            counter++;
+                            GetFrameData<DestroyBlackBoard>().requestedDestroys.Add(
+                                new DestroyBlackBoard.DestroyData(new Vector2Int(
+                                    i,
+                                    j)));
+                        }
+                    }
+                }
             }
         }
-
     }
 }
