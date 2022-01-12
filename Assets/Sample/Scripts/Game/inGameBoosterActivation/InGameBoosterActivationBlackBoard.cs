@@ -21,8 +21,10 @@ namespace Sample
             bomb,
             lightning,
             ArrowArrow,
-            ArrowBomb,
-            ArrowLightning,
+            TopDownArrowBomb,
+            LeftRightArrowBomb,
+            TopDownArrowLightning,
+            LeftRightArrowLightning,
             BombBomb,
             BombLightning,
             LightningLightning

@@ -70,7 +70,7 @@ namespace Sample
             // }
             // else
             // {
-                // gameplayController.LevelBoard.CellStackBoard().setBoardUnlock();
+            // gameplayController.LevelBoard.CellStackBoard().setBoardUnlock();
             // }
 
             gameplayController.LevelBoard.CellStackBoard().setBoardUnlock();
@@ -78,10 +78,33 @@ namespace Sample
             //check booster+booster activation
             gemTile gemTileOne = cellStack1.CurrentTileStack().Top() as gemTile;
             gemTile gemTileTwo = cellStack2.CurrentTileStack().Top() as gemTile;
-            if (gemTileOne._gemTypes!=gemTypes.normal && gemTileTwo._gemTypes!=gemTypes.normal)
-                GetFrameData<InGameBoosterActivationBlackBoard>().requestedInGameBoosterActivations.Add(
-                    new InGameBoosterActivationBlackBoard.InGameBoosterActivationData(gemTileTwo.Parent().Position(),
-                      InGameBoosterActivationBlackBoard.InGameBoosterType.ArrowArrow,gemTileTwo._color));
+            if (gemTileOne._gemTypes != gemTypes.normal && gemTileTwo._gemTypes != gemTypes.normal)
+            {
+                if ((gemTileOne._gemTypes == gemTypes.upDownarrow || gemTileOne._gemTypes == gemTypes.leftRightArrow) &&
+                    (gemTileTwo._gemTypes == gemTypes.upDownarrow || gemTileTwo._gemTypes == gemTypes.leftRightArrow))
+                    GetFrameData<InGameBoosterActivationBlackBoard>().requestedInGameBoosterActivations.Add(
+                        new InGameBoosterActivationBlackBoard.InGameBoosterActivationData(
+                            gemTileTwo.Parent().Position(),
+                            InGameBoosterActivationBlackBoard.InGameBoosterType.ArrowArrow, gemTileTwo._color));
+                else if ((gemTileOne._gemTypes == gemTypes.upDownarrow && gemTileTwo._gemTypes == gemTypes.bomb) ||
+                         (gemTileOne._gemTypes == gemTypes.bomb && gemTileTwo._gemTypes == gemTypes.upDownarrow))
+                {
+                    Debug.Log("upDownarrow");
+                    GetFrameData<InGameBoosterActivationBlackBoard>().requestedInGameBoosterActivations.Add(
+                        new InGameBoosterActivationBlackBoard.InGameBoosterActivationData(
+                            gemTileTwo.Parent().Position(),
+                            InGameBoosterActivationBlackBoard.InGameBoosterType.TopDownArrowBomb, gemTileTwo._color));
+                }
+                else if ((gemTileOne._gemTypes == gemTypes.leftRightArrow && gemTileTwo._gemTypes == gemTypes.bomb) ||
+                         gemTileOne._gemTypes == gemTypes.bomb && gemTileTwo._gemTypes == gemTypes.leftRightArrow)
+                {
+                    Debug.Log("leftRightArrow");
+                    GetFrameData<InGameBoosterActivationBlackBoard>().requestedInGameBoosterActivations.Add(
+                        new InGameBoosterActivationBlackBoard.InGameBoosterActivationData(
+                            gemTileTwo.Parent().Position(),
+                            InGameBoosterActivationBlackBoard.InGameBoosterType.LeftRightArrowBomb, gemTileTwo._color));
+                }
+            }
 
 
             // ActionUtilites.FullyUnlock(cellStack1);
