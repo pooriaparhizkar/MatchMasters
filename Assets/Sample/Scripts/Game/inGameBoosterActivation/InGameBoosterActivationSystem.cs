@@ -65,6 +65,39 @@ namespace Sample
                                 (int) item.position.y)));
                     }
                 }
+                //bomb
+                else if (item.type == InGameBoosterActivationBlackBoard.InGameBoosterType.bomb)
+                {
+                    ActionUtilites.FullyUnlock(
+                        (gameplayController.LevelBoard.CellStackBoard())[
+                            (int) item.position.x, (int) item.position.y]);
+                    int xPosition = (int)item.position.x;
+                    int yPosition = (int)item.position.y;
+                    var cellStackBoard = gameplayController.LevelBoard.CellStackBoard();
+                    for (int j = -1; j <= 1; j++)
+                        for (int i = -1; i <= 1; i++)
+                            if (cellStackBoard[new Vector2Int(xPosition+i, yPosition+j)].HasTileStack())
+                                GetFrameData<DestroyBlackBoard>().requestedDestroys.Add(
+                                    new DestroyBlackBoard.DestroyData(new Vector2Int(xPosition+i,
+                                        yPosition+j)));
+                    if (cellStackBoard[new Vector2Int(xPosition+2, yPosition)].HasTileStack())
+                        GetFrameData<DestroyBlackBoard>().requestedDestroys.Add(
+                            new DestroyBlackBoard.DestroyData(new Vector2Int(xPosition+2,
+                                yPosition)));
+                    if (cellStackBoard[new Vector2Int(xPosition-2, yPosition)].HasTileStack())
+                        GetFrameData<DestroyBlackBoard>().requestedDestroys.Add(
+                            new DestroyBlackBoard.DestroyData(new Vector2Int(xPosition-2,
+                                yPosition)));
+                    if (cellStackBoard[new Vector2Int(xPosition, yPosition+2)].HasTileStack())
+                        GetFrameData<DestroyBlackBoard>().requestedDestroys.Add(
+                            new DestroyBlackBoard.DestroyData(new Vector2Int(xPosition,
+                                yPosition+2)));
+                    if (cellStackBoard[new Vector2Int(xPosition, yPosition-2)].HasTileStack())
+                        GetFrameData<DestroyBlackBoard>().requestedDestroys.Add(
+                            new DestroyBlackBoard.DestroyData(new Vector2Int(xPosition,
+                                yPosition-2)));
+
+                }
                 //lightning
                 else if (item.type == InGameBoosterActivationBlackBoard.InGameBoosterType.lightning)
                 {
@@ -92,20 +125,20 @@ namespace Sample
                     if (counter <= 16)
                     {
                         for (var i = 0; i < 7; i++)
-                        for (var j = 0; j < 7; j++)
-                            if (cellStackBoard[new Vector2Int(i, j)].HasTileStack())
-                            {
-                                gemTile tileStack =
-                                    cellStackBoard[new Vector2Int(i, j)].CurrentTileStack().Top() as gemTile;
-                                if (tileStack._gemTypes != gemTypes.normal)
+                            for (var j = 0; j < 7; j++)
+                                if (cellStackBoard[new Vector2Int(i, j)].HasTileStack())
                                 {
-                                    counter++;
-                                    GetFrameData<DestroyBlackBoard>().requestedDestroys.Add(
-                                        new DestroyBlackBoard.DestroyData(new Vector2Int(
-                                            (int) tileStack.Parent().Position().x,
-                                            (int) tileStack.Parent().Position().y)));
+                                    gemTile tileStack =
+                                        cellStackBoard[new Vector2Int(i, j)].CurrentTileStack().Top() as gemTile;
+                                    if (tileStack._gemTypes != gemTypes.normal)
+                                    {
+                                        counter++;
+                                        GetFrameData<DestroyBlackBoard>().requestedDestroys.Add(
+                                            new DestroyBlackBoard.DestroyData(new Vector2Int(
+                                                (int) tileStack.Parent().Position().x,
+                                                (int) tileStack.Parent().Position().y)));
+                                    }
                                 }
-                            }
                     }
 
                     while (counter <= 16)
