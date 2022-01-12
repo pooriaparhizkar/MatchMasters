@@ -122,6 +122,21 @@ namespace Sample
                         }
                     }
                 }
+                //Arrow+Arrow
+                else if (item.type == InGameBoosterActivationBlackBoard.InGameBoosterType.ArrowArrow)
+                {
+                    ActionUtilites.FullyUnlock(
+                        (gameplayController.LevelBoard.CellStackBoard())[
+                            (int) item.position.x, (int) item.position.y]);
+                    for (int i = 0; i < 7; i++)
+                        GetFrameData<DestroyBlackBoard>().requestedDestroys.Add(
+                            new DestroyBlackBoard.DestroyData(new Vector2Int((int) item.position.x,
+                                i)));
+                    for (int i = 0; i < 7; i++)
+                        GetFrameData<DestroyBlackBoard>().requestedDestroys.Add(
+                            new DestroyBlackBoard.DestroyData(new Vector2Int(i,
+                                (int) item.position.y)));
+                }
             }
         }
     }

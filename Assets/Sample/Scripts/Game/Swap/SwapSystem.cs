@@ -70,11 +70,19 @@ namespace Sample
             // }
             // else
             // {
-                gameplayController.LevelBoard.CellStackBoard().setBoardUnlock();
+                // gameplayController.LevelBoard.CellStackBoard().setBoardUnlock();
             // }
 
-
             gameplayController.LevelBoard.CellStackBoard().setBoardUnlock();
+
+            //check booster+booster activation
+            gemTile gemTileOne = cellStack1.CurrentTileStack().Top() as gemTile;
+            gemTile gemTileTwo = cellStack2.CurrentTileStack().Top() as gemTile;
+            if (gemTileOne._gemTypes!=gemTypes.normal && gemTileTwo._gemTypes!=gemTypes.normal)
+                GetFrameData<InGameBoosterActivationBlackBoard>().requestedInGameBoosterActivations.Add(
+                    new InGameBoosterActivationBlackBoard.InGameBoosterActivationData(gemTileTwo.Parent().Position(),
+                      InGameBoosterActivationBlackBoard.InGameBoosterType.ArrowArrow,gemTileTwo._color));
+
 
             // ActionUtilites.FullyUnlock(cellStack1);
             // ActionUtilites.FullyUnlock(cellStack2);
