@@ -140,6 +140,14 @@ namespace Sample
                             gemTileTwo.Parent().Position(),
                             InGameBoosterActivationBlackBoard.InGameBoosterType.BombBomb, gemTileTwo._color));
                 }
+                //Lightning+Lightning
+                else if (gemTileOne._gemTypes == gemTypes.lightning && gemTileTwo._gemTypes == gemTypes.lightning)
+                {
+                    GetFrameData<InGameBoosterActivationBlackBoard>().requestedInGameBoosterActivations.Add(
+                        new InGameBoosterActivationBlackBoard.InGameBoosterActivationData(
+                            gemTileTwo.Parent().Position(),
+                            InGameBoosterActivationBlackBoard.InGameBoosterType.LightningLightning, gemTileTwo._color));
+                }
             }
 
 

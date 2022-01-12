@@ -99,7 +99,7 @@ namespace Sample
                         (int) item.position.y)));
         }
 
-        private void activeLightning(InGameBoosterActivationBlackBoard.InGameBoosterActivationData item)
+        private void activeLightning(InGameBoosterActivationBlackBoard.InGameBoosterActivationData item,int givenCounter)
         {
             int counter = 0;
             var cellStackBoard = gameplayController.LevelBoard.CellStackBoard();
@@ -119,7 +119,7 @@ namespace Sample
                     }
                 }
 
-            if (counter <= 16)
+            if (counter <= givenCounter)
             {
                 for (var i = 0; i < 7; i++)
                 for (var j = 0; j < 7; j++)
@@ -138,7 +138,7 @@ namespace Sample
                     }
             }
 
-            while (counter <= 16)
+            while (counter <= givenCounter)
             {
                 int i = Random.Range(0, 7);
                 int j = Random.Range(0, 7);
@@ -187,7 +187,7 @@ namespace Sample
                     ActionUtilites.FullyUnlock(
                         (gameplayController.LevelBoard.CellStackBoard())[
                             (int) item.position.x, (int) item.position.y]);
-                    activeLightning(item);
+                    activeLightning(item,16);
                 }
                 //Arrow+Arrow
                 else if (item.type == InGameBoosterActivationBlackBoard.InGameBoosterType.ArrowArrow)
@@ -223,7 +223,7 @@ namespace Sample
                         (gameplayController.LevelBoard.CellStackBoard())[
                             (int) item.position.x, (int) item.position.y]);
                     activateLeftRightArrow(item);
-                    activeLightning(item);
+                    activeLightning(item,16);
                 }
                 //TopDownArrow+Lighning
                 else if (item.type == InGameBoosterActivationBlackBoard.InGameBoosterType.TopDownArrowLightning)
@@ -232,7 +232,7 @@ namespace Sample
                         (gameplayController.LevelBoard.CellStackBoard())[
                             (int) item.position.x, (int) item.position.y]);
                     activateUpDownArrow(item);
-                    activeLightning(item);
+                    activeLightning(item,16);
                 }
                 //Bomb+Lighning
                 else if (item.type == InGameBoosterActivationBlackBoard.InGameBoosterType.BombLightning)
@@ -241,7 +241,7 @@ namespace Sample
                         (gameplayController.LevelBoard.CellStackBoard())[
                             (int) item.position.x, (int) item.position.y]);
                     activateBomb(item);
-                    activeLightning(item);
+                    activeLightning(item,16);
                 }
                 //Bomb+Bomb
                 else if (item.type == InGameBoosterActivationBlackBoard.InGameBoosterType.BombBomb)
@@ -323,6 +323,14 @@ namespace Sample
                         GetFrameData<DestroyBlackBoard>().requestedDestroys.Add(
                             new DestroyBlackBoard.DestroyData(new Vector2Int(xPosition,
                                 yPosition - 3)));
+                }
+                 //Lightning+Lightning
+                else if (item.type == InGameBoosterActivationBlackBoard.InGameBoosterType.LightningLightning)
+                {
+                    ActionUtilites.FullyUnlock(
+                        (gameplayController.LevelBoard.CellStackBoard())[
+                            (int) item.position.x, (int) item.position.y]);
+                   activeLightning(item,32);
                 }
             }
         }
