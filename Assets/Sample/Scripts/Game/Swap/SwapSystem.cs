@@ -80,29 +80,57 @@ namespace Sample
             gemTile gemTileTwo = cellStack2.CurrentTileStack().Top() as gemTile;
             if (gemTileOne._gemTypes != gemTypes.normal && gemTileTwo._gemTypes != gemTypes.normal)
             {
+                //Arrow+Arrow
                 if ((gemTileOne._gemTypes == gemTypes.upDownarrow || gemTileOne._gemTypes == gemTypes.leftRightArrow) &&
                     (gemTileTwo._gemTypes == gemTypes.upDownarrow || gemTileTwo._gemTypes == gemTypes.leftRightArrow))
                     GetFrameData<InGameBoosterActivationBlackBoard>().requestedInGameBoosterActivations.Add(
                         new InGameBoosterActivationBlackBoard.InGameBoosterActivationData(
                             gemTileTwo.Parent().Position(),
                             InGameBoosterActivationBlackBoard.InGameBoosterType.ArrowArrow, gemTileTwo._color));
+                //UpDownArrow+Bomb
                 else if ((gemTileOne._gemTypes == gemTypes.upDownarrow && gemTileTwo._gemTypes == gemTypes.bomb) ||
                          (gemTileOne._gemTypes == gemTypes.bomb && gemTileTwo._gemTypes == gemTypes.upDownarrow))
                 {
-                    Debug.Log("upDownarrow");
                     GetFrameData<InGameBoosterActivationBlackBoard>().requestedInGameBoosterActivations.Add(
                         new InGameBoosterActivationBlackBoard.InGameBoosterActivationData(
                             gemTileTwo.Parent().Position(),
                             InGameBoosterActivationBlackBoard.InGameBoosterType.TopDownArrowBomb, gemTileTwo._color));
                 }
+                //leftRightArrow+Bomb
                 else if ((gemTileOne._gemTypes == gemTypes.leftRightArrow && gemTileTwo._gemTypes == gemTypes.bomb) ||
                          gemTileOne._gemTypes == gemTypes.bomb && gemTileTwo._gemTypes == gemTypes.leftRightArrow)
                 {
-                    Debug.Log("leftRightArrow");
                     GetFrameData<InGameBoosterActivationBlackBoard>().requestedInGameBoosterActivations.Add(
                         new InGameBoosterActivationBlackBoard.InGameBoosterActivationData(
                             gemTileTwo.Parent().Position(),
                             InGameBoosterActivationBlackBoard.InGameBoosterType.LeftRightArrowBomb, gemTileTwo._color));
+                }
+                //UpDownArrow+Lightning
+                else if ((gemTileOne._gemTypes == gemTypes.leftRightArrow && gemTileTwo._gemTypes == gemTypes.lightning) ||
+                         gemTileOne._gemTypes == gemTypes.lightning && gemTileTwo._gemTypes == gemTypes.leftRightArrow)
+                {
+                    GetFrameData<InGameBoosterActivationBlackBoard>().requestedInGameBoosterActivations.Add(
+                        new InGameBoosterActivationBlackBoard.InGameBoosterActivationData(
+                            gemTileTwo.Parent().Position(),
+                            InGameBoosterActivationBlackBoard.InGameBoosterType.LeftRightArrowLightning, gemTileTwo._color));
+                }
+                //upDownArrow+Lightning
+                else if ((gemTileOne._gemTypes == gemTypes.upDownarrow && gemTileTwo._gemTypes == gemTypes.lightning) ||
+                         gemTileOne._gemTypes == gemTypes.lightning && gemTileTwo._gemTypes == gemTypes.upDownarrow)
+                {
+                    GetFrameData<InGameBoosterActivationBlackBoard>().requestedInGameBoosterActivations.Add(
+                        new InGameBoosterActivationBlackBoard.InGameBoosterActivationData(
+                            gemTileTwo.Parent().Position(),
+                            InGameBoosterActivationBlackBoard.InGameBoosterType.TopDownArrowLightning, gemTileTwo._color));
+                }
+                //Bomb+Lightning
+                else if ((gemTileOne._gemTypes == gemTypes.bomb && gemTileTwo._gemTypes == gemTypes.lightning) ||
+                         gemTileOne._gemTypes == gemTypes.lightning && gemTileTwo._gemTypes == gemTypes.bomb)
+                {
+                    GetFrameData<InGameBoosterActivationBlackBoard>().requestedInGameBoosterActivations.Add(
+                        new InGameBoosterActivationBlackBoard.InGameBoosterActivationData(
+                            gemTileTwo.Parent().Position(),
+                            InGameBoosterActivationBlackBoard.InGameBoosterType.BombLightning, gemTileTwo._color));
                 }
             }
 

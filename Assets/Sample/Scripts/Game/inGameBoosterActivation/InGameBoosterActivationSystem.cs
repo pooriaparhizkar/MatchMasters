@@ -214,6 +214,33 @@ namespace Sample
                     activateLeftRightArrow(item);
                     activateBomb(item);
                 }
+                //LeftRightArrow+Lighning
+                else if (item.type == InGameBoosterActivationBlackBoard.InGameBoosterType.LeftRightArrowLightning)
+                {
+                    ActionUtilites.FullyUnlock(
+                        (gameplayController.LevelBoard.CellStackBoard())[
+                            (int) item.position.x, (int) item.position.y]);
+                    activateLeftRightArrow(item);
+                    activeLightning(item);
+                }
+                //TopDownArrow+Lighning
+                else if (item.type == InGameBoosterActivationBlackBoard.InGameBoosterType.TopDownArrowLightning)
+                {
+                    ActionUtilites.FullyUnlock(
+                        (gameplayController.LevelBoard.CellStackBoard())[
+                            (int) item.position.x, (int) item.position.y]);
+                    activateUpDownArrow(item);
+                    activeLightning(item);
+                }
+                //Bomb+Lighning
+                else if (item.type == InGameBoosterActivationBlackBoard.InGameBoosterType.BombLightning)
+                {
+                    ActionUtilites.FullyUnlock(
+                        (gameplayController.LevelBoard.CellStackBoard())[
+                            (int) item.position.x, (int) item.position.y]);
+                    activateBomb(item);
+                    activeLightning(item);
+                }
             }
         }
 
