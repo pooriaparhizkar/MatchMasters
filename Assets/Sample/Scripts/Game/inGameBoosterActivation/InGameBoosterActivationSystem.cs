@@ -40,47 +40,12 @@ namespace Sample
             int yPosition = (int) item.position.y;
             var cellStackBoard = gameplayController.LevelBoard.CellStackBoard();
             for (int j = -1; j <= 1; j++)
-            for (int i = -1; i <= 1; i++)
-            {
-                if (i == -1)
-                    if (xPosition != 0 && cellStackBoard[new Vector2Int(xPosition + i, yPosition + j)].HasTileStack())
-                        GetFrameData<DestroyBlackBoard>().requestedDestroys.Add(
-                            new DestroyBlackBoard.DestroyData(new Vector2Int(xPosition + i,
-                                yPosition + j)));
-
-                if (i == 1)
-                    if (xPosition != 6 && cellStackBoard[new Vector2Int(xPosition + i, yPosition + j)].HasTileStack())
-                        GetFrameData<DestroyBlackBoard>().requestedDestroys.Add(
-                            new DestroyBlackBoard.DestroyData(new Vector2Int(xPosition + i,
-                                yPosition + j)));
-                if (j == -1)
-                    if (yPosition != 0 && cellStackBoard[new Vector2Int(xPosition + i, yPosition + j)].HasTileStack())
-                        GetFrameData<DestroyBlackBoard>().requestedDestroys.Add(
-                            new DestroyBlackBoard.DestroyData(new Vector2Int(xPosition + i,
-                                yPosition + j)));
-                if (j == 1)
-                    if (yPosition != 6 && cellStackBoard[new Vector2Int(xPosition + i, yPosition + j)].HasTileStack())
-                        GetFrameData<DestroyBlackBoard>().requestedDestroys.Add(
-                            new DestroyBlackBoard.DestroyData(new Vector2Int(xPosition + i,
-                                yPosition + j)));
-            }
-
-            if (xPosition < 5 && cellStackBoard[new Vector2Int(xPosition + 2, yPosition)].HasTileStack())
-                GetFrameData<DestroyBlackBoard>().requestedDestroys.Add(
-                    new DestroyBlackBoard.DestroyData(new Vector2Int(xPosition + 2,
-                        yPosition)));
-            if (xPosition > 1 && cellStackBoard[new Vector2Int(xPosition - 2, yPosition)].HasTileStack())
-                GetFrameData<DestroyBlackBoard>().requestedDestroys.Add(
-                    new DestroyBlackBoard.DestroyData(new Vector2Int(xPosition - 2,
-                        yPosition)));
-            if (yPosition < 5 && cellStackBoard[new Vector2Int(xPosition, yPosition + 2)].HasTileStack())
-                GetFrameData<DestroyBlackBoard>().requestedDestroys.Add(
-                    new DestroyBlackBoard.DestroyData(new Vector2Int(xPosition,
-                        yPosition + 2)));
-            if (yPosition > 1 && cellStackBoard[new Vector2Int(xPosition, yPosition - 2)].HasTileStack())
-                GetFrameData<DestroyBlackBoard>().requestedDestroys.Add(
-                    new DestroyBlackBoard.DestroyData(new Vector2Int(xPosition,
-                        yPosition - 2)));
+                for (int i = -1; i <= 1; i++)
+                    if ((xPosition + i) >= 0 && (xPosition + i)<7 && (yPosition + j)>=0 &&(yPosition + j)<7 )
+                        if (cellStackBoard[new Vector2Int(xPosition + i, yPosition+j)].HasTileStack())
+                            GetFrameData<DestroyBlackBoard>().requestedDestroys.Add(
+                                new DestroyBlackBoard.DestroyData(new Vector2Int(xPosition + i,
+                                    yPosition + j)));
         }
 
         private void activateUpDownArrow(InGameBoosterActivationBlackBoard.InGameBoosterActivationData item)
@@ -254,60 +219,13 @@ namespace Sample
                     var cellStackBoard = gameplayController.LevelBoard.CellStackBoard();
                     for (int j = -2; j <= 2; j++)
                         for (int i = -2; i <= 2; i++)
-                        {
-                            if (i == -1)
-                                if (xPosition != 0 && cellStackBoard[new Vector2Int(xPosition + i, yPosition + j)]
-                                    .HasTileStack())
+                            if ((xPosition + i) >= 0 && (xPosition + i)<7 && (yPosition + j)>=0 &&(yPosition + j)<7 )
+                                if (cellStackBoard[new Vector2Int(xPosition + i, yPosition+j)].HasTileStack())
                                     GetFrameData<DestroyBlackBoard>().requestedDestroys.Add(
                                         new DestroyBlackBoard.DestroyData(new Vector2Int(xPosition + i,
                                             yPosition + j)));
 
-                            if (i == 1)
-                                if (xPosition != 6 && cellStackBoard[new Vector2Int(xPosition + i, yPosition + j)]
-                                    .HasTileStack())
-                                    GetFrameData<DestroyBlackBoard>().requestedDestroys.Add(
-                                        new DestroyBlackBoard.DestroyData(new Vector2Int(xPosition + i,
-                                            yPosition + j)));
-                            if (j == -1)
-                                if (yPosition != 0 && cellStackBoard[new Vector2Int(xPosition + i, yPosition + j)]
-                                    .HasTileStack())
-                                    GetFrameData<DestroyBlackBoard>().requestedDestroys.Add(
-                                        new DestroyBlackBoard.DestroyData(new Vector2Int(xPosition + i,
-                                            yPosition + j)));
-                            if (j == 1)
-                                if (yPosition != 6 && cellStackBoard[new Vector2Int(xPosition + i, yPosition + j)]
-                                    .HasTileStack())
-                                    GetFrameData<DestroyBlackBoard>().requestedDestroys.Add(
-                                        new DestroyBlackBoard.DestroyData(new Vector2Int(xPosition + i,
-                                            yPosition + j)));
-                            if (i == -2)
-                                if (xPosition >1 && cellStackBoard[new Vector2Int(xPosition + i, yPosition + j)]
-                                    .HasTileStack())
-                                    GetFrameData<DestroyBlackBoard>().requestedDestroys.Add(
-                                        new DestroyBlackBoard.DestroyData(new Vector2Int(xPosition + i,
-                                            yPosition + j)));
-
-                            if (i == 2)
-                                if (xPosition < 5 && cellStackBoard[new Vector2Int(xPosition + i, yPosition + j)]
-                                    .HasTileStack())
-                                    GetFrameData<DestroyBlackBoard>().requestedDestroys.Add(
-                                        new DestroyBlackBoard.DestroyData(new Vector2Int(xPosition + i,
-                                            yPosition + j)));
-                            if (j == -2)
-                                if (yPosition >1 && cellStackBoard[new Vector2Int(xPosition + i, yPosition + j)]
-                                    .HasTileStack())
-                                    GetFrameData<DestroyBlackBoard>().requestedDestroys.Add(
-                                        new DestroyBlackBoard.DestroyData(new Vector2Int(xPosition + i,
-                                            yPosition + j)));
-                            if (j == 2)
-                                if (yPosition < 5 && cellStackBoard[new Vector2Int(xPosition + i, yPosition + j)]
-                                    .HasTileStack())
-                                    GetFrameData<DestroyBlackBoard>().requestedDestroys.Add(
-                                        new DestroyBlackBoard.DestroyData(new Vector2Int(xPosition + i,
-                                            yPosition + j)));
-                        }
-
-                    if (xPosition < 4 && cellStackBoard[new Vector2Int(xPosition + 3, yPosition)].HasTileStack())
+                            if (xPosition < 4 && cellStackBoard[new Vector2Int(xPosition + 3, yPosition)].HasTileStack())
                         GetFrameData<DestroyBlackBoard>().requestedDestroys.Add(
                             new DestroyBlackBoard.DestroyData(new Vector2Int(xPosition + 3,
                                 yPosition)));
