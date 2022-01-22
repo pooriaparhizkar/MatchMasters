@@ -45,7 +45,7 @@ public class spawnGems : MonoBehaviour
         }
     };
 
-    private SampleGameplayMainController gameplayController;
+    public static SampleGameplayMainController gameplayController;
 
     private void Start()
     {

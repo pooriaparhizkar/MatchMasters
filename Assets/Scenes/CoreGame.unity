@@ -6569,7 +6569,6 @@ GameObject:
   - component: {fileID: 1988939707}
   - component: {fileID: 1988939708}
   - component: {fileID: 1988939709}
-  - component: {fileID: 1988939710}
   m_Layer: 0
   m_Name: board-background
   m_TagString: Untagged
@@ -6723,18 +6722,6 @@ MonoBehaviour:
   - {fileID: 3503623285172323814, guid: d81e1d7e1d06ef849ae8917d82c7db5e, type: 3}
   - {fileID: 6528839973729517662, guid: 58e522032eb2d5c47a89b62b3ddd469b, type: 3}
   boardGame: {fileID: 130272560}
---- !u!114 &1988939710
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1988939701}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 506becb1112b4667be243e51668b8ec8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1998374571
 GameObject:
   m_ObjectHideFlags: 0
