@@ -56,7 +56,6 @@ namespace Sample
 
         private void ApplyDestroy(CellStack cellStack)
         {
-            Debug.Log(cellStack);
             ActionUtilites.FullyUnlock(cellStack);
             // var tileStackFactory = new MainTileStackFactory();
             // var tileStack = tileStackFactory.Create();

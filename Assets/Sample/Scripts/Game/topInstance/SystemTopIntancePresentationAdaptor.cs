@@ -29,7 +29,7 @@ namespace Sample
             // tileStack.SetPosition(cellStack.Position());
             tileStack.SetPosition(new Vector2(cellStack.Position().x,cellStack.Position().y));
             int random = Random.Range(0, 6);
-            tileStack.Push(new gemTile((gemColors) random));
+            tileStack.Push(new gemTile((gemColors) random,gemTypes.normal));
 
             GameObject newObject = null;
             // newObject = Instantiate(gems[Random.Range(0, 6)],

@@ -52,26 +52,26 @@ namespace Sample
                 tileStack.SetPosition(cellStack.Position());
                 cellStackBoard[i, j] = cellStack;
 
-                SetupCells(cellStack);
-                SetupTiles(tileStack);
+                // SetupCells(cellStack);
+                // SetupTiles(tileStack);
             }
 
             return new LevelBoard(cellStackBoard);
         }
 
-        private void SetupCells(CellStack cellStack)
-        {
-            // You can use cellStack.Push() to push your cells;
-            // You can use cellStack.Attach() to attach your attachments.
-
-            cellStack.Push(new emptyCell());
-        }
-
-        private void SetupTiles(TileStack tileStack)
-        {
-            tileStack.Push(new gemTile((gemColors) Random.Range(0, 4)));
-            // You can use tileStack.Push() to push your tiles;
-        }
+        // private void SetupCells(CellStack cellStack)
+        // {
+        //     // You can use cellStack.Push() to push your cells;
+        //     // You can use cellStack.Attach() to attach your attachments.
+        //
+        //     cellStack.Push(new emptyCell());
+        // }
+        //
+        // private void SetupTiles(TileStack tileStack)
+        // {
+        //     tileStack.Push(new gemTile((gemColors) Random.Range(0, 4)));
+        //     // You can use tileStack.Push() to push your tiles;
+        // }
     }
 
     public class emptyCell : Cell
@@ -88,14 +88,22 @@ namespace Sample
         yellow,
         green
     }
+    public enum gemTypes
+    {
+
+        normal,
+        booster
+    }
 
     public class gemTile : Tile
     {
         public gemColors _color;
+        public gemTypes _gemTypes;
 
-        public gemTile(gemColors color)
+        public gemTile(gemColors color,gemTypes gemTypes)
         {
             _color = color;
+            _gemTypes = gemTypes;
         }
     }
 }

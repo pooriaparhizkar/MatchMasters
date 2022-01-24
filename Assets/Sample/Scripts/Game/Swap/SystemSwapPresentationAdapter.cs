@@ -28,6 +28,10 @@ namespace Sample
             // Debug.Log($"Finished Swaping {cellStack1.Position()} and {cellStack2.Position()} ");
 
             onCompleted.Invoke();
+
+
+
+
         }
     }
 }
