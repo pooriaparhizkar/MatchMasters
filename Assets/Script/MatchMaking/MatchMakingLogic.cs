@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Nakama;
@@ -25,7 +26,8 @@ public class MatchMakingLogic : MonoBehaviour
     private string myUsername;
     private IDictionary<string, GameObject> players;
     private ISession session;
-    private ISocket socket;
+    public static ISocket socket;
+    public static String gameMatchicket;
 
     private async void Start()
     {
@@ -78,7 +80,7 @@ public class MatchMakingLogic : MonoBehaviour
 
         if (foundedName != null)
         {
-            Debug.Log("umad in tuuuuuuuuuuuuuuu");
+            // Debug.Log("umad in tuuuuuuuuuuuuuuu");
             foundText.text = foundedName;
             StartCoroutine(RedirectAfterFound());
         }
@@ -94,7 +96,7 @@ public class MatchMakingLogic : MonoBehaviour
 
     private void OnReceivedMatchPresence(IMatchPresenceEvent matchPresenceEvent)
     {
-        Debug.Log(matchPresenceEvent);
+        gameMatchicket = matchPresenceEvent.MatchId;
         foreach (var user in matchPresenceEvent.Joins)
         {
             Debug.LogFormat("Connected user: " + user.Username);
@@ -177,4 +179,5 @@ public class MatchMakingLogic : MonoBehaviour
     {
         SceneManager.LoadScene("CoreGame");
     }
+ 
 }

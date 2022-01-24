@@ -2,6 +2,7 @@ using System;
 using System.Threading.Tasks;
 using Medrick.Match3CoreSystem.Game;
 using Medrick.Match3CoreSystem.Game.Core;
+using Script.CoreGame;
 using UnityEngine;
 
 namespace Sample
@@ -53,6 +54,7 @@ namespace Sample
             // ActionUtilites.FullyLock<SwapSystemKeyType>(cellStack2);
 
             presentationPort.PlaySwap(cellStack1, cellStack2, () => ApplySwap(cellStack1, cellStack2, swapData.isDrag));
+            socketLogic.sendChat("1", cellStack1.Position().ToString(), cellStack2.Position().ToString());
         }
 
         private void ApplySwap(CellStack cellStack1, CellStack cellStack2, bool isDrag)
