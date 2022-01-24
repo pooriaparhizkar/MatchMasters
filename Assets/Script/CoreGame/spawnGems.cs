@@ -1,5 +1,6 @@
-﻿using System;
+using System;
 using Medrick.Match3CoreSystem.Game.Core;
+using Nakama;
 using Sample;
 using UnityEngine;
 
@@ -13,7 +14,7 @@ public class spawnGems : MonoBehaviour
     public SystemPhysicPresentationAdaptor systemPhysicPresentationAdapter;
     public SystemTopIntancePresentationAdaptor systemTopInstancePresentationAdaptor;
     public SystemInGameBoosterInstancePresentationAdaptor systemInGameBoosterInstancePresentationAdaptor;
-    
+
     private readonly gemColors[,] template1 = new gemColors[7, 7]
     {
         {
@@ -46,10 +47,11 @@ public class spawnGems : MonoBehaviour
         }
     };
 
-    private SampleGameplayMainController gameplayController;
+    public static SampleGameplayMainController gameplayController;
 
     private void Start()
     {
+ 
         var cellStackFactory = new MainCellStackFactory();
         var tileStackFactory = new MainTileStackFactory();
 
