@@ -6,19 +6,22 @@ namespace Sample
 {
     public class InGameBoosterInstanceBlackBoard : MonoBehaviour, BlackBoardData
     {
-        public readonly List<InGameBoosterInstanceData> requestedInGameBoosterInstances = new List<InGameBoosterInstanceData>();
+        public readonly List<InGameBoosterInstanceData> requestedInGameBoosterInstances =
+            new List<InGameBoosterInstanceData>();
 
         public void Clear()
         {
             requestedInGameBoosterInstances.Clear();
         }
-public enum InGameBoosterType
-{
-    upDownarrow,
-    leftRightArrow,
-    bomb,
-    lightning
-}
+
+        public enum InGameBoosterType
+        {
+            upDownarrow,
+            leftRightArrow,
+            bomb,
+            lightning
+        }
+
         public struct InGameBoosterInstanceData
         {
             public readonly Vector2 position;

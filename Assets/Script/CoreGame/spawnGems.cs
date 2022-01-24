@@ -1,4 +1,5 @@
-﻿using Medrick.Match3CoreSystem.Game.Core;
+using System;
+using Medrick.Match3CoreSystem.Game.Core;
 using Nakama;
 using Sample;
 using UnityEngine;
@@ -13,6 +14,7 @@ public class spawnGems : MonoBehaviour
     public SystemPhysicPresentationAdaptor systemPhysicPresentationAdapter;
     public SystemTopIntancePresentationAdaptor systemTopInstancePresentationAdaptor;
     public SystemInGameBoosterInstancePresentationAdaptor systemInGameBoosterInstancePresentationAdaptor;
+
     private readonly gemColors[,] template1 = new gemColors[7, 7]
     {
         {

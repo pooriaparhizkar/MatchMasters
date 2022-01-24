@@ -5,12 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ed10cf5c-ce3a-4d77-8ddb-c0dbe506f13b" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.MatchMasters/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.MatchMasters/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Script.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Spine/1/salbvo 2_Atlas.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Spine/1/salbvo 2_Atlas.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Spine/1/salbvo 2_Material.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Spine/1/salbvo 2_Material.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Spine/2/salbvo 2_Atlas.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Spine/2/salbvo 2_Atlas.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Spine/2/salbvo 2_Material.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Spine/2/salbvo 2_Material.mat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/.idea.MatchMasters/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Script/CoreGame/BackToMenuBtn.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Script/CoreGame/BackToMenuBtn.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Script/CoreGame/socketLogic.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Images/coregame/inGameBooster/bomb.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Images/coregame/inGameBooster/bomb.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sample/Scripts/Game/Swap/SwapSystem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sample/Scripts/Game/Swap/SwapSystem.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/CoreGame.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/CoreGame.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Script/CoreGame/socket.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Script/CoreGame/socket.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/CoreGame/socketLogic.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Script/CoreGame/spawnGems.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/CoreGame/spawnGems.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Script/MatchMaking/MatchMakingLogic.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/MatchMaking/MatchMakingLogic.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/GraphicsSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/GraphicsSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,11 +51,14 @@
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.timeline@1.2.16/Editor/DirectorStyles.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.2d.animation@3.2.4/Editor/SkinningModule/SkinningModule.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.timeline@1.2.16/Editor/Extensions/TrackExtensions.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/ASUS/Desktop/MathMasters/MatchMasters/Assets/Images/coregame/inGameBooster/bomb.meta" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/ASUS/Desktop/MathMasters/MatchMasters/Assets/Images/coregame/inGameBooster/bomb.meta" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.timeline@1.2.16/Editor/Window/Modes/TimelineInactiveMode.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/script/LoadingPage/ProgressBar.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.textmeshpro@2.1.1/Scripts/Runtime/TMP_TextInfo.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/script/trophy button.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ide.rider@1.1.4/Rider/Editor/RiderScriptEditor.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/ASUS/Desktop/MathMasters/MatchMasters/Assets/Images/coregame/inGameBooster/bomb.meta" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.timeline@1.2.16/Editor/treeview/ItemGui/TimelineMarkerGUI.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.2d.animation@3.2.4/Editor/SkinningModule/SkinningModuleView.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.2d.animation@3.2.4/Editor/SkinningModule/VisibilityTool/MeshVisibilityTool.cs" root0="SKIP_HIGHLIGHTING" />

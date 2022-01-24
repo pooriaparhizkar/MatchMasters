@@ -43,9 +43,9 @@ namespace Sample
             columnCounter = 0;
         }
 
-        private bool iterateColumn(int index)
+        private List<gemTile> iterateColumn(int index)
         {
-            bool result;
+            List<gemTile> result;
             var cellStackBoard = gameplayController.LevelBoard.CellStackBoard();
             for (var i = 0; i < 7; i++)
                 if (cellStackBoard[new Vector2Int(index, i)].HasTileStack())
@@ -57,9 +57,9 @@ namespace Sample
             return result;
         }
 
-        private bool iterateRow(int index)
+        private List<gemTile> iterateRow(int index)
         {
-            bool result;
+            List<gemTile> result;
             var cellStackBoard = gameplayController.LevelBoard.CellStackBoard();
             for (var i = 0; i < 7; i++)
                 if (cellStackBoard[new Vector2Int(i, index)].HasTileStack())
@@ -70,15 +70,116 @@ namespace Sample
             return result;
         }
 
+        private int getPositionX(gemTile gemTile)
+        {
+            return (int) gemTile.Parent().Position().x;
+        }
+
+        private int getPositionY(gemTile gemTile)
+        {
+            return (int) gemTile.Parent().Position().y;
+        }
+
+        private void detectTypeAndCallDestroy(List<gemTile> matched)
+        {
+            if (matched.Count != 0)
+            {
+                matched = matched.Distinct().ToList();
+                foreach (var VARIABLE in matched)
+                {
+                    //Arrow :
+                    if (matched.Count == 4 &&
+                        (gameplayController.getLastTileMove1() == VARIABLE.Parent().Position() ||
+                         gameplayController.getLastTileMove2() == VARIABLE.Parent().Position()))
+                    {
+                        //upDown
+                        if (matched[0].Parent().Position().x == matched[1].Parent().Position().x)
+                            GetFrameData<InGameBoosterInstanceBlackBoard>().requestedInGameBoosterInstances.Add(
+                                new InGameBoosterInstanceBlackBoard.InGameBoosterInstanceData(
+                                    VARIABLE.Parent().Position(),
+                                    InGameBoosterInstanceBlackBoard.InGameBoosterType.upDownarrow,
+                                    VARIABLE._color));
+                        //leftRight
+                        else
+                            GetFrameData<InGameBoosterInstanceBlackBoard>().requestedInGameBoosterInstances.Add(
+                                new InGameBoosterInstanceBlackBoard.InGameBoosterInstanceData(
+                                    VARIABLE.Parent().Position(),
+                                    InGameBoosterInstanceBlackBoard.InGameBoosterType.leftRightArrow,
+                                    VARIABLE._color));
+                    }
+
+                    else if (matched.Count == 5 &&
+                             (gameplayController.getLastTileMove1() == VARIABLE.Parent().Position() ||
+                              gameplayController.getLastTileMove2() == VARIABLE.Parent().Position()))
+                    {
+                        //lightning
+                        if (((getPositionX(matched[0]) == getPositionX(matched[1]) &&
+                              getPositionX(matched[1]) == getPositionX(matched[2]) &&
+                              getPositionX(matched[2]) == getPositionX(matched[3])) ||
+                             (getPositionY(matched[0]) == getPositionY(matched[1]) &&
+                              getPositionY(matched[1]) == getPositionY(matched[2]) &&
+                              getPositionY(matched[2]) == getPositionY(matched[3]))))
+
+                            GetFrameData<InGameBoosterInstanceBlackBoard>().requestedInGameBoosterInstances.Add(
+                                new InGameBoosterInstanceBlackBoard.InGameBoosterInstanceData(
+                                    VARIABLE.Parent().Position(),
+                                    InGameBoosterInstanceBlackBoard.InGameBoosterType.lightning, VARIABLE._color));
+                        //bomb:
+                        else
+                            GetFrameData<InGameBoosterInstanceBlackBoard>().requestedInGameBoosterInstances.Add(
+                                new InGameBoosterInstanceBlackBoard.InGameBoosterInstanceData(
+                                    VARIABLE.Parent().Position(),
+                                    InGameBoosterInstanceBlackBoard.InGameBoosterType.bomb, VARIABLE._color));
+                    }
+                    else if (matched.Count > 5 &&
+                             (gameplayController.getLastTileMove1() == VARIABLE.Parent().Position() ||
+                              gameplayController.getLastTileMove2() == VARIABLE.Parent().Position()))
+                        GetFrameData<InGameBoosterInstanceBlackBoard>().requestedInGameBoosterInstances.Add(
+                            new InGameBoosterInstanceBlackBoard.InGameBoosterInstanceData(
+                                VARIABLE.Parent().Position(),
+                                InGameBoosterInstanceBlackBoard.InGameBoosterType.lightning, VARIABLE._color));
+
+                    //Normal :
+                    else
+                    {
+                        if (VARIABLE._gemTypes == gemTypes.normal)
+                            GetFrameData<DestroyBlackBoard>().requestedDestroys.Add(
+                                new DestroyBlackBoard.DestroyData(new Vector2Int((int) VARIABLE.Parent().Position().x,
+                                    (int) VARIABLE.Parent().Position().y)));
+                        else
+                            GetFrameData<InGameBoosterActivationBlackBoard>().requestedInGameBoosterActivations.Add(
+                                new InGameBoosterActivationBlackBoard.InGameBoosterActivationData(new Vector2Int(
+                                        (int) VARIABLE.Parent().Position().x,
+                                        (int) VARIABLE.Parent().Position().y),
+                                    VARIABLE._gemTypes == gemTypes.bomb
+                                        ?
+                                        InGameBoosterActivationBlackBoard.InGameBoosterType.bomb
+                                        : VARIABLE._gemTypes == gemTypes.lightning
+                                            ? InGameBoosterActivationBlackBoard.InGameBoosterType.lightning
+                                            : VARIABLE._gemTypes == gemTypes.upDownarrow
+                                                ? InGameBoosterActivationBlackBoard.InGameBoosterType.upDownarrow
+                                                : InGameBoosterActivationBlackBoard.InGameBoosterType.leftRightArrow,VARIABLE._color));
+                    }
+                }
+
+                matched.Clear();
+            }
+        }
+
         public override void Update(float dt)
         {
-            if (!gameplayController.LevelBoard.CellStackBoard().isBoardLock()) //in destroy system and physic system lock and unlock
+            if (!gameplayController.LevelBoard.CellStackBoard()
+                .isBoardLock()) //in destroy system and physic system lock and unlock
             {
+                List<gemTile> matched = new List<gemTile>();
                 for (var i = 0; i < 7; i++)
                 {
-                    iterateColumn(i);
-                    iterateRow(i);
+                    matched.AddRange(iterateColumn(i));
+                    matched.AddRange(iterateRow(i));
                 }
+
+                detectTypeAndCallDestroy(matched);
+                matched.Clear();
             }
 
             foreach (var swapData in CheckBlackBoard.requestedChecks)
@@ -93,9 +194,9 @@ namespace Sample
             bool isMatched2 = false;
             for (var i = 0; i < 7; i++)
             {
-                if (iterateColumn(i))
+                if (iterateColumn(i).Count != 0)
                     isMatched1 = true;
-                if (iterateRow(i))
+                if (iterateRow(i).Count != 0)
                     isMatched2 = true;
             }
 
@@ -111,7 +212,7 @@ namespace Sample
         }
 
 
-        private bool checkRow(List<gemTile> rowArray)
+        private List<gemTile> checkRow(List<gemTile> rowArray)
         {
             var matched = new List<gemTile>();
             for (var i = 0; i < rowArray.Count - 2; i++)
@@ -136,41 +237,8 @@ namespace Sample
                     }
                 }
 
-            if (matched.Count != 0)
-            {
-                matched = matched.Distinct().ToList();
-                foreach (var VARIABLE in matched)
-                    // Debug.Log(VARIABLE.Parent().Position());
-                    // VARIABLE.Parent().Destroy();
-                    // VARIABLE.Parent().Push(new emptyTile());
 
-                    // return;
-                    // VARIABLE.Parent().Destroy();
-
-                {
-                    //Arrow :
-                    if (matched.Count==4 && (gameplayController.getLastTileMove1()==VARIABLE.Parent().Position() || gameplayController.getLastTileMove2()==VARIABLE.Parent().Position()))
-                    {
-                        if (matched[0].Parent().Position().x == matched[1].Parent().Position().x)
-                            GetFrameData<InGameBoosterInstanceBlackBoard>().requestedInGameBoosterInstances.Add(
-                                new InGameBoosterInstanceBlackBoard.InGameBoosterInstanceData(VARIABLE.Parent().Position(),InGameBoosterInstanceBlackBoard.InGameBoosterType.upDownarrow,VARIABLE._color));
-                        else
-                            GetFrameData<InGameBoosterInstanceBlackBoard>().requestedInGameBoosterInstances.Add(
-                                new InGameBoosterInstanceBlackBoard.InGameBoosterInstanceData(VARIABLE.Parent().Position(),InGameBoosterInstanceBlackBoard.InGameBoosterType.leftRightArrow,VARIABLE._color));
-                    }
-                    //Normal :
-                    else
-                        GetFrameData<DestroyBlackBoard>().requestedDestroys.Add(
-                            new DestroyBlackBoard.DestroyData(new Vector2Int((int) VARIABLE.Parent().Position().x,
-                                (int) VARIABLE.Parent().Position().y)));
-
-                }
-
-                matched.Clear();
-                return true;
-            }
-
-            return false;
+            return matched;
         }
     }
 }
