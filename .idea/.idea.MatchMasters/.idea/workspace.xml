@@ -6,8 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="ed10cf5c-ce3a-4d77-8ddb-c0dbe506f13b" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.MatchMasters/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.MatchMasters/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Script/CoreGame/perkHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/CoreGame/perkHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sample/Scripts/Game/Swap/SwapSystem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sample/Scripts/Game/Swap/SwapSystem.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/CoreGame.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/CoreGame.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/MatchMaking.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/MatchMaking.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Script/CoreGame/socketLogic.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/CoreGame/socketLogic.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Script/LoadingPage/ProgressBar.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/LoadingPage/ProgressBar.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -157,7 +160,7 @@
       <workItem from="1642002525704" duration="120000" />
       <workItem from="1642002659276" duration="171000" />
       <workItem from="1642003153091" duration="3856000" />
-      <workItem from="1643097968950" duration="12228000" />
+      <workItem from="1643097968950" duration="13537000" />
     </task>
     <servers />
   </component>

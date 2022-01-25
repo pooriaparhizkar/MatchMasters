@@ -42,19 +42,15 @@ namespace Script.CoreGame
             {
                 // var content = newState.State.ToString();
                 string content = enc.GetString(newState.State).ToString();
-                Debug.Log(content);
                 var jsonContent = sendMessageInfo.CreateFromJSON(content);
-                Debug.Log(jsonContent);
                 Vector2Int sourcePosiiton = new Vector2Int(
                     Int32.Parse(jsonContent.sourcePosition.Split(',')[0].Remove(0, 1)),
                     Int32.Parse(jsonContent.sourcePosition.Split(',')[1].Remove(0, 1).Substring(0, 1)));
 
-                Debug.Log(sourcePosiiton);
                 Vector2Int targetPosition = new Vector2Int(
                     Int32.Parse(jsonContent.targetPosition.Split(',')[0].Remove(0, 1)),
                     Int32.Parse(jsonContent.targetPosition.Split(',')[1].Remove(0, 1).Substring(0, 1)));
 
-                Debug.Log(targetPosition);
                 //opCodes : 
                 //1 : swap
                 //2 : Click on Hammer perk
@@ -105,7 +101,7 @@ namespace Script.CoreGame
             await mySocket.LeaveMatchAsync(matchId);
             Debug.Log("Quited");
 
-            // SceneManager.LoadScene("MainApp");
+            SceneManager.LoadScene("MainApp");
         }
 
         public async void OnReconnectBtnClick()
