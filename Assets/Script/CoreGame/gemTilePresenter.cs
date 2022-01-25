@@ -2,6 +2,7 @@
 using Medrick.Match3CoreSystem.Game;
 using Medrick.Match3CoreSystem.Game.Core;
 using Sample;
+using Script.CoreGame;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using Component = Medrick.ComponentSystem.Core.Component;
@@ -63,6 +64,8 @@ public class gemTilePresenter : SwapBlackBoard, Component, IDragHandler, IEndDra
                     _gameplayMainController.setLastTileMoves(firstPos,secondPos);
                     _gameplayMainController.FrameBasedBlackBoard.GetComponent<SwapBlackBoard>().requestedSwaps
                         .Add(new SwapData(firstPos, secondPos,true));
+                    socketLogic.sendChat("1", firstPos.ToString(), secondPos.ToString());
+
                 }
 
             }

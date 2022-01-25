@@ -9,6 +9,7 @@ using Sample;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+
 namespace Script.CoreGame
 {
     [System.Serializable]
@@ -29,8 +30,10 @@ namespace Script.CoreGame
         private static ISocket mySocket;
         private static String myGameMatchicket;
 
+
         private async void Start()
         {
+
             mySocket = MatchMakingLogic.socket;
             myGameMatchicket = MatchMakingLogic.gameMatchicket;
 
@@ -59,6 +62,7 @@ namespace Script.CoreGame
                 switch (jsonContent.opcode)
                 {
                     case "1":
+                        gameplayController.setLastTileMoves(sourcePosiiton,targetPosition);
                         gameplayController.FrameBasedBlackBoard.GetComponent<SwapBlackBoard>().requestedSwaps
                             .Add(new SwapBlackBoard.SwapData(
                                 sourcePosiiton, targetPosition,

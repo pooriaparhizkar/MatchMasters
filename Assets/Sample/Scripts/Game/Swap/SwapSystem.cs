@@ -54,7 +54,7 @@ namespace Sample
             // ActionUtilites.FullyLock<SwapSystemKeyType>(cellStack2);
 
             presentationPort.PlaySwap(cellStack1, cellStack2, () => ApplySwap(cellStack1, cellStack2, swapData.isDrag));
-            socketLogic.sendChat("1", cellStack1.Position().ToString(), cellStack2.Position().ToString());
+
         }
 
         private async void ApplySwap(CellStack cellStack1, CellStack cellStack2, bool isDrag)
@@ -108,13 +108,15 @@ namespace Sample
                             InGameBoosterActivationBlackBoard.InGameBoosterType.LeftRightArrowBomb, gemTileTwo._color));
                 }
                 //UpDownArrow+Lightning
-                else if ((gemTileOne._gemTypes == gemTypes.leftRightArrow && gemTileTwo._gemTypes == gemTypes.lightning) ||
+                else if ((gemTileOne._gemTypes == gemTypes.leftRightArrow &&
+                          gemTileTwo._gemTypes == gemTypes.lightning) ||
                          gemTileOne._gemTypes == gemTypes.lightning && gemTileTwo._gemTypes == gemTypes.leftRightArrow)
                 {
                     GetFrameData<InGameBoosterActivationBlackBoard>().requestedInGameBoosterActivations.Add(
                         new InGameBoosterActivationBlackBoard.InGameBoosterActivationData(
                             gemTileTwo.Parent().Position(),
-                            InGameBoosterActivationBlackBoard.InGameBoosterType.LeftRightArrowLightning, gemTileTwo._color));
+                            InGameBoosterActivationBlackBoard.InGameBoosterType.LeftRightArrowLightning,
+                            gemTileTwo._color));
                 }
                 //upDownArrow+Lightning
                 else if ((gemTileOne._gemTypes == gemTypes.upDownarrow && gemTileTwo._gemTypes == gemTypes.lightning) ||
@@ -123,7 +125,8 @@ namespace Sample
                     GetFrameData<InGameBoosterActivationBlackBoard>().requestedInGameBoosterActivations.Add(
                         new InGameBoosterActivationBlackBoard.InGameBoosterActivationData(
                             gemTileTwo.Parent().Position(),
-                            InGameBoosterActivationBlackBoard.InGameBoosterType.TopDownArrowLightning, gemTileTwo._color));
+                            InGameBoosterActivationBlackBoard.InGameBoosterType.TopDownArrowLightning,
+                            gemTileTwo._color));
                 }
                 //Bomb+Lightning
                 else if ((gemTileOne._gemTypes == gemTypes.bomb && gemTileTwo._gemTypes == gemTypes.lightning) ||
