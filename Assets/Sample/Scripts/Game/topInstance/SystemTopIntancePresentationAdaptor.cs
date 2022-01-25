@@ -4,7 +4,7 @@ using DG.Tweening;
 using Medrick.Match3CoreSystem.Game;
 using Medrick.Match3CoreSystem.Game.Core;
 using UnityEngine;
-using Random = UnityEngine.Random;
+
 
 namespace Sample
 {
@@ -12,6 +12,7 @@ namespace Sample
     {
         public GameObject[] gems;
         public GameObject boardGame;
+
 
         private Vector3 logicalPositionToPresentation(Vector2 pos)
         {
@@ -28,7 +29,8 @@ namespace Sample
             cellStack.SetCurrnetTileStack(tileStack);
             // tileStack.SetPosition(cellStack.Position());
             tileStack.SetPosition(new Vector2(cellStack.Position().x,cellStack.Position().y));
-            int random = Random.Range(0, 6);
+
+            int random = spawnGems.randomSeed.Next(6);
             tileStack.Push(new gemTile((gemColors) random,gemTypes.normal));
 
             GameObject newObject = null;

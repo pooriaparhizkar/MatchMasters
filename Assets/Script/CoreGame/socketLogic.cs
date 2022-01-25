@@ -9,6 +9,7 @@ using Sample;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+
 namespace Script.CoreGame
 {
     [System.Serializable]
@@ -29,6 +30,7 @@ namespace Script.CoreGame
         private static ISocket mySocket;
         private static String myGameMatchicket;
 
+
         private async void Start()
         {
             mySocket = MatchMakingLogic.socket;
@@ -40,29 +42,57 @@ namespace Script.CoreGame
             {
                 // var content = newState.State.ToString();
                 string content = enc.GetString(newState.State).ToString();
+                Debug.Log(content);
                 var jsonContent = sendMessageInfo.CreateFromJSON(content);
-
+                Debug.Log(jsonContent);
                 Vector2Int sourcePosiiton = new Vector2Int(
                     Int32.Parse(jsonContent.sourcePosition.Split(',')[0].Remove(0, 1)),
                     Int32.Parse(jsonContent.sourcePosition.Split(',')[1].Remove(0, 1).Substring(0, 1)));
 
+                Debug.Log(sourcePosiiton);
                 Vector2Int targetPosition = new Vector2Int(
                     Int32.Parse(jsonContent.targetPosition.Split(',')[0].Remove(0, 1)),
                     Int32.Parse(jsonContent.targetPosition.Split(',')[1].Remove(0, 1).Substring(0, 1)));
 
+                Debug.Log(targetPosition);
                 //opCodes : 
                 //1 : swap
-                //2 : Hammer perk
-                //3 : Shuffle perk
-                //4 : Booster
-                //5 : Exit
+                //2 : Click on Hammer perk
+                //3 : Activate Hammer perk with position
+                //4 : Shuffle perk
+                //5 : Booster
+                //6 : Exit
                 switch (jsonContent.opcode)
                 {
                     case "1":
+                        gameplayController.setLastTileMoves(sourcePosiiton, targetPosition);
                         gameplayController.FrameBasedBlackBoard.GetComponent<SwapBlackBoard>().requestedSwaps
                             .Add(new SwapBlackBoard.SwapData(
                                 sourcePosiiton, targetPosition,
                                 true));
+                        break;
+
+                    case "2":
+                        //open the blackScreen of hammer perk
+                        Debug.Log("perk 2222");
+                        gameplayController.FrameBasedBlackBoard.GetComponent<PerkHandlerBlackBoard>()
+                            .requestedPerkHandlers
+                            .Add(new PerkHandlerBlackBoard.PerkHandlerData(PerkHandlerBlackBoard.PerkHandlerType.hammer,
+                                new Vector2Int(-100, -100), 1));
+                        break;
+
+                    case "3":
+                        //Destroy position clicked
+                        gameplayController.FrameBasedBlackBoard.GetComponent<PerkHandlerBlackBoard>()
+                            .requestedPerkHandlers
+                            .Add(new PerkHandlerBlackBoard.PerkHandlerData(PerkHandlerBlackBoard.PerkHandlerType.hammer,
+                                sourcePosiiton));
+
+                        //Close the blackScreen of hammer perk
+                        gameplayController.FrameBasedBlackBoard.GetComponent<PerkHandlerBlackBoard>()
+                            .requestedPerkHandlers
+                            .Add(new PerkHandlerBlackBoard.PerkHandlerData(PerkHandlerBlackBoard.PerkHandlerType.hammer,
+                                new Vector2Int(-100, -100), 0));
                         break;
                 }
             };

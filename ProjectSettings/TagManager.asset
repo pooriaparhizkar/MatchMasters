@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - boxSlot
+  - perkBlackScreen
   layers:
   - Default
   - TransparentFX
