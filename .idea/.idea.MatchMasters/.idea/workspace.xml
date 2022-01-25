@@ -6,12 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="ed10cf5c-ce3a-4d77-8ddb-c0dbe506f13b" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.MatchMasters/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.MatchMasters/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Images/coregame/gem/green_gem.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Images/coregame/gem/green_gem.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Match3CoreSystem/Runtime/Scritps/Gameplay/BasicGameplayMainController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Match3CoreSystem/Runtime/Scritps/Gameplay/BasicGameplayMainController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sample/Scripts/Game/SampleGameplayMainController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sample/Scripts/Game/SampleGameplayMainController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Script/CoreGame/gemTilePresenter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/CoreGame/gemTilePresenter.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Script/CoreGame/perkHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/CoreGame/perkHandler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Script/CoreGame/spawnGems.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/CoreGame/spawnGems.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Script/CoreGame/socketLogic.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/CoreGame/socketLogic.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -161,7 +157,7 @@
       <workItem from="1642002525704" duration="120000" />
       <workItem from="1642002659276" duration="171000" />
       <workItem from="1642003153091" duration="3856000" />
-      <workItem from="1643097968950" duration="10633000" />
+      <workItem from="1643097968950" duration="12228000" />
     </task>
     <servers />
   </component>
