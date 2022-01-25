@@ -7,7 +7,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using Component = Medrick.ComponentSystem.Core.Component;
 
-public class gemTilePresenter : SwapBlackBoard, Component, IDragHandler, IEndDragHandler
+public class gemTilePresenter : SwapBlackBoard, Component, IDragHandler, IEndDragHandler,IPointerClickHandler
 {
     private BasicGameplayMainController _gameplayMainController;
 
@@ -76,5 +76,11 @@ public class gemTilePresenter : SwapBlackBoard, Component, IDragHandler, IEndDra
     public void OnEndDrag(PointerEventData eventData)
     {
         isDraging = false;
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        perkHandler.hammerPerkGemClicked(new Vector2Int((int) _tileStack.Position().x, (int) _tileStack.Position().y));
+
     }
 }

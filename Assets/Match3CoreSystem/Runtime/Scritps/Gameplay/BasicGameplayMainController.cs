@@ -1,15 +1,17 @@
 ﻿using System.Collections.Generic;
 using Medrick.Match3CoreSystem.Game.Core;
+using UnityEngine;
 using Position = UnityEngine.Vector2;
 
 
 namespace Medrick.Match3CoreSystem.Game
 {
-    public abstract class BasicGameplayMainController : GameplayMainController
+    public abstract class BasicGameplayMainController : MonoBehaviour,GameplayMainController
     {
         private readonly List<PresentationPort> presentationHandlers = new List<PresentationPort>();
         private Position lastTileMove1;
         private Position lastTileMove2;
+
 
         public void setLastTileMoves(Position lastTileMove1,Position lastTileMove2)
         {

@@ -15,6 +15,7 @@ public class spawnGems : MonoBehaviour
     public SystemPhysicPresentationAdaptor systemPhysicPresentationAdapter;
     public SystemTopIntancePresentationAdaptor systemTopInstancePresentationAdaptor;
     public SystemInGameBoosterInstancePresentationAdaptor systemInGameBoosterInstancePresentationAdaptor;
+    public SystemPerkHandlerPresentationAdaptor systemPerkHandlerPresentationAdaptor;
     public static Random randomSeed;
 
     private readonly gemColors[,] template1 = new gemColors[7, 7]
@@ -68,6 +69,7 @@ public class spawnGems : MonoBehaviour
         gameplayController.AddPresentationPort(systemPhysicPresentationAdapter);
         gameplayController.AddPresentationPort(systemTopInstancePresentationAdaptor);
         gameplayController.AddPresentationPort(systemInGameBoosterInstancePresentationAdaptor);
+        gameplayController.AddPresentationPort(systemPerkHandlerPresentationAdaptor);
         foreach (var cellStack in gameplayController.LevelBoard.leftToRightTopDownCellStackArray)
             if (cellStack.HasTileStack())
             {
