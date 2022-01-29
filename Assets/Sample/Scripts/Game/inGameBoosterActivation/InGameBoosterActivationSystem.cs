@@ -126,8 +126,8 @@ namespace Sample
 
             while (counter <= givenCounter)
             {
-                int i = Random.Range(0, 7);
-                int j = Random.Range(0, 7);
+                int i = spawnGems.randomSeed.Next(7);
+                int j = spawnGems.randomSeed.Next(7);
                 if (cellStackBoard[new Vector2Int(i, j)].HasTileStack())
                 {
                     counter++;
