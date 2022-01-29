@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MatchMaking.unity
     guid: cc91df633089a6141bdeb9f62198a870
+  - enabled: 1
+    path: Assets/Scenes/milestone.unity
+    guid: 5917122d5d739ba45ad89c381c6a93ad
   m_configObjects: {}
