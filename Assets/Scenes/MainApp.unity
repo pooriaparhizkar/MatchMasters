@@ -1142,7 +1142,7 @@ RectTransform:
   - {fileID: 1567662942}
   - {fileID: 718003561}
   m_Father: {fileID: 1316673220}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -5948,6 +5948,7 @@ GameObject:
   - component: {fileID: 1316673220}
   - component: {fileID: 1316673222}
   - component: {fileID: 1316673221}
+  - component: {fileID: 1316673223}
   m_Layer: 0
   m_Name: FirstPage
   m_TagString: Untagged
@@ -5966,10 +5967,10 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: -3336.4844}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1664896269}
   - {fileID: 254533467}
   - {fileID: 1930097915}
   - {fileID: 1884519749}
+  - {fileID: 1664896269}
   m_Father: {fileID: 472793520}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6015,6 +6016,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1316673219}
   m_CullTransparentMesh: 0
+--- !u!114 &1316673223
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1316673219}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2534823bd5626184b9c69e84ff538dc0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1323794499
 GameObject:
   m_ObjectHideFlags: 0
@@ -8561,6 +8574,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1664896269}
   - component: {fileID: 1664896270}
+  - component: {fileID: 1664896272}
   m_Layer: 0
   m_Name: CenterMain
   m_TagString: Untagged
@@ -8583,7 +8597,7 @@ RectTransform:
   - {fileID: 943073518}
   - {fileID: 395630673}
   m_Father: {fileID: 1316673220}
-  m_RootOrder: 0
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
@@ -8598,6 +8612,34 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1664896268}
   m_CullTransparentMesh: 0
+--- !u!114 &1664896272
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1664896268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 2
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1316673223}
+          m_MethodName: loadmilstone2
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &1670111025
 GameObject:
   m_ObjectHideFlags: 0
@@ -9610,7 +9652,7 @@ RectTransform:
   m_Children:
   - {fileID: 1642531634}
   m_Father: {fileID: 1316673220}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
@@ -9872,7 +9914,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1316673220}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
