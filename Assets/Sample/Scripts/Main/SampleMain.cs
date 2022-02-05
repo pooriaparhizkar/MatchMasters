@@ -108,5 +108,11 @@ namespace Sample
             _color = color;
             _gemTypes = gemTypes;
         }
+
+        public void setGemType(gemTypes gemTypes)
+        {
+            _gemTypes = gemTypes;
+        }
+
     }
 }

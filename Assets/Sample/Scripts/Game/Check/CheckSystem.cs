@@ -142,10 +142,14 @@ namespace Sample
                     //Normal :
                     else
                     {
+                        Debug.Log(VARIABLE._gemTypes);
                         if (VARIABLE._gemTypes == gemTypes.normal)
+                        {
+                            Debug.Log("2");
                             GetFrameData<DestroyBlackBoard>().requestedDestroys.Add(
                                 new DestroyBlackBoard.DestroyData(new Vector2Int((int) VARIABLE.Parent().Position().x,
                                     (int) VARIABLE.Parent().Position().y)));
+                        }
                         else
                             GetFrameData<InGameBoosterActivationBlackBoard>().requestedInGameBoosterActivations.Add(
                                 new InGameBoosterActivationBlackBoard.InGameBoosterActivationData(new Vector2Int(

@@ -23,6 +23,7 @@ namespace Sample
     {
         private InGameBoosterActivationSystemPresentationPort presentationPort;
         private InGameBoosterActivationBlackBoard InGameBoosterActivationBlackBoard;
+        private CellStackBoard cellStackBoard;
 
         public InGameBoosterActivationSystem(BasicGameplayMainController gameplayController) : base(gameplayController)
         {
@@ -32,63 +33,151 @@ namespace Sample
         {
             base.Start();
             InGameBoosterActivationBlackBoard = GetFrameData<InGameBoosterActivationBlackBoard>();
+            cellStackBoard = gameplayController.LevelBoard.CellStackBoard();
+        }
+
+        private void detectGemAndDestroy(gemTile VARIABLE)
+        {
+            Vector2Int position = new Vector2Int((int) VARIABLE.Parent().Position().x,
+                (int) VARIABLE.Parent().Position().y);
+            if (VARIABLE._gemTypes == gemTypes.normal)
+                GetFrameData<DestroyBlackBoard>().requestedDestroys.Add(
+                    new DestroyBlackBoard.DestroyData(position));
+            else if (VARIABLE._gemTypes == gemTypes.bomb)
+                activateBomb(new InGameBoosterActivationBlackBoard.InGameBoosterActivationData(position,
+                    InGameBoosterActivationBlackBoard.InGameBoosterType.bomb, VARIABLE._color));
+            else if (VARIABLE._gemTypes == gemTypes.lightning)
+                activeLightning(
+                    new InGameBoosterActivationBlackBoard.InGameBoosterActivationData(position,
+                        InGameBoosterActivationBlackBoard.InGameBoosterType.lightning, VARIABLE._color), 16);
+            else if (VARIABLE._gemTypes == gemTypes.upDownarrow)
+                activateUpDownArrow(new InGameBoosterActivationBlackBoard.InGameBoosterActivationData(position,
+                    InGameBoosterActivationBlackBoard.InGameBoosterType.upDownarrow, VARIABLE._color));
+            else if (VARIABLE._gemTypes == gemTypes.leftRightArrow)
+                activateLeftRightArrow(new InGameBoosterActivationBlackBoard.InGameBoosterActivationData(position,
+                    InGameBoosterActivationBlackBoard.InGameBoosterType.leftRightArrow, VARIABLE._color));
+
+            // {
+            //     Debug.Log("invaaar");
+            //     GetFrameData<InGameBoosterActivationBlackBoard>().requestedInGameBoosterActivations.Add(
+            //         new InGameBoosterActivationBlackBoard.InGameBoosterActivationData(new Vector2Int(
+            //                 (int) VARIABLE.Parent().Position().x,
+            //                 (int) VARIABLE.Parent().Position().y),
+            //             VARIABLE._gemTypes == gemTypes.bomb
+            //                 ? InGameBoosterActivationBlackBoard.InGameBoosterType.bomb
+            //                 : VARIABLE._gemTypes == gemTypes.lightning
+            //                     ? InGameBoosterActivationBlackBoard.InGameBoosterType.lightning
+            //                     : VARIABLE._gemTypes == gemTypes.upDownarrow
+            //                         ? InGameBoosterActivationBlackBoard.InGameBoosterType.upDownarrow
+            //                         : InGameBoosterActivationBlackBoard.InGameBoosterType.leftRightArrow,
+            //             VARIABLE._color));
+            // }
         }
 
         private void activateBomb(InGameBoosterActivationBlackBoard.InGameBoosterActivationData item)
         {
+            GetFrameData<DestroyBlackBoard>().requestedDestroys.Add(
+                new DestroyBlackBoard.DestroyData(new Vector2Int((int) item.position.x,
+                    (int) item.position.y)));
             int xPosition = (int) item.position.x;
             int yPosition = (int) item.position.y;
             var cellStackBoard = gameplayController.LevelBoard.CellStackBoard();
+            (cellStackBoard[new Vector2Int(xPosition, yPosition)]
+                .CurrentTileStack()
+                .Top() as gemTile).setGemType(gemTypes.normal);
             for (int j = -1; j <= 1; j++)
             for (int i = -1; i <= 1; i++)
-                if ((xPosition + i) >= 0 && (xPosition + i) < 7 && (yPosition + j) >= 0 && (yPosition + j) < 7)
+            {
+                if ((xPosition + i) >= 0 && (xPosition + i) < 7 && (yPosition + j) >= 0 &&
+                    (yPosition + j) < 7)
                     if (cellStackBoard[new Vector2Int(xPosition + i, yPosition + j)].HasTileStack())
-                        GetFrameData<DestroyBlackBoard>().requestedDestroys.Add(
-                            new DestroyBlackBoard.DestroyData(new Vector2Int(xPosition + i,
-                                yPosition + j)));
+                        // GetFrameData<DestroyBlackBoard>().requestedDestroys.Add(
+                        //     new DestroyBlackBoard.DestroyData(new Vector2Int(xPosition + i,
+                        //         yPosition + j)));
+                        detectGemAndDestroy(cellStackBoard[new Vector2Int(xPosition + i, yPosition + j)]
+                            .CurrentTileStack()
+                            .Top() as gemTile);
+            }
+
+            // GetFrameData<DestroyBlackBoard>().requestedDestroys.Add(
+            //     new DestroyBlackBoard.DestroyData(new Vector2Int(xPosition + i,
+            //         yPosition + j)));
             if ((xPosition + 2) >= 0 && (xPosition + 2) < 7 &&
                 cellStackBoard[new Vector2Int(xPosition + 2, yPosition)].HasTileStack())
-                GetFrameData<DestroyBlackBoard>().requestedDestroys.Add(
-                    new DestroyBlackBoard.DestroyData(new Vector2Int(xPosition + 2,
-                        yPosition)));
+                detectGemAndDestroy(cellStackBoard[new Vector2Int(xPosition + 2, yPosition)].CurrentTileStack()
+                    .Top() as gemTile);
+            // GetFrameData<DestroyBlackBoard>().requestedDestroys.Add(
+            //     new DestroyBlackBoard.DestroyData(new Vector2Int(xPosition + 2,
+            //         yPosition)));
             if ((xPosition - 2) >= 0 && (xPosition - 2) < 7 &&
                 cellStackBoard[new Vector2Int(xPosition - 2, yPosition)].HasTileStack())
-                GetFrameData<DestroyBlackBoard>().requestedDestroys.Add(
-                    new DestroyBlackBoard.DestroyData(new Vector2Int(xPosition - 2,
-                        yPosition)));
+                detectGemAndDestroy(cellStackBoard[new Vector2Int(xPosition - 2, yPosition)].CurrentTileStack()
+                    .Top() as gemTile);
+            // GetFrameData<DestroyBlackBoard>().requestedDestroys.Add(
+            //     new DestroyBlackBoard.DestroyData(new Vector2Int(xPosition - 2,
+            //         yPosition)));
             if ((yPosition + 2) >= 0 && (yPosition + 2) < 7 &&
                 cellStackBoard[new Vector2Int(xPosition, yPosition + 2)].HasTileStack())
-                GetFrameData<DestroyBlackBoard>().requestedDestroys.Add(
-                    new DestroyBlackBoard.DestroyData(new Vector2Int(xPosition,
-                        yPosition + 2)));
+                detectGemAndDestroy(cellStackBoard[new Vector2Int(xPosition, yPosition + 2)].CurrentTileStack()
+                    .Top() as gemTile);
+            // GetFrameData<DestroyBlackBoard>().requestedDestroys.Add(
+            //     new DestroyBlackBoard.DestroyData(new Vector2Int(xPosition,
+            //         yPosition + 2)));
             if ((yPosition - 2) >= 0 && (yPosition - 2) < 7 &&
                 cellStackBoard[new Vector2Int(xPosition, yPosition - 2)].HasTileStack())
-                GetFrameData<DestroyBlackBoard>().requestedDestroys.Add(
-                    new DestroyBlackBoard.DestroyData(new Vector2Int(xPosition,
-                        yPosition - 2)));
+                detectGemAndDestroy(cellStackBoard[new Vector2Int(xPosition, yPosition - 2)].CurrentTileStack()
+                    .Top() as gemTile);
+            // GetFrameData<DestroyBlackBoard>().requestedDestroys.Add(
+            //     new DestroyBlackBoard.DestroyData(new Vector2Int(xPosition,
+            //         yPosition - 2)));
         }
 
         private void activateUpDownArrow(InGameBoosterActivationBlackBoard.InGameBoosterActivationData item)
         {
+            (cellStackBoard[new Vector2Int((int) item.position.x,  (int) item.position.y)]
+                .CurrentTileStack()
+                .Top() as gemTile).setGemType(gemTypes.normal);
+            GetFrameData<DestroyBlackBoard>().requestedDestroys.Add(
+                new DestroyBlackBoard.DestroyData(new Vector2Int((int) item.position.x,
+                    (int) item.position.y)));
             for (int i = 0; i < 7; i++)
-                GetFrameData<DestroyBlackBoard>().requestedDestroys.Add(
-                    new DestroyBlackBoard.DestroyData(new Vector2Int((int) item.position.x,
-                        i)));
+                if (cellStackBoard[new Vector2Int((int) item.position.x, i)].HasTileStack())
+                    detectGemAndDestroy(cellStackBoard[new Vector2Int((int) item.position.x, i)].CurrentTileStack()
+                        .Top() as gemTile);
+            // GetFrameData<DestroyBlackBoard>().requestedDestroys.Add(
+            //     new DestroyBlackBoard.DestroyData(new Vector2Int((int) item.position.x,
+            //         i)));
         }
 
         private void activateLeftRightArrow(InGameBoosterActivationBlackBoard.InGameBoosterActivationData item)
         {
+            (cellStackBoard[new Vector2Int((int) item.position.x,  (int) item.position.y)]
+                .CurrentTileStack()
+                .Top() as gemTile).setGemType(gemTypes.normal);
+            GetFrameData<DestroyBlackBoard>().requestedDestroys.Add(
+                new DestroyBlackBoard.DestroyData(new Vector2Int((int) item.position.x,
+                    (int) item.position.y)));
             for (int i = 0; i < 7; i++)
-                GetFrameData<DestroyBlackBoard>().requestedDestroys.Add(
-                    new DestroyBlackBoard.DestroyData(new Vector2Int(i,
-                        (int) item.position.y)));
+                if (cellStackBoard[new Vector2Int(i, (int) item.position.y)].HasTileStack())
+                    detectGemAndDestroy(cellStackBoard[new Vector2Int(i, (int) item.position.y)].CurrentTileStack()
+                        .Top() as gemTile);
+            // GetFrameData<DestroyBlackBoard>().requestedDestroys.Add(
+            //     new DestroyBlackBoard.DestroyData(new Vector2Int(i,
+            //         (int) item.position.y)));
         }
 
         private void activeLightning(InGameBoosterActivationBlackBoard.InGameBoosterActivationData item,
             int givenCounter)
         {
+
+            GetFrameData<DestroyBlackBoard>().requestedDestroys.Add(
+                new DestroyBlackBoard.DestroyData(new Vector2Int((int) item.position.x,
+                    (int) item.position.y)));
             int counter = 0;
             var cellStackBoard = gameplayController.LevelBoard.CellStackBoard();
+            (cellStackBoard[new Vector2Int((int) item.position.x,  (int) item.position.y)]
+                .CurrentTileStack()
+                .Top() as gemTile).setGemType(gemTypes.normal);
             for (var i = 0; i < 7; i++)
             for (var j = 0; j < 7; j++)
                 if (cellStackBoard[new Vector2Int(i, j)].HasTileStack())
@@ -98,10 +187,11 @@ namespace Sample
                     if (tileStack._color == item.gemColors)
                     {
                         counter++;
-                        GetFrameData<DestroyBlackBoard>().requestedDestroys.Add(
-                            new DestroyBlackBoard.DestroyData(new Vector2Int(
-                                (int) tileStack.Parent().Position().x,
-                                (int) tileStack.Parent().Position().y)));
+                        detectGemAndDestroy(tileStack);
+                        // GetFrameData<DestroyBlackBoard>().requestedDestroys.Add(
+                        //     new DestroyBlackBoard.DestroyData(new Vector2Int(
+                        //         (int) tileStack.Parent().Position().x,
+                        //         (int) tileStack.Parent().Position().y)));
                     }
                 }
 
@@ -116,10 +206,11 @@ namespace Sample
                         if (tileStack._gemTypes != gemTypes.normal)
                         {
                             counter++;
-                            GetFrameData<DestroyBlackBoard>().requestedDestroys.Add(
-                                new DestroyBlackBoard.DestroyData(new Vector2Int(
-                                    (int) tileStack.Parent().Position().x,
-                                    (int) tileStack.Parent().Position().y)));
+                            detectGemAndDestroy(tileStack);
+                            // GetFrameData<DestroyBlackBoard>().requestedDestroys.Add(
+                            //     new DestroyBlackBoard.DestroyData(new Vector2Int(
+                            //         (int) tileStack.Parent().Position().x,
+                            //         (int) tileStack.Parent().Position().y)));
                         }
                     }
             }
@@ -131,10 +222,11 @@ namespace Sample
                 if (cellStackBoard[new Vector2Int(i, j)].HasTileStack())
                 {
                     counter++;
-                    GetFrameData<DestroyBlackBoard>().requestedDestroys.Add(
-                        new DestroyBlackBoard.DestroyData(new Vector2Int(
-                            i,
-                            j)));
+                    detectGemAndDestroy(cellStackBoard[new Vector2Int(i, j)].CurrentTileStack().Top() as gemTile);
+                    // GetFrameData<DestroyBlackBoard>().requestedDestroys.Add(
+                    //     new DestroyBlackBoard.DestroyData(new Vector2Int(
+                    //         i,
+                    //         j)));
                 }
             }
         }
