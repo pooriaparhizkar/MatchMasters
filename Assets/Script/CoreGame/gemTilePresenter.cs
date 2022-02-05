@@ -63,7 +63,6 @@ public class gemTilePresenter : SwapBlackBoard, Component, IDragHandler, IEndDra
                 // presentationPort.OrderSwap(firstPos, secondPos, () => Debug.Log("finished"));
                 if (secondPos.x != -100)
                 {
-                    _gameplayMainController.setLastTileMoves(firstPos,secondPos);
                     _gameplayMainController.FrameBasedBlackBoard.GetComponent<SwapBlackBoard>().requestedSwaps
                         .Add(new SwapData(firstPos, secondPos,true));
                     socketLogic.sendChat("1", firstPos.ToString(), secondPos.ToString());

@@ -61,7 +61,6 @@ namespace Script.CoreGame
                 switch (jsonContent.opcode)
                 {
                     case "1":
-                        gameplayController.setLastTileMoves(sourcePosiiton, targetPosition);
                         gameplayController.FrameBasedBlackBoard.GetComponent<SwapBlackBoard>().requestedSwaps
                             .Add(new SwapBlackBoard.SwapData(
                                 sourcePosiiton, targetPosition,

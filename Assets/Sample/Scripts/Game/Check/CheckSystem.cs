@@ -85,23 +85,18 @@ namespace Sample
             if (matched.Count != 0)
             {
                 matched = matched.Distinct().ToList();
-                gemTile lastGemTileMove=matched[0];
+                gemTile lastGemTileMove = matched[0];
                 foreach (var VARIABLE in matched)
                 {
-                    if (DateTime.Compare(lastGemTileMove._utcTime, VARIABLE._utcTime)<=0)
-                    {
+                    if (DateTime.Compare(lastGemTileMove._utcTime, VARIABLE._utcTime) <= 0)
                         lastGemTileMove = VARIABLE;
-                    }
                 }
-                Debug.Log(lastGemTileMove.Parent().Position());
+
                 foreach (var VARIABLE in matched)
                 {
                     //Arrow :
-                    if (matched.Count == 4 && VARIABLE.Parent().Position()==lastGemTileMove.Parent().Position())
-                        // (gameplayController.getLastTileMove1() == VARIABLE.Parent().Position() ||
-                        //  gameplayController.getLastTileMove2() == VARIABLE.Parent().Position()))
-                        {
-
+                    if (matched.Count == 4 && VARIABLE.Parent().Position() == lastGemTileMove.Parent().Position())
+                    {
                         //upDown
                         if (matched[0].Parent().Position().x == matched[1].Parent().Position().x)
                             GetFrameData<InGameBoosterInstanceBlackBoard>().requestedInGameBoosterInstances.Add(
@@ -116,13 +111,9 @@ namespace Sample
                                     lastGemTileMove.Parent().Position(),
                                     InGameBoosterInstanceBlackBoard.InGameBoosterType.leftRightArrow,
                                     lastGemTileMove._color));
-
-                        gameplayController.setLastTileMoves(new Vector2(-100,-100),new Vector2(-100,-100));
                     }
 
-                    else if (matched.Count == 5 && VARIABLE.Parent().Position()==lastGemTileMove.Parent().Position() )
-                             // (gameplayController.getLastTileMove1() == VARIABLE.Parent().Position() ||
-                             //  gameplayController.getLastTileMove2() == VARIABLE.Parent().Position()))
+                    else if (matched.Count == 5 && VARIABLE.Parent().Position() == lastGemTileMove.Parent().Position())
                     {
                         //lightning
                         if (((getPositionX(matched[0]) == getPositionX(matched[1]) &&
@@ -135,26 +126,21 @@ namespace Sample
                             GetFrameData<InGameBoosterInstanceBlackBoard>().requestedInGameBoosterInstances.Add(
                                 new InGameBoosterInstanceBlackBoard.InGameBoosterInstanceData(
                                     lastGemTileMove.Parent().Position(),
-                                    InGameBoosterInstanceBlackBoard.InGameBoosterType.lightning, lastGemTileMove._color));
+                                    InGameBoosterInstanceBlackBoard.InGameBoosterType.lightning,
+                                    lastGemTileMove._color));
                         //bomb:
                         else
                             GetFrameData<InGameBoosterInstanceBlackBoard>().requestedInGameBoosterInstances.Add(
                                 new InGameBoosterInstanceBlackBoard.InGameBoosterInstanceData(
                                     lastGemTileMove.Parent().Position(),
                                     InGameBoosterInstanceBlackBoard.InGameBoosterType.bomb, lastGemTileMove._color));
-
-                        gameplayController.setLastTileMoves(new Vector2(-100,-100),new Vector2(-100,-100));
                     }
-                    else if (matched.Count > 5 && VARIABLE.Parent().Position()==lastGemTileMove.Parent().Position() )
-                             // (gameplayController.getLastTileMove1() == VARIABLE.Parent().Position() ||
-                             //  gameplayController.getLastTileMove2() == VARIABLE.Parent().Position()))
+                    else if (matched.Count > 5 && VARIABLE.Parent().Position() == lastGemTileMove.Parent().Position())
                     {
                         GetFrameData<InGameBoosterInstanceBlackBoard>().requestedInGameBoosterInstances.Add(
                             new InGameBoosterInstanceBlackBoard.InGameBoosterInstanceData(
                                 lastGemTileMove.Parent().Position(),
                                 InGameBoosterInstanceBlackBoard.InGameBoosterType.lightning, lastGemTileMove._color));
-
-                        gameplayController.setLastTileMoves(new Vector2(-100,-100),new Vector2(-100,-100));
                     }
 
                     //Normal :
@@ -172,15 +158,16 @@ namespace Sample
                                         (int) VARIABLE.Parent().Position().x,
                                         (int) VARIABLE.Parent().Position().y),
                                     VARIABLE._gemTypes == gemTypes.bomb
-                                        ?
-                                        InGameBoosterActivationBlackBoard.InGameBoosterType.bomb
+                                        ? InGameBoosterActivationBlackBoard.InGameBoosterType.bomb
                                         : VARIABLE._gemTypes == gemTypes.lightning
                                             ? InGameBoosterActivationBlackBoard.InGameBoosterType.lightning
                                             : VARIABLE._gemTypes == gemTypes.upDownarrow
                                                 ? InGameBoosterActivationBlackBoard.InGameBoosterType.upDownarrow
-                                                : InGameBoosterActivationBlackBoard.InGameBoosterType.leftRightArrow,VARIABLE._color));
+                                                : InGameBoosterActivationBlackBoard.InGameBoosterType.leftRightArrow,
+                                    VARIABLE._color));
                     }
                 }
+
                 Debug.Log(matched);
                 matched.Clear();
             }
