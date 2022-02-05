@@ -43,6 +43,12 @@ namespace Sample
             var cellStackBoard = gameplayController.LevelBoard.CellStackBoard();
             var cellStack1 = cellStackBoard[swapData.pos1];
             var cellStack2 = cellStackBoard[swapData.pos2];
+            (cellStackBoard[swapData.pos1]
+                .CurrentTileStack()
+                .Top() as gemTile).setUTCTimeNow();
+            (cellStackBoard[swapData.pos2]
+                .CurrentTileStack()
+                .Top() as gemTile).setUTCTimeNow();
 
 
             if (cellStack1 == cellStack2)
