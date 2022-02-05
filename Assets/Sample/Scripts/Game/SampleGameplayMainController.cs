@@ -17,13 +17,11 @@ namespace Sample
             // systemsController.AddSystem(new SystemOne(this), GameplaySystemTag.General);
 
             systemsController.AddSystem(new PhysicSystem(this), GameplaySystemTag.General);
-
             systemsController.AddSystem(new TopInstanceSystem(this), GameplaySystemTag.General);
             systemsController.AddSystem(new SwapSystem(this), GameplaySystemTag.General);
             systemsController.AddSystem(new CheckSystem(this), GameplaySystemTag.General);
-            systemsController.AddSystem(new InGameBoosterActivationSystem(this), GameplaySystemTag.General);
             systemsController.AddSystem(new PerkHandlerSystem(this), GameplaySystemTag.General);
-
+            systemsController.AddSystem(new InGameBoosterActivationSystem(this), GameplaySystemTag.General);
             systemsController.AddSystem(new DestroySystem(this), GameplaySystemTag.General);
             systemsController.AddSystem(new InGameBoosterInstanceSystem(this), GameplaySystemTag.General);
 
