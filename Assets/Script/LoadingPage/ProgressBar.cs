@@ -72,4 +72,9 @@ public class ProgressBar : MonoBehaviour
         percantText.text = Math.Round(value * 100, 0).ToString() + '%';
         value += 0.1f * Time.deltaTime;
     }
+
+    public void aghoojBUtton()
+    {
+        SceneManager.LoadScene("CoreGame");
+    }
 }
