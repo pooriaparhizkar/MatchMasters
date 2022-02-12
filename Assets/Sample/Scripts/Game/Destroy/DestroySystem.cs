@@ -54,6 +54,8 @@ namespace Sample
 
         private void ApplyDestroy(CellStack cellStack1)
         {
+            GetFrameData<ScoreBlackBoard>().requestedScores.Add(
+                new ScoreBlackBoard.ScoreData(true));
             // Note that we only Destroy the TileStacks of these CellStacks. CellStacks are usually considered
             // fixed in the board.
             // ActionUtilites.DestroyTileStacksOf(cellStack1, cellStack2);
