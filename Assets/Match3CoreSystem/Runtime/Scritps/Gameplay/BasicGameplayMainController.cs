@@ -9,23 +9,8 @@ namespace Medrick.Match3CoreSystem.Game
     public abstract class BasicGameplayMainController : MonoBehaviour,GameplayMainController
     {
         private readonly List<PresentationPort> presentationHandlers = new List<PresentationPort>();
-        private Position lastTileMove1;
-        private Position lastTileMove2;
 
 
-        public void setLastTileMoves(Position lastTileMove1,Position lastTileMove2)
-        {
-            this.lastTileMove1 = lastTileMove1;
-            this.lastTileMove2 = lastTileMove2;
-        }
-        public Position getLastTileMove1()
-        {
-            return lastTileMove1;
-        }
-        public Position getLastTileMove2()
-        {
-            return lastTileMove2;
-        }
 
 
         public BasicGameplayMainController(LevelBoard levelBoard, TileStackFactory tileFactory)

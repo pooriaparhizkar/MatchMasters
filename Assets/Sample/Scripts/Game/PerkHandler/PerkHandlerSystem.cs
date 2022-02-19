@@ -9,7 +9,7 @@ namespace Sample
 {
     public interface PerkHandlerSystemPresentationPort : PresentationPort
     {
-        void PlayPerkHandler(bool isStart,Action onCompleted);
+        void PlayPerkHandler(bool isStart, Action onCompleted);
     }
 
     public class PerkHandlerSystemKeyType : KeyType
@@ -40,18 +40,39 @@ namespace Sample
 
         private void StartPerkHandler(PerkHandlerBlackBoard.PerkHandlerData PerkHandlerData)
         {
-
-            if (PerkHandlerData.type==PerkHandlerBlackBoard.PerkHandlerType.hammer)
+            if (PerkHandlerData.type == PerkHandlerBlackBoard.PerkHandlerType.hammer)
             {
-                if (PerkHandlerData.isStart==1)
-                    presentationPort.PlayPerkHandler(true,() => ApplyPerkHandler());
-                else if (PerkHandlerData.isStart==0)
-                    presentationPort.PlayPerkHandler(false,() => ApplyPerkHandler());
+                if (PerkHandlerData.isStart == 1)
+                    presentationPort.PlayPerkHandler(true, () => ApplyPerkHandler());
+                else if (PerkHandlerData.isStart == 0)
+                    presentationPort.PlayPerkHandler(false, () => ApplyPerkHandler());
                 else
-                    GetFrameData<DestroyBlackBoard>().requestedDestroys.Add(
-                        new DestroyBlackBoard.DestroyData(PerkHandlerData.position));
+                {
+                    var cellStackBoard = gameplayController.LevelBoard.CellStackBoard();
+                    gemTile VARIABLE =
+                        (cellStackBoard[
+                                new Vector2Int((int) PerkHandlerData.position.x, (int) PerkHandlerData.position.y)]
+                            .CurrentTileStack()
+                            .Top() as gemTile);
+                    if (VARIABLE._gemTypes == gemTypes.normal)
+                        GetFrameData<DestroyBlackBoard>().requestedDestroys.Add(
+                            new DestroyBlackBoard.DestroyData(new Vector2Int((int) VARIABLE.Parent().Position().x,
+                                (int) VARIABLE.Parent().Position().y)));
+                    else
+                        GetFrameData<InGameBoosterActivationBlackBoard>().requestedInGameBoosterActivations.Add(
+                            new InGameBoosterActivationBlackBoard.InGameBoosterActivationData(new Vector2Int(
+                                    (int) VARIABLE.Parent().Position().x,
+                                    (int) VARIABLE.Parent().Position().y),
+                                VARIABLE._gemTypes == gemTypes.bomb
+                                    ? InGameBoosterActivationBlackBoard.InGameBoosterType.bomb
+                                    : VARIABLE._gemTypes == gemTypes.lightning
+                                        ? InGameBoosterActivationBlackBoard.InGameBoosterType.lightning
+                                        : VARIABLE._gemTypes == gemTypes.upDownarrow
+                                            ? InGameBoosterActivationBlackBoard.InGameBoosterType.upDownarrow
+                                            : InGameBoosterActivationBlackBoard.InGameBoosterType.leftRightArrow,
+                                VARIABLE._color));
+                }
             }
-
         }
 
         private void ApplyPerkHandler()

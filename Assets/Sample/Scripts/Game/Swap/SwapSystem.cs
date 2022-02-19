@@ -43,6 +43,12 @@ namespace Sample
             var cellStackBoard = gameplayController.LevelBoard.CellStackBoard();
             var cellStack1 = cellStackBoard[swapData.pos1];
             var cellStack2 = cellStackBoard[swapData.pos2];
+            (cellStackBoard[swapData.pos1]
+                .CurrentTileStack()
+                .Top() as gemTile).setUTCTimeNow();
+            (cellStackBoard[swapData.pos2]
+                .CurrentTileStack()
+                .Top() as gemTile).setUTCTimeNow();
 
 
             if (cellStack1 == cellStack2)
@@ -63,19 +69,22 @@ namespace Sample
             // fixed in the board.
             ActionUtilites.SwapTileStacksOf(cellStack1, cellStack2);
 
-            // if (isDrag)
-            // {
-            //     GetFrameData<CheckBlackBoard>().requestedChecks.Add(
-            //         new CheckBlackBoard.CheckData(cellStack1, cellStack2));
-            //     await Task.Delay(300);
-            //     gameplayController.LevelBoard.CellStackBoard().setBoardUnlock();
-            // }
-            // else
-            // {
-            // gameplayController.LevelBoard.CellStackBoard().setBoardUnlock();
-            // }
-
-            gameplayController.LevelBoard.CellStackBoard().setBoardUnlock();
+            if (ActionUtilites.getIsSwapBack())
+            {
+                if (isDrag)
+                {
+                    GetFrameData<CheckBlackBoard>().requestedChecks.Add(
+                        new CheckBlackBoard.CheckData(cellStack1, cellStack2));
+                    await Task.Delay(300);
+                    gameplayController.LevelBoard.CellStackBoard().setBoardUnlock();
+                }
+                else
+                {
+                    gameplayController.LevelBoard.CellStackBoard().setBoardUnlock();
+                }
+            }
+            else
+                gameplayController.LevelBoard.CellStackBoard().setBoardUnlock();
 
             //check booster+booster activation
             gemTile gemTileOne = cellStack1.CurrentTileStack().Top() as gemTile;

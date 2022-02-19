@@ -80,106 +80,212 @@ namespace Sample
             return (int) gemTile.Parent().Position().y;
         }
 
-        private void detectTypeAndCallDestroy(List<gemTile> matched)
+
+        static int mostFrequent(int[] arr, int n)
+        {
+            // Sort the array
+            Array.Sort(arr);
+
+            // find the max frequency using
+            // linear traversal
+            int max_count = 1, res = arr[0];
+            int curr_count = 1;
+
+            for (int i = 1; i < n; i++)
+            {
+                if (arr[i] == arr[i - 1])
+                    curr_count++;
+                else
+                {
+                    if (curr_count > max_count)
+                    {
+                        max_count = curr_count;
+                        res = arr[i - 1];
+                    }
+
+                    curr_count = 1;
+                }
+            }
+
+            // If last element is most frequent
+            if (curr_count > max_count)
+            {
+                max_count = curr_count;
+                res = arr[n - 1];
+            }
+
+            return res;
+        }
+
+        private int howManyGemInRow(List<gemTile> matched)
+        {
+            int[] temp = new int[matched.Count];
+            int counter = 0;
+            foreach (var VARIABLE in matched)
+            {
+                temp[counter] = getPositionY(VARIABLE);
+                counter++;
+            }
+
+            int n = temp.Length;
+            int freq = mostFrequent(temp, n);
+            int count = 0;
+            for (int i = 0; i < n; i++)
+            {
+                if (temp[i] == freq)
+                {
+                    count++;
+                }
+            }
+
+            return count;
+        }
+
+        private int howManyGemInColomn(List<gemTile> matched)
+        {
+            int[] temp = new int[matched.Count];
+            int counter = 0;
+            foreach (var VARIABLE in matched)
+            {
+                temp[counter] = getPositionX(VARIABLE);
+                counter++;
+            }
+
+            int n = temp.Length;
+            int freq = mostFrequent(temp, n);
+            int count = 0;
+            for (int i = 0; i < n; i++)
+            {
+                if (temp[i] == freq)
+                {
+                    count++;
+                }
+            }
+
+            return count;
+        }
+
+        private async void detectTypeAndCallDestroy(List<gemTile> matched)
         {
             if (matched.Count != 0)
             {
                 matched = matched.Distinct().ToList();
+                gemTile lastGemTileMove = matched[0];
                 foreach (var VARIABLE in matched)
                 {
-                    //Arrow :
-                    if (matched.Count == 4 &&
-                        (gameplayController.getLastTileMove1() == VARIABLE.Parent().Position() ||
-                         gameplayController.getLastTileMove2() == VARIABLE.Parent().Position()))
-                    {
-                        //upDown
-                        if (matched[0].Parent().Position().x == matched[1].Parent().Position().x)
-                            GetFrameData<InGameBoosterInstanceBlackBoard>().requestedInGameBoosterInstances.Add(
-                                new InGameBoosterInstanceBlackBoard.InGameBoosterInstanceData(
-                                    VARIABLE.Parent().Position(),
-                                    InGameBoosterInstanceBlackBoard.InGameBoosterType.upDownarrow,
-                                    VARIABLE._color));
-                        //leftRight
-                        else
-                            GetFrameData<InGameBoosterInstanceBlackBoard>().requestedInGameBoosterInstances.Add(
-                                new InGameBoosterInstanceBlackBoard.InGameBoosterInstanceData(
-                                    VARIABLE.Parent().Position(),
-                                    InGameBoosterInstanceBlackBoard.InGameBoosterType.leftRightArrow,
-                                    VARIABLE._color));
-                    }
+                    if (DateTime.Compare(lastGemTileMove._utcTime, VARIABLE._utcTime) <= 0)
+                        lastGemTileMove = VARIABLE;
+                }
 
-                    else if (matched.Count == 5 &&
-                             (gameplayController.getLastTileMove1() == VARIABLE.Parent().Position() ||
-                              gameplayController.getLastTileMove2() == VARIABLE.Parent().Position()))
+                foreach (var VARIABLE in matched)
+                {
+                    //Should create booster
+                    if (matched.Count > 3 && VARIABLE.Parent().Position() == lastGemTileMove.Parent().Position())
                     {
-                        //lightning
-                        if (((getPositionX(matched[0]) == getPositionX(matched[1]) &&
-                              getPositionX(matched[1]) == getPositionX(matched[2]) &&
-                              getPositionX(matched[2]) == getPositionX(matched[3])) ||
-                             (getPositionY(matched[0]) == getPositionY(matched[1]) &&
-                              getPositionY(matched[1]) == getPositionY(matched[2]) &&
-                              getPositionY(matched[2]) == getPositionY(matched[3]))))
+                        //Arrow :
+                        if (matched.Count == 4 )
+                        {
+                            //upDown
+                            if (matched[0].Parent().Position().x == matched[1].Parent().Position().x)
+                                GetFrameData<InGameBoosterInstanceBlackBoard>().requestedInGameBoosterInstances.Add(
+                                    new InGameBoosterInstanceBlackBoard.InGameBoosterInstanceData(
+                                        lastGemTileMove.Parent().Position(),
+                                        InGameBoosterInstanceBlackBoard.InGameBoosterType.upDownarrow,
+                                        lastGemTileMove._color));
+                            //leftRight
+                            else
+                                GetFrameData<InGameBoosterInstanceBlackBoard>().requestedInGameBoosterInstances.Add(
+                                    new InGameBoosterInstanceBlackBoard.InGameBoosterInstanceData(
+                                        lastGemTileMove.Parent().Position(),
+                                        InGameBoosterInstanceBlackBoard.InGameBoosterType.leftRightArrow,
+                                        lastGemTileMove._color));
+                        }
 
-                            GetFrameData<InGameBoosterInstanceBlackBoard>().requestedInGameBoosterInstances.Add(
-                                new InGameBoosterInstanceBlackBoard.InGameBoosterInstanceData(
-                                    VARIABLE.Parent().Position(),
-                                    InGameBoosterInstanceBlackBoard.InGameBoosterType.lightning, VARIABLE._color));
-                        //bomb:
-                        else
-                            GetFrameData<InGameBoosterInstanceBlackBoard>().requestedInGameBoosterInstances.Add(
-                                new InGameBoosterInstanceBlackBoard.InGameBoosterInstanceData(
-                                    VARIABLE.Parent().Position(),
-                                    InGameBoosterInstanceBlackBoard.InGameBoosterType.bomb, VARIABLE._color));
+                        else if (matched.Count == 5 )
+                        {
+                            //lightning
+                            if (howManyGemInRow(matched) == 5 || howManyGemInColomn(matched) == 5)
+                                GetFrameData<InGameBoosterInstanceBlackBoard>().requestedInGameBoosterInstances.Add(
+                                    new InGameBoosterInstanceBlackBoard.InGameBoosterInstanceData(
+                                        lastGemTileMove.Parent().Position(),
+                                        InGameBoosterInstanceBlackBoard.InGameBoosterType.lightning,
+                                        lastGemTileMove._color));
+                            //bomb:
+                            else
+                                GetFrameData<InGameBoosterInstanceBlackBoard>().requestedInGameBoosterInstances.Add(
+                                    new InGameBoosterInstanceBlackBoard.InGameBoosterInstanceData(
+                                        lastGemTileMove.Parent().Position(),
+                                        InGameBoosterInstanceBlackBoard.InGameBoosterType.bomb,
+                                        lastGemTileMove._color));
+                        }
+                        else if (matched.Count > 5 )
+                        {
+                            //lightning
+                            if (howManyGemInRow(matched) >= 5 || howManyGemInColomn(matched) >= 5)
+                                GetFrameData<InGameBoosterInstanceBlackBoard>().requestedInGameBoosterInstances.Add(
+                                    new InGameBoosterInstanceBlackBoard.InGameBoosterInstanceData(
+                                        lastGemTileMove.Parent().Position(),
+                                        InGameBoosterInstanceBlackBoard.InGameBoosterType.lightning,
+                                        lastGemTileMove._color));
+                            //bomb ( aghooj situation )
+                            else if (howManyGemInRow(matched) == 4 && howManyGemInColomn(matched) == 3)
+                                GetFrameData<InGameBoosterInstanceBlackBoard>().requestedInGameBoosterInstances.Add(
+                                    new InGameBoosterInstanceBlackBoard.InGameBoosterInstanceData(
+                                        lastGemTileMove.Parent().Position(),
+                                        InGameBoosterInstanceBlackBoard.InGameBoosterType.bomb,
+                                        lastGemTileMove._color));
+                        }
                     }
-                    else if (matched.Count > 5 &&
-                             (gameplayController.getLastTileMove1() == VARIABLE.Parent().Position() ||
-                              gameplayController.getLastTileMove2() == VARIABLE.Parent().Position()))
-                        GetFrameData<InGameBoosterInstanceBlackBoard>().requestedInGameBoosterInstances.Add(
-                            new InGameBoosterInstanceBlackBoard.InGameBoosterInstanceData(
-                                VARIABLE.Parent().Position(),
-                                InGameBoosterInstanceBlackBoard.InGameBoosterType.lightning, VARIABLE._color));
 
                     //Normal :
                     else
                     {
                         if (VARIABLE._gemTypes == gemTypes.normal)
+                        {
                             GetFrameData<DestroyBlackBoard>().requestedDestroys.Add(
                                 new DestroyBlackBoard.DestroyData(new Vector2Int((int) VARIABLE.Parent().Position().x,
                                     (int) VARIABLE.Parent().Position().y)));
+                        }
                         else
                             GetFrameData<InGameBoosterActivationBlackBoard>().requestedInGameBoosterActivations.Add(
                                 new InGameBoosterActivationBlackBoard.InGameBoosterActivationData(new Vector2Int(
                                         (int) VARIABLE.Parent().Position().x,
                                         (int) VARIABLE.Parent().Position().y),
                                     VARIABLE._gemTypes == gemTypes.bomb
-                                        ?
-                                        InGameBoosterActivationBlackBoard.InGameBoosterType.bomb
+                                        ? InGameBoosterActivationBlackBoard.InGameBoosterType.bomb
                                         : VARIABLE._gemTypes == gemTypes.lightning
                                             ? InGameBoosterActivationBlackBoard.InGameBoosterType.lightning
                                             : VARIABLE._gemTypes == gemTypes.upDownarrow
                                                 ? InGameBoosterActivationBlackBoard.InGameBoosterType.upDownarrow
-                                                : InGameBoosterActivationBlackBoard.InGameBoosterType.leftRightArrow,VARIABLE._color));
+                                                : InGameBoosterActivationBlackBoard.InGameBoosterType.leftRightArrow,
+                                    VARIABLE._color));
                     }
                 }
 
+                Debug.Log(matched);
                 matched.Clear();
             }
         }
+
+
 
         public override void Update(float dt)
         {
             if (!gameplayController.LevelBoard.CellStackBoard()
                 .isBoardLock()) //in destroy system and physic system lock and unlock
             {
-                List<gemTile> matched = new List<gemTile>();
-                for (var i = 0; i < 7; i++)
+                if (ActionUtilites.isMapStable(gameplayController))
                 {
-                    matched.AddRange(iterateColumn(i));
-                    matched.AddRange(iterateRow(i));
-                }
+                    List<gemTile> matched = new List<gemTile>();
+                    for (var i = 0; i < 7; i++)
+                    {
+                        matched.AddRange(iterateColumn(i));
+                        matched.AddRange(iterateRow(i));
+                    }
 
-                detectTypeAndCallDestroy(matched);
-                matched.Clear();
+                    detectTypeAndCallDestroy(matched);
+                    matched.Clear();
+                }
             }
 
             foreach (var swapData in CheckBlackBoard.requestedChecks)
@@ -202,8 +308,6 @@ namespace Sample
 
             if (!isMatched1 && !isMatched2)
             {
-                Debug.Log(swapData.cell1);
-                Debug.Log(swapData.cell2);
                 await Task.Delay(100);
                 GetFrameData<SwapBlackBoard>().requestedSwaps.Add(
                     new SwapBlackBoard.SwapData(swapData.cell1.Position(), swapData.cell2.Position()));

@@ -5,6 +5,32 @@ namespace Medrick.Match3CoreSystem.Game
 {
     public static class ActionUtilites
     {
+        public static bool isSwapBack=true;
+
+        public static void setIsSwapBack(bool isSwapBackLocal)
+        {
+            isSwapBack = isSwapBackLocal;
+        }
+
+        public static bool getIsSwapBack()
+        {
+            return isSwapBack;
+        }
+
+        public static bool isMapStable( BasicGameplayMainController gameplayController)
+        {
+            bool isAllHaveTile = true;
+            foreach (var cellStack in gameplayController.LevelBoard.leftToRightTopDownCellStackArray)
+            {
+                if (!cellStack.HasTileStack())
+                {
+                    isAllHaveTile = false;
+                }
+            }
+
+            return isAllHaveTile;
+        }
+
         public static void LockTileStacksBy<T>(List<CellStack> cellStacks) where T : KeyType
         {
             foreach (var cellStack in cellStacks)

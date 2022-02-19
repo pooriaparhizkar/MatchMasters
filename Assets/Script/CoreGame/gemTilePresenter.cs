@@ -28,6 +28,8 @@ public class gemTilePresenter : SwapBlackBoard, Component, IDragHandler, IEndDra
         _gameplayMainController = sampleGameplayMainController;
     }
 
+
+
     public void delete(TileStack tileStack)
     {
        // tileStack.Destroy();
@@ -40,7 +42,7 @@ public class gemTilePresenter : SwapBlackBoard, Component, IDragHandler, IEndDra
         {
             // presentationPort = _gameplayMainController.GetPresentationPort<OrderSwapSystemPresentationPort>();
             var firstPos = new Vector2Int((int) _tileStack.Position().x, (int) _tileStack.Position().y);
-            var secondPos=new Vector2Int(-100,-100);;
+            var secondPos=new Vector2Int(-100,-100);
 
             if (!isDraging)
             {
@@ -61,7 +63,6 @@ public class gemTilePresenter : SwapBlackBoard, Component, IDragHandler, IEndDra
                 // presentationPort.OrderSwap(firstPos, secondPos, () => Debug.Log("finished"));
                 if (secondPos.x != -100)
                 {
-                    _gameplayMainController.setLastTileMoves(firstPos,secondPos);
                     _gameplayMainController.FrameBasedBlackBoard.GetComponent<SwapBlackBoard>().requestedSwaps
                         .Add(new SwapData(firstPos, secondPos,true));
                     socketLogic.sendChat("1", firstPos.ToString(), secondPos.ToString());
