@@ -69,19 +69,22 @@ namespace Sample
             // fixed in the board.
             ActionUtilites.SwapTileStacksOf(cellStack1, cellStack2);
 
-            // if (isDrag)
-            // {
-            //     GetFrameData<CheckBlackBoard>().requestedChecks.Add(
-            //         new CheckBlackBoard.CheckData(cellStack1, cellStack2));
-            //     await Task.Delay(300);
-            //     gameplayController.LevelBoard.CellStackBoard().setBoardUnlock();
-            // }
-            // else
-            // {
-            // gameplayController.LevelBoard.CellStackBoard().setBoardUnlock();
-            // }
-
-            gameplayController.LevelBoard.CellStackBoard().setBoardUnlock();
+            if (ActionUtilites.getIsSwapBack())
+            {
+                if (isDrag)
+                {
+                    GetFrameData<CheckBlackBoard>().requestedChecks.Add(
+                        new CheckBlackBoard.CheckData(cellStack1, cellStack2));
+                    await Task.Delay(300);
+                    gameplayController.LevelBoard.CellStackBoard().setBoardUnlock();
+                }
+                else
+                {
+                    gameplayController.LevelBoard.CellStackBoard().setBoardUnlock();
+                }
+            }
+            else
+                gameplayController.LevelBoard.CellStackBoard().setBoardUnlock();
 
             //check booster+booster activation
             gemTile gemTileOne = cellStack1.CurrentTileStack().Top() as gemTile;

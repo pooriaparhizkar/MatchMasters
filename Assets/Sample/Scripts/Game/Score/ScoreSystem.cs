@@ -57,7 +57,6 @@ namespace Sample
 
         private void ApplyScore()
         {
-            Debug.Log("Score added");
             isLock = false;
         }
     }

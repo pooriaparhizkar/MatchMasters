@@ -61,7 +61,7 @@ public class perkHandler : spawnGems
             gameplayController.FrameBasedBlackBoard.GetComponent<SwapBlackBoard>().requestedSwaps
                 .Add(new SwapBlackBoard.SwapData(
                     sourcePosiiton, targetPosition,
-                    true));
+                    false));
         }
     }
 
