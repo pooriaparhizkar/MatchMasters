@@ -3,10 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Nakama;
+using Script.CoreGame;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-
+using Random = System.Random;
 public class MatchMakingLogic : MonoBehaviour
 {
     public GameObject rightLight;
@@ -141,6 +142,16 @@ public class MatchMakingLogic : MonoBehaviour
     {
         usersInGame = new string[2] {  myUsername,foundedName };
         Array.Sort(usersInGame,StringComparer.InvariantCulture);
+        if (usersInGame[0] == PlayerPrefs.GetString("username"))
+        {
+            Random generateRandomSeed = new Random();
+            int numberGenrateRandomSeed = generateRandomSeed.Next();
+            int templateNo = generateRandomSeed.Next(1, 10);
+            spawnGems.setTemplateNo(templateNo);
+            spawnGems.setRandomSeed(numberGenrateRandomSeed);
+            socketLogic.sendChat("0","("+numberGenrateRandomSeed.ToString()+", 1)","("+templateNo.ToString()+", 1)");
+        }
+
         yield return new WaitForSecondsRealtime(04);
         SceneManager.LoadScene("CoreGame");
     }

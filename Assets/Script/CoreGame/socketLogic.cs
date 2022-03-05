@@ -62,6 +62,7 @@ namespace Script.CoreGame
                 switch (jsonContent.opcode)
                 {
                     case "0":
+                        Debug.Log("initial maaap sockeeeeeet");
                         spawnGems.setRandomSeed(sourcePosiiton.x);
                         spawnGems.setTemplateNo(targetPosition.x);
                         break;
@@ -123,6 +124,8 @@ namespace Script.CoreGame
         {
             var newState = new Dictionary<string, string>
                 {{"opcode", opCode}, {"sourcePosition", sourcePosition}, {"targetPosition", targetPosition}}.ToJson();
+            Debug.Log(newState);
+            Debug.Log(mySocket);
             mySocket.SendMatchStateAsync(myGameMatchicket, 1, newState);
         }
     }

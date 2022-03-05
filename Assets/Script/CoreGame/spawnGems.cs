@@ -10,6 +10,7 @@ using Random = System.Random;
 public class spawnGems : MonoBehaviour
 {
     // Start is called before the first frame update
+    public static SampleGameplayMainController gameplayController;
     public GameObject[] gems;
     public GameObject boardGame;
     public SystemSwapPresentationAdapter systemSwapPresentationAdapter;
@@ -19,8 +20,7 @@ public class spawnGems : MonoBehaviour
     public SystemInGameBoosterInstancePresentationAdaptor systemInGameBoosterInstancePresentationAdaptor;
     public SystemPerkHandlerPresentationAdaptor systemPerkHandlerPresentationAdaptor;
     public SystemScorePresentationAdapter systemScorePresentationAdapter;
-    public string hostUser;
-    public static Random randomSeed;
+   public static Random randomSeed;
     public static int templateNo;
     private readonly gemColors[,] template1 = new gemColors[7, 7]
     {
@@ -156,7 +156,7 @@ public class spawnGems : MonoBehaviour
         templateNo = number;
     }
 
-    public static SampleGameplayMainController gameplayController;
+
 
     public static void setRandomSeed(int seed)
     {
@@ -165,7 +165,7 @@ public class spawnGems : MonoBehaviour
 
     public void initialMap()
     {
-           var cellStackFactory = new MainCellStackFactory();
+        var cellStackFactory = new MainCellStackFactory();
         var tileStackFactory = new MainTileStackFactory();
 
 
@@ -215,38 +215,21 @@ public class spawnGems : MonoBehaviour
     }
     private void Start()
     {
-        gameplayController = null;
-        hostUser = MatchMakingLogic.usersInGame[0];
-        templateNo = 999;
-        Random generateRandomSeed = new Random(10);
-        randomSeed = new Random(generateRandomSeed.Next());
-        if (hostUser == PlayerPrefs.GetString("username"))
-        {
-            templateNo = randomSeed.Next(1, 10);
-            socketLogic.sendChat("0","("+generateRandomSeed.ToString()+", 1)","("+templateNo.ToString()+", 1)");
-            initialMap();
-        }
+        initialMap();
     }
 
 
     // Update is called once per frame
     private void Update()
     {
-        if (templateNo!=999)
-        {
-            if (gameplayController == null)
+        gameplayController.Update(Time.deltaTime);
+        foreach (var cellStack in gameplayController.LevelBoard.leftToRightTopDownCellStackArray)
+            if (cellStack.HasTileStack())
             {
-                initialMap();
+                var tileStack = cellStack.CurrentTileStack();
+                var presenter = tileStack.GetComponent<gemTilePresenter>();
+                presenter.transform.localPosition = logicalPositionToPresentation(tileStack.Position(), true);
             }
-            gameplayController.Update(Time.deltaTime);
-            foreach (var cellStack in gameplayController.LevelBoard.leftToRightTopDownCellStackArray)
-                if (cellStack.HasTileStack())
-                {
-                    var tileStack = cellStack.CurrentTileStack();
-                    var presenter = tileStack.GetComponent<gemTilePresenter>();
-                    presenter.transform.localPosition = logicalPositionToPresentation(tileStack.Position(),true);
-                }
-        }
 
     }
 
