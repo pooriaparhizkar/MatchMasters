@@ -8,6 +8,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Random = System.Random;
+
 public class MatchMakingLogic : MonoBehaviour
 {
     public GameObject rightLight;
@@ -32,9 +33,11 @@ public class MatchMakingLogic : MonoBehaviour
     public static String gameMatchicket;
     public static string[] usersInGame;
     public static string mySessionID;
+    private bool isRedirecting;
 
     private async void Start()
     {
+        isRedirecting = false;
         StartCoroutine(ChangeFindingText());
 
         // var deviceId = PlayerPrefs.GetString("nakama.deviceid");
@@ -88,7 +91,8 @@ public class MatchMakingLogic : MonoBehaviour
             // Debug.Log("umad in tuuuuuuuuuuuuuuu");
 
             foundText.text = foundedName;
-            StartCoroutine(RedirectAfterFound());
+            if (!isRedirecting)
+                RedirectAfterFound();
         }
 
 
@@ -99,6 +103,7 @@ public class MatchMakingLogic : MonoBehaviour
     {
         await CancelMatchmaking();
     }
+
     private void OnReceivedMatchPresence(IMatchPresenceEvent matchPresenceEvent)
     {
         gameMatchicket = matchPresenceEvent.MatchId;
@@ -107,7 +112,6 @@ public class MatchMakingLogic : MonoBehaviour
             Debug.LogFormat("Connected user: " + user.Username);
             if (user.Username != myUsername)
             {
-
                 Debug.Log("Peidaaaaa shod11111");
                 foundSessionID = user.SessionId;
                 foundedName = user.Username;
@@ -138,21 +142,26 @@ public class MatchMakingLogic : MonoBehaviour
         // ChangeFindingText();
     }
 
-    private IEnumerator RedirectAfterFound()
+    private async void RedirectAfterFound()
     {
-        usersInGame = new string[2] {  myUsername,foundedName };
-        Array.Sort(usersInGame,StringComparer.InvariantCulture);
+        isRedirecting = true;
+        usersInGame = new string[2] {myUsername, foundedName};
+        Array.Sort(usersInGame, StringComparer.InvariantCulture);
+        Debug.Log(usersInGame[0]);
+        Debug.Log(usersInGame[1]);
+        Debug.Log(PlayerPrefs.GetString("username"));
         if (usersInGame[0] == PlayerPrefs.GetString("username"))
         {
             Random generateRandomSeed = new Random();
             int numberGenrateRandomSeed = generateRandomSeed.Next();
-            int templateNo = generateRandomSeed.Next(1, 10);
+            int templateNo = generateRandomSeed.Next(1, 3);
             spawnGems.setTemplateNo(templateNo);
             spawnGems.setRandomSeed(numberGenrateRandomSeed);
-            socketLogic.sendChat("0","("+numberGenrateRandomSeed.ToString()+", 1)","("+templateNo.ToString()+", 1)");
+            socketLogic.sendChat("0", "(" + numberGenrateRandomSeed.ToString() + ", 1)",
+                "(" + templateNo.ToString() + ", 1)");
         }
 
-        yield return new WaitForSecondsRealtime(04);
+        await Task.Delay(4000);
         SceneManager.LoadScene("CoreGame");
     }
 
@@ -187,7 +196,6 @@ public class MatchMakingLogic : MonoBehaviour
                 foundSessionID = user.SessionId;
                 foundedName = user.Username;
                 Debug.Log("Peidaaaaa shod22222");
-
             }
 
             Debug.LogFormat("Connected user: " + user.Username);
@@ -200,5 +208,4 @@ public class MatchMakingLogic : MonoBehaviour
     {
         SceneManager.LoadScene("CoreGame");
     }
- 
 }
