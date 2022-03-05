@@ -91,7 +91,7 @@ public class MatchMakingLogic : MonoBehaviour
             // Debug.Log("umad in tuuuuuuuuuuuuuuu");
 
             foundText.text = foundedName;
-            if (!isRedirecting)
+            if (!isRedirecting && gameMatchicket!=null)
                 RedirectAfterFound();
         }
 
@@ -161,7 +161,7 @@ public class MatchMakingLogic : MonoBehaviour
                 "(" + templateNo.ToString() + ", 1)");
         }
 
-        await Task.Delay(20000);
+        await Task.Delay(5000);
         SceneManager.LoadScene("CoreGame");
     }
 
