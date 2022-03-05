@@ -25,7 +25,7 @@ namespace Script.CoreGame
         }
     }
 
-    public class socketLogic : spawnGems
+    public class socketLogic : MonoBehaviour
     {
         private static ISocket mySocket;
         private static String myGameMatchicket;
@@ -51,6 +51,11 @@ namespace Script.CoreGame
                     Int32.Parse(jsonContent.targetPosition.Split(',')[0].Remove(0, 1)),
                     Int32.Parse(jsonContent.targetPosition.Split(',')[1].Remove(0, 1).Substring(0, 1)));
 
+                Debug.Log(jsonContent);
+                Debug.Log(jsonContent.opcode);
+                Debug.Log(sourcePosiiton);
+                Debug.Log(targetPosition);
+
                 //opCodes :
                 //0 : Initial ( sourcePos : randomSeed , TargetPos : templateID )
                 //1 : swap
@@ -65,10 +70,11 @@ namespace Script.CoreGame
                         Debug.Log("initial maaap sockeeeeeet");
                         spawnGems.setRandomSeed(sourcePosiiton.x);
                         spawnGems.setTemplateNo(targetPosition.x);
+                        // SceneManager.LoadScene("CoreGame");
                         break;
 
                     case "1":
-                        gameplayController.FrameBasedBlackBoard.GetComponent<SwapBlackBoard>().requestedSwaps
+                        spawnGems.gameplayController.FrameBasedBlackBoard.GetComponent<SwapBlackBoard>().requestedSwaps
                             .Add(new SwapBlackBoard.SwapData(
                                 sourcePosiiton, targetPosition,
                                 true));
@@ -77,7 +83,7 @@ namespace Script.CoreGame
                     case "2":
                         //open the blackScreen of hammer perk
                         Debug.Log("perk 2222");
-                        gameplayController.FrameBasedBlackBoard.GetComponent<PerkHandlerBlackBoard>()
+                        spawnGems.gameplayController.FrameBasedBlackBoard.GetComponent<PerkHandlerBlackBoard>()
                             .requestedPerkHandlers
                             .Add(new PerkHandlerBlackBoard.PerkHandlerData(PerkHandlerBlackBoard.PerkHandlerType.hammer,
                                 new Vector2Int(-100, -100), 1));
@@ -85,13 +91,13 @@ namespace Script.CoreGame
 
                     case "3":
                         //Destroy position clicked
-                        gameplayController.FrameBasedBlackBoard.GetComponent<PerkHandlerBlackBoard>()
+                        spawnGems.gameplayController.FrameBasedBlackBoard.GetComponent<PerkHandlerBlackBoard>()
                             .requestedPerkHandlers
                             .Add(new PerkHandlerBlackBoard.PerkHandlerData(PerkHandlerBlackBoard.PerkHandlerType.hammer,
                                 sourcePosiiton));
 
                         //Close the blackScreen of hammer perk
-                        gameplayController.FrameBasedBlackBoard.GetComponent<PerkHandlerBlackBoard>()
+                        spawnGems.gameplayController.FrameBasedBlackBoard.GetComponent<PerkHandlerBlackBoard>()
                             .requestedPerkHandlers
                             .Add(new PerkHandlerBlackBoard.PerkHandlerData(PerkHandlerBlackBoard.PerkHandlerType.hammer,
                                 new Vector2Int(-100, -100), 0));
@@ -122,10 +128,13 @@ namespace Script.CoreGame
 
         public static void sendChat(string opCode, string sourcePosition, string targetPosition)
         {
+            mySocket = MatchMakingLogic.socket;
+            myGameMatchicket = MatchMakingLogic.gameMatchicket;
             var newState = new Dictionary<string, string>
                 {{"opcode", opCode}, {"sourcePosition", sourcePosition}, {"targetPosition", targetPosition}}.ToJson();
             Debug.Log(newState);
             Debug.Log(mySocket);
+            Debug.Log(myGameMatchicket);
             mySocket.SendMatchStateAsync(myGameMatchicket, 1, newState);
         }
     }

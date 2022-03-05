@@ -162,8 +162,7 @@ public class spawnGems : MonoBehaviour
     {
         randomSeed = new Random(seed);
     }
-
-    public void initialMap()
+    private void Start()
     {
         var cellStackFactory = new MainCellStackFactory();
         var tileStackFactory = new MainTileStackFactory();
@@ -173,7 +172,7 @@ public class spawnGems : MonoBehaviour
             CreateLevelBoard(cellStackFactory, tileStackFactory),
             tileStackFactory);
 
-        // It is a good practice to add PresentationPorts before the Start.
+        // It is a good practive to add PresentationPorts before the Start.
         gameplayController.AddPresentationPort(systemSwapPresentationAdapter);
         gameplayController.AddPresentationPort(systemDestroyPresentationAdapter);
         gameplayController.AddPresentationPort(systemPhysicPresentationAdapter);
@@ -212,10 +211,6 @@ public class spawnGems : MonoBehaviour
             }
 
         gameplayController.Start();
-    }
-    private void Start()
-    {
-        initialMap();
     }
 
 

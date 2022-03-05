@@ -3706,7 +3706,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1988939712}
+        - m_Target: {fileID: 0}
           m_MethodName: OnBackBtnClick
           m_Mode: 1
           m_Arguments:
@@ -7559,7 +7559,6 @@ GameObject:
   - component: {fileID: 1988939713}
   - component: {fileID: 1988939714}
   - component: {fileID: 1988939711}
-  - component: {fileID: 1988939712}
   - component: {fileID: 1988939715}
   m_Layer: 0
   m_Name: board-background
@@ -7662,7 +7661,6 @@ MonoBehaviour:
   systemInGameBoosterInstancePresentationAdaptor: {fileID: 1988939710}
   systemPerkHandlerPresentationAdaptor: {fileID: 1988939713}
   systemScorePresentationAdapter: {fileID: 1988939714}
-  hostUser: 
 --- !u!114 &1988939706
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7781,29 +7779,6 @@ MonoBehaviour:
   systemInGameBoosterInstancePresentationAdaptor: {fileID: 0}
   systemPerkHandlerPresentationAdaptor: {fileID: 0}
   systemScorePresentationAdapter: {fileID: 0}
-  hostUser: 
---- !u!114 &1988939712
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1988939701}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 506becb1112b4667be243e51668b8ec8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gems: []
-  boardGame: {fileID: 0}
-  systemSwapPresentationAdapter: {fileID: 0}
-  systemDestroyPresentationAdapter: {fileID: 0}
-  systemPhysicPresentationAdapter: {fileID: 0}
-  systemTopInstancePresentationAdaptor: {fileID: 0}
-  systemInGameBoosterInstancePresentationAdaptor: {fileID: 0}
-  systemPerkHandlerPresentationAdaptor: {fileID: 0}
-  systemScorePresentationAdapter: {fileID: 0}
-  hostUser: 
 --- !u!114 &1988939713
 MonoBehaviour:
   m_ObjectHideFlags: 0

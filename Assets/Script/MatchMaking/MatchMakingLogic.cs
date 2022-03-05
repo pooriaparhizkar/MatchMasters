@@ -161,7 +161,7 @@ public class MatchMakingLogic : MonoBehaviour
                 "(" + templateNo.ToString() + ", 1)");
         }
 
-        await Task.Delay(4000);
+        await Task.Delay(20000);
         SceneManager.LoadScene("CoreGame");
     }
 
