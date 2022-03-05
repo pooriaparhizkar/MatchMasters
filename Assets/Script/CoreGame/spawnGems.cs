@@ -2,7 +2,9 @@ using System;
 using Medrick.Match3CoreSystem.Game.Core;
 using Nakama;
 using Sample;
+using Script.CoreGame;
 using UnityEngine;
+using UnityEngine.UI;
 using Random = System.Random;
 
 public class spawnGems : MonoBehaviour
@@ -17,9 +19,8 @@ public class spawnGems : MonoBehaviour
     public SystemInGameBoosterInstancePresentationAdaptor systemInGameBoosterInstancePresentationAdaptor;
     public SystemPerkHandlerPresentationAdaptor systemPerkHandlerPresentationAdaptor;
     public SystemScorePresentationAdapter systemScorePresentationAdapter;
-
+    public string hostUser;
     public static Random randomSeed;
-
     private readonly gemColors[,] template1 = new gemColors[7, 7]
     {
         {
@@ -56,7 +57,12 @@ public class spawnGems : MonoBehaviour
 
     private void Start()
     {
+        hostUser = MatchMakingLogic.usersInGame[0];
         randomSeed = new Random(10);
+        if (hostUser == PlayerPrefs.GetString("username"))
+        {
+            socketLogic.sendChat("0",randomSeed,);
+        }
         var cellStackFactory = new MainCellStackFactory();
         var tileStackFactory = new MainTileStackFactory();
 

@@ -180,7 +180,7 @@ namespace Sample
                 foreach (var VARIABLE in matched)
                 {
                     //Should create booster
-                    if (matched.Count > 3 && VARIABLE.Parent().Position() == lastGemTileMove.Parent().Position())
+                    if (VARIABLE._gemTypes==gemTypes.normal && matched.Count > 3 && VARIABLE.Parent().Position() == lastGemTileMove.Parent().Position())
                     {
                         //Arrow :
                         if (matched.Count == 4 )

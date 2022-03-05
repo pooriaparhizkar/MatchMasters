@@ -21,6 +21,7 @@ public class MatchMakingLogic : MonoBehaviour
     private bool directRotate = true;
     public Text findingText;
     private string foundedName;
+    private string foundSessionID;
     public Text foundText;
     private IUserPresence localUser;
     private string myUsername;
@@ -28,6 +29,8 @@ public class MatchMakingLogic : MonoBehaviour
     private ISession session;
     public static ISocket socket;
     public static String gameMatchicket;
+    public static string[] usersInGame;
+    public static string mySessionID;
 
     private async void Start()
     {
@@ -53,6 +56,7 @@ public class MatchMakingLogic : MonoBehaviour
         // socket.ReceivedMatchState += m => async ()=> await OnReceivedMatchState(m);
         Debug.Log(session.Username);
         myUsername = session.Username;
+        mySessionID = session.UserId;
         await FindMatch();
     }
 
@@ -81,6 +85,7 @@ public class MatchMakingLogic : MonoBehaviour
         if (foundedName != null)
         {
             // Debug.Log("umad in tuuuuuuuuuuuuuuu");
+
             foundText.text = foundedName;
             StartCoroutine(RedirectAfterFound());
         }
@@ -93,7 +98,6 @@ public class MatchMakingLogic : MonoBehaviour
     {
         await CancelMatchmaking();
     }
-
     private void OnReceivedMatchPresence(IMatchPresenceEvent matchPresenceEvent)
     {
         gameMatchicket = matchPresenceEvent.MatchId;
@@ -102,7 +106,9 @@ public class MatchMakingLogic : MonoBehaviour
             Debug.LogFormat("Connected user: " + user.Username);
             if (user.Username != myUsername)
             {
-                Debug.Log("Peidaaaaa shod");
+
+                Debug.Log("Peidaaaaa shod11111");
+                foundSessionID = user.SessionId;
                 foundedName = user.Username;
             }
         }
@@ -133,6 +139,8 @@ public class MatchMakingLogic : MonoBehaviour
 
     private IEnumerator RedirectAfterFound()
     {
+        usersInGame = new string[2] {  myUsername,foundedName };
+        Array.Sort(usersInGame,StringComparer.InvariantCulture);
         yield return new WaitForSecondsRealtime(04);
         SceneManager.LoadScene("CoreGame");
     }
@@ -165,8 +173,10 @@ public class MatchMakingLogic : MonoBehaviour
         {
             if (user.Username != myUsername)
             {
-                Debug.Log("Peidaaaaa shod");
+                foundSessionID = user.SessionId;
                 foundedName = user.Username;
+                Debug.Log("Peidaaaaa shod22222");
+
             }
 
             Debug.LogFormat("Connected user: " + user.Username);
