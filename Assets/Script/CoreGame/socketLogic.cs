@@ -61,6 +61,11 @@ namespace Script.CoreGame
                 //6 : Exit
                 switch (jsonContent.opcode)
                 {
+                    case "0":
+                        spawnGems.setRandomSeed(sourcePosiiton.x);
+                        spawnGems.setTemplateNo(targetPosition.x);
+                        break;
+
                     case "1":
                         gameplayController.FrameBasedBlackBoard.GetComponent<SwapBlackBoard>().requestedSwaps
                             .Add(new SwapBlackBoard.SwapData(

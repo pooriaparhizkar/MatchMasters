@@ -21,6 +21,7 @@ public class spawnGems : MonoBehaviour
     public SystemScorePresentationAdapter systemScorePresentationAdapter;
     public string hostUser;
     public static Random randomSeed;
+    public static int templateNo;
     private readonly gemColors[,] template1 = new gemColors[7, 7]
     {
         {
@@ -52,18 +53,119 @@ public class spawnGems : MonoBehaviour
             gemColors.yellow
         }
     };
+     private readonly gemColors[,] template2 = new gemColors[7, 7]
+    {
+        {
+            gemColors.orange, gemColors.green, gemColors.yellow, gemColors.purple, gemColors.red, gemColors.blue,
+            gemColors.purple
+        },
+        {
+            gemColors.yellow, gemColors.blue, gemColors.orange, gemColors.green, gemColors.purple, gemColors.orange,
+            gemColors.red
+        },
+        {
+            gemColors.yellow, gemColors.blue, gemColors.yellow, gemColors.red, gemColors.yellow, gemColors.purple,
+            gemColors.yellow
+        },
+        {
+            gemColors.red, gemColors.green, gemColors.blue, gemColors.yellow, gemColors.purple, gemColors.green,
+            gemColors.blue
+        },
+        {
+            gemColors.blue, gemColors.red, gemColors.blue, gemColors.orange, gemColors.red, gemColors.purple,
+            gemColors.red
+        },
+        {
+            gemColors.red, gemColors.red, gemColors.purple, gemColors.orange, gemColors.red, gemColors.yellow,
+            gemColors.red
+        },
+        {
+            gemColors.green, gemColors.purple, gemColors.green, gemColors.yellow, gemColors.orange, gemColors.green,
+            gemColors.blue
+        }
+    };
+
+    //done
+    private readonly gemColors[,] template3 = new gemColors[7, 7]
+    {
+        {
+            gemColors.green, gemColors.purple, gemColors.orange, gemColors.blue, gemColors.purple, gemColors.red,
+            gemColors.yellow
+        },
+        {
+            gemColors.red, gemColors.blue, gemColors.orange, gemColors.green, gemColors.purple, gemColors.orange,
+            gemColors.green
+        },
+        {
+            gemColors.yellow, gemColors.red, gemColors.blue, gemColors.orange, gemColors.blue, gemColors.red,
+            gemColors.orange
+        },
+        {
+            gemColors.blue, gemColors.yellow, gemColors.purple, gemColors.orange, gemColors.red, gemColors.yellow,
+            gemColors.red
+        },
+        {
+            gemColors.yellow, gemColors.purple, gemColors.red, gemColors.yellow, gemColors.blue, gemColors.yellow,
+            gemColors.red
+        },
+        {
+            gemColors.purple, gemColors.green, gemColors.purple, gemColors.yellow, gemColors.purple, gemColors.green,
+            gemColors.blue
+        },
+        {
+            gemColors.purple, gemColors.orange, gemColors.yellow, gemColors.purple, gemColors.green, gemColors.blue,
+            gemColors.yellow
+        }
+    };
+
+    //done
+    private readonly gemColors[,] template4 = new gemColors[7, 7]
+    {
+        {
+            gemColors.green, gemColors.purple, gemColors.orange, gemColors.blue, gemColors.purple, gemColors.red,
+            gemColors.yellow
+        },
+        {
+            gemColors.red, gemColors.blue, gemColors.orange, gemColors.green, gemColors.purple, gemColors.orange,
+            gemColors.green
+        },
+        {
+            gemColors.yellow, gemColors.red, gemColors.blue, gemColors.orange, gemColors.blue, gemColors.red,
+            gemColors.orange
+        },
+        {
+            gemColors.blue, gemColors.yellow, gemColors.purple, gemColors.orange, gemColors.red, gemColors.yellow,
+            gemColors.red
+        },
+        {
+            gemColors.yellow, gemColors.purple, gemColors.red, gemColors.yellow, gemColors.blue, gemColors.yellow,
+            gemColors.red
+        },
+        {
+            gemColors.purple, gemColors.green, gemColors.purple, gemColors.yellow, gemColors.purple, gemColors.green,
+            gemColors.blue
+        },
+        {
+            gemColors.purple, gemColors.orange, gemColors.yellow, gemColors.purple, gemColors.green, gemColors.blue,
+            gemColors.yellow
+        }
+    };
+
+    public static void setTemplateNo(int number)
+    {
+        templateNo = number;
+    }
 
     public static SampleGameplayMainController gameplayController;
 
-    private void Start()
+    public static void setRandomSeed(int seed)
     {
-        hostUser = MatchMakingLogic.usersInGame[0];
-        randomSeed = new Random(10);
-        if (hostUser == PlayerPrefs.GetString("username"))
-        {
-            socketLogic.sendChat("0",randomSeed,);
-        }
-        var cellStackFactory = new MainCellStackFactory();
+        randomSeed = new Random(seed);
+    }
+
+    public void initialMap()
+    {
+           var cellStackFactory = new MainCellStackFactory();
         var tileStackFactory = new MainTileStackFactory();
 
 
@@ -71,7 +173,7 @@ public class spawnGems : MonoBehaviour
             CreateLevelBoard(cellStackFactory, tileStackFactory),
             tileStackFactory);
 
-        // It is a good practive to add PresentationPorts before the Start.
+        // It is a good practice to add PresentationPorts before the Start.
         gameplayController.AddPresentationPort(systemSwapPresentationAdapter);
         gameplayController.AddPresentationPort(systemDestroyPresentationAdapter);
         gameplayController.AddPresentationPort(systemPhysicPresentationAdapter);
@@ -111,19 +213,41 @@ public class spawnGems : MonoBehaviour
 
         gameplayController.Start();
     }
+    private void Start()
+    {
+        gameplayController = null;
+        hostUser = MatchMakingLogic.usersInGame[0];
+        templateNo = 999;
+        Random generateRandomSeed = new Random(10);
+        randomSeed = new Random(generateRandomSeed.Next());
+        if (hostUser == PlayerPrefs.GetString("username"))
+        {
+            templateNo = randomSeed.Next(1, 10);
+            socketLogic.sendChat("0","("+generateRandomSeed.ToString()+", 1)","("+templateNo.ToString()+", 1)");
+            initialMap();
+        }
+    }
 
 
     // Update is called once per frame
     private void Update()
     {
-        gameplayController.Update(Time.deltaTime);
-        foreach (var cellStack in gameplayController.LevelBoard.leftToRightTopDownCellStackArray)
-            if (cellStack.HasTileStack())
+        if (templateNo!=999)
+        {
+            if (gameplayController == null)
             {
-                var tileStack = cellStack.CurrentTileStack();
-                var presenter = tileStack.GetComponent<gemTilePresenter>();
-                presenter.transform.localPosition = logicalPositionToPresentation(tileStack.Position(),true);
+                initialMap();
             }
+            gameplayController.Update(Time.deltaTime);
+            foreach (var cellStack in gameplayController.LevelBoard.leftToRightTopDownCellStackArray)
+                if (cellStack.HasTileStack())
+                {
+                    var tileStack = cellStack.CurrentTileStack();
+                    var presenter = tileStack.GetComponent<gemTilePresenter>();
+                    presenter.transform.localPosition = logicalPositionToPresentation(tileStack.Position(),true);
+                }
+        }
+
     }
 
     private LevelBoard CreateLevelBoard(MainCellStackFactory cellStackFactory, MainTileStackFactory tileStackFactory)
@@ -144,7 +268,22 @@ public class spawnGems : MonoBehaviour
             cellStackBoard[i, j] = cellStack;
 
             SetupCells(cellStack);
-            SetupTiles(tileStack, template1[j, i],gemTypes.normal);
+            switch (templateNo)
+            {
+                case 1:
+                    SetupTiles(tileStack, template1[j, i],gemTypes.normal);
+                    break;
+                case 2:
+                    SetupTiles(tileStack, template2[j, i],gemTypes.normal);
+                    break;
+                case 3:
+                    SetupTiles(tileStack, template3[j, i],gemTypes.normal);
+                    break;
+                case 4:
+                    SetupTiles(tileStack, template4[j, i],gemTypes.normal);
+                    break;
+            }
+
         }
 
         return new LevelBoard(cellStackBoard);
