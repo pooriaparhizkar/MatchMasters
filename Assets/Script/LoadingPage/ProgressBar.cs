@@ -45,7 +45,7 @@ public class ProgressBar : MonoBehaviour
                     }
 
                    session = await client.AuthenticateDeviceAsync(deviceId);
-                   // session = await client.AuthenticateDeviceAsync("pooria-pooria-pooria-pooria-pooria-pooria-pooria-pooria-pooria-pooria23");
+                   // session = await client.AuthenticateDeviceAsync("pooria-pooria-pooria-pooria-pooria-pooria-pooria-pooria-pooria-pooria223");
                     PlayerPrefs.SetString("token", session.AuthToken);
                     PlayerPrefs.SetString("refresh_token", session.RefreshToken);
                     PlayerPrefs.SetString("username", session.Username);

@@ -20,8 +20,10 @@ public class spawnGems : MonoBehaviour
     public SystemInGameBoosterInstancePresentationAdaptor systemInGameBoosterInstancePresentationAdaptor;
     public SystemPerkHandlerPresentationAdaptor systemPerkHandlerPresentationAdaptor;
     public SystemScorePresentationAdapter systemScorePresentationAdapter;
+    public SystemTurnPresentationAdapter systemTurnPresentationAdapter;
    public static Random randomSeed;
     public static int templateNo;
+    public GameObject turnBlackScreen;
     private readonly gemColors[,] template1 = new gemColors[7, 7]
     {
         {
@@ -164,7 +166,12 @@ public class spawnGems : MonoBehaviour
     }
     private void Start()
     {
-        var cellStackFactory = new MainCellStackFactory();
+        if (turnHandler.isMyTurn())
+            turnBlackScreen.SetActive(false);
+        if (!turnHandler.isMyTurn())
+            turnBlackScreen.SetActive(true);
+
+            var cellStackFactory = new MainCellStackFactory();
         var tileStackFactory = new MainTileStackFactory();
 
 
@@ -180,6 +187,7 @@ public class spawnGems : MonoBehaviour
         gameplayController.AddPresentationPort(systemInGameBoosterInstancePresentationAdaptor);
         gameplayController.AddPresentationPort(systemPerkHandlerPresentationAdaptor);
         gameplayController.AddPresentationPort(systemScorePresentationAdapter);
+        gameplayController.AddPresentationPort(systemTurnPresentationAdapter);
         foreach (var cellStack in gameplayController.LevelBoard.leftToRightTopDownCellStackArray)
             if (cellStack.HasTileStack())
             {

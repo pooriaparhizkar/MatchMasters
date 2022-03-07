@@ -34,9 +34,16 @@ public class MatchMakingLogic : MonoBehaviour
     public static string[] usersInGame;
     public static string mySessionID;
     private bool isRedirecting;
+    private static bool isClientReady;
+
+    public static void setIsClientReady()
+    {
+        isClientReady = true;
+    }
 
     private async void Start()
     {
+        isClientReady = false;
         isRedirecting = false;
         StartCoroutine(ChangeFindingText());
 
@@ -91,8 +98,13 @@ public class MatchMakingLogic : MonoBehaviour
             // Debug.Log("umad in tuuuuuuuuuuuuuuu");
 
             foundText.text = foundedName;
-            if (!isRedirecting && gameMatchicket!=null)
+            if (!isRedirecting && gameMatchicket != null)
                 RedirectAfterFound();
+        }
+
+        if (isClientReady)
+        {
+            changeSceneToCore();
         }
 
 
@@ -147,22 +159,22 @@ public class MatchMakingLogic : MonoBehaviour
         isRedirecting = true;
         usersInGame = new string[2] {myUsername, foundedName};
         Array.Sort(usersInGame, StringComparer.InvariantCulture);
-        Debug.Log(usersInGame[0]);
-        Debug.Log(usersInGame[1]);
-        Debug.Log(PlayerPrefs.GetString("username"));
+        turnHandler.setHostName(usersInGame[0]);
+        turnHandler.setClientName(usersInGame[1]);
         if (usersInGame[0] == PlayerPrefs.GetString("username"))
         {
+            turnHandler.setAmIHost(true);
             Random generateRandomSeed = new Random();
             int numberGenrateRandomSeed = generateRandomSeed.Next();
-            int templateNo = generateRandomSeed.Next(1, 3);
+            int templateNo = generateRandomSeed.Next(1, 4);
             spawnGems.setTemplateNo(templateNo);
             spawnGems.setRandomSeed(numberGenrateRandomSeed);
             socketLogic.sendChat("0", "(" + numberGenrateRandomSeed.ToString() + ", 1)",
                 "(" + templateNo.ToString() + ", 1)");
+            // await Task.Delay(2000);
+            changeSceneToCore();
         }
-
-        await Task.Delay(5000);
-        SceneManager.LoadScene("CoreGame");
+        else turnHandler.setAmIHost(false);
     }
 
     private async Task FindMatch(int minPlayers = 2)
@@ -202,6 +214,12 @@ public class MatchMakingLogic : MonoBehaviour
         }
 
         currentMatch = match;
+    }
+
+    public static async void changeSceneToCore()
+    {
+        await Task.Delay(2000);
+        SceneManager.LoadScene("CoreGame");
     }
 
     public void goCore()

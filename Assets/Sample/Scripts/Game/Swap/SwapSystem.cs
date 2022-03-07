@@ -35,7 +35,13 @@ namespace Sample
         public override void Update(float dt)
         {
             foreach (var swapData in swapBlackBoard.requestedSwaps)
+            {
+                Debug.Log(turnHandler.getAmIHost());
+                Debug.Log(turnHandler.getTurn());
+                Debug.Log(turnHandler.getAmIHost() && turnHandler.getTurn() == 1);
+                Debug.Log(!turnHandler.getAmIHost() && turnHandler.getTurn() == 2);
                 StartSwap(swapData);
+            }
         }
 
         private void StartSwap(SwapBlackBoard.SwapData swapData)
@@ -60,7 +66,6 @@ namespace Sample
             // ActionUtilites.FullyLock<SwapSystemKeyType>(cellStack2);
 
             presentationPort.PlaySwap(cellStack1, cellStack2, () => ApplySwap(cellStack1, cellStack2, swapData.isDrag));
-
         }
 
         private async void ApplySwap(CellStack cellStack1, CellStack cellStack2, bool isDrag)
@@ -69,7 +74,7 @@ namespace Sample
             // fixed in the board.
             ActionUtilites.SwapTileStacksOf(cellStack1, cellStack2);
 
-            if (ActionUtilites.getIsSwapBack())
+            if (ActionUtilites.getIsSwapBack()) // developer mode lock the swap back
             {
                 if (isDrag)
                 {

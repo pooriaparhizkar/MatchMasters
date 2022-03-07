@@ -38,7 +38,9 @@ public class gemTilePresenter : SwapBlackBoard, Component, IDragHandler, IEndDra
 
     public void OnDrag(PointerEventData eventData)
     {
-        if (!_gameplayMainController.LevelBoard.CellStackBoard().isBoardLock())
+        if (turnHandler.isMyTurn())
+        {
+                if (!_gameplayMainController.LevelBoard.CellStackBoard().isBoardLock())
         {
             // presentationPort = _gameplayMainController.GetPresentationPort<OrderSwapSystemPresentationPort>();
             var firstPos = new Vector2Int((int) _tileStack.Position().x, (int) _tileStack.Position().y);
@@ -71,6 +73,8 @@ public class gemTilePresenter : SwapBlackBoard, Component, IDragHandler, IEndDra
 
             }
         }
+        }
+
 
     }
 

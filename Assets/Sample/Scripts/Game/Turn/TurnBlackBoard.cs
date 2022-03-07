@@ -15,12 +15,6 @@ namespace Sample
 
         public struct TurnData
         {
-            public readonly bool isMyTurn;
-
-            public TurnData(bool isMyTurn) : this()
-            {
-                this.isMyTurn = isMyTurn;
-            }
         }
     }
 }

@@ -70,6 +70,7 @@ namespace Script.CoreGame
                         Debug.Log("initial maaap sockeeeeeet");
                         spawnGems.setRandomSeed(sourcePosiiton.x);
                         spawnGems.setTemplateNo(targetPosition.x);
+                        MatchMakingLogic.setIsClientReady();
                         // SceneManager.LoadScene("CoreGame");
                         break;
 

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Medrick.Match3CoreSystem.Game;
 using Medrick.Match3CoreSystem.Game.Core;
+using Script.CoreGame;
 using UnityEngine;
 
 namespace Sample
@@ -311,6 +312,10 @@ namespace Sample
                 await Task.Delay(100);
                 GetFrameData<SwapBlackBoard>().requestedSwaps.Add(
                     new SwapBlackBoard.SwapData(swapData.cell1.Position(), swapData.cell2.Position()));
+            }
+            else
+            {
+                GetFrameData<TurnBlackBoard>().requestedTurns.Add(new TurnBlackBoard.TurnData());
             }
             //GetFrameData<CheckBlackBoard>().Clear();
         }

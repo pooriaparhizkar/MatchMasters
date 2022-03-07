@@ -1,12 +1,13 @@
 using System;
 using Medrick.Match3CoreSystem.Game;
+using Script.CoreGame;
 using UnityEngine;
 
 namespace Sample
 {
     public interface TurnSystemPresentationPort : PresentationPort
     {
-        void PlayTurn(bool isMyTurn, Action onCompleted);
+        void PlayTurn(bool isMyTurn, int remainMove, Action onCompleted);
     }
 
     public class TurnSystemKeyType : KeyType
@@ -29,14 +30,34 @@ namespace Sample
             presentationPort = gameplayController.GetPresentationPort<TurnSystemPresentationPort>();
         }
 
-        public override void Update(float dt)
+        private void applyUpdateTurn()
         {
-            foreach (var TurnData in TurnBlackBoard.requestedTurns) StartTurn(TurnData);
+
         }
 
-        private void StartTurn(TurnBlackBoard.TurnData TurnData)
+        public override void Update(float dt)
         {
-            presentationPort.PlayTurn(TurnData.isMyTurn, () => ApplyTurn());
+            foreach (var TurnData in TurnBlackBoard.requestedTurns)
+            {
+
+                turnHandler.setRemainMove(turnHandler.getRemainMove() - 1);
+                // StartTurn(turnHandler.isMyTurn(), turnHandler.getRemainMove());
+                if (turnHandler.getRemainMove() == 2)
+                    turnHandler.setTurn(2);
+                if (turnHandler.getRemainMove() == 0)
+                {
+                    turnHandler.setTurn(1);
+                    turnHandler.resetRemainMove();
+                    // StartTurn(turnHandler.isMyTurn(), turnHandler.getRemainMove());
+                }
+                StartTurn(turnHandler.isMyTurn(), turnHandler.getRemainMove());
+
+            }
+        }
+
+        private void StartTurn(bool isMyTurn, int remainMove)
+        {
+            presentationPort.PlayTurn(isMyTurn, remainMove, () => ApplyTurn());
         }
 
         private void ApplyTurn()

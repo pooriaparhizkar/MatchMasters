@@ -1,6 +1,7 @@
 using System;
 using Medrick.Match3CoreSystem.Game;
 using Medrick.Match3CoreSystem.Game.Core;
+using Script.CoreGame;
 using UnityEngine;
 
 namespace Sample
@@ -54,8 +55,37 @@ namespace Sample
 
         private void ApplyDestroy(CellStack cellStack1)
         {
-            GetFrameData<ScoreBlackBoard>().requestedScores.Add(
-                new ScoreBlackBoard.ScoreData(true));
+            if (turnHandler.isMyTurn())
+            {
+                if (turnHandler.getRemainMove()%2==0)
+                {
+                    GetFrameData<ScoreBlackBoard>().requestedScores.Add(
+                        new ScoreBlackBoard.ScoreData(!turnHandler.isMyTurn()));
+                }
+                else
+                {
+                    GetFrameData<ScoreBlackBoard>().requestedScores.Add(
+                        new ScoreBlackBoard.ScoreData(turnHandler.isMyTurn()));
+                }
+            }
+            else
+            {
+                if (turnHandler.getRemainMove()%2==1)
+                {
+                    GetFrameData<ScoreBlackBoard>().requestedScores.Add(
+                        new ScoreBlackBoard.ScoreData(turnHandler.isMyTurn()));
+                }
+                else
+                {
+                    GetFrameData<ScoreBlackBoard>().requestedScores.Add(
+                        new ScoreBlackBoard.ScoreData(!turnHandler.isMyTurn()));
+                }
+            }
+
+            // GetFrameData<ScoreBlackBoard>().requestedScores.Add(
+            //     new ScoreBlackBoard.ScoreData(turnHandler.isMyTurn()));
+
+
             // Note that we only Destroy the TileStacks of these CellStacks. CellStacks are usually considered
             // fixed in the board.
             // ActionUtilites.DestroyTileStacksOf(cellStack1, cellStack2);
