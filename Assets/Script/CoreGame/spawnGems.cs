@@ -1,10 +1,16 @@
-﻿using Medrick.Match3CoreSystem.Game.Core;
+using System;
+using Medrick.Match3CoreSystem.Game.Core;
+using Nakama;
 using Sample;
+using Script.CoreGame;
 using UnityEngine;
+using UnityEngine.UI;
+using Random = System.Random;
 
 public class spawnGems : MonoBehaviour
 {
     // Start is called before the first frame update
+    public static SampleGameplayMainController gameplayController;
     public GameObject[] gems;
     public GameObject boardGame;
     public SystemSwapPresentationAdapter systemSwapPresentationAdapter;
@@ -12,7 +18,12 @@ public class spawnGems : MonoBehaviour
     public SystemPhysicPresentationAdaptor systemPhysicPresentationAdapter;
     public SystemTopIntancePresentationAdaptor systemTopInstancePresentationAdaptor;
     public SystemInGameBoosterInstancePresentationAdaptor systemInGameBoosterInstancePresentationAdaptor;
-
+    public SystemPerkHandlerPresentationAdaptor systemPerkHandlerPresentationAdaptor;
+    public SystemScorePresentationAdapter systemScorePresentationAdapter;
+    public SystemTurnPresentationAdapter systemTurnPresentationAdapter;
+   public static Random randomSeed;
+    public static int templateNo;
+    public GameObject turnBlackScreen;
     private readonly gemColors[,] template1 = new gemColors[7, 7]
     {
         {
@@ -44,12 +55,123 @@ public class spawnGems : MonoBehaviour
             gemColors.yellow
         }
     };
+     private readonly gemColors[,] template2 = new gemColors[7, 7]
+    {
+        {
+            gemColors.orange, gemColors.green, gemColors.yellow, gemColors.purple, gemColors.red, gemColors.blue,
+            gemColors.purple
+        },
+        {
+            gemColors.yellow, gemColors.blue, gemColors.orange, gemColors.green, gemColors.purple, gemColors.orange,
+            gemColors.red
+        },
+        {
+            gemColors.yellow, gemColors.blue, gemColors.yellow, gemColors.red, gemColors.yellow, gemColors.purple,
+            gemColors.yellow
+        },
+        {
+            gemColors.red, gemColors.green, gemColors.blue, gemColors.yellow, gemColors.purple, gemColors.green,
+            gemColors.blue
+        },
+        {
+            gemColors.blue, gemColors.red, gemColors.blue, gemColors.orange, gemColors.red, gemColors.purple,
+            gemColors.red
+        },
+        {
+            gemColors.red, gemColors.red, gemColors.purple, gemColors.orange, gemColors.red, gemColors.yellow,
+            gemColors.red
+        },
+        {
+            gemColors.green, gemColors.purple, gemColors.green, gemColors.yellow, gemColors.orange, gemColors.green,
+            gemColors.blue
+        }
+    };
 
-    private SampleGameplayMainController gameplayController;
+    //done
+    private readonly gemColors[,] template3 = new gemColors[7, 7]
+    {
+        {
+            gemColors.green, gemColors.purple, gemColors.orange, gemColors.blue, gemColors.purple, gemColors.red,
+            gemColors.yellow
+        },
+        {
+            gemColors.red, gemColors.blue, gemColors.orange, gemColors.green, gemColors.purple, gemColors.orange,
+            gemColors.green
+        },
+        {
+            gemColors.yellow, gemColors.red, gemColors.blue, gemColors.orange, gemColors.blue, gemColors.red,
+            gemColors.orange
+        },
+        {
+            gemColors.blue, gemColors.yellow, gemColors.purple, gemColors.orange, gemColors.red, gemColors.yellow,
+            gemColors.red
+        },
+        {
+            gemColors.yellow, gemColors.purple, gemColors.red, gemColors.yellow, gemColors.blue, gemColors.yellow,
+            gemColors.red
+        },
+        {
+            gemColors.purple, gemColors.green, gemColors.purple, gemColors.yellow, gemColors.purple, gemColors.green,
+            gemColors.blue
+        },
+        {
+            gemColors.purple, gemColors.orange, gemColors.yellow, gemColors.purple, gemColors.green, gemColors.blue,
+            gemColors.yellow
+        }
+    };
 
+    //done
+    private readonly gemColors[,] template4 = new gemColors[7, 7]
+    {
+        {
+            gemColors.green, gemColors.purple, gemColors.orange, gemColors.blue, gemColors.purple, gemColors.red,
+            gemColors.yellow
+        },
+        {
+            gemColors.red, gemColors.blue, gemColors.orange, gemColors.green, gemColors.purple, gemColors.orange,
+            gemColors.green
+        },
+        {
+            gemColors.yellow, gemColors.red, gemColors.blue, gemColors.orange, gemColors.blue, gemColors.red,
+            gemColors.orange
+        },
+        {
+            gemColors.blue, gemColors.yellow, gemColors.purple, gemColors.orange, gemColors.red, gemColors.yellow,
+            gemColors.red
+        },
+        {
+            gemColors.yellow, gemColors.purple, gemColors.red, gemColors.yellow, gemColors.blue, gemColors.yellow,
+            gemColors.red
+        },
+        {
+            gemColors.purple, gemColors.green, gemColors.purple, gemColors.yellow, gemColors.purple, gemColors.green,
+            gemColors.blue
+        },
+        {
+            gemColors.purple, gemColors.orange, gemColors.yellow, gemColors.purple, gemColors.green, gemColors.blue,
+            gemColors.yellow
+        }
+    };
+
+    public static void setTemplateNo(int number)
+    {
+        templateNo = number;
+    }
+
+
+
+    public static void setRandomSeed(int seed)
+    {
+        randomSeed = new Random(seed);
+    }
     private void Start()
     {
-        var cellStackFactory = new MainCellStackFactory();
+        if (turnHandler.isMyTurn())
+            turnBlackScreen.SetActive(false);
+        if (!turnHandler.isMyTurn())
+            turnBlackScreen.SetActive(true);
+
+            var cellStackFactory = new MainCellStackFactory();
         var tileStackFactory = new MainTileStackFactory();
 
 
@@ -63,6 +185,9 @@ public class spawnGems : MonoBehaviour
         gameplayController.AddPresentationPort(systemPhysicPresentationAdapter);
         gameplayController.AddPresentationPort(systemTopInstancePresentationAdaptor);
         gameplayController.AddPresentationPort(systemInGameBoosterInstancePresentationAdaptor);
+        gameplayController.AddPresentationPort(systemPerkHandlerPresentationAdaptor);
+        gameplayController.AddPresentationPort(systemScorePresentationAdapter);
+        gameplayController.AddPresentationPort(systemTurnPresentationAdapter);
         foreach (var cellStack in gameplayController.LevelBoard.leftToRightTopDownCellStackArray)
             if (cellStack.HasTileStack())
             {
@@ -106,8 +231,9 @@ public class spawnGems : MonoBehaviour
             {
                 var tileStack = cellStack.CurrentTileStack();
                 var presenter = tileStack.GetComponent<gemTilePresenter>();
-                presenter.transform.localPosition = logicalPositionToPresentation(tileStack.Position(),true);
+                presenter.transform.localPosition = logicalPositionToPresentation(tileStack.Position(), true);
             }
+
     }
 
     private LevelBoard CreateLevelBoard(MainCellStackFactory cellStackFactory, MainTileStackFactory tileStackFactory)
@@ -128,7 +254,22 @@ public class spawnGems : MonoBehaviour
             cellStackBoard[i, j] = cellStack;
 
             SetupCells(cellStack);
-            SetupTiles(tileStack, template1[j, i],gemTypes.normal);
+            switch (templateNo)
+            {
+                case 1:
+                    SetupTiles(tileStack, template1[j, i],gemTypes.normal);
+                    break;
+                case 2:
+                    SetupTiles(tileStack, template2[j, i],gemTypes.normal);
+                    break;
+                case 3:
+                    SetupTiles(tileStack, template3[j, i],gemTypes.normal);
+                    break;
+                case 4:
+                    SetupTiles(tileStack, template4[j, i],gemTypes.normal);
+                    break;
+            }
+
         }
 
         return new LevelBoard(cellStackBoard);

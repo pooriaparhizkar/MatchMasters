@@ -1,4 +1,5 @@
-﻿using Medrick.Match3CoreSystem.Game.Core;
+﻿using System;
+using Medrick.Match3CoreSystem.Game.Core;
 using UnityEngine;
 
 namespace Sample
@@ -92,18 +93,37 @@ namespace Sample
     {
 
         normal,
-        booster
+        upDownarrow,
+        leftRightArrow,
+        bomb,
+        lightning
     }
 
     public class gemTile : Tile
     {
         public gemColors _color;
         public gemTypes _gemTypes;
-
+        public DateTime _utcTime;
+        private int GetTime()
+        {
+            var time = (DateTime.Now.ToUniversalTime() - new DateTime(1970, 1, 1));
+            return (int)(time.TotalMilliseconds + 0.5);
+        }
         public gemTile(gemColors color,gemTypes gemTypes)
         {
             _color = color;
             _gemTypes = gemTypes;
+            _utcTime = DateTime.UtcNow;
         }
+
+        public void setGemType(gemTypes gemTypes)
+        {
+            _gemTypes = gemTypes;
+        }
+        public void setUTCTimeNow()
+        {
+            _utcTime =  DateTime.UtcNow;;
+        }
+
     }
 }

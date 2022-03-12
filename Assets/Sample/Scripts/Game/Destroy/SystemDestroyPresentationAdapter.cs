@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using DG.Tweening;
 using Medrick.Match3CoreSystem.Game.Core;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Sample
 {
@@ -22,6 +23,7 @@ namespace Sample
                 // presenter1.transform.DOMove(new Vector3(.7f,1.2f,1), 1);
                 presenter1.transform.DOScaleY(0, 0.5f);
                 await Task.Delay(500);
+
 
                 // Debug.Log($"Finished Destroying {cellStack1.Position()} and {cellStack2.Position()} ");
                 //Destroy(presenter1);

@@ -45,7 +45,7 @@ public class ProgressBar : MonoBehaviour
                     }
 
                    session = await client.AuthenticateDeviceAsync(deviceId);
-                   // session = await client.AuthenticateDeviceAsync("pooria-pooria-pooria-pooria-pooria-pooria-pooria-pooria-pooria-pooria2");
+                   // session = await client.AuthenticateDeviceAsync("pooria-pooria-pooria-pooria-pooria-pooria-pooria-pooria-pooria-pooria223");
                     PlayerPrefs.SetString("token", session.AuthToken);
                     PlayerPrefs.SetString("refresh_token", session.RefreshToken);
                     PlayerPrefs.SetString("username", session.Username);
@@ -71,5 +71,10 @@ public class ProgressBar : MonoBehaviour
         progressBar.value = value;
         percantText.text = Math.Round(value * 100, 0).ToString() + '%';
         value += 0.1f * Time.deltaTime;
+    }
+
+    public void aghoojBUtton()
+    {
+        SceneManager.LoadScene("CoreGame");
     }
 }
