@@ -1,6 +1,9 @@
 using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using Medrick.Match3CoreSystem.Game.Core;
 using Nakama;
+using Nakama.TinyJson;
 using Sample;
 using UnityEngine;
 using Random = System.Random;
@@ -19,7 +22,8 @@ public class spawnGems : MonoBehaviour
     public SystemScorePresentationAdapter systemScorePresentationAdapter;
 
     public static Random randomSeed;
-
+    private ISession session;
+    private readonly IClient client = new Client("http", "157.119.191.169", 7350, "defaultkey");
     private readonly gemColors[,] template1 = new gemColors[7, 7]
     {
         {
@@ -52,10 +56,110 @@ public class spawnGems : MonoBehaviour
         }
     };
 
+    //done
+    private readonly gemColors[,] template2 = new gemColors[7, 7]
+    {
+        {
+            gemColors.orange, gemColors.green, gemColors.yellow, gemColors.purple, gemColors.red, gemColors.blue,
+            gemColors.purple
+        },
+        {
+            gemColors.yellow, gemColors.blue, gemColors.orange, gemColors.green, gemColors.purple, gemColors.orange,
+            gemColors.red
+        },
+        {
+            gemColors.yellow, gemColors.blue, gemColors.yellow, gemColors.red, gemColors.yellow, gemColors.purple,
+            gemColors.yellow
+        },
+        {
+            gemColors.red, gemColors.green, gemColors.blue, gemColors.yellow, gemColors.purple, gemColors.green,
+            gemColors.blue
+        },
+        {
+            gemColors.blue, gemColors.red, gemColors.blue, gemColors.orange, gemColors.red, gemColors.purple,
+            gemColors.red
+        },
+        {
+            gemColors.red, gemColors.red, gemColors.purple, gemColors.orange, gemColors.red, gemColors.yellow,
+            gemColors.red
+        },
+        {
+            gemColors.green, gemColors.purple, gemColors.green, gemColors.yellow, gemColors.orange, gemColors.green,
+            gemColors.blue
+        }
+    };
+
+    //done
+    private readonly gemColors[,] template3 = new gemColors[7, 7]
+    {
+        {
+            gemColors.green, gemColors.purple, gemColors.orange, gemColors.blue, gemColors.purple, gemColors.red,
+            gemColors.yellow
+        },
+        {
+            gemColors.red, gemColors.blue, gemColors.orange, gemColors.green, gemColors.purple, gemColors.orange,
+            gemColors.green
+        },
+        {
+            gemColors.yellow, gemColors.red, gemColors.blue, gemColors.orange, gemColors.blue, gemColors.red,
+            gemColors.orange
+        },
+        {
+            gemColors.blue, gemColors.yellow, gemColors.purple, gemColors.orange, gemColors.red, gemColors.yellow,
+            gemColors.red
+        },
+        {
+            gemColors.yellow, gemColors.purple, gemColors.red, gemColors.yellow, gemColors.blue, gemColors.yellow,
+            gemColors.red
+        },
+        {
+            gemColors.purple, gemColors.green, gemColors.purple, gemColors.yellow, gemColors.purple, gemColors.green,
+            gemColors.blue
+        },
+        {
+            gemColors.purple, gemColors.orange, gemColors.yellow, gemColors.purple, gemColors.green, gemColors.blue,
+            gemColors.yellow
+        }
+    };
+
+    //done
+    private readonly gemColors[,] template4 = new gemColors[7, 7]
+    {
+        {
+            gemColors.green, gemColors.purple, gemColors.orange, gemColors.blue, gemColors.purple, gemColors.red,
+            gemColors.yellow
+        },
+        {
+            gemColors.red, gemColors.blue, gemColors.orange, gemColors.green, gemColors.purple, gemColors.orange,
+            gemColors.green
+        },
+        {
+            gemColors.yellow, gemColors.red, gemColors.blue, gemColors.orange, gemColors.blue, gemColors.red,
+            gemColors.orange
+        },
+        {
+            gemColors.blue, gemColors.yellow, gemColors.purple, gemColors.orange, gemColors.red, gemColors.yellow,
+            gemColors.red
+        },
+        {
+            gemColors.yellow, gemColors.purple, gemColors.red, gemColors.yellow, gemColors.blue, gemColors.yellow,
+            gemColors.red
+        },
+        {
+            gemColors.purple, gemColors.green, gemColors.purple, gemColors.yellow, gemColors.purple, gemColors.green,
+            gemColors.blue
+        },
+        {
+            gemColors.purple, gemColors.orange, gemColors.yellow, gemColors.purple, gemColors.green, gemColors.blue,
+            gemColors.yellow
+        }
+    };
+
     public static SampleGameplayMainController gameplayController;
 
     private void Start()
     {
+        // getsomeData();
         randomSeed = new Random(10);
         var cellStackFactory = new MainCellStackFactory();
         var tileStackFactory = new MainTileStackFactory();
@@ -116,7 +220,7 @@ public class spawnGems : MonoBehaviour
             {
                 var tileStack = cellStack.CurrentTileStack();
                 var presenter = tileStack.GetComponent<gemTilePresenter>();
-                presenter.transform.localPosition = logicalPositionToPresentation(tileStack.Position(),true);
+                presenter.transform.localPosition = logicalPositionToPresentation(tileStack.Position(), true);
             }
     }
 
@@ -138,7 +242,7 @@ public class spawnGems : MonoBehaviour
             cellStackBoard[i, j] = cellStack;
 
             SetupCells(cellStack);
-            SetupTiles(tileStack, template1[j, i],gemTypes.normal);
+            SetupTiles(tileStack, template1[j, i], gemTypes.normal);
         }
 
         return new LevelBoard(cellStackBoard);
@@ -154,11 +258,11 @@ public class spawnGems : MonoBehaviour
 
     private void SetupTiles(TileStack tileStack, gemColors color, gemTypes gemTypes)
     {
-        tileStack.Push(new gemTile(color,gemTypes));
+        tileStack.Push(new gemTile(color, gemTypes));
         // You can use tileStack.Push() to push your tiles;
     }
 
-    private Vector3 logicalPositionToPresentation(Vector2 pos,bool isStart)
+    private Vector3 logicalPositionToPresentation(Vector2 pos, bool isStart)
     {
         if (isStart)
         {
@@ -177,9 +281,34 @@ public class spawnGems : MonoBehaviour
     {
         GameObject newObject = null;
         newObject = Instantiate(gemPrefabs,
-            logicalPositionToPresentation(tileStack.Position(),true), Quaternion.identity);
+            logicalPositionToPresentation(tileStack.Position(), true), Quaternion.identity);
         newObject.transform.SetParent(boardGame.transform, false);
         newObject.transform.localScale = new Vector3(1, 1, 1);
         newObject.GetComponent<gemTilePresenter>().setup(tileStack, gameplayController);
     }
+// }
+    // private async void getsomeData()
+    // {
+    //     var session = Session.Restore(PlayerPrefs.GetString("token"));
+    //     var myusername = session.Username;
+    //     var oppenetuser=PlayerPrefs.GetString("opponentUser");
+    //     Debug.Log(myusername);
+    //     Debug.Log(oppenetuser);
+    //     var searchRequest = new Dictionary<string, string>() { { "user1", myusername },{"user2",oppenetuser} };
+    //     string payload = searchRequest.ToJson();
+    //     string rpcid = "testload";
+    //     Task<IApiRpc> load;
+    //     load = client.RpcAsync(session,rpcid,payload);
+    //     IApiRpc searchResult = await load;
+    //     DataStruct testres = searchResult.Payload.FromJson<DataStruct>();
+    //     Debug.Log(testres.templateId);
+    //     Debug.Log(testres.seednumber);
+    //
+    // }
+    // private struct DataStruct
+    // {
+    //     public int templateId;
+    //     public float seednumber;
+    //     public string host;
+    // } 
 }

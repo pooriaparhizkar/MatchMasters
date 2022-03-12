@@ -100,9 +100,11 @@ public class MatchMakingLogic : MonoBehaviour
         foreach (var user in matchPresenceEvent.Joins)
         {
             Debug.LogFormat("Connected user: " + user.Username);
+          
             if (user.Username != myUsername)
             {
                 Debug.Log("Peidaaaaa shod");
+                PlayerPrefs.SetString("opponentUser",user.Username);
                 foundedName = user.Username;
             }
         }
