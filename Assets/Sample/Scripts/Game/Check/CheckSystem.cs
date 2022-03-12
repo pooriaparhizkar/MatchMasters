@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Medrick.Match3CoreSystem.Game;
 using Medrick.Match3CoreSystem.Game.Core;
+using Script.CoreGame;
 using UnityEngine;
 
 namespace Sample
@@ -180,7 +181,7 @@ namespace Sample
                 foreach (var VARIABLE in matched)
                 {
                     //Should create booster
-                    if (matched.Count > 3 && VARIABLE.Parent().Position() == lastGemTileMove.Parent().Position())
+                    if (VARIABLE._gemTypes==gemTypes.normal && matched.Count > 3 && VARIABLE.Parent().Position() == lastGemTileMove.Parent().Position())
                     {
                         //Arrow :
                         if (matched.Count == 4 )
@@ -311,6 +312,10 @@ namespace Sample
                 await Task.Delay(100);
                 GetFrameData<SwapBlackBoard>().requestedSwaps.Add(
                     new SwapBlackBoard.SwapData(swapData.cell1.Position(), swapData.cell2.Position()));
+            }
+            else
+            {
+                GetFrameData<TurnBlackBoard>().requestedTurns.Add(new TurnBlackBoard.TurnData());
             }
             //GetFrameData<CheckBlackBoard>().Clear();
         }

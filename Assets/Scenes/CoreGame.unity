@@ -555,7 +555,7 @@ RectTransform:
   m_Children:
   - {fileID: 1951392309}
   m_Father: {fileID: 1988939702}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
@@ -3706,7 +3706,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1988939712}
+        - m_Target: {fileID: 0}
           m_MethodName: OnBackBtnClick
           m_Mode: 1
           m_Arguments:
@@ -4425,6 +4425,80 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!1 &1168459857
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1168459858}
+  - component: {fileID: 1168459860}
+  - component: {fileID: 1168459859}
+  m_Layer: 5
+  m_Name: turnBlackScreen
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &1168459858
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1168459857}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 3527.9998}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1988939702}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1168459859
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1168459857}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.39215687}
+  m_RaycastTarget: 1
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1168459860
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1168459857}
+  m_CullTransparentMesh: 0
 --- !u!1 &1196876039
 GameObject:
   m_ObjectHideFlags: 0
@@ -5007,7 +5081,7 @@ GameObject:
   - component: {fileID: 1364220891}
   - component: {fileID: 1364220890}
   m_Layer: 0
-  m_Name: red-dot-fill
+  m_Name: hisTurn1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5382,7 +5456,7 @@ GameObject:
   - component: {fileID: 1427710755}
   - component: {fileID: 1427710754}
   m_Layer: 0
-  m_Name: blue-dot-fill
+  m_Name: myTurn1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5613,7 +5687,7 @@ GameObject:
   - component: {fileID: 1507419221}
   - component: {fileID: 1507419220}
   m_Layer: 0
-  m_Name: red-dot-fill
+  m_Name: hisTurn2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7559,8 +7633,8 @@ GameObject:
   - component: {fileID: 1988939713}
   - component: {fileID: 1988939714}
   - component: {fileID: 1988939711}
-  - component: {fileID: 1988939712}
   - component: {fileID: 1988939715}
+  - component: {fileID: 1988939712}
   m_Layer: 0
   m_Name: board-background
   m_TagString: Untagged
@@ -7589,6 +7663,7 @@ RectTransform:
   - {fileID: 856942464}
   - {fileID: 1812310783}
   - {fileID: 1538377653}
+  - {fileID: 1168459858}
   - {fileID: 130272561}
   m_Father: {fileID: 43880881}
   m_RootOrder: 0
@@ -7662,6 +7737,8 @@ MonoBehaviour:
   systemInGameBoosterInstancePresentationAdaptor: {fileID: 1988939710}
   systemPerkHandlerPresentationAdaptor: {fileID: 1988939713}
   systemScorePresentationAdapter: {fileID: 1988939714}
+  systemTurnPresentationAdapter: {fileID: 1988939712}
+  turnBlackScreen: {fileID: 1168459857}
 --- !u!114 &1988939706
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7780,6 +7857,8 @@ MonoBehaviour:
   systemInGameBoosterInstancePresentationAdaptor: {fileID: 0}
   systemPerkHandlerPresentationAdaptor: {fileID: 0}
   systemScorePresentationAdapter: {fileID: 0}
+  systemTurnPresentationAdapter: {fileID: 0}
+  turnBlackScreen: {fileID: 0}
 --- !u!114 &1988939712
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7789,18 +7868,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1988939701}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 506becb1112b4667be243e51668b8ec8, type: 3}
+  m_Script: {fileID: 11500000, guid: 159c8a127a2a45d6b59e9236f00612b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gems: []
-  boardGame: {fileID: 0}
-  systemSwapPresentationAdapter: {fileID: 0}
-  systemDestroyPresentationAdapter: {fileID: 0}
-  systemPhysicPresentationAdapter: {fileID: 0}
-  systemTopInstancePresentationAdaptor: {fileID: 0}
-  systemInGameBoosterInstancePresentationAdaptor: {fileID: 0}
-  systemPerkHandlerPresentationAdaptor: {fileID: 0}
-  systemScorePresentationAdapter: {fileID: 0}
+  hisTurn1: {fileID: 1364220888}
+  hisTurn2: {fileID: 1507419218}
+  myTurn1: {fileID: 1427710752}
+  myTurn2: {fileID: 2089850301}
+  blackScreen: {fileID: 1168459857}
 --- !u!114 &1988939713
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8300,7 +8375,7 @@ GameObject:
   - component: {fileID: 2089850304}
   - component: {fileID: 2089850303}
   m_Layer: 0
-  m_Name: blue-dot-fill
+  m_Name: myTurn2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

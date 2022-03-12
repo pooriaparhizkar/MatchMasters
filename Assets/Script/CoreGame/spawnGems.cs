@@ -1,16 +1,16 @@
 using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using Medrick.Match3CoreSystem.Game.Core;
 using Nakama;
-using Nakama.TinyJson;
 using Sample;
+using Script.CoreGame;
 using UnityEngine;
+using UnityEngine.UI;
 using Random = System.Random;
 
 public class spawnGems : MonoBehaviour
 {
     // Start is called before the first frame update
+    public static SampleGameplayMainController gameplayController;
     public GameObject[] gems;
     public GameObject boardGame;
     public SystemSwapPresentationAdapter systemSwapPresentationAdapter;
@@ -20,10 +20,10 @@ public class spawnGems : MonoBehaviour
     public SystemInGameBoosterInstancePresentationAdaptor systemInGameBoosterInstancePresentationAdaptor;
     public SystemPerkHandlerPresentationAdaptor systemPerkHandlerPresentationAdaptor;
     public SystemScorePresentationAdapter systemScorePresentationAdapter;
-
-    public static Random randomSeed;
-    private ISession session;
-    private readonly IClient client = new Client("http", "157.119.191.169", 7350, "defaultkey");
+    public SystemTurnPresentationAdapter systemTurnPresentationAdapter;
+   public static Random randomSeed;
+    public static int templateNo;
+    public GameObject turnBlackScreen;
     private readonly gemColors[,] template1 = new gemColors[7, 7]
     {
         {
@@ -55,9 +55,7 @@ public class spawnGems : MonoBehaviour
             gemColors.yellow
         }
     };
-
-    //done
-    private readonly gemColors[,] template2 = new gemColors[7, 7]
+     private readonly gemColors[,] template2 = new gemColors[7, 7]
     {
         {
             gemColors.orange, gemColors.green, gemColors.yellow, gemColors.purple, gemColors.red, gemColors.blue,
@@ -155,13 +153,25 @@ public class spawnGems : MonoBehaviour
         }
     };
 
-    public static SampleGameplayMainController gameplayController;
+    public static void setTemplateNo(int number)
+    {
+        templateNo = number;
+    }
 
+
+
+    public static void setRandomSeed(int seed)
+    {
+        randomSeed = new Random(seed);
+    }
     private void Start()
     {
-        // getsomeData();
-        randomSeed = new Random(10);
-        var cellStackFactory = new MainCellStackFactory();
+        if (turnHandler.isMyTurn())
+            turnBlackScreen.SetActive(false);
+        if (!turnHandler.isMyTurn())
+            turnBlackScreen.SetActive(true);
+
+            var cellStackFactory = new MainCellStackFactory();
         var tileStackFactory = new MainTileStackFactory();
 
 
@@ -177,6 +187,7 @@ public class spawnGems : MonoBehaviour
         gameplayController.AddPresentationPort(systemInGameBoosterInstancePresentationAdaptor);
         gameplayController.AddPresentationPort(systemPerkHandlerPresentationAdaptor);
         gameplayController.AddPresentationPort(systemScorePresentationAdapter);
+        gameplayController.AddPresentationPort(systemTurnPresentationAdapter);
         foreach (var cellStack in gameplayController.LevelBoard.leftToRightTopDownCellStackArray)
             if (cellStack.HasTileStack())
             {
@@ -222,6 +233,7 @@ public class spawnGems : MonoBehaviour
                 var presenter = tileStack.GetComponent<gemTilePresenter>();
                 presenter.transform.localPosition = logicalPositionToPresentation(tileStack.Position(), true);
             }
+
     }
 
     private LevelBoard CreateLevelBoard(MainCellStackFactory cellStackFactory, MainTileStackFactory tileStackFactory)
@@ -242,7 +254,22 @@ public class spawnGems : MonoBehaviour
             cellStackBoard[i, j] = cellStack;
 
             SetupCells(cellStack);
-            SetupTiles(tileStack, template1[j, i], gemTypes.normal);
+            switch (templateNo)
+            {
+                case 1:
+                    SetupTiles(tileStack, template1[j, i],gemTypes.normal);
+                    break;
+                case 2:
+                    SetupTiles(tileStack, template2[j, i],gemTypes.normal);
+                    break;
+                case 3:
+                    SetupTiles(tileStack, template3[j, i],gemTypes.normal);
+                    break;
+                case 4:
+                    SetupTiles(tileStack, template4[j, i],gemTypes.normal);
+                    break;
+            }
+
         }
 
         return new LevelBoard(cellStackBoard);
@@ -258,11 +285,11 @@ public class spawnGems : MonoBehaviour
 
     private void SetupTiles(TileStack tileStack, gemColors color, gemTypes gemTypes)
     {
-        tileStack.Push(new gemTile(color, gemTypes));
+        tileStack.Push(new gemTile(color,gemTypes));
         // You can use tileStack.Push() to push your tiles;
     }
 
-    private Vector3 logicalPositionToPresentation(Vector2 pos, bool isStart)
+    private Vector3 logicalPositionToPresentation(Vector2 pos,bool isStart)
     {
         if (isStart)
         {
@@ -281,34 +308,9 @@ public class spawnGems : MonoBehaviour
     {
         GameObject newObject = null;
         newObject = Instantiate(gemPrefabs,
-            logicalPositionToPresentation(tileStack.Position(), true), Quaternion.identity);
+            logicalPositionToPresentation(tileStack.Position(),true), Quaternion.identity);
         newObject.transform.SetParent(boardGame.transform, false);
         newObject.transform.localScale = new Vector3(1, 1, 1);
         newObject.GetComponent<gemTilePresenter>().setup(tileStack, gameplayController);
     }
-// }
-    // private async void getsomeData()
-    // {
-    //     var session = Session.Restore(PlayerPrefs.GetString("token"));
-    //     var myusername = session.Username;
-    //     var oppenetuser=PlayerPrefs.GetString("opponentUser");
-    //     Debug.Log(myusername);
-    //     Debug.Log(oppenetuser);
-    //     var searchRequest = new Dictionary<string, string>() { { "user1", myusername },{"user2",oppenetuser} };
-    //     string payload = searchRequest.ToJson();
-    //     string rpcid = "testload";
-    //     Task<IApiRpc> load;
-    //     load = client.RpcAsync(session,rpcid,payload);
-    //     IApiRpc searchResult = await load;
-    //     DataStruct testres = searchResult.Payload.FromJson<DataStruct>();
-    //     Debug.Log(testres.templateId);
-    //     Debug.Log(testres.seednumber);
-    //
-    // }
-    // private struct DataStruct
-    // {
-    //     public int templateId;
-    //     public float seednumber;
-    //     public string host;
-    // } 
 }

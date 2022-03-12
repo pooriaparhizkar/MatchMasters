@@ -3,9 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Nakama;
+using Script.CoreGame;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Random = System.Random;
 
 public class MatchMakingLogic : MonoBehaviour
 {
@@ -21,6 +23,7 @@ public class MatchMakingLogic : MonoBehaviour
     private bool directRotate = true;
     public Text findingText;
     private string foundedName;
+    private string foundSessionID;
     public Text foundText;
     private IUserPresence localUser;
     private string myUsername;
@@ -28,9 +31,20 @@ public class MatchMakingLogic : MonoBehaviour
     private ISession session;
     public static ISocket socket;
     public static String gameMatchicket;
+    public static string[] usersInGame;
+    public static string mySessionID;
+    private bool isRedirecting;
+    private static bool isClientReady;
+
+    public static void setIsClientReady()
+    {
+        isClientReady = true;
+    }
 
     private async void Start()
     {
+        isClientReady = false;
+        isRedirecting = false;
         StartCoroutine(ChangeFindingText());
 
         // var deviceId = PlayerPrefs.GetString("nakama.deviceid");
@@ -53,6 +67,7 @@ public class MatchMakingLogic : MonoBehaviour
         // socket.ReceivedMatchState += m => async ()=> await OnReceivedMatchState(m);
         Debug.Log(session.Username);
         myUsername = session.Username;
+        mySessionID = session.UserId;
         await FindMatch();
     }
 
@@ -81,8 +96,15 @@ public class MatchMakingLogic : MonoBehaviour
         if (foundedName != null)
         {
             // Debug.Log("umad in tuuuuuuuuuuuuuuu");
+
             foundText.text = foundedName;
-            StartCoroutine(RedirectAfterFound());
+            if (!isRedirecting && gameMatchicket != null)
+                RedirectAfterFound();
+        }
+
+        if (isClientReady)
+        {
+            changeSceneToCore();
         }
 
 
@@ -100,11 +122,10 @@ public class MatchMakingLogic : MonoBehaviour
         foreach (var user in matchPresenceEvent.Joins)
         {
             Debug.LogFormat("Connected user: " + user.Username);
-          
             if (user.Username != myUsername)
             {
-                Debug.Log("Peidaaaaa shod");
-                PlayerPrefs.SetString("opponentUser",user.Username);
+                Debug.Log("Peidaaaaa shod11111");
+                foundSessionID = user.SessionId;
                 foundedName = user.Username;
             }
         }
@@ -133,10 +154,27 @@ public class MatchMakingLogic : MonoBehaviour
         // ChangeFindingText();
     }
 
-    private IEnumerator RedirectAfterFound()
+    private async void RedirectAfterFound()
     {
-        yield return new WaitForSecondsRealtime(04);
-        SceneManager.LoadScene("CoreGame");
+        isRedirecting = true;
+        usersInGame = new string[2] {myUsername, foundedName};
+        Array.Sort(usersInGame, StringComparer.InvariantCulture);
+        turnHandler.setHostName(usersInGame[0]);
+        turnHandler.setClientName(usersInGame[1]);
+        if (usersInGame[0] == PlayerPrefs.GetString("username"))
+        {
+            turnHandler.setAmIHost(true);
+            Random generateRandomSeed = new Random();
+            int numberGenrateRandomSeed = generateRandomSeed.Next();
+            int templateNo = generateRandomSeed.Next(1, 4);
+            spawnGems.setTemplateNo(templateNo);
+            spawnGems.setRandomSeed(numberGenrateRandomSeed);
+            socketLogic.sendChat("0", "(" + numberGenrateRandomSeed.ToString() + ", 1)",
+                "(" + templateNo.ToString() + ", 1)");
+            // await Task.Delay(2000);
+            changeSceneToCore();
+        }
+        else turnHandler.setAmIHost(false);
     }
 
     private async Task FindMatch(int minPlayers = 2)
@@ -167,8 +205,9 @@ public class MatchMakingLogic : MonoBehaviour
         {
             if (user.Username != myUsername)
             {
-                Debug.Log("Peidaaaaa shod");
+                foundSessionID = user.SessionId;
                 foundedName = user.Username;
+                Debug.Log("Peidaaaaa shod22222");
             }
 
             Debug.LogFormat("Connected user: " + user.Username);
@@ -177,9 +216,14 @@ public class MatchMakingLogic : MonoBehaviour
         currentMatch = match;
     }
 
+    public static async void changeSceneToCore()
+    {
+        await Task.Delay(2000);
+        SceneManager.LoadScene("CoreGame");
+    }
+
     public void goCore()
     {
         SceneManager.LoadScene("CoreGame");
     }
- 
 }

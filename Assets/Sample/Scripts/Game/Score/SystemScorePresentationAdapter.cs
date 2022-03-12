@@ -17,7 +17,7 @@ namespace Sample
             if (isMyScore)
                 myScore.text = (Int32.Parse(myScore.text) + 1).ToString();
             else
-                herScore.text = (Int32.Parse(myScore.text) + 1).ToString();
+                herScore.text = (Int32.Parse(herScore.text) + 1).ToString();
 
             await Task.Delay(100);
 

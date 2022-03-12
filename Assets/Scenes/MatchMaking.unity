@@ -1595,6 +1595,7 @@ GameObject:
   - component: {fileID: 1698099397}
   - component: {fileID: 1698099396}
   - component: {fileID: 1698099400}
+  - component: {fileID: 1698099401}
   m_Layer: 5
   m_Name: MatchMaking
   m_TagString: Untagged
@@ -1704,6 +1705,18 @@ MonoBehaviour:
   leftLight: {fileID: 602601043}
   findingText: {fileID: 1010667442}
   foundText: {fileID: 1814481802}
+--- !u!114 &1698099401
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1698099395}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 506becb1112b4667be243e51668b8ec8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1720936140
 GameObject:
   m_ObjectHideFlags: 0
