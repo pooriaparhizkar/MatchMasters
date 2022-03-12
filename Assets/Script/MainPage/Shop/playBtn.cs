@@ -13,8 +13,17 @@ public class playBtn : MonoBehaviour
     {
     }
 
+    public GameObject SelectBooster;
+    public GameObject FirstPage;
+
     public void onPlayBtnClick()
     {
         SceneManager.LoadScene("MatchMaking");
     }
+    public void homePlayBtn()
+    {
+        SelectBooster.SetActive(true);
+        FirstPage.SetActive(false);
+    }
 }
+
