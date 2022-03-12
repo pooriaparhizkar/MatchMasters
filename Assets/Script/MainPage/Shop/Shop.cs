@@ -16,6 +16,12 @@ public class Shop : MonoBehaviour
     public Text Coin4;
     public Text Coin5;
     public Text Coin6;
+    public Text Count1;
+    public Text Count2;
+    public Text Count3;
+    public Text Count4;
+    public Text Count5;
+    public Text Count6;
     private readonly IClient client = new Client("http", "157.119.191.169", 7350, "defaultkey");
     // private ISession session;
     // Start is called before the first frame update
@@ -55,7 +61,13 @@ public class Shop : MonoBehaviour
         Coin4.text = shopres[3].count.ToString();
         Coin5.text = shopres[4].count.ToString();
         Coin6.text = shopres[5].count.ToString();
-        
+        Count1.text = shopres[0].cost.ToString();
+        Count2.text = shopres[1].cost.ToString();
+        Count3.text = shopres[2].cost.ToString();
+        Count4.text = shopres[3].cost.ToString();
+        Count5.text = shopres[4].cost.ToString();
+        Count6.text = shopres[5].cost.ToString();
+
     }
 
     private struct shopStruct

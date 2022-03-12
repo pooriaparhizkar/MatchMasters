@@ -6,6 +6,7 @@ TagManager:
   tags:
   - boxSlot
   - perkBlackScreen
+  - BoosterSelect
   layers:
   - Default
   - TransparentFX
