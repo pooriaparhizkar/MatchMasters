@@ -19,7 +19,7 @@ namespace Sample
             else
                 herScore.text = (Int32.Parse(herScore.text) + 1).ToString();
 
-            await Task.Delay(100);
+            await Task.Delay(50);
 
             onCompleted.Invoke();
         }
