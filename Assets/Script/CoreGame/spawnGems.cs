@@ -28,6 +28,19 @@ public class spawnGems : MonoBehaviour
     public Text myName;
     public Text hisName;
 
+    private gemColors changeBlueWithRed(gemColors localGemColors)
+    {
+        if (!turnHandler.getAmIHost())
+        {
+            if (localGemColors == gemColors.blue)
+                return gemColors.red;
+            if (localGemColors == gemColors.red)
+                return gemColors.blue;
+            return localGemColors;
+        }
+        return localGemColors;
+    }
+
     private readonly gemColors[,] template1 = new gemColors[7, 7]
     {
         {
@@ -272,16 +285,16 @@ public class spawnGems : MonoBehaviour
             switch (templateNo)
             {
                 case 1:
-                    SetupTiles(tileStack, template1[j, i], gemTypes.normal);
+                    SetupTiles(tileStack, changeBlueWithRed(template1[j, i]), gemTypes.normal);
                     break;
                 case 2:
-                    SetupTiles(tileStack, template2[j, i], gemTypes.normal);
+                    SetupTiles(tileStack, changeBlueWithRed(template2[j, i]), gemTypes.normal);
                     break;
                 case 3:
-                    SetupTiles(tileStack, template3[j, i], gemTypes.normal);
+                    SetupTiles(tileStack, changeBlueWithRed(template3[j, i]), gemTypes.normal);
                     break;
                 case 4:
-                    SetupTiles(tileStack, template4[j, i], gemTypes.normal);
+                    SetupTiles(tileStack, changeBlueWithRed(template4[j, i]), gemTypes.normal);
                     break;
             }
         }

@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using DG.Tweening;
 using Medrick.Match3CoreSystem.Game;
 using Medrick.Match3CoreSystem.Game.Core;
+using Script.CoreGame;
 using UnityEngine;
 
 
@@ -31,6 +32,14 @@ namespace Sample
             tileStack.SetPosition(new Vector2(cellStack.Position().x,cellStack.Position().y));
 
             int random = spawnGems.randomSeed.Next(6);
+            //change blue with red for client
+            if (!turnHandler.getAmIHost())
+            {
+                if (random == 3)
+                    random = 2;
+                else if (random == 2)
+                    random = 3;
+            }
             tileStack.Push(new gemTile((gemColors) random,gemTypes.normal));
 
             GameObject newObject = null;
