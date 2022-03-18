@@ -6,14 +6,31 @@ using UnityEngine.UI;
 
 namespace Sample
 {
-    public class SystemTurnPresentationAdapter : MonoBehaviour, TurnSystemPresentationPort
+    public class SystemTurnPresentationAdapter : MonoBehaviour, TurnSystemPresentationPort,RoundSystemPresentationPort,FinishGameSystemPresentationPort
     {
         public GameObject hisTurn1;
         public GameObject hisTurn2;
         public GameObject myTurn1;
         public GameObject myTurn2;
         public GameObject blackScreen;
-
+        public GameObject round1_done;
+        public GameObject round1_active;
+        public GameObject round1_remaining;
+        public GameObject round2_done;
+        public GameObject round2_active;
+        public GameObject round2_remaining;
+        public GameObject round3_done;
+        public GameObject round3_active;
+        public GameObject round3_remaining;
+        public GameObject round4_done;
+        public GameObject round4_active;
+        public GameObject round4_remaining;
+        public Text resultWinText;
+        public Text resultMyScore;
+        public Text resultHisScore;
+        public Text resultHistName;
+        public GameObject coreGameCanvas;
+        public GameObject resultPageCanvas;
 
         public async void PlayTurn(bool isMyTurn, int remainMove, Action onCompleted)
         {
@@ -94,6 +111,85 @@ namespace Sample
                 }
             }
             onCompleted.Invoke();
+        }
+
+        public void PlayRoundSystem(int whichRound, Action onCompleted)
+        {
+            switch (whichRound)
+            {
+                case 1:
+                    round1_remaining.SetActive(false);
+                    round1_active.SetActive(true);
+                    round1_done.SetActive(false);
+                    round2_remaining.SetActive(true);
+                    round2_active.SetActive(false);
+                    round2_done.SetActive(false);
+                    round3_remaining.SetActive(true);
+                    round3_active.SetActive(false);
+                    round3_done.SetActive(false);
+                    round4_remaining.SetActive(true);
+                    round4_active.SetActive(false);
+                    round4_done.SetActive(false);
+                    break;
+                case 2:
+                    round1_remaining.SetActive(false);
+                    round1_active.SetActive(false);
+                    round1_done.SetActive(true);
+                    round2_remaining.SetActive(false);
+                    round2_active.SetActive(true);
+                    round2_done.SetActive(false);
+                    round3_remaining.SetActive(true);
+                    round3_active.SetActive(false);
+                    round3_done.SetActive(false);
+                    round4_remaining.SetActive(true);
+                    round4_active.SetActive(false);
+                    round4_done.SetActive(false);
+                    break;
+                case 3:
+                    round1_remaining.SetActive(false);
+                    round1_active.SetActive(false);
+                    round1_done.SetActive(true);
+                    round2_remaining.SetActive(false);
+                    round2_active.SetActive(false);
+                    round2_done.SetActive(true);
+                    round3_remaining.SetActive(false);
+                    round3_active.SetActive(true);
+                    round3_done.SetActive(false);
+                    round4_remaining.SetActive(true);
+                    round4_active.SetActive(false);
+                    round4_done.SetActive(false);
+                    break;
+                case 4:
+                    round1_remaining.SetActive(false);
+                    round1_active.SetActive(false);
+                    round1_done.SetActive(true);
+                    round2_remaining.SetActive(false);
+                    round2_active.SetActive(false);
+                    round2_done.SetActive(true);
+                    round3_remaining.SetActive(false);
+                    round3_active.SetActive(false);
+                    round3_done.SetActive(true);
+                    round4_remaining.SetActive(false);
+                    round4_active.SetActive(true);
+                    round4_done.SetActive(false);
+                    break;
+            }
+        }
+
+        public void PlayFinishGameSystem(int myScore, int hisScore, Action onCompleted)
+        {
+            resultHisScore.text = hisScore.ToString();
+            resultMyScore.text = myScore.ToString();
+            resultHistName.text = turnHandler.getHisName();
+            string localWinText;
+            if (myScore > hisScore)
+                localWinText = PlayerPrefs.GetString("username") + "WIN!";
+            else if(myScore < hisScore)
+                localWinText = turnHandler.getHisName() + "WIN!";
+            else  localWinText = "TIE!";
+            resultWinText.text = localWinText;
+            resultPageCanvas.SetActive(true);
+            coreGameCanvas.SetActive(false);
         }
     }
 }

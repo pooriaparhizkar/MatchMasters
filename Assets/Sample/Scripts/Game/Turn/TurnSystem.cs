@@ -9,6 +9,14 @@ namespace Sample
     {
         void PlayTurn(bool isMyTurn, int remainMove, Action onCompleted);
     }
+    public interface RoundSystemPresentationPort : PresentationPort
+    {
+        void PlayRoundSystem(int whichRound, Action onCompleted);
+    }
+    public interface FinishGameSystemPresentationPort : PresentationPort
+    {
+        void PlayFinishGameSystem(int myScore,int hisScore, Action onCompleted);
+    }
 
     public class TurnSystemKeyType : KeyType
     {
@@ -17,7 +25,10 @@ namespace Sample
     public class TurnSystem : BasicGameplaySystem
     {
         private TurnSystemPresentationPort presentationPort;
+        private RoundSystemPresentationPort presentationPort2;
+        private FinishGameSystemPresentationPort presentationPort3;
         private TurnBlackBoard TurnBlackBoard;
+        private int localRound;
 
         public TurnSystem(BasicGameplayMainController gameplayController) : base(gameplayController)
         {
@@ -27,7 +38,11 @@ namespace Sample
         {
             base.Start();
             TurnBlackBoard = GetFrameData<TurnBlackBoard>();
-            presentationPort = gameplayController.GetPresentationPort<TurnSystemPresentationPort>();
+            presentationPort = gameplayController.GetPresentationPort<TurnSystemPresentationPort>(); // Turn Handler
+            presentationPort2 = gameplayController.GetPresentationPort<RoundSystemPresentationPort>(); // Round Handler
+            presentationPort3= gameplayController.GetPresentationPort<FinishGameSystemPresentationPort>(); // Result page Handler
+            localRound = 1;
+            presentationPort2.PlayRoundSystem(localRound,()=> Debug.Log("Round added"));
         }
 
         private void applyUpdateTurn()
@@ -48,7 +63,15 @@ namespace Sample
                 {
                     turnHandler.setTurn(1);
                     turnHandler.resetRemainMove();
-                    // StartTurn(turnHandler.isMyTurn(), turnHandler.getRemainMove());
+                    localRound++;
+                    if (localRound<=4)
+                        presentationPort2.PlayRoundSystem(localRound,()=> Debug.Log("Round added"));
+                    else
+                    {
+                        presentationPort3.PlayFinishGameSystem(turnHandler.getMyScore(),turnHandler.getHisScore(),(() =>  Debug.Log("Game Finished")));
+                    }
+
+                        // StartTurn(turnHandler.isMyTurn(), turnHandler.getRemainMove());
                 }
                 StartTurn(turnHandler.isMyTurn(), turnHandler.getRemainMove());
 

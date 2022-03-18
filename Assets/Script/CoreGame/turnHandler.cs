@@ -7,6 +7,38 @@ namespace Script.CoreGame
         private static string hostName;
         private static string clientName;
         private static bool amIHost;
+        private static int myScore;
+        private static int hisScore;
+        private static string hisName;
+
+        public static void setHisName(string localHisName)
+        {
+            hisName = localHisName;
+        }
+
+        public static string getHisName()
+        {
+            return hisName;
+        }
+
+        public static void setMyScore(int localScore)
+        {
+            myScore = localScore;
+        }
+        public static void setHisScore(int localScore)
+        {
+            hisScore = localScore;
+        }
+
+        public static int getMyScore()
+        {
+            return myScore;
+        }
+
+        public static int getHisScore()
+        {
+            return hisScore;
+        }
 
         public static bool isMyTurn()
         {

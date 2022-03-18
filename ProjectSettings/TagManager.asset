@@ -7,6 +7,7 @@ TagManager:
   - boxSlot
   - perkBlackScreen
   - BoosterSelect
+  - devkit
   layers:
   - Default
   - TransparentFX

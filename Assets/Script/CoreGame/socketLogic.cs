@@ -8,6 +8,7 @@ using Nakama.TinyJson;
 using Sample;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 
 namespace Script.CoreGame
@@ -42,6 +43,8 @@ namespace Script.CoreGame
             {
                 // var content = newState.State.ToString();
                 string content = enc.GetString(newState.State).ToString();
+
+
                 var jsonContent = sendMessageInfo.CreateFromJSON(content);
                 Vector2Int sourcePosiiton = new Vector2Int(
                     Int32.Parse(jsonContent.sourcePosition.Split(',')[0].Remove(0, 1)),
@@ -56,6 +59,12 @@ namespace Script.CoreGame
                 Debug.Log(sourcePosiiton);
                 Debug.Log(targetPosition);
 
+                if (jsonContent.opcode!="0")
+                {
+                    spawnGems.gameplayController.FrameBasedBlackBoard.GetComponent<DevkitBlackBoard>().requestedDevkits
+                        .Add(new DevkitBlackBoard.DevkitData(content));
+
+                }
                 //opCodes :
                 //0 : Initial ( sourcePos : randomSeed , TargetPos : templateID )
                 //1 : swap

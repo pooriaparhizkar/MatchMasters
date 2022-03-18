@@ -163,6 +163,7 @@ public class MatchMakingLogic : MonoBehaviour
         turnHandler.setClientName(usersInGame[1]);
         if (usersInGame[0] == PlayerPrefs.GetString("username"))
         {
+            turnHandler.setHisName(usersInGame[1]);
             turnHandler.setAmIHost(true);
             Random generateRandomSeed = new Random();
             int numberGenrateRandomSeed = generateRandomSeed.Next();
@@ -174,7 +175,11 @@ public class MatchMakingLogic : MonoBehaviour
             // await Task.Delay(2000);
             changeSceneToCore();
         }
-        else turnHandler.setAmIHost(false);
+        else
+        {
+            turnHandler.setHisName(usersInGame[0]);
+            turnHandler.setAmIHost(false);
+        }
     }
 
     private async Task FindMatch(int minPlayers = 2)

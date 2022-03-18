@@ -26,6 +26,7 @@ namespace Sample
             systemsController.AddSystem(new ScoreSystem(this), GameplaySystemTag.General);
             systemsController.AddSystem(new DestroySystem(this), GameplaySystemTag.General);
             systemsController.AddSystem(new TurnSystem(this), GameplaySystemTag.General);
+            systemsController.AddSystem(new DevkitSystem(this), GameplaySystemTag.General);
 
 
 
@@ -43,6 +44,7 @@ namespace Sample
             frameBasedBlackBoard.AddComponent(new PerkHandlerBlackBoard());
             frameBasedBlackBoard.AddComponent(new PhysicBlackBoard());
             frameBasedBlackBoard.AddComponent(new TurnBlackBoard());
+            frameBasedBlackBoard.AddComponent(new DevkitBlackBoard());
         }
 
         protected override void AddSessionBasedBlackBoardData(SystemBlackBoard sessionBasedBlackBoard)
