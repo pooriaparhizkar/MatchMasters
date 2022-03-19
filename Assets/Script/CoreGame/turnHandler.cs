@@ -7,6 +7,59 @@ namespace Script.CoreGame
         private static string hostName;
         private static string clientName;
         private static bool amIHost;
+        private static int myScore=0;
+        private static int hisScore=0;
+        private static int myBoosterProgressBar=0;
+        private static int hisBoosterProgressBar=0;
+        private static string hisName;
+
+        public static void setHisName(string localHisName)
+        {
+            hisName = localHisName;
+        }
+
+        public static string getHisName()
+        {
+            return hisName;
+        }
+
+        public static void setMyBoosterProgressBar(int localBoosterProgressBar)
+        {
+            myBoosterProgressBar = localBoosterProgressBar;
+        }
+        public static void setHisBoosterProgressBar(int localBoosterProgressBar)
+        {
+            hisBoosterProgressBar = localBoosterProgressBar;
+        }
+
+        public static int getMyBoosterProgressBar()
+        {
+            return myBoosterProgressBar;
+        }
+
+        public static int getHisBoosterProgressBar()
+        {
+            return hisBoosterProgressBar;
+        }
+
+        public static void setMyScore(int localScore)
+        {
+            myScore = localScore;
+        }
+        public static void setHisScore(int localScore)
+        {
+            hisScore = localScore;
+        }
+
+        public static int getMyScore()
+        {
+            return myScore;
+        }
+
+        public static int getHisScore()
+        {
+            return hisScore;
+        }
 
         public static bool isMyTurn()
         {

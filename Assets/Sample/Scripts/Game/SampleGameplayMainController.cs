@@ -24,8 +24,10 @@ namespace Sample
             systemsController.AddSystem(new InGameBoosterActivationSystem(this), GameplaySystemTag.General);
             systemsController.AddSystem(new InGameBoosterInstanceSystem(this), GameplaySystemTag.General);
             systemsController.AddSystem(new ScoreSystem(this), GameplaySystemTag.General);
+            systemsController.AddSystem(new BoosterProgressBarSystem(this), GameplaySystemTag.General);
             systemsController.AddSystem(new DestroySystem(this), GameplaySystemTag.General);
             systemsController.AddSystem(new TurnSystem(this), GameplaySystemTag.General);
+            systemsController.AddSystem(new DevkitSystem(this), GameplaySystemTag.General);
 
 
 
@@ -38,11 +40,13 @@ namespace Sample
             frameBasedBlackBoard.AddComponent(new InGameBoosterActivationBlackBoard());
             frameBasedBlackBoard.AddComponent(new CheckBlackBoard());
             frameBasedBlackBoard.AddComponent(new ScoreBlackBoard());
+            frameBasedBlackBoard.AddComponent(new BoosterProgressBarBlackBoard());
             frameBasedBlackBoard.AddComponent(new DestroyBlackBoard());
             frameBasedBlackBoard.AddComponent(new TopInstanceBlackBoard());
             frameBasedBlackBoard.AddComponent(new PerkHandlerBlackBoard());
             frameBasedBlackBoard.AddComponent(new PhysicBlackBoard());
             frameBasedBlackBoard.AddComponent(new TurnBlackBoard());
+            frameBasedBlackBoard.AddComponent(new DevkitBlackBoard());
         }
 
         protected override void AddSessionBasedBlackBoardData(SystemBlackBoard sessionBasedBlackBoard)

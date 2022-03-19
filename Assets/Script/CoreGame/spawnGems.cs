@@ -21,9 +21,28 @@ public class spawnGems : MonoBehaviour
     public SystemPerkHandlerPresentationAdaptor systemPerkHandlerPresentationAdaptor;
     public SystemScorePresentationAdapter systemScorePresentationAdapter;
     public SystemTurnPresentationAdapter systemTurnPresentationAdapter;
-   public static Random randomSeed;
+    public SystemDevKitPresentationAdapter systemDevkitPresentationAdapter;
+    public SystemBoosterProgressBarPresentationAdapter systemBoosterProgressBarPresentationAdapter;
+
+    public static Random randomSeed;
     public static int templateNo;
     public GameObject turnBlackScreen;
+    public Text myName;
+    public Text hisName;
+
+    private gemColors changeBlueWithRed(gemColors localGemColors)
+    {
+        if (!turnHandler.getAmIHost())
+        {
+            if (localGemColors == gemColors.blue)
+                return gemColors.red;
+            if (localGemColors == gemColors.red)
+                return gemColors.blue;
+            return localGemColors;
+        }
+        return localGemColors;
+    }
+
     private readonly gemColors[,] template1 = new gemColors[7, 7]
     {
         {
@@ -55,7 +74,8 @@ public class spawnGems : MonoBehaviour
             gemColors.yellow
         }
     };
-     private readonly gemColors[,] template2 = new gemColors[7, 7]
+
+    private readonly gemColors[,] template2 = new gemColors[7, 7]
     {
         {
             gemColors.orange, gemColors.green, gemColors.yellow, gemColors.purple, gemColors.red, gemColors.blue,
@@ -159,19 +179,28 @@ public class spawnGems : MonoBehaviour
     }
 
 
-
     public static void setRandomSeed(int seed)
     {
         randomSeed = new Random(seed);
     }
+
     private void Start()
     {
         if (turnHandler.isMyTurn())
+        {
             turnBlackScreen.SetActive(false);
-        if (!turnHandler.isMyTurn())
-            turnBlackScreen.SetActive(true);
+            myName.text = turnHandler.getHostName();
+            hisName.text = turnHandler.getClientName();
+        }
 
-            var cellStackFactory = new MainCellStackFactory();
+        if (!turnHandler.isMyTurn())
+        {
+            turnBlackScreen.SetActive(true);
+            hisName.text = turnHandler.getHostName();
+            myName.text = turnHandler.getClientName();
+        }
+
+        var cellStackFactory = new MainCellStackFactory();
         var tileStackFactory = new MainTileStackFactory();
 
 
@@ -188,6 +217,9 @@ public class spawnGems : MonoBehaviour
         gameplayController.AddPresentationPort(systemPerkHandlerPresentationAdaptor);
         gameplayController.AddPresentationPort(systemScorePresentationAdapter);
         gameplayController.AddPresentationPort(systemTurnPresentationAdapter);
+        gameplayController.AddPresentationPort(systemDevkitPresentationAdapter);
+        gameplayController.AddPresentationPort(systemBoosterProgressBarPresentationAdapter);
+
         foreach (var cellStack in gameplayController.LevelBoard.leftToRightTopDownCellStackArray)
             if (cellStack.HasTileStack())
             {
@@ -233,7 +265,6 @@ public class spawnGems : MonoBehaviour
                 var presenter = tileStack.GetComponent<gemTilePresenter>();
                 presenter.transform.localPosition = logicalPositionToPresentation(tileStack.Position(), true);
             }
-
     }
 
     private LevelBoard CreateLevelBoard(MainCellStackFactory cellStackFactory, MainTileStackFactory tileStackFactory)
@@ -257,19 +288,18 @@ public class spawnGems : MonoBehaviour
             switch (templateNo)
             {
                 case 1:
-                    SetupTiles(tileStack, template1[j, i],gemTypes.normal);
+                    SetupTiles(tileStack, changeBlueWithRed(template1[j, i]), gemTypes.normal);
                     break;
                 case 2:
-                    SetupTiles(tileStack, template2[j, i],gemTypes.normal);
+                    SetupTiles(tileStack, changeBlueWithRed(template2[j, i]), gemTypes.normal);
                     break;
                 case 3:
-                    SetupTiles(tileStack, template3[j, i],gemTypes.normal);
+                    SetupTiles(tileStack, changeBlueWithRed(template3[j, i]), gemTypes.normal);
                     break;
                 case 4:
-                    SetupTiles(tileStack, template4[j, i],gemTypes.normal);
+                    SetupTiles(tileStack, changeBlueWithRed(template4[j, i]), gemTypes.normal);
                     break;
             }
-
         }
 
         return new LevelBoard(cellStackBoard);
@@ -285,11 +315,11 @@ public class spawnGems : MonoBehaviour
 
     private void SetupTiles(TileStack tileStack, gemColors color, gemTypes gemTypes)
     {
-        tileStack.Push(new gemTile(color,gemTypes));
+        tileStack.Push(new gemTile(color, gemTypes));
         // You can use tileStack.Push() to push your tiles;
     }
 
-    private Vector3 logicalPositionToPresentation(Vector2 pos,bool isStart)
+    private Vector3 logicalPositionToPresentation(Vector2 pos, bool isStart)
     {
         if (isStart)
         {
@@ -301,14 +331,13 @@ public class spawnGems : MonoBehaviour
             return new Vector3((pos.x - 3) * 112, (pos.y) * -98,
                 transform.position.z);
         }
-
     }
 
     private void myInctanciate(GameObject gemPrefabs, TileStack tileStack)
     {
         GameObject newObject = null;
         newObject = Instantiate(gemPrefabs,
-            logicalPositionToPresentation(tileStack.Position(),true), Quaternion.identity);
+            logicalPositionToPresentation(tileStack.Position(), true), Quaternion.identity);
         newObject.transform.SetParent(boardGame.transform, false);
         newObject.transform.localScale = new Vector3(1, 1, 1);
         newObject.GetComponent<gemTilePresenter>().setup(tileStack, gameplayController);

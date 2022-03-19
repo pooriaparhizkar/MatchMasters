@@ -50,7 +50,7 @@ namespace Sample
             }
             else
             {
-                await Task.Delay(100);
+                await Task.Delay(50);
                 StartScore(ScoreData);
             }
         }
