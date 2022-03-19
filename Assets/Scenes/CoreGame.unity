@@ -11309,6 +11309,7 @@ GameObject:
   - component: {fileID: 1988939715}
   - component: {fileID: 1988939712}
   - component: {fileID: 1988939716}
+  - component: {fileID: 1988939717}
   m_Layer: 0
   m_Name: board-background
   m_TagString: Untagged
@@ -11413,6 +11414,7 @@ MonoBehaviour:
   systemScorePresentationAdapter: {fileID: 1988939714}
   systemTurnPresentationAdapter: {fileID: 1988939712}
   systemDevkitPresentationAdapter: {fileID: 1988939716}
+  systemBoosterProgressBarPresentationAdapter: {fileID: 1988939717}
   turnBlackScreen: {fileID: 1168459857}
   myName: {fileID: 681492886}
   hisName: {fileID: 953055950}
@@ -11536,6 +11538,7 @@ MonoBehaviour:
   systemScorePresentationAdapter: {fileID: 0}
   systemTurnPresentationAdapter: {fileID: 0}
   systemDevkitPresentationAdapter: {fileID: 0}
+  systemBoosterProgressBarPresentationAdapter: {fileID: 0}
   turnBlackScreen: {fileID: 0}
   myName: {fileID: 0}
   hisName: {fileID: 0}
@@ -11626,6 +11629,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   devKitTextArea: {fileID: 453399640}
+--- !u!114 &1988939717
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1988939701}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2f90dbfe38d47e0824cd3c82fe373e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myBoosterProgressBarText: {fileID: 1550221977}
+  herBoosterProgressBarText: {fileID: 328669902}
+  myBoosterProgressBarSlider: {fileID: 1193605411}
+  herBoosterProgressBarSlider: {fileID: 2112690841}
 --- !u!1 &1998374571
 GameObject:
   m_ObjectHideFlags: 0

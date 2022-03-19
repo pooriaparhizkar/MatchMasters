@@ -55,30 +55,66 @@ namespace Sample
 
         private void ApplyDestroy(CellStack cellStack1)
         {
+            gemTile localGemTile = cellStack1.CurrentTileStack().Top() as gemTile;
             if (turnHandler.isMyTurn())
             {
-                if (turnHandler.getRemainMove()%2==0)
+
+                if (turnHandler.getRemainMove() % 2 == 0)
                 {
+                    Debug.Log("111111111111111111111111111");
                     GetFrameData<ScoreBlackBoard>().requestedScores.Add(
                         new ScoreBlackBoard.ScoreData(!turnHandler.isMyTurn()));
+
+                    if (localGemTile._color == gemColors.red)
+                    {
+                        Debug.Log("________________111111111111111111111111111");
+                        GetFrameData<BoosterProgressBarBlackBoard>().requestedBoosterProgressBars
+                            .Add(new BoosterProgressBarBlackBoard.BoosterProgressBarData(!turnHandler.isMyTurn()));
+                    }
                 }
                 else
                 {
+                    Debug.Log("22222222222222222222222222");
                     GetFrameData<ScoreBlackBoard>().requestedScores.Add(
                         new ScoreBlackBoard.ScoreData(turnHandler.isMyTurn()));
+
+                    if (localGemTile._color == gemColors.blue)
+                    {
+                        Debug.Log("_________________22222222222222222222222222");
+                        GetFrameData<BoosterProgressBarBlackBoard>().requestedBoosterProgressBars
+                            .Add(new BoosterProgressBarBlackBoard.BoosterProgressBarData(turnHandler.isMyTurn()));
+                    }
                 }
             }
             else
             {
-                if (turnHandler.getRemainMove()%2==1)
+
+
+                if (turnHandler.getRemainMove() % 2 == 1)
                 {
+                    Debug.Log("33333333333333333333333333333");
                     GetFrameData<ScoreBlackBoard>().requestedScores.Add(
                         new ScoreBlackBoard.ScoreData(turnHandler.isMyTurn()));
+
+                    if (localGemTile._color == gemColors.red)
+                    {
+                        Debug.Log("_______________33333333333333333333333333333");
+                        GetFrameData<BoosterProgressBarBlackBoard>().requestedBoosterProgressBars
+                            .Add(new BoosterProgressBarBlackBoard.BoosterProgressBarData(turnHandler.isMyTurn()));
+                    }
                 }
                 else
                 {
+                    Debug.Log("4444444444444444444444444444");
                     GetFrameData<ScoreBlackBoard>().requestedScores.Add(
                         new ScoreBlackBoard.ScoreData(!turnHandler.isMyTurn()));
+
+                    if (localGemTile._color == gemColors.blue)
+                    {
+                        Debug.Log("_____________444444444444444");
+                        GetFrameData<BoosterProgressBarBlackBoard>().requestedBoosterProgressBars
+                            .Add(new BoosterProgressBarBlackBoard.BoosterProgressBarData(!turnHandler.isMyTurn()));
+                    }
                 }
             }
 

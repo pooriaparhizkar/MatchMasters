@@ -22,6 +22,8 @@ public class spawnGems : MonoBehaviour
     public SystemScorePresentationAdapter systemScorePresentationAdapter;
     public SystemTurnPresentationAdapter systemTurnPresentationAdapter;
     public SystemDevKitPresentationAdapter systemDevkitPresentationAdapter;
+    public SystemBoosterProgressBarPresentationAdapter systemBoosterProgressBarPresentationAdapter;
+
     public static Random randomSeed;
     public static int templateNo;
     public GameObject turnBlackScreen;
@@ -216,6 +218,7 @@ public class spawnGems : MonoBehaviour
         gameplayController.AddPresentationPort(systemScorePresentationAdapter);
         gameplayController.AddPresentationPort(systemTurnPresentationAdapter);
         gameplayController.AddPresentationPort(systemDevkitPresentationAdapter);
+        gameplayController.AddPresentationPort(systemBoosterProgressBarPresentationAdapter);
 
         foreach (var cellStack in gameplayController.LevelBoard.leftToRightTopDownCellStackArray)
             if (cellStack.HasTileStack())
