@@ -1685,7 +1685,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 27.4, y: 27.4}
+  m_AnchoredPosition: {x: 27.400002, y: 27.400002}
   m_SizeDelta: {x: 54.816208, y: 54.816208}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &274220803
@@ -2051,7 +2051,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -23.9, y: -6.4}
+  m_AnchoredPosition: {x: -23.899994, y: -6.4000015}
   m_SizeDelta: {x: 106.45892, y: 30.757324}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &328669902
@@ -2665,7 +2665,7 @@ GameObject:
   - component: {fileID: 481189827}
   - component: {fileID: 481189828}
   m_Layer: 0
-  m_Name: Slider
+  m_Name: TimerSlider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8372,7 +8372,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 24.45, y: -3.04}
+  m_AnchoredPosition: {x: 24.449997, y: -3.040001}
   m_SizeDelta: {x: 104.248474, y: 44.180023}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1550221977
@@ -11310,6 +11310,7 @@ GameObject:
   - component: {fileID: 1988939712}
   - component: {fileID: 1988939716}
   - component: {fileID: 1988939717}
+  - component: {fileID: 1988939718}
   m_Layer: 0
   m_Name: board-background
   m_TagString: Untagged
@@ -11645,6 +11646,34 @@ MonoBehaviour:
   herBoosterProgressBarText: {fileID: 328669902}
   myBoosterProgressBarSlider: {fileID: 1193605411}
   herBoosterProgressBarSlider: {fileID: 2112690841}
+--- !u!114 &1988939718
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1988939701}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bb2acabd34543c694fd69d3fa0e3563, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gems: []
+  boardGame: {fileID: 0}
+  systemSwapPresentationAdapter: {fileID: 0}
+  systemDestroyPresentationAdapter: {fileID: 0}
+  systemPhysicPresentationAdapter: {fileID: 0}
+  systemTopInstancePresentationAdaptor: {fileID: 0}
+  systemInGameBoosterInstancePresentationAdaptor: {fileID: 0}
+  systemPerkHandlerPresentationAdaptor: {fileID: 0}
+  systemScorePresentationAdapter: {fileID: 0}
+  systemTurnPresentationAdapter: {fileID: 0}
+  systemDevkitPresentationAdapter: {fileID: 0}
+  systemBoosterProgressBarPresentationAdapter: {fileID: 0}
+  turnBlackScreen: {fileID: 0}
+  myName: {fileID: 0}
+  hisName: {fileID: 0}
+  timerSlider: {fileID: 481189828}
 --- !u!1 &1998374571
 GameObject:
   m_ObjectHideFlags: 0

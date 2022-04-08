@@ -55,18 +55,29 @@ namespace Sample
             foreach (var TurnData in TurnBlackBoard.requestedTurns)
             {
                 Debug.Log(turnHandler.getTurn());
-                if (!TurnData.isExtraMove)
-                    turnHandler.setRemainMove(turnHandler.getRemainMove() - 1);
+                if (!TurnData.isForceNextRound)
+                {
+                    if (!TurnData.isExtraMove)
+                        turnHandler.setRemainMove(turnHandler.getRemainMove() - 1);
+                    else
+                    {
+                        Debug.Log("Extraaaaaaaaaa Move");
+                        Debug.Log(turnHandler.getRemainMove());
+                        if (turnHandler.getRemainMove() == 2 )
+                            turnHandler.setRemainMove(3);
+                        if (turnHandler.getRemainMove() == 4 )
+                            turnHandler.setRemainMove(1);
+                        Debug.Log(turnHandler.getRemainMove());
+                    }
+                }
                 else
                 {
-                    Debug.Log("Extraaaaaaaaaa Move");
-                    Debug.Log(turnHandler.getRemainMove());
-                    if (turnHandler.getRemainMove() == 2 )
-                        turnHandler.setRemainMove(3);
-                    if (turnHandler.getRemainMove() == 4 )
-                        turnHandler.setRemainMove(1);
-                    Debug.Log(turnHandler.getRemainMove());
-                }
+                    if (turnHandler.getRemainMove() ==3 || turnHandler.getRemainMove() ==4)
+                        turnHandler.setRemainMove(2);
+                    else if
+                        (turnHandler.getRemainMove() ==2 || turnHandler.getRemainMove() ==1)
+                        turnHandler.setRemainMove(0);
+                    }
                 Debug.Log(turnHandler.getTurn());
                 // StartTurn(turnHandler.isMyTurn(), turnHandler.getRemainMove());
                 if  (turnHandler.getRemainMove() > 2)

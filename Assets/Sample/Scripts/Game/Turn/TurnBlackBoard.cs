@@ -16,10 +16,13 @@ namespace Sample
         public struct TurnData
         {
             public readonly bool isExtraMove;
+            public readonly bool isForceNextRound;
 
-            public TurnData(bool isExtraMove) : this()
+
+            public TurnData(bool isExtraMove,bool isForceNextRound = false) : this()
             {
                 this.isExtraMove = isExtraMove;
+                this.isForceNextRound = isForceNextRound;
             }
         }
     }
