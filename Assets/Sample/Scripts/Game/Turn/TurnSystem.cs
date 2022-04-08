@@ -54,10 +54,26 @@ namespace Sample
         {
             foreach (var TurnData in TurnBlackBoard.requestedTurns)
             {
-
-                turnHandler.setRemainMove(turnHandler.getRemainMove() - 1);
+                Debug.Log(turnHandler.getTurn());
+                if (!TurnData.isExtraMove)
+                    turnHandler.setRemainMove(turnHandler.getRemainMove() - 1);
+                else
+                {
+                    Debug.Log("Extraaaaaaaaaa Move");
+                    Debug.Log(turnHandler.getRemainMove());
+                    if (turnHandler.getRemainMove() == 2 )
+                        turnHandler.setRemainMove(3);
+                    if (turnHandler.getRemainMove() == 4 )
+                        turnHandler.setRemainMove(1);
+                    Debug.Log(turnHandler.getRemainMove());
+                }
+                Debug.Log(turnHandler.getTurn());
                 // StartTurn(turnHandler.isMyTurn(), turnHandler.getRemainMove());
+                if  (turnHandler.getRemainMove() > 2)
+                    turnHandler.setTurn(1);
                 if (turnHandler.getRemainMove() == 2)
+                    turnHandler.setTurn(2);
+                if(turnHandler.getRemainMove()<2 && turnHandler.getRemainMove()>0)
                     turnHandler.setTurn(2);
                 if (turnHandler.getRemainMove() == 0)
                 {
@@ -73,6 +89,7 @@ namespace Sample
 
                         // StartTurn(turnHandler.isMyTurn(), turnHandler.getRemainMove());
                 }
+                Debug.Log(turnHandler.getTurn());
                 StartTurn(turnHandler.isMyTurn(), turnHandler.getRemainMove());
 
             }

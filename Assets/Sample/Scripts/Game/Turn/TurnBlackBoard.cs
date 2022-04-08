@@ -15,6 +15,12 @@ namespace Sample
 
         public struct TurnData
         {
+            public readonly bool isExtraMove;
+
+            public TurnData(bool isExtraMove) : this()
+            {
+                this.isExtraMove = isExtraMove;
+            }
         }
     }
 }

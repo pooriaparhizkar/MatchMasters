@@ -183,6 +183,7 @@ namespace Sample
                     //Should create booster
                     if (VARIABLE._gemTypes==gemTypes.normal && matched.Count > 3 && VARIABLE.Parent().Position() == lastGemTileMove.Parent().Position())
                     {
+                        GetFrameData<TurnBlackBoard>().requestedTurns.Add(new TurnBlackBoard.TurnData(true));
                         //Arrow :
                         if (matched.Count == 4 )
                         {
@@ -315,7 +316,7 @@ namespace Sample
             }
             else
             {
-                GetFrameData<TurnBlackBoard>().requestedTurns.Add(new TurnBlackBoard.TurnData());
+                GetFrameData<TurnBlackBoard>().requestedTurns.Add(new TurnBlackBoard.TurnData(false));
             }
             //GetFrameData<CheckBlackBoard>().Clear();
         }
