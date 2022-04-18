@@ -13,13 +13,14 @@ public class perkHandler : spawnGems
     // Start is called before the first frame update
 
     private static bool perkHandlerClicked;
+    
 
     public void hammerPerkClick()
     {
         perkHandlerClicked = true;
         gameplayController.FrameBasedBlackBoard.GetComponent<PerkHandlerBlackBoard>().requestedPerkHandlers
             .Add(new PerkHandlerBlackBoard.PerkHandlerData(PerkHandlerBlackBoard.PerkHandlerType.hammer,
-                new Vector2Int(-100, -100), 1));
+                new Vector2Int(-100, -100), true,1));
         socketLogic.sendChat("2", "(1, 1)", "(1, 1)");
     }
 
@@ -31,27 +32,29 @@ public class perkHandler : spawnGems
             //     .Add(new DestroyBlackBoard.DestroyData(position));
 
             gameplayController.FrameBasedBlackBoard.GetComponent<PerkHandlerBlackBoard>().requestedPerkHandlers
-                .Add(new PerkHandlerBlackBoard.PerkHandlerData(PerkHandlerBlackBoard.PerkHandlerType.hammer, position));
+                .Add(new PerkHandlerBlackBoard.PerkHandlerData(PerkHandlerBlackBoard.PerkHandlerType.hammer, position,true));
 
 
             perkHandlerClicked = false;
             // gameplayController.setPerkHandlerFalse();
             gameplayController.FrameBasedBlackBoard.GetComponent<PerkHandlerBlackBoard>().requestedPerkHandlers
                 .Add(new PerkHandlerBlackBoard.PerkHandlerData(PerkHandlerBlackBoard.PerkHandlerType.hammer,
-                    new Vector2Int(-100, -100), 0));
+                    new Vector2Int(-100, -100), true,0));
+            
 
             socketLogic.sendChat("3", position.ToString(), "(1, 1)");
         }
     }
 
-    public void shuffleClicked()
+    public static void doShuffle()
     {
-        Stack<int> myStack = new Stack<int>();
+      /*
+       Stack<int> myStack = new Stack<int>();
         for (int i = 0; i < 49; i++)
             myStack.Push(i);
         List<int> list = myStack.ToList();
-        var shuffled = list.OrderBy(x => Guid.NewGuid()).ToList();
-        myStack = new Stack<int>(shuffled);
+        var shuffled = list.OrderBy(x => spawnGems.randomSeed.Next()).ToList();
+       myStack = new Stack<int>(shuffled);
         while (myStack.Count() != 1)
         {
             int number1 = myStack.Pop();
@@ -63,6 +66,20 @@ public class perkHandler : spawnGems
                     sourcePosiiton, targetPosition,
                     false));
         }
+        */
+      gameplayController.FrameBasedBlackBoard.GetComponent<SwapBlackBoard>().requestedSwaps
+          .Add(new SwapBlackBoard.SwapData(
+              new Vector2Int(0, 0),  new Vector2Int(0, 1),
+              false));
+    }
+
+    public void shuffleClicked()
+    {
+        doShuffle();
+        gameplayController.FrameBasedBlackBoard.GetComponent<PerkHandlerBlackBoard>().requestedPerkHandlers
+            .Add(new PerkHandlerBlackBoard.PerkHandlerData(PerkHandlerBlackBoard.PerkHandlerType.shuffle,
+                new Vector2Int(-100, -100), true,0));
+        socketLogic.sendChat("4", "(1, 1)", "(1, 1)");
     }
 
 

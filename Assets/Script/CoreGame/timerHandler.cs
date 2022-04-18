@@ -16,8 +16,8 @@ namespace Script.CoreGame
             await Task.Delay(50);
             if (timerSlider.value==0) //timerDone
             {
-                gameplayController.FrameBasedBlackBoard.GetComponent<TurnBlackBoard>().requestedTurns
-                    .Add(new TurnBlackBoard.TurnData(false, true));
+               // gameplayController.FrameBasedBlackBoard.GetComponent<TurnBlackBoard>().requestedTurns
+               //     .Add(new TurnBlackBoard.TurnData(false, true));
                 timerSlider.value = 1;
             }
            timerLoop();

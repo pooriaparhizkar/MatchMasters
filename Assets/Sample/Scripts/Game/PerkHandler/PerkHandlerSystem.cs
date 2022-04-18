@@ -9,7 +9,7 @@ namespace Sample
 {
     public interface PerkHandlerSystemPresentationPort : PresentationPort
     {
-        void PlayPerkHandler(bool isStart, Action onCompleted);
+        void PlayPerkHandler(bool isStart,bool isMyPerk,PerkHandlerBlackBoard.PerkHandlerType type, Action onCompleted);
     }
 
     public class PerkHandlerSystemKeyType : KeyType
@@ -43,9 +43,9 @@ namespace Sample
             if (PerkHandlerData.type == PerkHandlerBlackBoard.PerkHandlerType.hammer)
             {
                 if (PerkHandlerData.isStart == 1)
-                    presentationPort.PlayPerkHandler(true, () => ApplyPerkHandler());
+                    presentationPort.PlayPerkHandler(true,PerkHandlerData.isMyPerk,PerkHandlerData.type, () => ApplyPerkHandler());
                 else if (PerkHandlerData.isStart == 0)
-                    presentationPort.PlayPerkHandler(false, () => ApplyPerkHandler());
+                    presentationPort.PlayPerkHandler(false,PerkHandlerData.isMyPerk,PerkHandlerData.type, () => ApplyPerkHandler());
                 else
                 {
                     var cellStackBoard = gameplayController.LevelBoard.CellStackBoard();
@@ -72,6 +72,10 @@ namespace Sample
                                             : InGameBoosterActivationBlackBoard.InGameBoosterType.leftRightArrow,
                                 VARIABLE._color));
                 }
+            }
+            else if (PerkHandlerData.type == PerkHandlerBlackBoard.PerkHandlerType.shuffle)
+            {
+                presentationPort.PlayPerkHandler(true,PerkHandlerData.isMyPerk,PerkHandlerData.type, () => ApplyPerkHandler());
             }
         }
 

@@ -30,7 +30,7 @@ namespace Script.CoreGame
     {
         private static ISocket mySocket;
         private static String myGameMatchicket;
-
+   
 
         private async void Start()
         {
@@ -96,7 +96,7 @@ namespace Script.CoreGame
                         spawnGems.gameplayController.FrameBasedBlackBoard.GetComponent<PerkHandlerBlackBoard>()
                             .requestedPerkHandlers
                             .Add(new PerkHandlerBlackBoard.PerkHandlerData(PerkHandlerBlackBoard.PerkHandlerType.hammer,
-                                new Vector2Int(-100, -100), 1));
+                                new Vector2Int(-100, -100), false,1));
                         break;
 
                     case "3":
@@ -104,14 +104,22 @@ namespace Script.CoreGame
                         spawnGems.gameplayController.FrameBasedBlackBoard.GetComponent<PerkHandlerBlackBoard>()
                             .requestedPerkHandlers
                             .Add(new PerkHandlerBlackBoard.PerkHandlerData(PerkHandlerBlackBoard.PerkHandlerType.hammer,
-                                sourcePosiiton));
+                                sourcePosiiton,false));
 
                         //Close the blackScreen of hammer perk
                         spawnGems.gameplayController.FrameBasedBlackBoard.GetComponent<PerkHandlerBlackBoard>()
                             .requestedPerkHandlers
                             .Add(new PerkHandlerBlackBoard.PerkHandlerData(PerkHandlerBlackBoard.PerkHandlerType.hammer,
-                                new Vector2Int(-100, -100), 0));
+                                new Vector2Int(-100, -100), false,0));
                         break;
+                    case "4":
+                        perkHandler.doShuffle();
+                        spawnGems.gameplayController.FrameBasedBlackBoard.GetComponent<PerkHandlerBlackBoard>()
+                            .requestedPerkHandlers
+                            .Add(new PerkHandlerBlackBoard.PerkHandlerData(PerkHandlerBlackBoard.PerkHandlerType.shuffle,
+                                new Vector2Int(-100, -100), false,0));
+                        break;
+
                 }
             };
         }

@@ -22,12 +22,14 @@ namespace Sample
             public readonly Vector2Int position;
             public readonly PerkHandlerType type;
             public readonly int isStart; //0:close , 1:open , 2:nothing
+            public readonly bool isMyPerk;
 
-            public PerkHandlerData(PerkHandlerType type,Vector2Int position,int isStart=2) : this()
+            public PerkHandlerData(PerkHandlerType type,Vector2Int position,bool isMyPerk,int isStart=2) : this()
             {
                 this.type = type;
                 this.position = position;
                 this.isStart = isStart;
+                this.isMyPerk = isMyPerk;
             }
         }
     }
