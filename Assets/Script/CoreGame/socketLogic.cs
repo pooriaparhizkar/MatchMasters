@@ -19,6 +19,7 @@ namespace Script.CoreGame
         public string opcode;
         public string sourcePosition;
         public string targetPosition;
+        public string number;
 
         public static sendMessageInfo CreateFromJSON(string jsonString)
         {
@@ -30,10 +31,12 @@ namespace Script.CoreGame
     {
         private static ISocket mySocket;
         private static String myGameMatchicket;
+        private static int counterSocketMessage;
    
 
         private async void Start()
         {
+            counterSocketMessage = 0;
             mySocket = MatchMakingLogic.socket;
             myGameMatchicket = MatchMakingLogic.gameMatchicket;
 
@@ -149,10 +152,8 @@ namespace Script.CoreGame
             mySocket = MatchMakingLogic.socket;
             myGameMatchicket = MatchMakingLogic.gameMatchicket;
             var newState = new Dictionary<string, string>
-                {{"opcode", opCode}, {"sourcePosition", sourcePosition}, {"targetPosition", targetPosition}}.ToJson();
-            Debug.Log(newState);
-            Debug.Log(mySocket);
-            Debug.Log(myGameMatchicket);
+                {{"opcode", opCode},{"number",counterSocketMessage.ToString() }, {"sourcePosition", sourcePosition}, {"targetPosition", targetPosition}}.ToJson();
+            counterSocketMessage++;
             mySocket.SendMatchStateAsync(myGameMatchicket, 1, newState);
         }
     }

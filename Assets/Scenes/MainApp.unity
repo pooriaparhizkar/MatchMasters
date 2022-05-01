@@ -3866,7 +3866,7 @@ GameObject:
   - component: {fileID: 622693549}
   - component: {fileID: 622693548}
   m_Layer: 0
-  m_Name: Text
+  m_Name: cointext
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5230,7 +5230,7 @@ GameObject:
   - component: {fileID: 851913045}
   - component: {fileID: 851913044}
   m_Layer: 0
-  m_Name: Text
+  m_Name: Trophytext
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9196,6 +9196,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2534823bd5626184b9c69e84ff538dc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  trophy: {fileID: 851913044}
+  coin: {fileID: 622693548}
 --- !u!1 &1323794499
 GameObject:
   m_ObjectHideFlags: 0
