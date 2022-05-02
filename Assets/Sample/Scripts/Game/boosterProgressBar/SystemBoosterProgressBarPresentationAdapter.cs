@@ -27,7 +27,7 @@ namespace Sample
                     if (newBoosterProgressBar==5)
                     {
                         Debug.Log("****************umad tu play booster progress bar5555555555555555");
-                        myBoosterProgressBarText.text = "Active";
+                        // myBoosterProgressBarText.text = "Active";
                     }
                     else
                     {
@@ -48,7 +48,7 @@ namespace Sample
                     Debug.Log("umad tu play booster progress bar2222222222222222");
                     if (newBoosterProgressBar==5)
                     {
-                        herBoosterProgressBarText.text = "Active";
+                        // herBoosterProgressBarText.text = "Active";
                         Debug.Log("umad tu play booster progress bar5555555555555555");
                     }
                     else

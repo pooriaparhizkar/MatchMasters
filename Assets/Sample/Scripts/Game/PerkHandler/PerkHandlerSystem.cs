@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Medrick.Match3CoreSystem.Game;
 using Medrick.Match3CoreSystem.Game.Core;
@@ -34,7 +35,7 @@ namespace Sample
 
         public override void Update(float dt)
         {
-            foreach (var PerkHandlerData in PerkHandlerBlackBoard.requestedPerkHandlers)
+            foreach (var PerkHandlerData in PerkHandlerBlackBoard.requestedPerkHandlers.ToList())
                 StartPerkHandler(PerkHandlerData);
         }
 

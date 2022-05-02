@@ -20,6 +20,8 @@ namespace Script.CoreGame
         public string sourcePosition;
         public string targetPosition;
         public string number;
+        public string boosterSelected;
+        public string clientID;
 
         public static sendMessageInfo CreateFromJSON(string jsonString)
         {
@@ -56,18 +58,16 @@ namespace Script.CoreGame
                 Vector2Int targetPosition = new Vector2Int(
                     Int32.Parse(jsonContent.targetPosition.Split(',')[0].Remove(0, 1)),
                     Int32.Parse(jsonContent.targetPosition.Split(',')[1].Remove(0, 1).Substring(0, 1)));
-
-                Debug.Log(jsonContent);
+                
                 Debug.Log(jsonContent.opcode);
-                Debug.Log(sourcePosiiton);
-                Debug.Log(targetPosition);
-
-                if (jsonContent.opcode!="0")
-                {
-                    spawnGems.gameplayController.FrameBasedBlackBoard.GetComponent<DevkitBlackBoard>().requestedDevkits
-                        .Add(new DevkitBlackBoard.DevkitData(content));
-
-                }
+                // if (jsonContent.opcode!="0")
+                // {
+                //     spawnGems.gameplayController.FrameBasedBlackBoard.GetComponent<DevkitBlackBoard>().requestedDevkits
+                //         .Add(new DevkitBlackBoard.DevkitData(content));
+                //
+                // }
+                
+                
                 //opCodes :
                 //0 : Initial ( sourcePos : randomSeed , TargetPos : templateID )
                 //1 : swap
@@ -76,10 +76,14 @@ namespace Script.CoreGame
                 //4 : Shuffle perk
                 //5 : Booster
                 //6 : Exit
+                //7 : send clientID and boosterClient
                 switch (jsonContent.opcode)
                 {
                     case "0":
                         Debug.Log("initial maaap sockeeeeeet");
+                        Debug.Log("dsakjhdvajkdhabvdhakhdbjva bkasdhj jsakdb ");
+                        turnHandler.setHisBoosterName(jsonContent.boosterSelected);
+                        turnHandler.setHisClientId(jsonContent.clientID);
                         spawnGems.setRandomSeed(sourcePosiiton.x);
                         spawnGems.setTemplateNo(targetPosition.x);
                         MatchMakingLogic.setIsClientReady();
@@ -122,6 +126,11 @@ namespace Script.CoreGame
                             .Add(new PerkHandlerBlackBoard.PerkHandlerData(PerkHandlerBlackBoard.PerkHandlerType.shuffle,
                                 new Vector2Int(-100, -100), false,0));
                         break;
+                    case "7":
+                        Debug.Log("dsakjhdvajkdhabvdhakhdbjva bkasdhj jsakdb ");
+                        turnHandler.setHisBoosterName(jsonContent.boosterSelected);
+                        turnHandler.setHisClientId(jsonContent.clientID);
+                        break;
 
                 }
             };
@@ -147,13 +156,14 @@ namespace Script.CoreGame
             // SceneManager.LoadScene("MainApp");
         }
 
-        public static void sendChat(string opCode, string sourcePosition, string targetPosition)
+        public static void sendChat(string opCode, string sourcePosition, string targetPosition,string boosterSelected = "",string clientID="")
         {
             mySocket = MatchMakingLogic.socket;
             myGameMatchicket = MatchMakingLogic.gameMatchicket;
             var newState = new Dictionary<string, string>
-                {{"opcode", opCode},{"number",counterSocketMessage.ToString() }, {"sourcePosition", sourcePosition}, {"targetPosition", targetPosition}}.ToJson();
+                {{"opcode", opCode},{"boosterSelected", boosterSelected},{"clientID", clientID},{"number",counterSocketMessage.ToString() }, {"sourcePosition", sourcePosition}, {"targetPosition", targetPosition}}.ToJson();
             counterSocketMessage++;
+            Debug.Log("message sent");
             mySocket.SendMatchStateAsync(myGameMatchicket, 1, newState);
         }
     }

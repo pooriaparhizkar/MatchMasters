@@ -12,6 +12,38 @@ namespace Script.CoreGame
         private static int myBoosterProgressBar=0;
         private static int hisBoosterProgressBar=0;
         private static string hisName;
+        private static string myBoosterName;
+        private static string hisBoosterName;
+        private static string hisClientId;
+        
+        public static void setHisClientId(string localClientId)
+        {
+            hisClientId = localClientId;
+        }
+
+        public static string getHisClientId()
+        {
+            return hisClientId;
+        }
+        public static void setMyBoosterName(string localMyBoosterName)
+        {
+            myBoosterName = localMyBoosterName;
+        }
+
+        public static string getMyBoosterName()
+        {
+            return myBoosterName;
+        }
+        
+        public static void setHisBoosterName(string localHisBoosterName)
+        {
+            hisBoosterName = localHisBoosterName;
+        }
+
+        public static string getHisBoosterName()
+        {
+            return hisBoosterName;
+        }
 
         public static void setHisName(string localHisName)
         {

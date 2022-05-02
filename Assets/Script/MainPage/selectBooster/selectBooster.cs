@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Script.CoreGame;
 using Script.Types;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -102,11 +104,7 @@ public class selectBooster : MonoBehaviour
         }
 
     }
-
-    public void onPlayButtonClick()
-    {
-        SceneManager.LoadScene("MatchMaking");
-    }
+    
     public void onBackSelectBoosterClick()
     {
         selectBoosterPage.SetActive(false);

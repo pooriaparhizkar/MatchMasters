@@ -170,13 +170,17 @@ public class MatchMakingLogic : MonoBehaviour
             int templateNo = generateRandomSeed.Next(1, 4);
             spawnGems.setTemplateNo(templateNo);
             spawnGems.setRandomSeed(numberGenrateRandomSeed);
+            Debug.Log("before send socket message with opcode 0");
             socketLogic.sendChat("0", "(" + numberGenrateRandomSeed.ToString() + ", 1)",
-                "(" + templateNo.ToString() + ", 1)");
+                "(" + templateNo.ToString() + ", 1)",turnHandler.getMyBoosterName(),ProgressBar.myUserInfoDetail.userinfo.user.userId);
+            Debug.Log("after send socket message with opcode 0");
             // await Task.Delay(2000);
             changeSceneToCore();
         }
         else
         {
+            socketLogic.sendChat("7", "(999, 999)",
+                "(999, 999)",turnHandler.getMyBoosterName(),ProgressBar.myUserInfoDetail.userinfo.user.userId);
             turnHandler.setHisName(usersInGame[0]);
             turnHandler.setAmIHost(false);
         }

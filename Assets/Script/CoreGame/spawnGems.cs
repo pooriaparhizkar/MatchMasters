@@ -29,7 +29,15 @@ public class spawnGems : MonoBehaviour
     public GameObject turnBlackScreen;
     public Text myName;
     public Text hisName;
-
+    public GameObject resultPageCanvas;
+    public GameObject coreGameCanvas;
+    public void resultPageRedirectButtonClick()
+    {
+        resultPageCanvas.SetActive(true);
+        coreGameCanvas.SetActive(false);
+    }
+    
+    
     private gemColors changeBlueWithRed(gemColors localGemColors)
     {
         if (!turnHandler.getAmIHost())
