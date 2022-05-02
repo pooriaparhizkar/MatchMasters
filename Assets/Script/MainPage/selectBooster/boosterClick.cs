@@ -7,11 +7,13 @@ namespace DefaultNamespace
     {
         public void OnPointerClick(PointerEventData eventData)
         {
-            foreach (var VARIABLE in  GameObject.FindGameObjectsWithTag("BoosterSelect"))
-            {
-                VARIABLE.gameObject.SetActive(false);
-            }
-            eventData.pointerEnter.transform.parent.GetChild(1).gameObject.SetActive(true);
+            
+                foreach (var VARIABLE in  GameObject.FindGameObjectsWithTag("BoosterSelect"))
+                {
+                    VARIABLE.gameObject.SetActive(false);
+                }
+                if ( eventData.pointerEnter.transform.parent.GetChild(0).gameObject.activeSelf)
+                    eventData.pointerEnter.transform.parent.GetChild(1).gameObject.SetActive(true);
         }
     }
 }
