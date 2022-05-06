@@ -27,8 +27,6 @@ public class spawnGems : MonoBehaviour
     public static Random randomSeed;
     public static int templateNo;
     public GameObject turnBlackScreen;
-    public Text myName;
-    public Text hisName;
     public GameObject resultPageCanvas;
     public GameObject coreGameCanvas;
     public void resultPageRedirectButtonClick()
@@ -197,15 +195,11 @@ public class spawnGems : MonoBehaviour
         if (turnHandler.isMyTurn())
         {
             turnBlackScreen.SetActive(false);
-            myName.text = turnHandler.getHostName();
-            hisName.text = turnHandler.getClientName();
         }
 
         if (!turnHandler.isMyTurn())
         {
             turnBlackScreen.SetActive(true);
-            hisName.text = turnHandler.getHostName();
-            myName.text = turnHandler.getClientName();
         }
 
         var cellStackFactory = new MainCellStackFactory();

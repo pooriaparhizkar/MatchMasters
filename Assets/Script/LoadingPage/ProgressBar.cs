@@ -67,8 +67,8 @@ public class ProgressBar : MonoBehaviour
                         PlayerPrefs.SetString("nakama.deviceid", deviceId); // cache device id.
                     }
 
-                   // session = await client.AuthenticateDeviceAsync(deviceId);
-                   session = await client.AuthenticateDeviceAsync("pooria-pooria-pooria-pooria-pooria-pooria-pooria-pooria-pooria-pooria22341");
+                   session = await client.AuthenticateDeviceAsync(deviceId);
+                   // session = await client.AuthenticateDeviceAsync("pooria-pooria-pooria-pooria-pooria-pooria-pooria-pooria-pooria-pooria22341");
                    await getUserInfoDetail();
                    PlayerPrefs.SetString("token", session.AuthToken);
                     PlayerPrefs.SetString("refresh_token", session.RefreshToken);
