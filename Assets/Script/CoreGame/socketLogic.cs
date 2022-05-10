@@ -22,6 +22,7 @@ namespace Script.CoreGame
         public string number;
         public string boosterSelected;
         public string clientID;
+     
 
         public static sendMessageInfo CreateFromJSON(string jsonString)
         {
@@ -34,10 +35,30 @@ namespace Script.CoreGame
         private static ISocket mySocket;
         private static String myGameMatchicket;
         private static int counterSocketMessage;
-   
+        private static string lastSocketMessage;
+        private static bool isContinueChecking;
 
-        private async void Start()
+        public static void setIsContinueCheckingTrue()
         {
+            isContinueChecking = true;
+        }
+        public static void setIsContinueCheckingFalse()
+        {
+            isContinueChecking = false;
+        }
+
+        public async static void checkMessageSend()
+        {
+            if (isContinueChecking && !turnHandler.isMyTurn())
+            {
+                sendChat("8", "(1, 1)", "(1, 1)","","", (counterSocketMessage+1).ToString());
+            }
+            await Task.Delay(3000);
+            checkMessageSend();
+        }
+        private void Start()
+        {
+            checkMessageSend();
             counterSocketMessage = 0;
             mySocket = MatchMakingLogic.socket;
             myGameMatchicket = MatchMakingLogic.gameMatchicket;
@@ -66,7 +87,8 @@ namespace Script.CoreGame
                 //         .Add(new DevkitBlackBoard.DevkitData(content));
                 //
                 // }
-                
+
+                counterSocketMessage = Int32.Parse(jsonContent.number);
                 
                 //opCodes :
                 //0 : Initial ( sourcePos : randomSeed , TargetPos : templateID )
@@ -77,6 +99,7 @@ namespace Script.CoreGame
                 //5 : Booster
                 //6 : Exit
                 //7 : send clientID and boosterClient
+                //8 : check missing message
                 switch (jsonContent.opcode)
                 {
                     case "0":
@@ -131,6 +154,10 @@ namespace Script.CoreGame
                         turnHandler.setHisBoosterName(jsonContent.boosterSelected);
                         turnHandler.setHisClientId(jsonContent.clientID);
                         break;
+                    case "8":
+                        if (counterSocketMessage==Int32.Parse(jsonContent.number)+1)
+                            sendChat("8", "(1, 1)", "(1, 1)","","", "",true);
+                        break;
 
                 }
             };
@@ -156,13 +183,22 @@ namespace Script.CoreGame
             // SceneManager.LoadScene("MainApp");
         }
 
-        public static void sendChat(string opCode, string sourcePosition, string targetPosition,string boosterSelected = "",string clientID="")
+        public static void sendChat(string opCode, string sourcePosition, string targetPosition,string boosterSelected = "",string clientID="",string expectedNumber="",bool lastSocketMessageRequest=false)
         {
             mySocket = MatchMakingLogic.socket;
             myGameMatchicket = MatchMakingLogic.gameMatchicket;
-            var newState = new Dictionary<string, string>
-                {{"opcode", opCode},{"boosterSelected", boosterSelected},{"clientID", clientID},{"number",counterSocketMessage.ToString() }, {"sourcePosition", sourcePosition}, {"targetPosition", targetPosition}}.ToJson();
-            counterSocketMessage++;
+            
+            var newState="";
+            if (lastSocketMessageRequest) //resend message
+                newState = lastSocketMessage;
+            else // send new message
+            {
+                newState = new Dictionary<string, string>
+                    {{"opcode", opCode},{"boosterSelected", boosterSelected},{"clientID", clientID},{"number",counterSocketMessage.ToString() }, {"sourcePosition", sourcePosition}, {"targetPosition", targetPosition},{"expectedNumber",expectedNumber}}.ToJson();
+
+                counterSocketMessage++;
+            }
+            lastSocketMessage = newState;
             Debug.Log("message sent");
             mySocket.SendMatchStateAsync(myGameMatchicket, 1, newState);
         }

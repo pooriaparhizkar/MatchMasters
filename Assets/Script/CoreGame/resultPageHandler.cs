@@ -45,11 +45,11 @@ namespace Script.CoreGame
 
         public async void onOkClick()
         {
-            if (isFinish)
-            {
+            // if (isFinish)
+            // {
                 await ProgressBar.getUserInfoDetail();
                 SceneManager.LoadScene("MainApp");
-            }
+            // }
            
         }
     }

@@ -93,9 +93,12 @@ namespace Sample
                     localRound++;
                     if (localRound<=4)
                         presentationPort2.PlayRoundSystem(localRound,()=> Debug.Log("Round added"));
-                    else
+                    else 
                     {
-                        presentationPort3.PlayFinishGameSystem(turnHandler.getMyScore(),turnHandler.getHisScore(),(() =>  Debug.Log("Game Finished")));
+                        if (ActionUtilites.isMapStable(gameplayController))
+                        {
+                            presentationPort3.PlayFinishGameSystem(turnHandler.getMyScore(),turnHandler.getHisScore(),(() =>  Debug.Log("Game Finished")));
+                        }
                     }
 
                         // StartTurn(turnHandler.isMyTurn(), turnHandler.getRemainMove());

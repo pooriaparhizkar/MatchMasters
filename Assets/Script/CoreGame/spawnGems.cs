@@ -190,8 +190,14 @@ public class spawnGems : MonoBehaviour
         randomSeed = new Random(seed);
     }
 
+    private void OnApplicationQuit()
+    {
+        socketLogic.setIsContinueCheckingFalse();
+    }
+
     private void Start()
     {
+        socketLogic.setIsContinueCheckingTrue();
         if (turnHandler.isMyTurn())
         {
             turnBlackScreen.SetActive(false);
