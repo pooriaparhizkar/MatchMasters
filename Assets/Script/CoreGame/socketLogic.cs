@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection.Emit;
 using System.Threading.Tasks;
 using Medrick.Match3CoreSystem.Game;
@@ -35,7 +36,7 @@ namespace Script.CoreGame
         private static ISocket mySocket;
         private static String myGameMatchicket;
         private static int counterSocketMessage;
-        private static string lastSocketMessage;
+        private static string[] lastSocketMessage;
         private static bool isContinueChecking;
 
         public static void setIsContinueCheckingTrue()
@@ -51,7 +52,7 @@ namespace Script.CoreGame
         {
             if (isContinueChecking && !turnHandler.isMyTurn())
             {
-                sendChat("8", "(1, 1)", "(1, 1)","","", (counterSocketMessage+1).ToString());
+                sendChat("8", "(1, 1)", "(1, 1)","","", (counterSocketMessage).ToString());
             }
             await Task.Delay(3000);
             checkMessageSend();
@@ -67,11 +68,14 @@ namespace Script.CoreGame
             var enc = System.Text.Encoding.UTF8;
             mySocket.ReceivedMatchState += newState =>
             {
+                
+              
                 // var content = newState.State.ToString();
                 string content = enc.GetString(newState.State).ToString();
 
 
                 var jsonContent = sendMessageInfo.CreateFromJSON(content);
+                lastSocketMessage.Append( content);
                 Vector2Int sourcePosiiton = new Vector2Int(
                     Int32.Parse(jsonContent.sourcePosition.Split(',')[0].Remove(0, 1)),
                     Int32.Parse(jsonContent.sourcePosition.Split(',')[1].Remove(0, 1).Substring(0, 1)));
@@ -155,8 +159,13 @@ namespace Script.CoreGame
                         turnHandler.setHisClientId(jsonContent.clientID);
                         break;
                     case "8":
-                        if (counterSocketMessage==Int32.Parse(jsonContent.number)+1)
-                            sendChat("8", "(1, 1)", "(1, 1)","","", "",true);
+                        if (counterSocketMessage!=Int32.Parse(jsonContent.number))
+                        {
+                            for (int i = Int32.Parse(jsonContent.number)+1; i <= counterSocketMessage; i++)
+                            {
+                                sendChat("8", "(1, 1)", "(1, 1)", "", "", "", i);
+                            }
+                       }
                         break;
 
                 }
@@ -183,14 +192,14 @@ namespace Script.CoreGame
             // SceneManager.LoadScene("MainApp");
         }
 
-        public static void sendChat(string opCode, string sourcePosition, string targetPosition,string boosterSelected = "",string clientID="",string expectedNumber="",bool lastSocketMessageRequest=false)
+        public static void sendChat(string opCode, string sourcePosition, string targetPosition,string boosterSelected = "",string clientID="",string expectedNumber="",int resendMessageNumber=-1)
         {
             mySocket = MatchMakingLogic.socket;
             myGameMatchicket = MatchMakingLogic.gameMatchicket;
             
             var newState="";
-            if (lastSocketMessageRequest) //resend message
-                newState = lastSocketMessage;
+            if (resendMessageNumber!=-1) //resend message
+                newState = lastSocketMessage[resendMessageNumber];
             else // send new message
             {
                 newState = new Dictionary<string, string>
@@ -198,7 +207,7 @@ namespace Script.CoreGame
 
                 counterSocketMessage++;
             }
-            lastSocketMessage = newState;
+            lastSocketMessage.Append( newState);
             Debug.Log("message sent");
             mySocket.SendMatchStateAsync(myGameMatchicket, 1, newState);
         }
